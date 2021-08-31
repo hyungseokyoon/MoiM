@@ -9,13 +9,8 @@
 	</settings>
 	
 	<typeAliases>		
-		<typeAlias type="com.test.firstspring.common.SearchDate" alias="SearchDate" />
-		<typeAlias type="com.test.firstspring.common.Paging" alias="Paging" />
 	</typeAliases>
 	
-	<mappers>
-		<mapper resource="mappers/member-mapper.xml" />
-		<mapper resource="mappers/notice-mapper.xml" />
-		<mapper resource="mappers/board-mapper.xml" />		
+	<mappers>	
 	</mappers>
 </configuration>
