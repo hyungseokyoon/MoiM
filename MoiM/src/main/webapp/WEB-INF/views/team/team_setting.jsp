@@ -10,12 +10,12 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon"/>
 <title>팀 정보 관리</title>
 <!-- Bootstrap Core and vandor -->
-<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/assets/plugins/bootstrap/css/bootstrap.min.css" />
-<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/assets/plugins/dropify/css/dropify.min.css">
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/dropify/css/dropify.min.css">
 
 <!-- Core css -->
-<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/assets/css/main.css"/>
-<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/assets/css/theme1.css"/>
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/css/main.css"/>
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/css/theme1.css"/>
 </head>
 <body>
 <body class="font-montserrat">
@@ -33,7 +33,7 @@
             <div class="hleft">
                 <a class="header-brand" href="index-2.html"><i class="fa fa-soccer-ball-o brand-logo"></i></a>
                 <div class="dropdown">
-                    <a href="javascript:void(0)" class="nav-link user_btn"><img class="avatar" src="${ pageContext.servletContext.contextPath }/assets/images/user.png" alt="" data-toggle="tooltip" data-placement="right" title="User Menu"/></a>
+                    <a href="javascript:void(0)" class="nav-link user_btn"><img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/user.png" alt="" data-toggle="tooltip" data-placement="right" title="User Menu"/></a>
                     <a href="page-search.html" class="nav-link icon xs-hide"><i class="fa fa-search"></i></a>                    
                     <a href="app-calendar.html"  class="nav-link icon app_inbox xs-hide"><i class="fa fa-calendar"></i></a>
                     <a href="app-contact.html"  class="nav-link icon xs-hide"><i class="fa fa-id-card-o"></i></a>
@@ -197,15 +197,15 @@
                 <ul class="list-group list-unstyled">
                     <li class="list-group-item mb-2">
                         <p>Default Theme</p>
-                        <a href="index-2.html"><img src="${ pageContext.servletContext.contextPath }/assets/images/themes/default.png" class="img-fluid" /></a>
+                        <a href="index-2.html"><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/themes/default.png" class="img-fluid" /></a>
                     </li>
                     <li class="list-group-item mb-2">
                         <p>Night Mode Theme</p>
-                        <a href="project-dark/index.html"><img src="${ pageContext.servletContext.contextPath }/assets/images/themes/dark.png" class="img-fluid" /></a>
+                        <a href="project-dark/index.html"><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/themes/dark.png" class="img-fluid" /></a>
                     </li>                    
                     <li class="list-group-item mb-2">
                         <p>RTL Version</p>
-                        <a href="project-rtl/index.html"><img src="${ pageContext.servletContext.contextPath }/assets/images/themes/rtl.png" class="img-fluid" /></a>
+                        <a href="project-rtl/index.html"><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/themes/rtl.png" class="img-fluid" /></a>
                     </li>
                 </ul>
             </div>
@@ -215,7 +215,7 @@
     <div class="user_div">
         <h5 class="brand-name mb-4">Soccer<a href="javascript:void(0)" class="user_btn"><i class="icon-logout"></i></a></h5>
         <div class="card-body">
-            <a href="page-profile.html"><img class="card-profile-img" src="${ pageContext.servletContext.contextPath }/assets/images/sm/avatar1.jpg" alt=""></a>
+            <a href="page-profile.html"><img class="card-profile-img" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/sm/avatar1.jpg" alt=""></a>
             <h6 class="mb-0">Peter Richards</h6>
             <span>peter.richard@gmail.com</span>
             <div class="d-flex align-items-baseline mt-3">
@@ -256,10 +256,10 @@
                         <h3>Developer Team</h3>
                         <h4>Hangouts</h4>
                         <ul class="list-unstyled team-info margin-0 p-t-5">                                            
-                            <li><img src="${ pageContext.servletContext.contextPath }/assets/images/xs/avatar1.jpg" alt="Avatar"></li>
-                            <li><img src="${ pageContext.servletContext.contextPath }/assets/images/xs/avatar2.jpg" alt="Avatar"></li>
-                            <li><img src="${ pageContext.servletContext.contextPath }/assets/images/xs/avatar3.jpg" alt="Avatar"></li>
-                            <li><img src="${ pageContext.servletContext.contextPath }/assets/images/xs/avatar4.jpg" alt="Avatar"></li>                                            
+                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar1.jpg" alt="Avatar"></li>
+                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar2.jpg" alt="Avatar"></li>
+                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar3.jpg" alt="Avatar"></li>
+                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar4.jpg" alt="Avatar"></li>                                            
                         </ul>
                     </div>
                 </li>
@@ -344,11 +344,11 @@
                             <div class="dropdown d-flex">
                                 <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown"><i class="fa fa-language"></i></a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="${ pageContext.servletContext.contextPath }/assets/images/flags/us.svg">English</a>
+                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/flags/us.svg">English</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="${ pageContext.servletContext.contextPath }/assets/images/flags/es.svg">Spanish</a>
-                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="${ pageContext.servletContext.contextPath }/assets/images/flags/jp.svg">japanese</a>
-                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="${ pageContext.servletContext.contextPath }/assets/images/flags/bl.svg">France</a>
+                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/flags/es.svg">Spanish</a>
+                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/flags/jp.svg">japanese</a>
+                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/flags/bl.svg">France</a>
                                 </div>
                             </div>
                             <div class="dropdown d-flex">
@@ -357,7 +357,7 @@
                                     <ul class="right_chat list-unstyled w350 p-0">
                                         <li class="online">
                                             <a href="javascript:void(0);" class="media">
-                                                <img class="media-object" src="${ pageContext.servletContext.contextPath }/assets/images/xs/avatar4.jpg" alt="">
+                                                <img class="media-object" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar4.jpg" alt="">
                                                 <div class="media-body">
                                                     <span class="name">Donald Gardner</span>
                                                     <div class="message">It is a long established fact that a reader</div>
@@ -368,7 +368,7 @@
                                         </li>
                                         <li class="online">
                                             <a href="javascript:void(0);" class="media">
-                                                <img class="media-object " src="${ pageContext.servletContext.contextPath }/assets/images/xs/avatar5.jpg" alt="">
+                                                <img class="media-object " src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar5.jpg" alt="">
                                                 <div class="media-body">
                                                     <span class="name">Wendy Keen</span>
                                                     <div class="message">There are many variations of passages of Lorem Ipsum</div>
@@ -379,7 +379,7 @@
                                         </li>
                                         <li class="offline">
                                             <a href="javascript:void(0);" class="media">
-                                                <img class="media-object " src="${ pageContext.servletContext.contextPath }/assets/images/xs/avatar2.jpg" alt="">
+                                                <img class="media-object " src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar2.jpg" alt="">
                                                 <div class="media-body">
                                                     <span class="name">Matt Rosales</span>
                                                     <div class="message">Contrary to popular belief, Lorem Ipsum is not simply</div>
@@ -390,7 +390,7 @@
                                         </li>
                                         <li class="online">
                                             <a href="javascript:void(0);" class="media">
-                                                <img class="media-object " src="${ pageContext.servletContext.contextPath }/assets/images/xs/avatar3.jpg" alt="">
+                                                <img class="media-object " src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar3.jpg" alt="">
                                                 <div class="media-body">
                                                     <span class="name">Phillip Smith</span>
                                                     <div class="message">It has roots in a piece of classical Latin literature from 45 BC</div>
@@ -1403,11 +1403,11 @@
     </div>    
 </div>
 
-<script src="${ pageContext.servletContext.contextPath }/assets/bundles/lib.vendor.bundle.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/team_page/bundles/lib.vendor.bundle.js"></script>
 
-<script src="${ pageContext.servletContext.contextPath }/assets/plugins/dropify/js/dropify.min.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/dropify/js/dropify.min.js"></script>
 
-<script src="${ pageContext.servletContext.contextPath }/assets/js/core.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/core.js"></script>
 <script>
     $(function() {
         "use strict";
