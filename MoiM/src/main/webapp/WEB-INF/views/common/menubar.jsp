@@ -5,106 +5,129 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>firstspring</title>
-<style type="text/css">
-header {
-	margin: 0;
-	padding: 0;
-}
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
 
-header h1#logo {
-	font-size: 36pt;
-	font-style: italic;
-	color: navy;
-	text-shadow: 2px 2px 2px gray;
-}
+<!-- CSS -->
+<!-- Template의 모든 페이지의 공통 CSS는 이곳에 작성해주시길 바랍니다. -->
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/vendor/bootstrap/css/bootstrap.min.css">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/vendor/font-awesome/css/font-awesome.min.css">
+<!-- Google fonts - Poppins-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
+<!-- Lightbox-->
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/vendor/lightbox2/css/lightbox.css">
+<!-- Custom font icons-->
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/fontastic.css">
+<!-- theme stylesheet-->
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/style.sea.css" id="theme-stylesheet">
+<!-- Custom stylesheet - for your changes-->
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/custom.css">
+<!-- Favicon-->
+<link rel="shortcut icon" href="${ pageContext.servletContext.contextPath }/resources/img/favicon.png">
+<!-- Tweaks for older IEs--><!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
-header ul#menubar {
-	list-style: none;
-	position: relative;
-	left: 150px;
-	top: -30px;
-}
-
-header ul#menubar li {
-	float: left;
-	width: 120px;
-	height: 30px;
-	margin-right: 5px;
-	padding: 0;
-}
-
-header ul#menubar li a {
-	text-decoration: none;
-	width: 120px;
-	height: 30px;
-	display: block;
-	background-color: orange;
-	text-align: center;
-	color: navy;
-	font-weight: bold;
-	margin: 0;
-	text-shadow: 1px 1px 2px white;
-	padding-top: 5px;
-}
-
-header ul#menubar li a:hover {
-	text-decoration: none;
-	width: 120px;
-	height: 30px;
-	display: block;
-	background-color: navy;
-	text-align: center;
-	color: white;
-	font-weight: bold;
-	margin: 0;
-	text-shadow: 1px 1px 2px navy;
-	padding-top: 5px;
-}
-
-hr {
-	clear: both;
-}
-</style>
 </head>
 <body>
-	<header>
-		<h1 id="logo">first spring project</h1>
-		<c:if test="${ empty sessionScope.loginMember }">
-			<ul id="menubar">
-				<li><a href="${ pageContext.servletContext.contextPath }/nlist.do">공지사항</a></li>
-				<li><a href="${ pageContext.servletContext.contextPath }/blist.do?page=1">게시글</a></li>
-				<li><a href="${ pageContext.servletContext.contextPath }/moveCrypto.do">암호화테스트</a></li>
-				<li><a href="${ pageContext.servletContext.contextPath }/moveTest.do">테스트</a></li>
-				<li><a href="${ pageContext.servletContext.contextPath }/moveAOP.do">AOP란?</a></li>
-				<li><a href="${ pageContext.servletContext.contextPath }/main.do">홈</a></li>
-			</ul>
-		</c:if>
-		
-		<c:if
-			test="${ !empty sessionScope.loginMember and sessionScope.loginMember.admin eq 'Y' }">
-			<ul id="menubar">
-				<li><a href="${ pageContext.servletContext.contextPath }/mlist.do">회원관리</a></li>
-				<li><a href="${ pageContext.servletContext.contextPath }/nlist.do">공지사항관리</a></li>
-				<li><a href="${ pageContext.servletContext.contextPath }/blist.do?page=1">게시글관리</a></li>
-				<li><a href="#">사진게시판관리</a></li>
-				<li><a href="${ pageContext.servletContext.contextPath }/main.do">홈</a></li>
-			</ul>
-		</c:if>
-		<%-- <% }else { //일반 회원이 로그인했을 때 %> --%>
-		<c:if test="${ !empty sessionScope.loginMember and sessionScope.loginMember.admin eq 'N'}">
-			<ul id="menubar">
-				<li><a href="${ pageContext.servletContext.contextPath }/nlist.do">공지사항</a></li>
-				<li><a href="${ pageContext.servletContext.contextPath }/blist.do?page=1">게시글</a></li>
-				<li><a href="#">QnA</a></li>
-				<li><a href="#">암호화회원가입</a></li>
-				<li><a href="${ pageContext.servletContext.contextPath }/main.do">홈</a></li>
-			</ul>
-		</c:if>
-		
-	</header>
-
+	<!-- 상단 메뉴바 -->
+	<header class="header">
+      <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+			<a href="./" class="navbar-brand">
+				<img src="${ pageContext.servletContext.contextPath }/resources/img/logo.svg" alt="" class="img-fluid">
+	        </a>
+          	<button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+          	aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" 
+          	class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+          	<div id="navbarSupportedContent" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+				<li class="nav-item"> <a href="main.do" class="nav-link active">Home</a></li>
+				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/faq.html" class="nav-link">FAQ</a></li>
+				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/contact.html" class="nav-link">Contact</a></li>
+				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/text.html" class="nav-link">Text Page</a></li>
+				<li class="nav-item dropdown">
+					<a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
+	                <div class="dropdown-menu">
+		                <a href="${ pageContext.servletContext.contextPath }/faq.html" class="dropdown-item">FAQ</a>
+		                <a href="${ pageContext.servletContext.contextPath }/contact.html" class="dropdown-item">Contact</a>
+		                <a href="${ pageContext.servletContext.contextPath }/text.html" class="dropdown-item">Text Page</a>
+	                </div>
+				</li>
+            </ul>
+            <a href="#" data-toggle="modal" data-target="#login" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Login </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+	
+	<!-- 로그인 레이어 -->
+	<div id="login" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bd-example-modal-lg">
+		<div role="document" class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content">
+				<div class="modal-header border-bottom-0">
+					<button type="button" data-dismiss="modal" aria-label="Close" class="close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body p-4 p-lg-5">
+					<form action="#" class="login-form text-left">
+						<div class="form-group mb-4">
+							<label>Email address</label>
+							<input type="email" name="email" placeholder="name@company.com" class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label>Password</label>
+							<input type="password" name="password" placeholder="Min 8 characters" class="form-control">
+						</div>
+						<div class="form-group">
+							<input type="submit" value="Login" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 배너 부분 -->
+	<section class="hero">
+		<div class="container mb-5">
+			<div class="row align-items-center">
+				<div class="col-lg-6">
+					<h1 class="hero-heading mb-0">Move work <br> forward</h1>
+					<div class="row">
+						<div class="col-lg-10">
+							<p class="lead text-muted mt-4 mb-4">Lorem ipsum dolor sit amet, consectetur. Eiusmod tempor incididunt.</p>
+						</div>
+					</div>
+					<form action="#" class="subscription-form">
+						<div class="form-group">
+							<input type="email" name="email" placeholder="Name@company.com" class="form-control">
+							<button type="submit" class="btn btn-primary">Get Started</button>
+						</div>
+					</form>
+				</div>
+				<div class="col-lg-6">
+					<img src="${ pageContext.servletContext.contextPath }/resources/img/illustration-hero.svg" alt="..." class="hero-image img-fluid d-none d-lg-block">
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
+
+<!-- Javascript -->
+<!-- Template의 모든 공통 JS는 이곳에 작성해주시길 바랍니다. -->
+<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.0.min.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/vendor/jquery.cookie/jquery.cookie.js"> </script>
+<script src="${ pageContext.servletContext.contextPath }/resources/vendor/lightbox2/js/lightbox.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/js/front.js"></script>
+
 </html>
 
 
