@@ -48,17 +48,19 @@
           	<div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
 				<li class="nav-item"> <a href="main.do" class="nav-link active">Home</a></li>
-				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/faq.html" class="nav-link">FAQ</a></li>
-				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/contact.html" class="nav-link">Contact</a></li>
-				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/text.html" class="nav-link">Text Page</a></li>
-				<li class="nav-item dropdown">
+				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/nlist.do" class="nav-link">공지사항</a></li>
+				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/contact.html" class="nav-link">구인게시판</a></li>
+				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/blist.do" class="nav-link">게시판</a></li>
+				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/text.html" class="nav-link">리뷰게시판</a></li>
+				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/text.html" class="nav-link">My Page</a></li>
+				<%-- <li class="nav-item dropdown">
 					<a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
 	                <div class="dropdown-menu">
 		                <a href="${ pageContext.servletContext.contextPath }/faq.html" class="dropdown-item">FAQ</a>
 		                <a href="${ pageContext.servletContext.contextPath }/contact.html" class="dropdown-item">Contact</a>
 		                <a href="${ pageContext.servletContext.contextPath }/text.html" class="dropdown-item">Text Page</a>
 	                </div>
-				</li>
+				</li> --%>
             </ul>
             <a href="#" data-toggle="modal" data-target="#login" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Login </a>
           </div>
@@ -86,7 +88,8 @@
 							<input type="password" name="password" placeholder="Min 8 characters" class="form-control">
 						</div>
 						<div class="form-group">
-							<input type="submit" value="Login" class="btn btn-primary">
+							<input type="submit" value="Login" class="btn btn-primary">&nbsp;&nbsp;
+							<input type="submit" value="Join" class="btn btn-primary">
 						</div>
 					</form>
 				</div>
