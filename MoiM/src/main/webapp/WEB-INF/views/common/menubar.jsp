@@ -51,7 +51,7 @@
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/nlist.do" class="nav-link">공지사항</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/contact.html" class="nav-link">구인게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/blist.do" class="nav-link">게시판</a></li>
-				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/text.html" class="nav-link">리뷰게시판</a></li>
+				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rvlist.do" class="nav-link">리뷰게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/text.html" class="nav-link">My Page</a></li>
 				<%-- <li class="nav-item dropdown">
 					<a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
