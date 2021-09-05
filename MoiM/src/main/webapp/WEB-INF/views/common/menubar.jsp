@@ -62,7 +62,14 @@
 	                </div>
 				</li> --%>
             </ul>
-            <a href="#" data-toggle="modal" data-target="#login" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Login </a>
+            <!-- 비 로그인 시 : 로그인 창 띄우기 -->
+            <c:if test="${ empty loginMember }">
+            	<a href="#" data-toggle="modal" data-target="#login" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Login </a>
+            </c:if>
+          	<!-- 로그인 시 : 로그아웃 하기-->
+          	<c:if test="${ !empty loginMember }">
+          		<a href="#" onClick = "javascript:location.href='logout.do';" data-toggle="modal" data-target="#login" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Logout </a>
+          	</c:if>
           </div>
         </div>
       </nav>
@@ -87,10 +94,20 @@
 							<label>Password</label>
 							<input type="password" name="password" placeholder="Min 8 characters" class="form-control">
 						</div>
-						<div class="form-group">
-							<input type="submit" value="Login" class="btn btn-primary">&nbsp;&nbsp;
-							<input type="submit" value="Join" class="btn btn-primary">
-						</div>
+						
+						<table class="form-group">
+							<th width="22%">
+								<input type="submit" value="Login" class="btn btn-primary">
+							</th>
+							<th width="48%">
+								<a href="enroll.do" class="btn btn-primary">Join</a>
+							</th>
+							<th width="30%">
+								<a href="">아이디 조회</a>
+								/
+								<a href="">비밀번호 조회</a>
+							</th>
+						</table>
 					</form>
 				</div>
 			</div>
@@ -98,7 +115,7 @@
 	</div>
 	
 	<!-- 배너 부분 -->
-	<section class="hero">
+	<%-- <section class="hero">
 		<div class="container mb-5">
 			<div class="row align-items-center">
 				<div class="col-lg-6">
@@ -120,7 +137,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> --%>
 </body>
 
 <!-- Javascript -->
