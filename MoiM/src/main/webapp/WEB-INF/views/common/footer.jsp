@@ -19,10 +19,10 @@
 				<div class="col-lg-3 mb-5 mb-lg-0">
 					<h5 class="footer-heading">Site pages</h5>
 					<ul class="list-unstyled">
-						<li> <a href="index.html" class="footer-link">Home</a></li>
-						<li> <a href="faq.html" class="footer-link">공지사항</a></li>
+						<li> <a href="${ pageContext.servletContext.contextPath }/main.do" class="footer-link">Home</a></li>
+						<li> <a href="${ pageContext.servletContext.contextPath }/nlist.do" class="footer-link">공지사항</a></li>
 						<li> <a href="contact.html" class="footer-link">구인게시판</a></li>
-						<li> <a href="text.html" class="footer-link">게시판</a></li>
+						<li> <a href="${ pageContext.servletContext.contextPath }/blist.do" class="footer-link">게시판</a></li>
 						<li> <a href="text.html" class="footer-link">리뷰게시판</a></li>
 					</ul>
 				</div>
