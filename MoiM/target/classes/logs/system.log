@@ -49,3 +49,7 @@ Caused by: java.lang.ClassNotFoundException: Cannot find class: com.finalp.moim.
 	at org.apache.ibatis.io.Resources.classForName(Resources.java:261)
 	at org.apache.ibatis.builder.xml.XMLConfigBuilder.typeAliasesElement(XMLConfigBuilder.java:170)
 	... 27 more
+[14:19:22][INFO ][ContextLoader.java:271] - Root WebApplicationContext: initialization started
+[14:19:24][INFO ][ContextLoader.java:307] - Root WebApplicationContext initialized in 1859 ms
+[14:19:24][INFO ][FrameworkServlet.java:525] - Initializing Servlet 'appServlet'
+[14:19:26][INFO ][FrameworkServlet.java:547] - Completed initialization in 2064 ms
