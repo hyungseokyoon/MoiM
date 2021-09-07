@@ -14,12 +14,20 @@
 		<typeAlias type="com.finalp.moim.board.model.vo.BoardCategory" alias="BoardCategory"/>
 		<typeAlias type="com.finalp.moim.reply.model.vo.Reply" alias="Reply"/>
 		<typeAlias type="com.finalp.moim.common.Page" alias="Page"/>
-		<typeAlias type="com.finalp.moim.common.SearchDate" alias="SearchDate"/>
+		<!-- <typeAlias type="com.finalp.moim.common.SearchDate" alias="SearchDate"/> -->
+		<typeAlias type="com.finalp.moim.team.model.vo.Field" alias="Field"/>
+		<typeAlias type="com.finalp.moim.team.model.vo.JoinWaiting" alias="JoinWaiting"/>
+		<typeAlias type="com.finalp.moim.team.model.vo.Team" alias="Team"/>
+		<typeAlias type="com.finalp.moim.team.model.vo.TeamMember" alias="TeamMember"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/notice-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
 		<mapper resource="mappers/reply-mapper.xml"/>
+		<mapper resource="mappers/field-mapper.xml"/>
+		<mapper resource="mappers/joinwaiting-mapper.xml"/>
+		<mapper resource="mappers/team-mapper.xml"/>
+		<mapper resource="mappers/teammember-mapper.xml"/>
 	</mappers>
 </configuration>
