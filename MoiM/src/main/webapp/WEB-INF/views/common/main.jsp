@@ -10,7 +10,6 @@
 <body>
 	<!-- Menubar -->
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
-	<hr>
 	
 	<!-- Main Content -->
 	<!-- 모임 찾기 -->
