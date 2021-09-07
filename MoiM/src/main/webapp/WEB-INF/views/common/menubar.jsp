@@ -53,14 +53,17 @@
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/blist.do" class="nav-link">게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/text.html" class="nav-link">리뷰게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/text.html" class="nav-link">My Page</a></li>
-				<%-- <li class="nav-item dropdown">
-					<a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
-	                <div class="dropdown-menu">
-		                <a href="${ pageContext.servletContext.contextPath }/faq.html" class="dropdown-item">FAQ</a>
-		                <a href="${ pageContext.servletContext.contextPath }/contact.html" class="dropdown-item">Contact</a>
-		                <a href="${ pageContext.servletContext.contextPath }/text.html" class="dropdown-item">Text Page</a>
-	                </div>
-				</li> --%>
+				<!-- 관리자 페이지 드롭박스 -->
+				<c:if test="${ loginMember.admin == 'Y' }">
+					<li class="nav-item dropdown">
+						<a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
+		                <div class="dropdown-menu">
+			                <a href="${ pageContext.servletContext.contextPath }/ulistadmin.do" class="dropdown-item">회원관리</a>
+			                <a href="${ pageContext.servletContext.contextPath }/blistadmin.do" class="dropdown-item">게시판관리</a>
+			                <a href="${ pageContext.servletContext.contextPath }/teamlistadmin.do" class="dropdown-item">모임관리</a>
+		                </div>
+					</li>
+				</c:if>
             </ul>
             <!-- 비 로그인 시 : 로그인 창 띄우기 -->
             <c:if test="${ empty loginMember }">
