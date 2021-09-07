@@ -78,7 +78,6 @@ logs/
 
 # properties files
 *.properties
-com.test.moim/
 
 # BlueJ files
 *.ctxt
