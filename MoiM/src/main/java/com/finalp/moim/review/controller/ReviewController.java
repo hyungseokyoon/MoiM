@@ -18,13 +18,16 @@ public class ReviewController {
 		@Autowired
 		
 		
-		// 공지사항 페이지 이동 처리용 메소드
+		// 리뷰 페이지 이동 처리용 메소드
 		@RequestMapping("rvlist.do")
 		public String reviewListMethod() {
 			return "review/reviewListView";
 		}
-		// --------------------------
 		
-		// 공지사항 관련 기능 메소드
-		// --------------------------
+		// 리뷰 작성뷰
+		@RequestMapping("rvwrite.do")
+		public String reviewWriteForm() {
+			return "review/reviewWriteForm";
+		}
+		
 }
