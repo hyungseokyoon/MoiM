@@ -8,9 +8,18 @@
 		<setting name="cacheEnabled" value="false" />
 	</settings>
 	
-	<typeAliases>		
+	<typeAliases>
+		<typeAlias type="com.finalp.moim.notice.model.vo.Notice" alias="Notice"/>
+		<typeAlias type="com.finalp.moim.board.model.vo.Board" alias="Board"/>
+		<typeAlias type="com.finalp.moim.board.model.vo.BoardCategory" alias="BoardCategory"/>
+		<typeAlias type="com.finalp.moim.reply.model.vo.Reply" alias="Reply"/>
+		<typeAlias type="com.finalp.moim.common.Page" alias="Page"/>
+		<typeAlias type="com.finalp.moim.common.SearchDate" alias="SearchDate"/>
 	</typeAliases>
 	
-	<mappers>	
+	<mappers>
+		<mapper resource="mappers/notice-mapper.xml"/>
+		<mapper resource="mappers/board-mapper.xml"/>
+		<mapper resource="mappers/reply-mapper.xml"/>
 	</mappers>
 </configuration>
