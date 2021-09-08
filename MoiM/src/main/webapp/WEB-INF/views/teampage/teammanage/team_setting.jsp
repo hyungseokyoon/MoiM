@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
 <!-- Bootstrap Core and vandor -->
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/dropify/css/dropify.min.css">
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css"/>
 
 <!-- Core css -->
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/css/main.css"/>
@@ -26,7 +28,7 @@
 
 <div id="main_content">
 
-    <jsp:include page="tp_menubar.jsp"></jsp:include>
+    <c:import url="/WEB-INF/views/teampage/common/tp_menubar.jsp" />
 
     <div class="page">
         <div id="page_top" class="section-body top_dark">
@@ -172,7 +174,9 @@
 				</div>
 			</div>
 		</div>
-		<jsp:include page="tp_footer.jsp"></jsp:include>
+		
+		<c:import url="/WEB-INF/views/teampage/common/tp_menubar.jsp" />
+		
     </div>    
 </div>
 

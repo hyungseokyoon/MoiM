@@ -7,15 +7,15 @@
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<link rel="icon" href="favicon.ico" type="image/x-icon"/>
 <title>teamname</title>
 </head>
 <body class="font-montserrat">
 	<div id="header_top" class="header_top">
 		<div class="container">
 			<div class="hleft">
-				<a class="header-brand" href="index-2.html"><i
-					class="fa fa-soccer-ball-o brand-logo"></i></a>
+				<a class="header-brand" href="index-2.html">
+					<img alt="" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/pig.jpg">
+				</a>
 				<div class="dropdown">
 					<a href="javascript:void(0)" class="nav-link user_btn"><img
 						class="avatar" src="assets/images/user.png" alt=""
@@ -147,8 +147,8 @@
                 <li>
                     <a href="javascript:void(0)" class="has-arrow arrow-c" id="updowndisp"><i class="fa fa-lock"></i><span>팀관리</span></a>
                     <ul id="manageoption">
-                        <li><a href="login.html">팀정보 관리</a></li>
-                        <li><a href="register.html">팀원 관리</a></li>
+                        <li><a href="${ pageContext.servletContext.contextPath }/moveTeamSetting.do">팀정보 관리</a></li>
+                        <li><a href="${ pageContext.servletContext.contextPath }/moveTeamMember.do">팀원 관리</a></li>
                     </ul>
                 </li>
 				<li><a href="app-chat.html"><i class="fa fa-comments"></i><span>팀 탈퇴</span></a></li>
