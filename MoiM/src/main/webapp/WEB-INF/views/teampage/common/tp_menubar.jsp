@@ -7,15 +7,15 @@
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<link rel="icon" href="favicon.ico" type="image/x-icon"/>
 <title>teamname</title>
 </head>
 <body class="font-montserrat">
 	<div id="header_top" class="header_top">
 		<div class="container">
 			<div class="hleft">
-				<a class="header-brand" href="index-2.html"><i
-					class="fa fa-soccer-ball-o brand-logo"></i></a>
+				<a class="header-brand" href="index-2.html">
+					<img alt="" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/pig.jpg">
+				</a>
 				<div class="dropdown">
 					<a href="javascript:void(0)" class="nav-link user_btn"><img
 						class="avatar" src="assets/images/user.png" alt=""
