@@ -147,8 +147,8 @@
                 <li>
                     <a href="javascript:void(0)" class="has-arrow arrow-c" id="updowndisp"><i class="fa fa-lock"></i><span>팀관리</span></a>
                     <ul id="manageoption">
-                        <li><a href="login.html">팀정보 관리</a></li>
-                        <li><a href="register.html">팀원 관리</a></li>
+                        <li><a href="${ pageContext.servletContext.contextPath }/moveTeamSetting.do">팀정보 관리</a></li>
+                        <li><a href="${ pageContext.servletContext.contextPath }/moveTeamMember.do">팀원 관리</a></li>
                     </ul>
                 </li>
 				<li><a href="app-chat.html"><i class="fa fa-comments"></i><span>팀 탈퇴</span></a></li>

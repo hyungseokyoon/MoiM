@@ -29,7 +29,7 @@
 				<div class="col-lg-3 mb-5 mb-lg-0">
 					<h5 class="footer-heading">Product</h5>
 					<ul class="list-unstyled">
-						<li> <a href="moveTPindex.do" class="footer-link">Why Appton?</a></li>
+						<li> <a href="${ pageContext.servletContext.contextPath }/moveTPindex.do" class="footer-link">Why Appton?</a></li>
 						<li> <a href="#" class="footer-link">Enterprise</a></li>
 						<li> <a href="#" class="footer-link">Blog</a></li>
 						<li> <a href="#" class="footer-link">Pricing</a></li>
