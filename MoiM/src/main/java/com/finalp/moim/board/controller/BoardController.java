@@ -17,13 +17,20 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	// 게시판 페이지 이동 처리용 메소드
+	// 게시판 페이지 이동 처리용 메소드------------
+	// 게시판 리스트 페이지 이동
 	@RequestMapping("blist.do")
 	public String boardListMethod() {
 		return "board/BoardList";
 	}
-	// --------------------------
 	
-	// 게시판 관련 기능 메소드
-	// --------------------------
+	// 게시판 관리 페이지 이동
+	@RequestMapping("blistadmin.do")
+	public String boardAdminListMethod() {
+		return "admin/AdminBoardList";
+	}
+	// --------------------------------------
+	
+	// 게시판 관련 기능 메소드--------------------
+	// --------------------------------------
 }

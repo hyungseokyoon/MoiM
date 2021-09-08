@@ -14,8 +14,7 @@
 	<div id="header_top" class="header_top">
 		<div class="container">
 			<div class="hleft">
-				<a class="header-brand" href="index-2.html"><i
-					class="fa fa-soccer-ball-o brand-logo"></i></a>
+				<a class="header-brand" href="index-2.html"><i class="fa fa-soccer-ball-o brand-logo"></i></a>
 				<div class="dropdown">
 					<a href="javascript:void(0)" class="nav-link user_btn"><img
 						class="avatar" src="assets/images/user.png" alt=""
@@ -138,21 +137,21 @@
         <nav id="left-sidebar-nav" class="sidebar-nav">
             <ul class="metismenu">
                 <li class="g_heading">팀 기능</li>
-                <li id="home"><a href="moveTPindex.do"><i class="fa fa-dashboard"></i><span>홈</span></a></li>                        
-                <li id="teamboard"><a href="project-list.html"><i class="fa fa-list-ol"></i><span>공지</span></a></li>
-                <li id="calendar"><a href="moveTPcalendar.do"><i class="fa fa-calendar-check-o"></i><span>일정</span></a></li>
-                <li id="chat"><a href="project-ticket.html"><i class="fa fa-list-ul"></i><span>채팅</span></a></li>
-                <li id="files"><a href="project-ticket-details.html"><i class="icon-tag"></i><span>파일</span></a></li>
-                <li id="daily"><a href="project-clients.html"><i class="fa fa-user"></i><span>일지</span></a></li>
-                <li id="teammanage">
+                <li><a href="moveTPindex.do"><i class="fa fa-dashboard"></i><span>홈</span></a></li>                        
+                <li><a href="project-list.html"><i class="fa fa-list-ol"></i><span>공지</span></a></li>
+                <li><a href="moveTPcalendar.do"><i class="fa fa-calendar-check-o"></i><span>일정</span></a></li>
+                <li><a href="project-ticket.html"><i class="fa fa-list-ul"></i><span>채팅</span></a></li>
+                <li><a href="project-ticket-details.html"><i class="icon-tag"></i><span>파일</span></a></li>
+                <li><a href="project-clients.html"><i class="fa fa-user"></i><span>일지</span></a></li>
+                <li>
                     <a href="javascript:void(0)" class="has-arrow arrow-c" id="updowndisp"><i class="fa fa-lock"></i><span>팀관리</span></a>
                     <ul id="manageoption">
-                        <li><a href="login.html">팀정보 관리</a></li>
-                        <li><a href="register.html">팀원 관리</a></li>
+                        <li><a href="${ pageContext.servletContext.contextPath }/moveTeamSetting.do">팀정보 관리</a></li>
+                        <li><a href="${ pageContext.servletContext.contextPath }/moveTeamMember.do">팀원 관리</a></li>
                     </ul>
                 </li>
-				<li id="teamout"><a href="app-chat.html"><i class="fa fa-comments"></i><span>팀 탈퇴</span></a></li>
-                <li id="exit"><a href="app-contact.html"><i class="fa fa-address-book"></i><span>나가기</span></a></li>
+				<li><a href="app-chat.html"><i class="fa fa-comments"></i><span>팀 탈퇴</span></a></li>
+                <li><a href="app-contact.html"><i class="fa fa-address-book"></i><span>나가기</span></a></li>
             </ul>
         </nav>        
     </div>

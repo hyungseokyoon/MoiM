@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MoiM - 게시판</title>
+<title>MoiM - 관리자 페이지</title>
 <!-- Table에 관련된 css -->
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/asset/bootstrap.css">
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/asset/style.css">
@@ -16,7 +16,7 @@
 	
 	<!-- Main Content -->
 	<!-- Table -->
-	<h1 align="center">게 시 판</h1>
+	<h1 align="center">회원 관리</h1>
 	<div class="card-body">
     	<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
     		<div class="dataTable-top">
@@ -38,11 +38,11 @@
     			<table class="table table-striped dataTable-table" id="table1">
 			        <thead>
 			            <tr>
-			            	<th data-sortable="" style="width: 32.4484%;"><a href="#" class="dataTable-sorter">Name</a></th>
-			            	<th data-sortable="" style="width: 114.676%;"><a href="#" class="dataTable-sorter">Email</a></th>
-			            	<th data-sortable="" style="width: 30.9734%;"><a href="#" class="dataTable-sorter">Phone</a></th>
-			            	<th data-sortable="" style="width: 40.1917%;"><a href="#" class="dataTable-sorter">City</a></th>
-			            	<th data-sortable="" style="width: 30.236%;"><a href="#" class="dataTable-sorter">Status</a></th>
+			            	<th data-sortable="" style="width: 32.4484%;"><a href="#" class="dataTable-sorter">공지번호</a></th>
+			            	<th data-sortable="" style="width: 114.676%;"><a href="#" class="dataTable-sorter">공지제목</a></th>
+			            	<th data-sortable="" style="width: 30.9734%;"><a href="#" class="dataTable-sorter">작성자</a></th>
+			            	<th data-sortable="" style="width: 40.1917%;"><a href="#" class="dataTable-sorter">작성날짜</a></th>
+			            	<th data-sortable="" style="width: 30.236%;"><a href="#" class="dataTable-sorter">첨부파일</a></th>
 			            </tr>
 			        </thead>
         			<tbody>
