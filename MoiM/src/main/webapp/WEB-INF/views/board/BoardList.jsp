@@ -38,17 +38,17 @@
     			<table class="table table-striped dataTable-table" id="table1">
 			        <thead>
 			            <tr>
-			            	<th data-sortable="" style="width: 32.4484%;"><a href="#" class="dataTable-sorter">Name</a></th>
-			            	<th data-sortable="" style="width: 114.676%;"><a href="#" class="dataTable-sorter">Email</a></th>
-			            	<th data-sortable="" style="width: 30.9734%;"><a href="#" class="dataTable-sorter">Phone</a></th>
-			            	<th data-sortable="" style="width: 40.1917%;"><a href="#" class="dataTable-sorter">City</a></th>
-			            	<th data-sortable="" style="width: 30.236%;"><a href="#" class="dataTable-sorter">Status</a></th>
+			            	<th data-sortable="" style="width: 32.4484%;"><a href="#" class="dataTable-sorter">글번호</a></th>
+			            	<th data-sortable="" style="width: 114.676%;"><a href="#" class="dataTable-sorter">글제목</a></th>
+			            	<th data-sortable="" style="width: 30.9734%;"><a href="#" class="dataTable-sorter">작성자</a></th>
+			            	<th data-sortable="" style="width: 40.1917%;"><a href="#" class="dataTable-sorter">작성날짜</a></th>
+			            	<th data-sortable="" style="width: 30.236%;"><a href="#" class="dataTable-sorter">조회수</a></th>
 			            </tr>
 			        </thead>
         			<tbody>
         				<tr>
         					<td>Graiden</td>
-        					<td>vehicula.aliquet@semconsequat.co.uk</td>
+        					<td><a href="${ pageContext.servletContext.contextPath }/bdetail.do">vehicula.aliquet@semconsequat.co.uk</a></td>
         					<td>076 4820 8838</td>
         					<td>Offenburg</td>
         					<td><span class="badge bg-success">Active</span></td>
@@ -117,13 +117,16 @@
     			</table>
     		</div>
     		<div class="dataTable-bottom">
-    			<div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
+    			<div class="dataTable-info">*개의 글 중 * ~ *번 까지의 결과입니다.</div>
     			<ul class="pagination pagination-primary float-end dataTable-pagination">
     				<li class="page-item pager"><a href="#" class="page-link" data-page="1">‹</a></li>
     				<li class="page-item active"><a href="#" class="page-link" data-page="1">1</a></li>
     				<li class="page-item"><a href="#" class="page-link" data-page="2">2</a></li>
     				<li class="page-item"><a href="#" class="page-link" data-page="3">3</a></li>
     				<li class="page-item pager"><a href="#" class="page-link" data-page="2">›</a></li>
+    				<c:if test="${ !empty loginMember }">
+    					<li><a href="${ pageContext.servletContext.contextPath }/bwriteform.do" class="btn btn-primary">글작성</a></li>
+    				</c:if>
     			</ul>
     		</div>
     	</div>
