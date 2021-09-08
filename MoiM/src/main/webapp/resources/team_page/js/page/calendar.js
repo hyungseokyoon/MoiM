@@ -62,14 +62,23 @@ $(function() {
     // initialize the calendar
     calendar.fullCalendar({
         header: {
-            left: 'title',
-            center: '',
-            right: 'month, agendaWeek, agendaDay, prev, next'
-        },
+	                left   : 'today, prevYear, nextYear',
+	                center : 'prev, title, next',
+	                right  : 'month, agendaWeek, agendaDay, listWeek'
+	            },
         editable: true,
         droppable: true,
         eventLimit: true, // allow "more" link when too many events
         selectable: true,
+        eventRender: function(eventObj, $el) {
+	      $el.popover({
+	        title: eventObj.title,
+	        content: eventObj.title,
+	        trigger: 'hover',
+	        placement: 'top',
+	        container: 'body'
+	      });
+    	},
         events: [{
                 title: 'Birthday Party',
                 start: current + '01',
@@ -114,9 +123,7 @@ $(function() {
                 start: '2019-09-07',
                 end: '2019-09-07',
                 className: 'bg-pink'
-            }
-
-        ],
+            }],
         drop: function(date, jsEvent) {
             // var originalEventObject = $(this).data('eventObject');
             // var $categoryClass = $(this).attr('data-class');
