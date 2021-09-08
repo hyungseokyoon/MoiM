@@ -13,8 +13,12 @@
 	<hr>
 	<!-- Main Content -->
 	<!-- Table Test -->
-	<div class="card-body">
-		<h2>리뷰 게시판</h2>
+	<div class="card-body"><br>
+	<c:url var="rwrite" value="/rvwrite.do">
+										
+						</c:url>
+		<h2>리뷰 게시판 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="${ rwrite } "><button class="btn btn-primary" type="submit" style="width:200px; height:35px;">리뷰작성</button></a></h2>
 		<table class="table table-striped" id="table1">
 	        <thead>
 	            <tr>
@@ -29,7 +33,10 @@
 	        <tbody>
 	            <tr>
 	                <td>Graiden</td>
-	                <td>vehicula.aliquet@semconsequat.co.uk</td>
+	                <c:url var="rvd" value="/rvdetail.do">
+			
+		</c:url>
+	                <td><a href="${ rvd }">vehicula.aliquet@semconsequat.co.uk</a></td>
 	                <td>076 4820 8838</td>
 	                <td>Offenburg</td>
 	                <td>Offenburg</td>

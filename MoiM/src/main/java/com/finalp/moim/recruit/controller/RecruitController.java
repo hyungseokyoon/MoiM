@@ -32,16 +32,16 @@ public class RecruitController {
 		return "recruit/recruitDetailView";
 	}
 
-	// 구인페이지 개설
-	@RequestMapping("rcinsert.do")
+	// 구인페이지 작성폼
+	@RequestMapping("rcwrite.do")
 	public String recruitWriteForm() {
 		return "recruit/recruitWriteForm";
 	}
-	
-	// 구인페이지 개설
-		@RequestMapping("rcupview.do")
-		public String recruitUpdateForm() {
-			return "recruit/recruitUpdateView";
-		}
+
+	// 구인페이지 수정페이지 업로드 
+	@RequestMapping("rcupview.do")
+	public String recruitUpdateForm() {
+		return "recruit/recruitUpdateView";
+	}
 
 }

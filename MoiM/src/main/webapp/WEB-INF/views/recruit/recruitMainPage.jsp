@@ -47,7 +47,7 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<div>
 							<label class="form-label">분야</label><br>
-							<select class="nav-link dropdown-toggle" id="inputCategories">
+							<select class="nav-link dropdown-toggle" id="inputCategories" style="width:130px; height:40px;">
 								<option selected="selected">선택</option>
 								<option value="1">영어</option>
 								<option value="2">중국어</option>
@@ -66,7 +66,7 @@
 						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 						<div>
 							<label class="form-label">레벨</label><br>
-							<select class="nav-link dropdown-toggle" id="inputLevel">
+							<select class="nav-link dropdown-toggle" id="inputLevel" style="width:130px; height:40px;">
 								<option selected="selected">선택</option>
 								<option value="초급">초급</option>
 								<option value="중급">중급</option>
@@ -76,7 +76,7 @@
 						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 						<div>
 							<label class="form-label">지역</label><br>
-							<select class="nav-link dropdown-toggle" id="inputLanguage">
+							<select class="nav-link dropdown-toggle" id="inputLanguage" style="width:130px; height:40px;">
 								<option selected="selected">선택</option>
 								<option value="서울">서울</option>
 								<option value="경기">경기</option>
@@ -95,7 +95,7 @@
 						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 						<div>
 							<label class="form-label">요일</label><br>
-							<select class="nav-link dropdown-toggle" id="inputInstructor">
+							<select class="nav-link dropdown-toggle" id="inputInstructor" style="width:130px; height:40px;">
 								<option selected="selected">선택</option>
 								<option value="월">월</option>
 								<option value="화">화</option>
@@ -111,11 +111,11 @@
 
 						<div>
 							<label class="form-label">스터디명</label><br> <input
-								type="search" name="keyword" width="200px" height="100px">
+								type="search" name="keyword" width="200px" style="width:180px; height:40px;">
 						</div>
 						<div class="col-auto z-index-2">
 							<br>
-							<button class="btn btn-primary" type="submit">검색</button>
+							<button class="btn btn-primary" type="submit" style="width:120px; height:50px;">검색</button>
 						</div>
 					</form>
 
