@@ -53,14 +53,17 @@
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/blist.do" class="nav-link">게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rvlist.do" class="nav-link">리뷰게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/text.html" class="nav-link">My Page</a></li>
-				<%-- <li class="nav-item dropdown">
-					<a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
-	                <div class="dropdown-menu">
-		                <a href="${ pageContext.servletContext.contextPath }/faq.html" class="dropdown-item">FAQ</a>
-		                <a href="${ pageContext.servletContext.contextPath }/contact.html" class="dropdown-item">Contact</a>
-		                <a href="${ pageContext.servletContext.contextPath }/text.html" class="dropdown-item">Text Page</a>
-	                </div>
-				</li> --%>
+				<!-- 관리자 페이지 드롭박스 -->
+				<c:if test="${ loginMember.admin == 'Y' }">
+					<li class="nav-item dropdown">
+						<a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
+		                <div class="dropdown-menu">
+			                <a href="${ pageContext.servletContext.contextPath }/ulistadmin.do" class="dropdown-item">회원관리</a>
+			                <a href="${ pageContext.servletContext.contextPath }/blistadmin.do" class="dropdown-item">게시판관리</a>
+			                <a href="${ pageContext.servletContext.contextPath }/teamlistadmin.do" class="dropdown-item">모임관리</a>
+		                </div>
+					</li>
+				</c:if>
             </ul>
             <!-- 비 로그인 시 : 로그인 창 띄우기 -->
             <c:if test="${ empty loginMember }">
@@ -115,29 +118,29 @@
 	</div>
 	
 	<!-- 배너 부분 -->
-	<%-- <section class="hero">
-		<div class="container mb-5">
-			<div class="row align-items-center">
-				<div class="col-lg-6">
-					<h1 class="hero-heading mb-0">Move work <br> forward</h1>
-					<div class="row">
-						<div class="col-lg-10">
-							<p class="lead text-muted mt-4 mb-4">Lorem ipsum dolor sit amet, consectetur. Eiusmod tempor incididunt.</p>
-						</div>
-					</div>
-					<form action="#" class="subscription-form">
-						<div class="form-group">
-							<input type="email" name="email" placeholder="Name@company.com" class="form-control">
-							<button type="submit" class="btn btn-primary">Get Started</button>
-						</div>
-					</form>
-				</div>
-				<div class="col-lg-6">
-					<img src="${ pageContext.servletContext.contextPath }/resources/img/illustration-hero.svg" alt="..." class="hero-image img-fluid d-none d-lg-block">
-				</div>
-			</div>
-		</div>
-	</section> --%>
+	<!-- 모임 찾기 -->
+	<section class="hero">
+      <div class="container mb-5">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h1 class="hero-heading mb-0">찾고있는 MoiM이 <br> 있나요 ?</h1>
+            <div class="row">
+              <div class="col-lg-10">
+                <p class="lead text-muted mt-4 mb-4">관심있는 팀이 있다면, 관련 검색어로 찾아보세요.</p>
+              </div>
+            </div>
+            <form action="#" class="subscription-form">
+              <div class="form-group">
+                <input type="search" name="SearchMoiM" placeholder="ex)공모전, 자격증" class="form-control">
+                <button type="submit" class="btn btn-primary">Search MoiM</button>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-6">
+          	<img src="${ pageContext.servletContext.contextPath }/resources/img/illustration-hero.svg" alt="..." class="hero-image img-fluid d-none d-lg-block"></div>
+        </div>
+      </div>
+    </section>
 </body>
 
 <!-- Javascript -->

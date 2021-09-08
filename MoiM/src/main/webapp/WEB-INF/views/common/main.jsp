@@ -12,30 +12,6 @@
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
 	
 	<!-- Main Content -->
-	<!-- 모임 찾기 -->
-	<section class="hero">
-      <div class="container mb-5">
-        <div class="row align-items-center">
-          <div class="col-lg-6">
-            <h1 class="hero-heading mb-0">찾고있는 MoiM이 <br> 있나요 ?</h1>
-            <div class="row">
-              <div class="col-lg-10">
-                <p class="lead text-muted mt-4 mb-4">관심있는 팀이 있다면, 관련 검색어로 찾아보세요.</p>
-              </div>
-            </div>
-            <form action="#" class="subscription-form">
-              <div class="form-group">
-                <input type="search" name="SearchMoiM" placeholder="ex)공모전, 자격증" class="form-control">
-                <button type="submit" class="btn btn-primary">Search MoiM</button>
-              </div>
-            </form>
-          </div>
-          <div class="col-lg-6">
-          	<img src="${ pageContext.servletContext.contextPath }/resources/img/illustration-hero.svg" alt="..." class="hero-image img-fluid d-none d-lg-block"></div>
-        </div>
-      </div>
-    </section>
-    
     <!-- 모임 만들기-->
     <!-- TODO  -->
     <section>
