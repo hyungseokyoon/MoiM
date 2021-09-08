@@ -16,6 +16,7 @@ local.properties
 .recommenders
 log4j.xml
 MANIFEST.MF
+target/
 
 # External tool builders
 .externalToolBuilders/
