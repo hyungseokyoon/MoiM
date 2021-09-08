@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,7 @@
 		<div class="container">
 			<div class="hleft">
 				<a class="header-brand" href="index-2.html">
-					<img alt="" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/pig.jpg">
+					<img alt="" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/moimicon.png">
 				</a>
 				<div class="dropdown">
 					<a href="javascript:void(0)" class="nav-link user_btn"><img
@@ -147,7 +148,11 @@
                 <li>
                     <a href="javascript:void(0)" class="has-arrow arrow-c" id="updowndisp"><i class="fa fa-lock"></i><span>팀관리</span></a>
                     <ul id="manageoption">
-                        <li><a href="${ pageContext.servletContext.contextPath }/moveTeamSetting.do">팀정보 관리</a></li>
+                        <li>
+                        <c:url var="moveTeamSetting" value="moveTeamSetting.do">
+                        	<c:param name="team_num" value="${ team.team_num }"></c:param>
+                        </c:url>
+                        <a href="${ moveTeamSetting }">팀정보 관리</a></li>
                         <li><a href="${ pageContext.servletContext.contextPath }/moveTeamMember.do">팀원 관리</a></li>
                     </ul>
                 </li>
