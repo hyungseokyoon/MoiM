@@ -17,13 +17,26 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
-	// 공지사항 페이지 이동 처리용 메소드
+	// 공지사항 페이지 이동 처리용 메소드---------
+	// 공지사항 리스트 페이지
 	@RequestMapping("nlist.do")
 	public String noticeListMethod() {
 		return "notice/NoticeList";
 	}
-	// --------------------------
 	
-	// 공지사항 관련 기능 메소드
-	// --------------------------
+	// 공지사항 상세보기 페이지
+	@RequestMapping("ndetail.do")
+	public String noticeDetailMethod() {
+		return "notice/NoticeDetail";
+	}
+	
+	// 공지사항 작성 페이지
+	@RequestMapping("nwriteform.do")
+	public String noticeWriteFormMethod() {
+		return"notice/NoticeWriteForm";
+	}
+	// ------------------------------------
+	
+	// 공지사항 관련 기능 메소드----------------
+	// ------------------------------------
 }

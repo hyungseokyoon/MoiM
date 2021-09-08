@@ -48,7 +48,7 @@
         			<tbody>
         				<tr>
         					<td>Graiden</td>
-        					<td>vehicula.aliquet@semconsequat.co.uk</td>
+        					<td><a href="${ pageContext.servletContext.contextPath }/ndetail.do">vehicula.aliquet@semconsequat.co.uk</a></td>
         					<td>076 4820 8838</td>
         					<td>Offenburg</td>
         					<td><span class="badge bg-success">Active</span></td>
@@ -117,13 +117,16 @@
     			</table>
     		</div>
     		<div class="dataTable-bottom">
-    			<div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
+    			<div class="dataTable-info">*개의 공지사항 중 * ~ *번 까지의 결과입니다.</div>
     			<ul class="pagination pagination-primary float-end dataTable-pagination">
     				<li class="page-item pager"><a href="#" class="page-link" data-page="1">‹</a></li>
     				<li class="page-item active"><a href="#" class="page-link" data-page="1">1</a></li>
     				<li class="page-item"><a href="#" class="page-link" data-page="2">2</a></li>
     				<li class="page-item"><a href="#" class="page-link" data-page="3">3</a></li>
     				<li class="page-item pager"><a href="#" class="page-link" data-page="2">›</a></li>
+    				<c:if test="${ loginMember.admin == 'Y' }">
+    					<li><a href="${ pageContext.servletContext.contextPath }/nwriteform.do" class="btn btn-primary">공지작성</a></li>
+    				</c:if>
     			</ul>
     		</div>
     	</div>
