@@ -71,7 +71,8 @@
 					<br>
 					<a href="${ pageContext.servletContext.contextPath }/blist.do" class="btn btn-primary">목록</a>
 					<c:if test="${ loginMember.user_no == board.user_no }">
-						&nbsp;&nbsp;<a href="#" class="btn btn-primary">수정</a>
+						&nbsp;&nbsp;<a href="${ pageContext.servletContext.contextPath }/bupdate.do" class="btn btn-primary">수정</a>
+						&nbsp;&nbsp;<a href="${ pageContext.servletContext.contextPath }/blist.do" class="btn btn-primary">삭제</a>
 					</c:if>
 				</div>
 			</div>

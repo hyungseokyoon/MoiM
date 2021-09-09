@@ -14,7 +14,7 @@
 		<typeAlias type="com.finalp.moim.board.model.vo.BoardCategory" alias="BoardCategory"/>
 		<typeAlias type="com.finalp.moim.reply.model.vo.Reply" alias="Reply"/>
 		<typeAlias type="com.finalp.moim.common.Page" alias="Page"/>
-		<!-- <typeAlias type="com.finalp.moim.common.SearchDate" alias="SearchDate"/> -->
+		<typeAlias type="com.finalp.moim.common.SearchDate" alias="SearchDate"/>
 		<typeAlias type="com.finalp.moim.team.model.vo.Field" alias="Field"/>
 		<typeAlias type="com.finalp.moim.team.model.vo.JoinWaiting" alias="JoinWaiting"/>
 		<typeAlias type="com.finalp.moim.team.model.vo.Team" alias="Team"/>

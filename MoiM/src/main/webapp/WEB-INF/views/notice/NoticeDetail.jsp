@@ -70,6 +70,10 @@
 					</p>
 					<br>
 					<a href="${ pageContext.servletContext.contextPath }/nlist.do" class="btn btn-primary">목록</a>
+					<c:if test="${ loginMember.admin == 'Y' }">
+						&nbsp;&nbsp;<a href="${ pageContext.servletContext.contextPath }/nupdate.do" class="btn btn-primary">수정</a>
+						&nbsp;&nbsp;<a href="${ pageContext.servletContext.contextPath }/nlist.do" class="btn btn-primary">삭제</a>
+					</c:if>
 				</div>
 			</div>
 		</div>
