@@ -12,21 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class TeamController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(TeamController.class);
-	
-	@RequestMapping("moveTeamSetting.do")
-	public String moveTeamSetting() {
-		return "teampage/teammanage/team_setting";  //내보낼 뷰파일명 리턴
-	}
-	
-	@RequestMapping("moveTeamMember.do")
-	public String moveTeamMember() {
-		return "teampage/teammanage/team_member";  //내보낼 뷰파일명 리턴
-	}
-
-@Controller
-public class TeamController {
 	// Logger
 	private static final Logger logger = LoggerFactory.getLogger(TeamController.class);
 	
@@ -38,5 +23,15 @@ public class TeamController {
 	@RequestMapping("teamlistadmin.do")
 	public String adminTeamListMethod() {
 		return "admin/AdminTeamList";
+	}
+	
+	@RequestMapping("moveTeamSetting.do")
+	public String moveTeamSetting() {
+		return "teampage/teammanage/team_setting";  //내보낼 뷰파일명 리턴
+	}
+	
+	@RequestMapping("moveTeamMember.do")
+	public String moveTeamMember() {
+		return "teampage/teammanage/team_member";  //내보낼 뷰파일명 리턴
 	}
 }
