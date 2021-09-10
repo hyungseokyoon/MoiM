@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.finalp.moim.teampage.common.model.vo.JoinWaiting;
 import com.finalp.moim.teampage.common.model.vo.Team;
+import com.finalp.moim.teampage.common.model.vo.TeamMember;
 import com.finalp.moim.teampage.teammanage.model.service.TPmanageService;
 
 @Controller
@@ -42,8 +45,19 @@ public class TPmanageController {
 	}
 	
 	@RequestMapping("moveTeamMember.do")
-	public String moveTeamMember() {
-		return "teampage/teammanage/team_member";  //내보낼 뷰파일명 리턴
+	public String moveTeamMember(@RequestParam("team_num") int team_num, Model model) {
+		ArrayList<JoinWaiting> joinlist = tpmanageService.selectJoinMemberList(team_num);
+		ArrayList<TeamMember> memberlist = tpmanageService.selectTeamMemberList(team_num);
+		
+		if (memberlist != null) {
+			model.addAttribute("joinlist", joinlist);
+			model.addAttribute("memberlist", memberlist);
+			return "teampage/teammanage/team_member";  //내보낼 뷰파일명 리턴
+		} else {
+			model.addAttribute("message", team_num + "팀원 정보 조회 실패.");
+			return "common/error";
+		}
+		
 	}
 	
 	@RequestMapping(value="tsupdate.do", method=RequestMethod.POST)
