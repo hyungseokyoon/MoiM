@@ -15,10 +15,10 @@
 		<typeAlias type="com.finalp.moim.reply.model.vo.Reply" alias="Reply"/>
 		<typeAlias type="com.finalp.moim.common.Page" alias="Page"/>
 		<typeAlias type="com.finalp.moim.common.SearchDate" alias="SearchDate"/>
-		<typeAlias type="com.finalp.moim.team.model.vo.Field" alias="Field"/>
-		<typeAlias type="com.finalp.moim.team.model.vo.JoinWaiting" alias="JoinWaiting"/>
-		<typeAlias type="com.finalp.moim.team.model.vo.Team" alias="Team"/>
-		<typeAlias type="com.finalp.moim.team.model.vo.TeamMember" alias="TeamMember"/>
+		<typeAlias type="com.finalp.moim.teampage.common.model.vo.Field" alias="Field"/>
+		<typeAlias type="com.finalp.moim.teampage.common.model.vo.JoinWaiting" alias="JoinWaiting"/>
+		<typeAlias type="com.finalp.moim.teampage.common.model.vo.Team" alias="Team"/>
+		<typeAlias type="com.finalp.moim.teampage.common.model.vo.TeamMember" alias="TeamMember"/>
 		<typeAlias type="com.finalp.moim.userinfo.model.vo.UserInfo" alias="UserInfo"/>
 	</typeAliases>
 	
