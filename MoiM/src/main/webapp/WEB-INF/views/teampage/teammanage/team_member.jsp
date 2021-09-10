@@ -69,31 +69,33 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="list" role="tabpanel">
                         <div class="row clearfix">
-                            <div class="col-lg-12">
-	                            <div class="card-header">
-	                                <h3 class="card-title">신청 목록</h3>
-	                            </div>
-	                                <div class="table-responsive" id="users" style="height: 300px;">
-	                                    <table class="table table-hover table-vcenter text-nowrap table_custom border-style list">
-	                                        <tbody>
-	                                            <tr class="">
-	                                                <td>
-	                                                    <div><a href="javascript:void(0);">John Smith</a></div>
-	                                                </td>
-	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">johnsmith@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">455 S. Airport St. Moncks Corner, SC 29461</div>                                                
-	                                                </td>
-	                                                <td class="text-center">
-	                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">신청서 확인</font></font></button>
-	                                                </td>
-	                                            </tr>
-	                                        </tbody>
-	                                    </table>
-	                                </div>
-                            	</div>
+                        	<c:forEach items="${ joinlist }" var="joinlist">
+	                            <div class="col-lg-12">
+		                            <div class="card-header">
+		                                <h3 class="card-title">신청 목록</h3>
+		                            </div>
+		                                <div class="table-responsive" id="users" style="height: 300px;">
+		                                    <table class="table table-hover table-vcenter text-nowrap table_custom border-style list">
+		                                        <tbody>
+		                                            <tr class="">
+		                                                <td>
+		                                                    <div><a href="javascript:void(0);">${ joinlist.user_id }</a></div>
+		                                                </td>
+		                                                <td class="hidden-xs">
+		                                                    <div class="text-muted">johnsmith@info.com</div>
+		                                                </td>
+		                                                <td class="hidden-sm">
+		                                                    <div class="text-muted">455 S. Airport St. Moncks Corner, SC 29461</div>                                                
+		                                                </td>
+		                                                <td class="text-center">
+		                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">신청서 확인</font></font></button>
+		                                                </td>
+		                                            </tr>
+		                                        </tbody>
+		                                    </table>
+		                                </div>
+	                            	</div>
+                            	</c:forEach>
                             	<div class="col-lg-12" style="padding-top: 10px">
 	                            <div class="card-header">
 	                                <h3 class="card-title">팀원 목록</h3>
