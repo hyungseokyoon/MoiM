@@ -153,7 +153,11 @@
                         	<c:param name="team_num" value="${ team.team_num }"></c:param>
                         </c:url>
                         <a href="${ moveTeamSetting }">팀정보 관리</a></li>
-                        <li><a href="${ pageContext.servletContext.contextPath }/moveTeamMember.do">팀원 관리</a></li>
+                        <li>
+                        <c:url var="moveTeamMember" value="moveTeamMember.do">
+                        	<c:param name="team_num" value="${ team.team_num }"></c:param>
+                        </c:url>
+                        <a href="${ moveTeamMember }">팀원 관리</a></li>
                     </ul>
                 </li>
 				<li><a href="app-chat.html"><i class="fa fa-comments"></i><span>팀 탈퇴</span></a></li>
