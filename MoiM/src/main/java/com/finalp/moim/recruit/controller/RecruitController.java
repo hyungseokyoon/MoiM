@@ -80,8 +80,23 @@ public class RecruitController {
 
 	// 구인페이지 이동
 	@RequestMapping("rcdetail.do")
-	public String recruitDetailMethod() {
-		return "recruit/recruitDetailView";
+	public ModelAndView recruitDetailMethod(ModelAndView mv, @RequestParam("team_num") int team_num, 
+			@RequestParam("page") int page) {
+		
+		//게시글 조회 
+		Recruit recruit = recruitService.selectOne(team_num);
+		
+		if (recruit != null) {
+			mv.addObject("recruit", recruit);
+			mv.addObject("currentPage", page);
+			mv.setViewName("recruit/recruitDetailView");
+		} else {
+			mv.addObject("message", team_num + "번 게시글 조회 실패.");
+			mv.setViewName("common/error");
+		}
+
+		return mv;
+		
 	}
 
 	// 구인페이지 작성폼

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="reviewMapper">
+
+	<!-- review 객체에 대한 정보 -->
+	<resultMap id="reviewRecruit" type="Review">
+		<id column="review_no" property="review_no"/>
+		<result column="team_num" property="team_num"/>
+		<result column="team_name" property="team_name"/>
+		<result column="field_name" property="field_name"/>
+		<result column="review_title" property="review_title"/>
+		<result column="review_content" property="review_content"/>
+		<result column="review_grade" property="review_grade"/>
+		<result column="review_original_filepath" property="review_original_filepath"/>
+		<result column="review_rename_filepath" property="review_rename_filepath"/>
+		<result column="review_readcount" property="review_readcount"/>
+		<result column="review_date" property="review_date"/>
+		
+		
+	</resultMap>
+	
+	</mapper>

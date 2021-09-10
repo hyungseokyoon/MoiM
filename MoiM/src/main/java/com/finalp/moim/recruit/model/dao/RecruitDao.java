@@ -27,6 +27,8 @@ public class RecruitDao {
 		return sqlSession.selectOne("recruitMapper.selectListCount");
 	}
 	
-	
+	public Recruit selectOne(int team_num) {
+		return sqlSession.selectOne("recruitMapper.selectOne", team_num);
+	}
 	
 }

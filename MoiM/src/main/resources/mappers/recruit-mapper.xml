@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recruitMapper">
+
+	<!-- Recruit 객체에 대한 정보 -->
+	<resultMap id="resultRecruit" type="Recruit">
+		<id column="team_num" property="team_num" />
+		<result column="team_name" property="team_name" />
+		<result column="team_intro" property="team_intro" />
+		<result column="team_leader_intro" property="team_leader_intro" />
+		<result column="team_original_image"
+			property="team_original_image" />
+		<result column="team_rename_image" property="team_rename_image" />
+		<result column="team_level" property="team_level" />
+		<result column="team_local" property="team_local" />
+		<result column="team_act_day" property="team_act_day" />
+		<result column="team_act_week" property="team_act_week" />
+		<result column="team_act_time" property="team_act_time" />
+		<result column="team_fee" property="team_fee" />
+		<result column="team_limit" property="team_limit" />
+		<result column="team_recruit" property="team_recruit" />
+	</resultMap>
+
+	<select id="selectList" resultMap="resultRecruit" parameterType="Recruit">
+	<![CDATA[
+		select *
+		from (select rownum rnum, team_num, team_rename_image, team_name, team_limit,
+		team_local, team_act_day, team_fee, team_act_week, team_act_time
+		from (select * from tb_team where team_recruit = 'Y' order by team_num
+		desc))
+		where rnum >= #{startRow} and rnum <= #{endRow}
+		]]>
+	</select>
+	
+	<select id="selectListCount" resultType="_int">
+		select count(*) from tb_team
+		where team_recruit = 'Y'
+	</select>
+
+	<select id="selectOne" resultType="_int" resultMap="resultRecruit">
+		select * from tb_team
+		where tb_team = #{team_num}
+	</select>
+
+
+</mapper>

@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>moim</title>
+<link rel="icon" href="${ pageContext.servletContext.contextPath }/resources/team_page/images/favicon.ico" type="image/x-icon" />
+
 </head>
 <body>
 	<!-- Menubar -->

@@ -8,5 +8,6 @@ import com.finalp.moim.recruit.model.vo.Recruit;
 public interface RecruitService {
 	ArrayList<Recruit> selectList(Page page);
 	int selectListCount();
+	Recruit selectOne(int team_num); //글 상세보기
 	
 }

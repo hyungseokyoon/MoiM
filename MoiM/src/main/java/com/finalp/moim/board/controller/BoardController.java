@@ -11,7 +11,7 @@ import com.finalp.moim.board.model.service.BoardService;
 @Controller
 public class BoardController {
 	// Logger
-	private Logger logger = LoggerFactory.getLogger(getClass());
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	// DI
 	@Autowired
@@ -28,6 +28,24 @@ public class BoardController {
 	@RequestMapping("blistadmin.do")
 	public String boardAdminListMethod() {
 		return "admin/AdminBoardList";
+	}
+	
+	// 게시판 상세보기 페이지 이동
+	@RequestMapping("bdetail.do")
+	public String boardDetailMethod() {
+		return "board/BoardDetail";
+	}
+	
+	// 게시판 작성 페이지 이동
+	@RequestMapping("bwriteform.do")
+	public String boardWriteFormMethod() {
+		return "board/BoardWriteForm";
+	}
+	
+	// 게시판 수정 페이지 이동
+	@RequestMapping("bupdate.do")
+	public String boardUpdateFormMethod() {
+		return "board/BoardUpdateForm";
 	}
 	// --------------------------------------
 	
