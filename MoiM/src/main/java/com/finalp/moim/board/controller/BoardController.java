@@ -11,7 +11,7 @@ import com.finalp.moim.board.model.service.BoardService;
 @Controller
 public class BoardController {
 	// Logger
-	private Logger logger = LoggerFactory.getLogger(getClass());
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	// DI
 	@Autowired
