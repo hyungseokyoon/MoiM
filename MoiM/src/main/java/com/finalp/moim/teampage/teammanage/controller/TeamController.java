@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.finalp.moim.teampage.model.vo.Team;
+import com.finalp.moim.teampage.common.model.vo.Team;
 import com.finalp.moim.teampage.teammanage.model.service.TeamService;
 
 @Controller
