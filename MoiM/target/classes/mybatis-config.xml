@@ -21,6 +21,7 @@
 		<typeAlias type="com.finalp.moim.team.model.vo.JoinWaiting" alias="JoinWaiting"/>
 		<typeAlias type="com.finalp.moim.team.model.vo.Team" alias="Team"/>
 		<typeAlias type="com.finalp.moim.team.model.vo.TeamMember" alias="TeamMember"/>
+		<typeAlias type="com.finalp.moim.file.model.vo.TFile" alias="TFile" />	
 
 	</typeAliases>
 	
@@ -32,5 +33,6 @@
 		<mapper resource="mappers/joinwaiting-mapper.xml"/>
 		<mapper resource="mappers/team-mapper.xml"/>
 		<mapper resource="mappers/teammember-mapper.xml"/>
+		<mapper resource="mappers/file-mapper.xml" />
 	</mappers>
 </configuration>
