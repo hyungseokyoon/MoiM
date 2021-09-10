@@ -18,20 +18,20 @@ public class TPmanageDao {
 	private SqlSessionTemplate session;
 
 	public Team selectTeamSetting(int team_num) {
-		return session.selectOne("teamMapper.selectTeamSetting", team_num);
+		return session.selectOne("teammanageMapper.selectTeamSetting", team_num);
 	}
 
 	public int updateTeamSetting(Team team) {
-		return session.update("teamMapper.updateTeamSetting", team);
+		return session.update("teammanageMapper.updateTeamSetting", team);
 	}
 
 	public ArrayList<JoinWaiting> selectJoinMemberList(int team_num) {
-		List<JoinWaiting> list = session.selectList("joinwaitingMapper.selectJoinMemberList", team_num);
+		List<JoinWaiting> list = session.selectList("teammanageMapper.selectJoinMemberList", team_num);
 		return (ArrayList<JoinWaiting>)list;
 	}
 
 	public ArrayList<TeamMember> selectTeamMemberList(int team_num) {
-		List<TeamMember> list = session.selectList("teammemberMapper.selectTeamMemberList", team_num);
+		List<TeamMember> list = session.selectList("teammanageMapper.selectTeamMemberList", team_num);
 		return (ArrayList<TeamMember>)list;
 	}
 
