@@ -17,26 +17,7 @@
 	<!-- navbar-->
 
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
-	<!-- Hero Section-->
-	<section class="hero">
-		<div class="container text-center">
-			<!-- breadcrumb-->
-			<nav aria-label="breadcrumb" class="d-flex justify-content-center">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.html"
-						class="animsition-link">Home</a></li>
-					<li aria-current="page" class="breadcrumb-item active">FAQ</li>
-				</ol>
-			</nav>
-			<h1 class="hero-heading">Frequently asked questions</h1>
-			<div class="row">
-				<div class="col-lg-7 mx-auto">
-					<p class="lead text-muted">Lorem ipsum dolor sit amet,
-						consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-				</div>
-			</div>
-		</div>
-	</section>
+	
 	<!-- FAQ Section-->
 	<br>
 	<br>

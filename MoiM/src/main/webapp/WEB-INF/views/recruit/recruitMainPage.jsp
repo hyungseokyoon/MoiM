@@ -1,12 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
+<c:set var="listCount" value="${ requestScope.listCount }" />
+<c:set var="startPage" value="${ requestScope.startPage }" />
+<c:set var="endPage" value="${ requestScope.endPage }" />
+<c:set var="maxPage" value="${ requestScope.maxPage }" />
+<c:set var="currentPage" value="${ requestScope.currentPage }" />
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Appton - Bootstrap 4 Template</title>
+<title>moim</title>
+<style type="text/css">
+.row {
+    --bs-gutter-x: 2rem;
+    --bs-gutter-y: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) / -2);
+    margin-left: calc(var(--bs-gutter-x) / -2);
+}
+.card{
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #FFFEFE;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,0.125);
+    border-radius: .5rem;
+}
+
+</style>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
@@ -15,30 +53,11 @@
 	<!-- navbar-->
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
 
-	<!-- Hero Section-->
-	<section class="hero">
-		<div class="container text-center">
-			<!-- breadcrumb-->
-			<nav aria-label="breadcrumb" class="d-flex justify-content-center">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.html"
-						class="animsition-link">Home</a></li>
-					<li aria-current="page" class="breadcrumb-item active">FAQ</li>
-				</ol>
-			</nav>
-			<h1 class="hero-heading">Frequently asked questions</h1>
-			<div class="row">
-				<div class="col-lg-7 mx-auto">
-					<p class="lead text-muted">Lorem ipsum dolor sit amet,
-						consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-				</div>
-			</div>
-		</div>
-	</section>
+	
 	<!-- FAQ Section-->
 	<section class="pb-11 pt-7 bg-600">
 		<div class="container">
-			<div class="row">
+			<div class="row2">
 				<div class="col-12">
 					<h6 class="font-sans-serif text-primary fw-bold">Study
 						category</h6>
@@ -111,7 +130,7 @@
 
 						<div>
 							<label class="form-label">스터디명</label><br> <input
-								type="search" name="keyword" width="200px" style="width:180px; height:40px;">
+								type="search" name="keyword" width="200px" style="width:180px; height:40px;" class="form-control">
 						</div>
 						<div class="col-auto z-index-2">
 							<br>
@@ -136,33 +155,99 @@
 								style="float: right;">스터디 개설하기</button></a> <br>
 						<br>
 						<br>
-						<div class="row">
+						</div>
+						<c:url var="rde" value="/rcdetail.do"></c:url>
+						 <div class="container2">
+						
+						 
+						<div class="row" >
+						<c:forEach items="${ requestScope.list }" var="rc">
 							<div class="col-md-4 mb-4">
+							
 								<div class="card h-100">
 									<img class="card-img-top w-100" src="${ pageContext.servletContext.contextPath }/resources/img/pic.jpg" alt="courses"
-										width="500" height="250">
-									<div class="card-body">
-									<c:url var="rde" value="/rcdetail.do"></c:url>
+										>
+									<div class="card-body">				
+										<h4 class="font-sans-serif fw-bold fs-md-0 fs-lg-1" style="font-weight: 500; text-align:center; color:#379392; 
+										font-family: geogia;">${ rc.team_name }</h4>
 										<a class="text-muted fs--1 stretched-link text-decoration-none"
-											href="${ rde }"></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1/3
-										<h4 class="font-sans-serif fw-bold fs-md-0 fs-lg-1">스터디명</h4>
-										<h6>지역 : </h6>
-										<h6>기간 : </h6>
-										<h6>참가비 : </h6>
-										<h6>요일 : </h6>
-										<h6>시간 : </h6>
+											href="${ rde }"></a>
+										<h6>지역&nbsp;&nbsp;&nbsp;  :&nbsp;&nbsp; ${ rc.team_local }</h6>
+										<h6>기간&nbsp;&nbsp;&nbsp;  :&nbsp;&nbsp; ${ rc.team_act_day }</h6>
+										<h6>참가비 : &nbsp;&nbsp;${ rc.team_fee }원</h6>
+										<h6>인원&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;${ rc.team_limit }명</h6>
+										<h6>요일&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;${ rc.team_act_day }</h6>
+										<h6>시간&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;${ rc.team_act_time }</h6>
 										
 									</div>
+									
 								</div>
+								</div>
+								</c:forEach>
 							</div>
+							</div>
+						
 
-
+					</div>	
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
+				<br><br>
+				<div style="text-align:center;">
+<c:if test="${ currentPage <= 1 }">
+	[맨처음]&nbsp;
+</c:if>
+<c:if test="${ currentPage > 1 }">
+	<c:url var="ubl" value="/blist.do">
+		<c:param name="page" value="1" />
+	</c:url>
+	<a href="${ ubl }">[맨처음]</a>
+</c:if>
+<!-- 이전 그룹으로 이동 처리 -->
+<c:if test="${ (currentPage - 10) < startPage and (currentPage - 10) > 1 }">
+	<c:url var="ubl2" value="/blist.do">
+		<c:param name="page" value="${ startPage - 10 }"/>
+	</c:url>
+	<a href="${ ubl2 }">[이전그룹]</a>
+</c:if>
+<c:if test="${ !((currentPage - 10) < startPage and (currentPage - 10) > 1) }">
+	[이전그룹]&nbsp;
+</c:if>
+<!-- 현재 페이지가 속한 페이지그룹의 숫자 출력 처리 -->
+<c:forEach var="p" begin="${ startPage }" end="${ endPage }" step="1">
+	<c:if test="${ p eq currentPage }">	
+		<font color="#379392" size="4"><b>[${ p }]</b></font>
+	</c:if>
+	<c:if test="${ p ne currentPage }">
+		<c:url var="ubl3" value="/blist.do">
+			<c:param name="page" value="${ p }"/>
+		</c:url>
+		<a href="${ ubl3 }">${ p }</a>
+	</c:if>
+</c:forEach>
+<!-- 다음 그룹으로 이동 처리 -->
+<c:if test="${ (currentPage + 10) > endPage && (currentPage + 10) < maxPage }">
+	<c:url var="ubl4" value="/blist.do">
+		<c:param name="page" value="${ endPage + 10 }"/>
+	</c:url>
+	<a href="${ ubl4 }">[다음그룹]</a>
+</c:if>
+<c:if test="${ !((currentPage + 10) > endPage && (currentPage + 10) < maxPage) }">
+	[다음그룹]&nbsp;
+</c:if>
+<!-- 맨끝 페이지로 이동 처리 -->
+<c:if test="${ currentPage >= maxPage }">
+	[맨끝]&nbsp;
+</c:if>	
+<c:if test="${ currentPage < maxPage }">
+	<c:url var="ubl5" value="/blist.do">
+		<c:param name="page" value="${ maxPage }"/>
+	</c:url>
+	<a href="${ ubl5 }">[맨끝]</a>
+</c:if>
+</div>
+				
+			
+		
 		<!-- end of .container-->
 	</section>
 

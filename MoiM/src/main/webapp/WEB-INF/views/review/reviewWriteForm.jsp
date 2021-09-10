@@ -79,27 +79,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 
-
-	<!-- Hero Section-->
-<section class="hero">
-	<div class="container text-center">
-		<!-- breadcrumb-->
-		<nav aria-label="breadcrumb" class="d-flex justify-content-center">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="index.html"
-						class="animsition-link">Home</a></li>
-				<li aria-current="page" class="breadcrumb-item active">FAQ</li>
-			</ol>
-		</nav>
-		<h1 class="hero-heading">Frequently asked questions</h1>
-		<div class="row">
-			<div class="col-lg-7 mx-auto">
-				<p class="lead text-muted">Lorem ipsum dolor sit amet,
-					consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-			</div>
-		</div>
-	</div>
-</section><section>
+<section>
 	<br> <br> <br>
 	<article>
 
@@ -114,10 +94,7 @@ document.addEventListener('DOMContentLoaded', function(){
 						style="text-align: center; border: 1px solid #dddddd; width: 1000px; align: center;">
 
 						<thead>
-							<tr>
-								<th colspan="2"
-									style="background-color: #eeeeee; text-align: center;"></th>
-							</tr>
+							
 						</thead>
 						<tbody>
 							<tr>
@@ -125,11 +102,7 @@ document.addEventListener('DOMContentLoaded', function(){
 									placeholder="글 제목" name="review_title" maxlength="50"
 									 required></td>
 							</tr>
-							<tr>
-
-								<td><input type="text" class="form-control"
-									name="review_writer" readonly value=""></td>
-							</tr>
+						
 							<tr>
 
 								<td>
@@ -156,13 +129,7 @@ document.addEventListener('DOMContentLoaded', function(){
 									 required></td>
 							</tr>
 						  <!-- 평점 선택창 -->
-						
-   			<tr>
-								<td><textarea class="form-control" placeholder="글 내용"
-										name="review_content" maxlength="2048"
-										style="height: 350px;" required></textarea></td>
-							</tr>
-							 <tr>
+											 <tr>
 						  <td>
 						  <div class="review_rating">
             <div class="warning_msg">별점을 선택해 주세요.</div>
@@ -183,6 +150,12 @@ document.addEventListener('DOMContentLoaded', function(){
 	
 </td>
 </tr>
+   			<tr>
+								<td><textarea class="form-control" placeholder="글 내용"
+										name="review_content" maxlength="2048"
+										style="height: 350px;" required></textarea></td>
+							</tr>
+		
 							<tr>
 							<td align="left">
 							<input type="file" name="review_original_filepath" style="align:left;">
@@ -190,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function(){
 							</tr>
 						</tbody>
 					</table>
-					<!-- 글쓰기 버튼 생성 -->
+					<!-- 버튼 --><br>
 					<center>
 						<input type="submit" value="등록하기" class="btn btn-primary">
 						&nbsp; <input type="reset" value="작성취소" class="btn btn-primary">

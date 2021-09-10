@@ -19,6 +19,11 @@
 		<typeAlias type="com.finalp.moim.team.model.vo.JoinWaiting" alias="JoinWaiting"/>
 		<typeAlias type="com.finalp.moim.team.model.vo.Team" alias="Team"/>
 		<typeAlias type="com.finalp.moim.team.model.vo.TeamMember" alias="TeamMember"/>
+		<typeAlias type="com.finalp.moim.recruit.model.vo.Recruit" alias="Recruit"/>
+		<typeAlias type="com.finalp.moim.review.model.vo.Review" alias="Review"/>
+		<!-- 지원하기 insert -->
+		<typeAlias type="com.finalp.moim.join.model.vo.Join" alias="Join"/>
+		
 	</typeAliases>
 	
 	<mappers>
@@ -29,5 +34,8 @@
 		<mapper resource="mappers/joinwaiting-mapper.xml"/>
 		<mapper resource="mappers/team-mapper.xml"/>
 		<mapper resource="mappers/teammember-mapper.xml"/>
+		<mapper resource="mappers/join-mapper.xml"/>
+		<mapper resource="mappers/recruit-mapper.xml"/>
+		<mapper resource="mappers/review-mapper.xml"/>
 	</mappers>
 </configuration>

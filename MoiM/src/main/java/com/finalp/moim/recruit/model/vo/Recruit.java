@@ -14,7 +14,7 @@ public class Recruit implements java.io.Serializable {
 	private String team_local;
 	private String team_act_day;
 	private int team_act_week;
-	private int team_act_time;
+	private String team_act_time;
 	private int team_fee;
 	private int team_limit;
 	private String team_recruit;
@@ -25,7 +25,7 @@ public class Recruit implements java.io.Serializable {
 	
 	public Recruit(int team_num, int field_num, String team_name, String team_intro, String team_leader_intro,
 			String team_original_image, String team_rename_image, String team_level, String team_local,
-			String team_act_day, int team_act_week, int team_act_time, int team_fee, int team_limit,
+			String team_act_day, int team_act_week, String team_act_time, int team_fee, int team_limit,
 			String team_recruit) {
 		super();
 		this.team_num = team_num;
@@ -156,12 +156,12 @@ public class Recruit implements java.io.Serializable {
 	}
 
 
-	public int getTeam_act_time() {
+	public String getTeam_act_time() {
 		return team_act_time;
 	}
 
 
-	public void setTeam_act_time(int team_act_time) {
+	public void setTeam_act_time(String team_act_time) {
 		this.team_act_time = team_act_time;
 	}
 
