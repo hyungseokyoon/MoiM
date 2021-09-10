@@ -49,7 +49,7 @@
 							<div class="input-icon xs-hide mr-4">
 								<input type="text" class="form-control"
 									placeholder="Search for..."> <span
-									class="input-icon-addon"><i class="fe fe-search"></i></span>
+									class="input-icon-addon"><i class="fa fa-search fa-2"></i></span>
 							</div>
 							<div class="notification d-flex">
 								<div class="dropdown d-flex">
@@ -233,11 +233,7 @@
                 	</div>
             	</div>
        	 	</div>
-			<div class="section-body">
-				<div class="container-fluid">
-					<c:import url="/WEB-INF/views/teampage/common/tp_footer.jsp" />
-				</div>
-			</div>
+			<c:import url="/WEB-INF/views/teampage/common/tp_footer.jsp" />
 		</div>
 	</div>
 	

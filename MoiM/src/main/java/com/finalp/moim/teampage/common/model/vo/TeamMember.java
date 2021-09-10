@@ -1,4 +1,4 @@
-package com.finalp.moim.teampage.model.vo;
+package com.finalp.moim.teampage.common.model.vo;
 
 import java.sql.Date;
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.finalp.moim.teampage.model.vo.Team;
+import com.finalp.moim.teampage.common.model.vo.Team;
 import com.finalp.moim.teampage.teammanage.model.service.TPmanageService;
 
 @Controller

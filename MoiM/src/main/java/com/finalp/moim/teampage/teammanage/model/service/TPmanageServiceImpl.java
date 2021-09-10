@@ -5,25 +5,25 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.finalp.moim.teampage.model.vo.JoinWaiting;
-import com.finalp.moim.teampage.model.vo.Team;
-import com.finalp.moim.teampage.model.vo.TeamMember;
+import com.finalp.moim.teampage.common.model.vo.JoinWaiting;
+import com.finalp.moim.teampage.common.model.vo.Team;
+import com.finalp.moim.teampage.common.model.vo.TeamMember;
 import com.finalp.moim.teampage.teammanage.model.dao.TPmanageDao;
 
 @Service("TeamService")
 public class TPmanageServiceImpl implements TPmanageService {
 	
 	@Autowired
-	private TPmanageDao teamDao;
+	private TPmanageDao tpmanageDao;
 
 	@Override
 	public Team selectTeamSetting(int team_num) {
-		return teamDao.selectTeamSetting(team_num);
+		return tpmanageDao.selectTeamSetting(team_num);
 	}
 
 	@Override
 	public int updateTeamSetting(Team team) {
-		return teamDao.updateTeamSetting(team);
+		return tpmanageDao.updateTeamSetting(team);
 	}
 
 	@Override

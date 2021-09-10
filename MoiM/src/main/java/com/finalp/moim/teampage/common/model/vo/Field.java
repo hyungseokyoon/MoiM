@@ -1,4 +1,4 @@
-package com.finalp.moim.teampage.model.vo;
+package com.finalp.moim.teampage.common.model.vo;
 
 public class Field implements java.io.Serializable {
 	private static final long serialVersionUID = 2222L;

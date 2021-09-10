@@ -4,7 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.finalp.moim.teampage.model.vo.Team;
+import com.finalp.moim.teampage.common.model.vo.Team;
 
 @Repository("teamDao")
 public class TPmanageDao {
