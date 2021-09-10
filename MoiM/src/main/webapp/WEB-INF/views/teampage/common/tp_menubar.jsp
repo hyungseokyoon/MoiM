@@ -142,7 +142,7 @@
                 <li><a href="project-list.html"><i class="fa fa-list-ol"></i><span>공지</span></a></li>
                 <li><a href="moveTPcalendar.do"><i class="fa fa-calendar-check-o"></i><span>일정</span></a></li>
                 <li><a href="project-ticket.html"><i class="fa fa-list-ul"></i><span>채팅</span></a></li>
-                <li><a href="project-ticket-details.html"><i class="icon-tag"></i><span>파일</span></a></li>
+                <li><a href="flist.do"><i class="icon-tag"></i><span>파일</span></a></li>
                 <li><a href="project-clients.html"><i class="fa fa-user"></i><span>일지</span></a></li>
                 <li>
                     <a href="javascript:void(0)" class="has-arrow arrow-c" id="updowndisp"><i class="fa fa-lock"></i><span>팀관리</span></a>
