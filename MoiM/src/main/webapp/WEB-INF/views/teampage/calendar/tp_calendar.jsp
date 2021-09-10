@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!Doctype html>
 <html lang="en" dir="ltr">
-<!-- calendar test -->
 <!-- soccer/project/index.html  07 Jan 2020 03:37:47 GMT -->
 <head>
 <meta charset="UTF-8">
