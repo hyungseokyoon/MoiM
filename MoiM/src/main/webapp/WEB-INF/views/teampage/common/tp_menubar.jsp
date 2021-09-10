@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,15 +8,15 @@
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<link rel="icon" href="favicon.ico" type="image/x-icon"/>
 <title>teamname</title>
 </head>
 <body class="font-montserrat">
 	<div id="header_top" class="header_top">
 		<div class="container">
 			<div class="hleft">
-				<a class="header-brand" href="index-2.html"><i
-					class="fa fa-soccer-ball-o brand-logo"></i></a>
+				<a class="header-brand" href="index-2.html">
+					<img alt="" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/moimicon.png">
+				</a>
 				<div class="dropdown">
 					<a href="javascript:void(0)" class="nav-link user_btn"><img
 						class="avatar" src="assets/images/user.png" alt=""
@@ -134,21 +135,30 @@
         </div>
     </div>
 	<div id="left-sidebar" class="sidebar ">
-        <h5 class="brand-name">Soccer <a href="javascript:void(0)" class="menu_option float-right"><i class="icon-grid font-16" data-toggle="tooltip" data-placement="left" title="Grid & List Toggle"></i></a></h5>
+        <h5 class="brand-name">Soccer <a href="javascript:void(0)" class="menu_option float-right"><i class="fa fa-th-large fa-2" data-toggle="tooltip" data-placement="left" title="Grid & List Toggle"></i></a></h5>
         <nav id="left-sidebar-nav" class="sidebar-nav">
             <ul class="metismenu">
                 <li class="g_heading">팀 기능</li>
                 <li><a href="moveTPindex.do"><i class="fa fa-dashboard"></i><span>홈</span></a></li>                        
-                <li><a href="project-list.html"><i class="fa fa-list-ol"></i><span>공지</span></a></li>
-                <li><a href="moveTPcalendar.do"><i class="fa fa-calendar-check-o"></i><span>일정</span></a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/moveTPteamboard.do"><i class="fa fa-list-ol"></i><span>공지</span></a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/moveTPcalendar.do"><i class="fa fa-calendar-check-o"></i><span>일정</span></a></li>
                 <li><a href="project-ticket.html"><i class="fa fa-list-ul"></i><span>채팅</span></a></li>
+<<<<<<< HEAD
                 <li><a href="flist.do"><i class="icon-tag"></i><span>파일</span></a></li>
                 <li><a href="project-clients.html"><i class="fa fa-user"></i><span>일지</span></a></li>
+=======
+                <li><a href="project-ticket-details.html"><i class="fa fa-file fa-2"></i><span>파일</span></a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/moveTPdaily.do"><i class="fa fa-user"></i><span>일지</span></a></li>
+>>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git
                 <li>
                     <a href="javascript:void(0)" class="has-arrow arrow-c" id="updowndisp"><i class="fa fa-lock"></i><span>팀관리</span></a>
                     <ul id="manageoption">
-                        <li><a href="login.html">팀정보 관리</a></li>
-                        <li><a href="register.html">팀원 관리</a></li>
+                        <li>
+                        <c:url var="moveTeamSetting" value="moveTeamSetting.do">
+                        	<c:param name="team_num" value="${ team.team_num }"></c:param>
+                        </c:url>
+                        <a href="${ moveTeamSetting }">팀정보 관리</a></li>
+                        <li><a href="${ pageContext.servletContext.contextPath }/moveTeamMember.do">팀원 관리</a></li>
                     </ul>
                 </li>
 				<li><a href="app-chat.html"><i class="fa fa-comments"></i><span>팀 탈퇴</span></a></li>
