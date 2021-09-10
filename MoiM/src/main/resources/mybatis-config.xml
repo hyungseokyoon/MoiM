@@ -19,6 +19,7 @@
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.JoinWaiting" alias="JoinWaiting"/>
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.Team" alias="Team"/>
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.TeamMember" alias="TeamMember"/>
+		<typeAlias type="com.finalp.moim.userinfo.model.vo.UserInfo" alias="UserInfo"/>
 	</typeAliases>
 	
 	<mappers>
