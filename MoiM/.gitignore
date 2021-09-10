@@ -17,6 +17,7 @@ local.properties
 log4j.xml
 MANIFEST.MF
 target/
+*.xml
 
 # External tool builders
 .externalToolBuilders/
