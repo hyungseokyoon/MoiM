@@ -40,14 +40,12 @@ public class TPmanageServiceImpl implements TPmanageService {
 
 	@Override
 	public ArrayList<JoinWaiting> selectJoinMemberList(int team_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return tpmanageDao.selectJoinMemberList(team_num);
 	}
 
 	@Override
 	public ArrayList<TeamMember> selectTeamMemberList(int team_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return tpmanageDao.selectTeamMemberList(team_num);
 	}
 
 	@Override
