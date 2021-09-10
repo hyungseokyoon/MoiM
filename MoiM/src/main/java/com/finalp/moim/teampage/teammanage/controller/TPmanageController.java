@@ -26,11 +26,11 @@ public class TPmanageController {
 	private static final Logger logger = LoggerFactory.getLogger(TPmanageController.class);
 	
 	@Autowired
-	private TPmanageService teamService;
+	private TPmanageService tpmanageService;
 	
 	@RequestMapping("moveTeamSetting.do")
 	public String moveTeamSetting(@RequestParam("team_num") int team_num, Model model) {
-		Team team = teamService.selectTeamSetting(team_num);
+		Team team = tpmanageService.selectTeamSetting(team_num);
 		
 		if (team != null) {
 			model.addAttribute("team", team);
@@ -112,7 +112,7 @@ public class TPmanageController {
 			logger.info("tsupdate.do : " + team);
 		}
 
-		if (teamService.updateTeamSetting(team) > 0) {
+		if (tpmanageService.updateTeamSetting(team) > 0) {
 			model.addAttribute("team_num", team.getTeam_num());
 			return "redirect:moveTeamSetting.do";
 		} else {
