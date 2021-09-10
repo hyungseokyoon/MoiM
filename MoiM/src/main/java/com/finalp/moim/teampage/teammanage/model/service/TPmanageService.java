@@ -2,9 +2,9 @@ package com.finalp.moim.teampage.teammanage.model.service;
 
 import java.util.ArrayList;
 
-import com.finalp.moim.teampage.model.vo.JoinWaiting;
-import com.finalp.moim.teampage.model.vo.Team;
-import com.finalp.moim.teampage.model.vo.TeamMember;
+import com.finalp.moim.teampage.common.model.vo.JoinWaiting;
+import com.finalp.moim.teampage.common.model.vo.Team;
+import com.finalp.moim.teampage.common.model.vo.TeamMember;
 
 public interface TPmanageService {
 

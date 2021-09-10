@@ -7,20 +7,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.finalp.moim.teampage.model.vo.Team;
-import com.finalp.moim.teampage.teammanage.model.service.TeamService;
+import com.finalp.moim.teampage.common.model.vo.Team;
+import com.finalp.moim.teampage.teammanage.model.service.TPmanageService;
 
 @Controller
 public class TPmainController {
 	private static final Logger logger = LoggerFactory.getLogger(TPmainController.class);
 	
 	@Autowired
-	private TeamService teamService;
+	private TPmanageService tpmanageService;
 
 	// 뷰 페이지 이동 처리용 -------------------------------
 	@RequestMapping("moveTPindex.do")
 	public String moveTPMainPage(Model model) {
-		Team team = teamService.selectTeamSetting(1);
+		Team team = tpmanageService.selectTeamSetting(1);
 		
 		if (team != null) {
 			model.addAttribute("team", team);
