@@ -15,12 +15,12 @@ public class TPmainController {
 	private static final Logger logger = LoggerFactory.getLogger(TPmainController.class);
 	
 	@Autowired
-	private TPmanageService teamService;
+	private TPmanageService tpmanageService;
 
 	// 뷰 페이지 이동 처리용 -------------------------------
 	@RequestMapping("moveTPindex.do")
 	public String moveTPMainPage(Model model) {
-		Team team = teamService.selectTeamSetting(1);
+		Team team = tpmanageService.selectTeamSetting(1);
 		
 		if (team != null) {
 			model.addAttribute("team", team);
