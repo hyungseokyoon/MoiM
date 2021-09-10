@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="teamMapper">
+
+	<!-- Board 객체에 대한 정보 -->
+	<resultMap id="resultTeam" type="Team">
+		<id column="team_num" property="team_num"/>
+		<result column="field_num" property="field_num"/>
+		<result column="team_name" property="team_name"/>
+		<result column="team_intro" property="team_intro"/>
+		<result column="team_leader_intro" property="team_leader_intro"/>
+		<result column="team_original_image" property="team_original_image"/>
+		<result column="team_rename_image" property="team_rename_image"/>
+		<result column="team_level" property="team_level"/>
+		<result column="team_local" property="team_local"/>
+		<result column="team_act_day" property="team_act_day"/>
+		<result column="team_act_week" property="team_act_week"/>
+		<result column="team_act_time" property="team_act_time"/>
+		<result column="team_fee" property="team_fee"/>
+		<result column="team_limit" property="team_limit"/>
+		<result column="team_recruit" property="team_recruit"/>
+	</resultMap>
+	
+	<select id="selectTeamSetting" parameterType="_int" resultMap="resultTeam">
+		select * from tb_team
+		where team_num = #{ team_num }
+	</select>
+	
+	<update id="updateTeamSetting" parameterType="Team">
+		update tb_team
+		set field_num = #{ field_num },  
+		   team_intro = #{ team_intro },
+		   team_leader_intro = #{ team_leader_intro }
+		   <if test="team_original_image != null">
+		   , team_original_image = #{ team_original_image }
+		   , team_rename_image = #{ team_rename_image }
+		   </if>
+		   <if test="team_original_image == null">
+		   , team_original_image = null
+		   , team_rename_image = null
+		   </if>
+		   , team_level = #{ team_level }, 
+		   team_local = #{ team_local }, 
+		   team_act_day = #{ team_act_day }, 
+		   team_act_week = #{ team_act_week } 
+		   <if test="team_act_time != null">
+		   , team_act_time = #{ team_act_time } 
+		   </if>
+		   , team_fee = #{ team_fee }, 
+		   team_limit = #{ team_limit }, 
+		   team_recruit = #{ team_recruit }
+		where team_num = #{ team_num } 
+	</update>
+
+</mapper>
