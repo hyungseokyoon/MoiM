@@ -4,7 +4,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="fieldMapper">
 
-	<!-- Field 객체에 대한 정보 -->
+	<!-- Field11111 객체에 대한 정보 -->
 	<resultMap id="resultField" type="Field">
 		<id column="field_num" property="field_num"/>
 		<result column="field_name" property="field_name"/>

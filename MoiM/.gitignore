@@ -17,7 +17,8 @@ local.properties
 log4j.xml
 MANIFEST.MF
 target/
-*.xml
+mybatis-config.xml
+root-context.xml
 
 # External tool builders
 .externalToolBuilders/
