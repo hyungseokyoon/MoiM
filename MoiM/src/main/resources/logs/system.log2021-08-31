@@ -1,0 +1,39 @@
+<<<<<<< HEAD
+[13:17:14][INFO ][ContextLoader.java:271] - Root WebApplicationContext: initialization started
+[13:17:27][INFO ][ContextLoader.java:307] - Root WebApplicationContext initialized in 12682 ms
+[13:17:27][INFO ][FrameworkServlet.java:525] - Initializing Servlet 'appServlet'
+[13:17:44][INFO ][FrameworkServlet.java:547] - Completed initialization in 16461 ms
+=======
+[15:54:12][INFO ][ContextLoader.java:271] - Root WebApplicationContext: initialization started
+[15:54:14][INFO ][ContextLoader.java:307] - Root WebApplicationContext initialized in 1843 ms
+[15:54:14][INFO ][FrameworkServlet.java:525] - Initializing Servlet 'appServlet'
+[15:54:16][INFO ][FrameworkServlet.java:547] - Completed initialization in 2340 ms
+[17:17:40][INFO ][ContextLoader.java:271] - Root WebApplicationContext: initialization started
+[17:17:42][INFO ][ContextLoader.java:307] - Root WebApplicationContext initialized in 1922 ms
+[17:17:42][INFO ][FrameworkServlet.java:525] - Initializing Servlet 'appServlet'
+[17:17:44][INFO ][FrameworkServlet.java:547] - Completed initialization in 2458 ms
+[17:20:28][INFO ][ContextLoader.java:271] - Root WebApplicationContext: initialization started
+[17:20:29][INFO ][ContextLoader.java:307] - Root WebApplicationContext initialized in 1767 ms
+[17:20:30][INFO ][FrameworkServlet.java:525] - Initializing Servlet 'appServlet'
+[17:20:32][INFO ][FrameworkServlet.java:547] - Completed initialization in 2179 ms
+[17:23:22][INFO ][ContextLoader.java:271] - Root WebApplicationContext: initialization started
+[17:23:23][INFO ][ContextLoader.java:307] - Root WebApplicationContext initialized in 1628 ms
+[17:23:23][INFO ][FrameworkServlet.java:525] - Initializing Servlet 'appServlet'
+[17:23:26][INFO ][FrameworkServlet.java:547] - Completed initialization in 2199 ms
+[17:27:18][INFO ][ContextLoader.java:271] - Root WebApplicationContext: initialization started
+[17:27:20][INFO ][ContextLoader.java:307] - Root WebApplicationContext initialized in 1699 ms
+[17:27:20][INFO ][FrameworkServlet.java:525] - Initializing Servlet 'appServlet'
+[17:27:22][INFO ][FrameworkServlet.java:547] - Completed initialization in 2080 ms
+[17:38:41][INFO ][ContextLoader.java:271] - Root WebApplicationContext: initialization started
+[17:38:43][INFO ][ContextLoader.java:307] - Root WebApplicationContext initialized in 1737 ms
+[17:38:43][INFO ][FrameworkServlet.java:525] - Initializing Servlet 'appServlet'
+[17:38:45][INFO ][FrameworkServlet.java:547] - Completed initialization in 2168 ms
+[17:43:26][INFO ][ContextLoader.java:271] - Root WebApplicationContext: initialization started
+[17:43:28][INFO ][ContextLoader.java:307] - Root WebApplicationContext initialized in 2242 ms
+[17:43:28][INFO ][FrameworkServlet.java:525] - Initializing Servlet 'appServlet'
+[17:43:31][INFO ][FrameworkServlet.java:547] - Completed initialization in 3181 ms
+[17:45:12][INFO ][ContextLoader.java:271] - Root WebApplicationContext: initialization started
+[17:45:13][INFO ][ContextLoader.java:307] - Root WebApplicationContext initialized in 1691 ms
+[17:45:14][INFO ][FrameworkServlet.java:525] - Initializing Servlet 'appServlet'
+[17:45:16][INFO ][FrameworkServlet.java:547] - Completed initialization in 2111 ms
+>>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git

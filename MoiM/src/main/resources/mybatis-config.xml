@@ -15,6 +15,10 @@
 		<typeAlias type="com.finalp.moim.reply.model.vo.Reply" alias="Reply"/>
 		<typeAlias type="com.finalp.moim.common.Page" alias="Page"/>
 		<typeAlias type="com.finalp.moim.common.SearchDate" alias="SearchDate"/>
+
+
+		<typeAlias type="com.finalp.moim.file.model.vo.TFile" alias="TFile" />	
+
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.Field" alias="Field"/>
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.JoinWaiting" alias="JoinWaiting"/>
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.Team" alias="Team"/>
@@ -30,8 +34,12 @@
 		<mapper resource="mappers/joinwaiting-mapper.xml"/>
 		<mapper resource="mappers/team-mapper.xml"/>
 		<mapper resource="mappers/teammember-mapper.xml"/>
+<<<<<<< HEAD
+		<mapper resource="mappers/file-mapper.xml" />
+=======
 		<mapper resource="mappers/teammanage-mapper.xml"/>
 		<mapper resource="mappers/userinfo-mapper.xml"/>
+>>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git
 	</mappers>
 	
 </configuration>
