@@ -10,5 +10,5 @@ public interface FileService {
 	TFile selectFile(int file_num);
 	int insertFile(TFile tfile);
 	int updateFile(TFile tfile);
-	int deleteFile(int fnum);
+	int deleteFile(TFile tfile);
 }

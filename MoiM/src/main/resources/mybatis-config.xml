@@ -23,6 +23,7 @@
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.JoinWaiting" alias="JoinWaiting"/>
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.Team" alias="Team"/>
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.TeamMember" alias="TeamMember"/>
+		<typeAlias type="com.finalp.moim.userinfo.model.vo.UserInfo" alias="UserInfo"/>
 	</typeAliases>
 	
 	<mappers>
@@ -33,6 +34,12 @@
 		<mapper resource="mappers/joinwaiting-mapper.xml"/>
 		<mapper resource="mappers/team-mapper.xml"/>
 		<mapper resource="mappers/teammember-mapper.xml"/>
+<<<<<<< HEAD
 		<mapper resource="mappers/file-mapper.xml" />
+=======
+		<mapper resource="mappers/teammanage-mapper.xml"/>
+		<mapper resource="mappers/userinfo-mapper.xml"/>
+>>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git
 	</mappers>
+	
 </configuration>

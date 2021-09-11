@@ -22,6 +22,7 @@ import com.finalp.moim.file.model.service.FileService;
 import com.finalp.moim.file.model.vo.TFile;
 
 
+
 @Controller
 public class FileController {
 	private static final Logger logger = LoggerFactory.getLogger(FileController.class);
@@ -51,7 +52,7 @@ public class FileController {
 	public String fileInsertMethod(TFile tfile, HttpServletRequest request, Model model,
 			@RequestParam(name = "upfile", required = false) MultipartFile mfile) {
 		// 업로드된 파일 저장 폴더 지정하기
-		String savePath = request.getSession().getServletContext().getRealPath("resources/test_files");
+		String savePath = request.getSession().getServletContext().getRealPath("resources/Tfile_files");
 
 		// 첨부파일이 있을때만 업로드된 파일을 지정 폴더로 옮기기
 		if (!mfile.isEmpty()) {
@@ -131,5 +132,108 @@ public class FileController {
 			return "common/error";
 		}
 	}
+	
+	@RequestMapping(value = "fupdate.do", method = RequestMethod.POST)
+	public String fileUpdateMethod(TFile tfile, HttpServletRequest request, Model model,
+			@RequestParam(name = "delFlag", required = false) String delFlag,
+			@RequestParam(name = "upfile", required = false) MultipartFile mfile) {
+
+		// 업로드된 파일 저장 폴더 지정하기
+		String savePath = request.getSession().getServletContext().getRealPath("resources/Tfile_files");
+
+		// 원래 첨부파일이 있는데, 삭제를 선택한 경우
+		if (tfile.getFile_originalfilename() != null && delFlag != null && delFlag.equals("yes")) {
+			//logger.info("첨부파일 있었는데 삭제 체크");
+			// 저장 폴더에서 파일을 삭제함
+			new File(savePath + "\\" + tfile.getFile_renamefilename()).delete();
+			tfile.setFile_originalfilename(null);
+			tfile.setFile_renamefilename(null);
+		}		
+
+		// 새로운 첨부파일이 있을때
+		if (!mfile.isEmpty()) {
+			//logger.info("새로운 첨부파일이 있을 때");
+			//저장 폴더의 이전 파일을 삭제함
+			if (tfile.getFile_originalfilename() != null) {
+				//logger.info("이전 첨부파일 삭제");
+				// 저장 폴더에서 파일을 삭제함
+				new File(savePath + "\\" + tfile.getFile_renamefilename()).delete();
+				tfile.setFile_originalfilename(null);
+				tfile.setFile_renamefilename(null);
+			}
+			
+			String fileName = mfile.getOriginalFilename();
+			if (fileName != null && fileName.length() > 0) {
+				try {
+					mfile.transferTo(new File(savePath + "\\" + fileName));
+
+					// 저장된 첨부파일 이름 바꾸기
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+
+					// 변경할 파일명 만들기
+					String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()));
+					// 원본 파일의 확장자를 추출해서, 변경 파일명에 붙여줌
+					renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
+
+					// 파일명 바꾸기 실행함 : java.io.File 을 이용함
+					File originFile = new File(savePath + "\\" + fileName);
+					File renameFile = new File(savePath + "\\" + renameFileName);
+
+					if (!originFile.renameTo(renameFile)) {
+						//파일 이름바꾸기 실패시 직접 바꾸기
+						FileInputStream fin = new FileInputStream(originFile);
+						FileOutputStream fout = new FileOutputStream(renameFile);
+
+						int data = -1;
+						byte[] buffer = new byte[1024];
+
+						while ((data = fin.read(buffer, 0, buffer.length)) != -1) {
+							fout.write(buffer, 0, buffer.length);
+						}
+
+						fin.close();
+						fout.close();
+						originFile.delete(); // 저장된 원본 파일 삭제함
+					} // 직접 이름바꾸기
+
+					tfile.setFile_renamefilename(renameFileName);
+				} catch (Exception e) {
+					e.printStackTrace();
+					model.addAttribute("message", "전송파일 저장 실패.");
+					return "common/error";
+				}
+
+			} // 업로드된 파일이 있다면...
+
+			tfile.setFile_originalfilename(mfile.getOriginalFilename());
+			logger.info("fupdate.do : " + tfile);
+		}
+
+		if (fileService.updateFile(tfile) > 0) {
+			return "redirect:flist.do";
+		} else {
+			model.addAttribute("message", 
+					tfile.getFile_num() + "번 수정 실패.");
+			return "common/error";
+		}
+
+	}
+	
+	@RequestMapping("fdelete.do")
+	public String fileDeleteMethod(TFile tfile, HttpServletRequest request, Model model) {
+		if (fileService.deleteFile(tfile) > 0) {
+			// 글삭제 성공하면 저장폴더에 첨부파일도 삭제 처리
+			if (tfile.getFile_renamefilename() != null) {
+				new File(request.getSession().getServletContext().getRealPath("resources/Tfile_files") + "\\"
+						+ tfile.getFile_renamefilename()).delete();
+			}
+
+			return "redirect:flist.do";
+		} else {
+			model.addAttribute("message", tfile.getFile_num() + "번 삭제 실패.");
+			return "common/error";
+		}
+	}
+	
 	
 }

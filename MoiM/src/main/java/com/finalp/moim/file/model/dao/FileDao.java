@@ -32,4 +32,14 @@ public class FileDao {
 				"fileMapper.selectFile", file_num);
 	}
 
+	public int updateFile(TFile tfile) {
+		return sqlSession.update(
+				"fileMapper.updateFile", tfile);
+	}
+
+	public int deleteFile(TFile tfile) {
+		return sqlSession.delete(
+				"fileMapper.deleteFile", tfile);
+	}
+
 }

@@ -20,7 +20,7 @@
 </head>
 <body class="font-montserrat">
 <!-- Page Loader -->
-<div class="page-loader-wrapper">
+<div class="page-loader-wrapper"> 
     <div class="loader">
     </div>
 </div>

@@ -31,14 +31,12 @@ public class FileServiceImpl implements FileService{
 
 	@Override
 	public int updateFile(TFile tfile) {
-		// TODO Auto-generated method stub
-		return 0;
+		return fileDao.updateFile(tfile);
 	}
 
 	@Override
-	public int deleteFile(int fnum) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteFile(TFile tfile) {
+		return fileDao.deleteFile(tfile);
 	}
 
 }

@@ -12,7 +12,7 @@ public class TFile implements java.io.Serializable{
 	private String file_renamefilename;
 	private java.sql.Date file_reg_date;
 	
-	public TFile() {}
+	public TFile() {} 
 	
 	
 	public TFile(int file_num, int team_num, int file_uploader, String file_originalfilename, String file_renamefilename,

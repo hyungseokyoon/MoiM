@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<c:set var="currentPage" value="${ currentPage }" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +72,10 @@
 						Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus
 					</p>
 					<br>
-					<a href="${ pageContext.servletContext.contextPath }/blist.do" class="btn btn-primary">목록</a>
+					<c:url var="blist" value="blist.do">
+						<c:param name="page" value="${ currentPage }"/>
+					</c:url>
+					<a href="${ blist }" class="btn btn-primary">목록</a>
 					<c:if test="${ loginMember.user_no == board.user_no }">
 						&nbsp;&nbsp;<a href="${ pageContext.servletContext.contextPath }/bupdate.do" class="btn btn-primary">수정</a>
 						&nbsp;&nbsp;<a href="${ pageContext.servletContext.contextPath }/blist.do" class="btn btn-primary">삭제</a>

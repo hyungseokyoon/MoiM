@@ -39,7 +39,7 @@
                 <div class="page-header">
                     <div class="left">
                         <a href="javascript:void(0)" class="icon menu_toggle mr-3"><i class="fa  fa-align-left"></i></a>
-                        <h1 class="page-title">Contact</h1>                        
+                        <h1 class="page-title">팀원 관리</h1>                        
                     </div>
                     <div class="right">
                         <div class="input-icon xs-hide mr-4">
@@ -68,405 +68,124 @@
             <div class="container-fluid">
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="list" role="tabpanel">
-                        <div class="row clearfix">
-                            <div class="col-lg-12">
+                        <div class="row-vh clearfix" style="height: 800px;">
+                            <div class="col-lg-12 h-25">
 	                            <div class="card-header">
 	                                <h3 class="card-title">신청 목록</h3>
 	                            </div>
-	                                <div class="table-responsive" id="users" style="height: 300px;">
-	                                    <table class="table table-hover table-vcenter text-nowrap table_custom border-style list">
-	                                        <tbody>
-	                                            <tr class="">
-	                                                <td class="width35 hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar4.jpg" alt="avatar">
-	                                                    </div>
+                                <div class="table-responsive" id="users" style="height: 165px;">
+                                    <table class="table table-hover table-vcenter text-nowrap table_custom border-style list">
+                       					<tbody>
+                      						<tr class="text-center">
+                                                <td>
+                                                    <div class="text-muted">아이디</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-muted">닉네임</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-muted">나이</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-muted">성별</div>
+                                                </td>
+                                                <td class="hidden-xs">
+                                                    <div class="text-muted">이메일</div>
+                                                </td>
+                                                <td class="text-center" width="150px">
+                                                </td>
+                                            </tr>
+                       						<c:forEach items="${ joinlist }" var="joinlist">
+	                                    		<tr class="">
+	                                                <td>
+	                                                    <div class="text-center">${ joinlist.userVO.user_id }</div>
 	                                                </td>
 	                                                <td>
-	                                                    <div><a href="javascript:void(0);">John Smith</a></div>
-	                                                    <div class="text-muted">+264-625-2583</div>
-	                                                </td>
-	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">johnsmith@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">455 S. Airport St. Moncks Corner, SC 29461</div>                                                
-	                                                </td>
-	                                                <td class="text-center">
-	                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">신청서 확인</font></font></button>
-	                                                </td>
-	                                            </tr>
-	                                            <tr class="">
-	                                                <td class="width35 hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star active"><i class="fa fa-star"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar2.jpg" alt="avatar">
-	                                                    </div>
+	                                                    <div class="text-center">${ joinlist.userVO.user_nn }</div>
 	                                                </td>
 	                                                <td>
-	                                                    <div><a href="javascript:void(0);">Merri Diamond</a></div>
-	                                                    <div class="text-muted">+264-625-2583</div>
-	                                                </td>
-	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">hermanbeck@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">455 S. Airport St. Moncks Corner, SC 29461</div>                                                
-	                                                </td>
-	                                                <td class="text-center">
-	                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">신청서 확인</font></font></button>
-	                                                </td>
-	                                            </tr>
-	                                            <tr class="">
-	                                                <td class="hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star love"><i class="fa fa-heart"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar3.jpg" alt="avatar">
-	                                                    </div>
+	                                                    <div class="text-center">${ joinlist.userVO.age }</div>
 	                                                </td>
 	                                                <td>
-	                                                    <div class="from"><a href="javascript:void(0);">Sara Hopkins</a></div>
-	                                                    <div class="text-muted">+264-625-3333</div>
+	                                                    <div class="text-center">${ joinlist.userVO.gender }</div>
 	                                                </td>
 	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">maryadams@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">19 Ohio St. Snellville, GA 30039</div>                                                
+	                                                    <div class="text-muted">${ joinlist.userVO.email }</div>
 	                                                </td>
 	                                                <td class="text-center">
-	                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">신청서 확인</font></font></button>
+	                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask"><font style="vertical-align: inherit;">신청서 확인</font></button>
 	                                                </td>
 	                                            </tr>
-	                                            <tr class="">
-	                                                <td class="hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star active"><i class="fa fa-star"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar7.jpg" alt="avatar">
-	                                                    </div>
+                           					</c:forEach>
+	                                	</tbody>
+                                    </table>
+                                </div>
+                           	</div>
+                          	<div class="col-lg-12 h-75" style="padding-top: 10px">
+                            <div class="card-header">
+                                <h3 class="card-title">팀원 목록</h3>
+                            </div>
+                                <div class="table-responsive" id="users" style="height: 550px;">
+                                    <table class="table table-hover table-vcenter text-nowrap table_custom border-style list">
+                                        <tbody>
+                                            <tr class="text-center">
+                                                <td>
+                                                    <div class="text-muted">아이디</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-muted">닉네임</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-muted">나이</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-muted">성별</div>
+                                                </td>
+                                                <td class="hidden-xs">
+                                                    <div class="text-muted">이메일</div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-muted">등급</div>
+                                                </td>
+                                                <td class="hidden-ms">
+                                                    <div class="text-muted">합류 날짜</div>
+                                                </td>
+                                                <td class="text-center" width="250px">
+                                                </td>
+                                            </tr>
+                       						<c:forEach items="${ memberlist }" var="memberlist">
+	                                    		<tr class="">
+	                                                <td>
+	                                                    <div class="text-center">${ memberlist.userVO.user_id }</div>
 	                                                </td>
 	                                                <td>
-	                                                    <div class="from"><a href="javascript:void(0);">Andrew Patrick</a></div>
-	                                                    <div class="text-muted">+264-625-2586</div>
-	                                                </td>
-	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">mikethimas@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">728 Blackburn St. Andover, MA 01810</div>                                                
-	                                                </td>
-	                                                <td class="text-center">
-	                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">신청서 확인</font></font></button>
-	                                                </td>
-	                                            </tr>
-	                                            <tr class="">
-	                                                <td class="hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar5.jpg" alt="avatar">
-	                                                    </div>
+	                                                    <div class="text-center">${ memberlist.userVO.user_nn }</div>
 	                                                </td>
 	                                                <td>
-	                                                    <div class="from"><a href="javascript:void(0);">Claire Peters</a></div>
-	                                                    <div class="text-muted">+264-625-3333</div>
-	                                                </td>
-	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">clairepeters@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">19 Ohio St. Snellville, GA 30039</div>                                                
-	                                                </td>
-	                                                <td class="text-center">
-	                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">신청서 확인</font></font></button>
-	                                                </td>
-	                                            </tr>
-	                                            <tr class="" >
-	                                                <td class="hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar6.jpg" alt="avatar">
-	                                                    </div>
+	                                                    <div class="text-center">${ memberlist.userVO.age }</div>
 	                                                </td>
 	                                                <td>
-	                                                    <div class="from"><a href="javascript:void(0);">Allen Collins</a></div>
-	                                                    <div class="text-muted">+264-625-4526</div>
+	                                                    <div class="text-center">${ memberlist.userVO.gender }</div>
 	                                                </td>
 	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">kenpatrick@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">728 Blackburn St. Andover, MA 01810</div>                                                
-	                                                </td>
-	                                                <td class="text-center">
-	                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">신청서 확인</font></font></button>
-	                                                </td>
-	                                            </tr>
-	                                            <tr class="">
-	                                                <td class="width35 hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar4.jpg" alt="avatar">
-	                                                    </div>
+	                                                    <div class="text-muted">${ memberlist.userVO.email }</div>
 	                                                </td>
 	                                                <td>
-	                                                    <div><a href="javascript:void(0);">Erin Gonzales</a></div>
-	                                                    <div class="text-muted">+264-625-1593</div>
+	                                                    <div class="text-center">${ memberlist.team_member_rank }</div>
 	                                                </td>
-	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">eringonzales@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">455 S. Airport St. Moncks Corner, SC 29461</div>                                                
+	                                                <td class="hidden-ms">
+	                                                    <div class="text-muted">${ memberlist.team_member_date }</div>
 	                                                </td>
 	                                                <td class="text-center">
-	                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">신청서 확인</font></font></button>
+	                                                    <button class="btn btn-primary" style="margin-right: 15px;"><font style="vertical-align: inherit;">등급 변경</font></button>
+	                                                    <button class="btn btn-primary"><font style="vertical-align: inherit;">회원 강퇴</font></button>
 	                                                </td>
-	                                            </tr>
-	                                            <tr class="">
-	                                                <td class="hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar5.jpg" alt="avatar">
-	                                                    </div>
-	                                                </td>
-	                                                <td>
-	                                                    <div class="from"><a href="javascript:void(0);">Harry McCall</a></div>
-	                                                    <div class="text-muted">+264-625-2468</div>
-	                                                </td>
-	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">susiewillis@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">19 Ohio St. Snellville, GA 30039</div>                                                
-	                                                </td>
-	                                                <td class="text-center">
-	                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">신청서 확인</font></font></button>
-	                                                </td>
-	                                            </tr>
-	                                        </tbody>
-	                                    </table>
-	                                </div>
-                            	</div>
-                            	<div class="col-lg-12" style="padding-top: 10px">
-	                            <div class="card-header">
-	                                <h3 class="card-title">팀원 목록</h3>
-	                            </div>
-	                                <div class="table-responsive" id="users" style="height: 300px;">
-	                                    <table class="table table-hover table-vcenter text-nowrap table_custom border-style list">
-	                                        <tbody>
-	                                            <tr class="">
-	                                                <td class="width35 hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar4.jpg" alt="avatar">
-	                                                    </div>
-	                                                </td>
-	                                                <td>
-	                                                    <div><a href="javascript:void(0);">John Smith</a></div>
-	                                                    <div class="text-muted">+264-625-2583</div>
-	                                                </td>
-	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">johnsmith@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">455 S. Airport St. Moncks Corner, SC 29461</div>                                                
-	                                                </td>
-	                                                <td class="text-center">
-	                                                    <button class="btn btn-primary" style="margin-right: 15px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">등급 변경</font></font></button>
-	                                                    <button class="btn btn-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">회원 강퇴</font></font></button>
-	                                                </td>
-	                                            </tr>
-	                                            <tr class="">
-	                                                <td class="width35 hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star active"><i class="fa fa-star"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar2.jpg" alt="avatar">
-	                                                    </div>
-	                                                </td>
-	                                                <td>
-	                                                    <div><a href="javascript:void(0);">Merri Diamond</a></div>
-	                                                    <div class="text-muted">+264-625-2583</div>
-	                                                </td>
-	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">hermanbeck@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">455 S. Airport St. Moncks Corner, SC 29461</div>                                                
-	                                                </td>
-	                                                <td class="text-center">
-	                                                    <button class="btn btn-primary" style="margin-right: 15px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">등급 변경</font></font></button>
-	                                                    <button class="btn btn-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">회원 강퇴</font></font></button>
-	                                                </td>
-	                                            </tr>
-	                                            <tr class="">
-	                                                <td class="hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star love"><i class="fa fa-heart"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar3.jpg" alt="avatar">
-	                                                    </div>
-	                                                </td>
-	                                                <td>
-	                                                    <div class="from"><a href="javascript:void(0);">Sara Hopkins</a></div>
-	                                                    <div class="text-muted">+264-625-3333</div>
-	                                                </td>
-	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">maryadams@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">19 Ohio St. Snellville, GA 30039</div>                                                
-	                                                </td>
-	                                                <td class="text-center">
-	                                                    <button class="btn btn-primary" style="margin-right: 15px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">등급 변경</font></font></button>
-	                                                    <button class="btn btn-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">회원 강퇴</font></font></button>
-	                                                </td>
-	                                            </tr>
-	                                            <tr class="">
-	                                                <td class="hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star active"><i class="fa fa-star"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar7.jpg" alt="avatar">
-	                                                    </div>
-	                                                </td>
-	                                                <td>
-	                                                    <div class="from"><a href="javascript:void(0);">Andrew Patrick</a></div>
-	                                                    <div class="text-muted">+264-625-2586</div>
-	                                                </td>
-	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">mikethimas@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">728 Blackburn St. Andover, MA 01810</div>                                                
-	                                                </td>
-	                                                <td class="text-center">
-	                                                    <button class="btn btn-primary" style="margin-right: 15px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">등급 변경</font></font></button>
-	                                                    <button class="btn btn-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">회원 강퇴</font></font></button>
-	                                                </td>
-	                                            </tr>
-	                                            <tr class="">
-	                                                <td class="hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar5.jpg" alt="avatar">
-	                                                    </div>
-	                                                </td>
-	                                                <td>
-	                                                    <div class="from"><a href="javascript:void(0);">Claire Peters</a></div>
-	                                                    <div class="text-muted">+264-625-3333</div>
-	                                                </td>
-	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">clairepeters@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">19 Ohio St. Snellville, GA 30039</div>                                                
-	                                                </td>
-	                                                <td class="text-center">
-	                                                    <button class="btn btn-primary" style="margin-right: 15px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">등급 변경</font></font></button>
-	                                                    <button class="btn btn-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">회원 강퇴</font></font></button>
-	                                                </td>
-	                                            </tr>
-	                                            <tr class="" >
-	                                                <td class="hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar6.jpg" alt="avatar">
-	                                                    </div>
-	                                                </td>
-	                                                <td>
-	                                                    <div class="from"><a href="javascript:void(0);">Allen Collins</a></div>
-	                                                    <div class="text-muted">+264-625-4526</div>
-	                                                </td>
-	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">kenpatrick@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">728 Blackburn St. Andover, MA 01810</div>                                                
-	                                                </td>
-	                                                <td class="text-center">
-	                                                    <button class="btn btn-primary" style="margin-right: 15px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">등급 변경</font></font></button>
-	                                                    <button class="btn btn-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">회원 강퇴</font></font></button>
-	                                                </td>
-	                                            </tr>
-	                                            <tr class="">
-	                                                <td class="width35 hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar4.jpg" alt="avatar">
-	                                                    </div>
-	                                                </td>
-	                                                <td>
-	                                                    <div><a href="javascript:void(0);">Erin Gonzales</a></div>
-	                                                    <div class="text-muted">+264-625-1593</div>
-	                                                </td>
-	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">eringonzales@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">455 S. Airport St. Moncks Corner, SC 29461</div>                                                
-	                                                </td>
-	                                                <td class="text-center">
-	                                                    <button class="btn btn-primary" style="margin-right: 15px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">등급 변경</font></font></button>
-	                                                    <button class="btn btn-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">회원 강퇴</font></font></button>
-	                                                </td>
-	                                            </tr>
-	                                            <tr class="">
-	                                                <td class="hidden-xs">
-	                                                    <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
-	                                                </td>
-	                                                <td class="text-center width40">
-	                                                    <div class="avatar d-block">
-	                                                        <img class="avatar" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar5.jpg" alt="avatar">
-	                                                    </div>
-	                                                </td>
-	                                                <td>
-	                                                    <div class="from"><a href="javascript:void(0);">Harry McCall</a></div>
-	                                                    <div class="text-muted">+264-625-2468</div>
-	                                                </td>
-	                                                <td class="hidden-xs">
-	                                                    <div class="text-muted">susiewillis@info.com</div>
-	                                                </td>
-	                                                <td class="hidden-sm">
-	                                                    <div class="text-muted">19 Ohio St. Snellville, GA 30039</div>                                                
-	                                                </td>
-	                                                <td class="text-center">
-	                                                    <button class="btn btn-primary" style="margin-right: 15px;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">등급 변경</font></font></button>
-	                                                    <button class="btn btn-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">회원 강퇴</font></font></button>
-	                                                </td>
-	                                            </tr>
-	                                        </tbody>
-	                                    </table>
-	                                </div>
-                            	</div>
+                                            	</tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                           	</div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="grid" role="tabpanel">

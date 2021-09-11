@@ -74,6 +74,10 @@
 											<c:param name="file_num" value="${ f.file_num }" />
 									 </c:url>
 										<a href="${ fup }">수정</a>
+									<c:url var="fdel" value="/fdelete.do">
+											<c:param name="file_num" value="${ f.file_num }" />
+									 </c:url>
+										 <a href="${ fdel }">삭제</a>
                                     <a href="javascript:void(0)" class="icon"><i class="fe fe-eye mr-1"></i>${f.file_uploader }</a>
                                 </div>
                             </div>
