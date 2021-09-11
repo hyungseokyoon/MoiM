@@ -29,4 +29,9 @@ public class RecruitServiceImpl implements RecruitService{
 	public Recruit selectOne(int team_num) {
 		return recruitDao.selectOne(team_num);
 	}
+
+	@Override
+	public int insertRecruit(Recruit recruit) {
+		return recruitDao.insertRecruit(recruit);
+	}
 }

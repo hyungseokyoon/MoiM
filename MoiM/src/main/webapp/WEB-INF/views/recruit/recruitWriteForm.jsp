@@ -30,18 +30,18 @@
 		</header>
 		<div>
 			<div class="col-lg-7">
-				<form action="#" class="contact-form text-left">
+				<form action="rcinsert.do" class="contact-form text-left" method="post" enctype="multipart/form-data">
 					<div class="form-group mb-4">
 						<label>스터디명<sup class="text-primary">✱</sup></label> <input
-							type="text" name="teamname" class="form-control">
+							type="text" name="team_name" class="form-control">
 					</div>
 					<div class="form-group mb-4">
-						<label>메인사진<sup class="text-primary">✱</sup></label><br> <input
-							type="file" name="team_file">
+						<label>메인사진(jpg,png)<sup class="text-primary">✱</sup></label><br> <input
+							type="file" name="upfile">
 					</div>
 					<div class="form-group mb-4">
 						<label>레벨<sup class="text-primary">✱</sup></label> <select
-							name="level" class="select form-control" style="padding: 0;">
+							name="team_level" class="select form-control" style="padding: 0;">
 							<option value="초급" style="font-size: 10;">초급</option>
 							<option value="중급">중급</option>
 							<option value="고급">고급</option>
@@ -49,7 +49,7 @@
 					</div>
 					<div class="form-group mb-4">
 						<label>지역<sup class="text-primary">✱</sup></label> <select
-							name="region" class="select form-control" style="padding: 0;">
+							name="team_local" class="select form-control" style="padding: 0;">
 							<option value="서울">서울</option>
 							<option value="경기">경기</option>
 							<option value="인천">인천</option>
@@ -66,7 +66,7 @@
 					</div>
 					<div class="form-group mb-4">
 						<label>분야<sup class="text-primary">✱</sup></label> <select
-							name="field" class="select form-control" style="padding: 0;">
+							name="field_num" class="select form-control" style="padding: 0;">
 
 							<option value="1">영어</option>
 							<option value="2">중국어</option>
@@ -84,7 +84,7 @@
 					</div>
 					<div class="form-group mb-4">
 						<label>요일<sup class="text-primary">✱</sup></label> <select
-							name="level" class="select form-control" style="padding: 0;">
+							name="team_act_day" class="select form-control" style="padding: 0;">
 							<option value="월">월</option>
 							<option value="화">화</option>
 							<option value="수">수</option>
@@ -95,20 +95,24 @@
 							<option value="무관">무관</option>
 						</select>
 					</div>
-
+					<div class="form-group mb-4">
+						<label>인원<sup class="text-primary">✱</sup></label> <input
+							type="number" name="team_limit" value="2" min="0"
+							class="numberinput form-control">
+					</div>
 					<div class="form-group mb-4">
 						<label>시간<sup class="text-primary">✱</sup></label> <input
-							type="text" name="name" placeholder="ex) 14:00~16:00"
+							type="text" name="team_act_time" placeholder="ex) 14:00~16:00"
 							class="form-control">
 					</div>
 					<div class="form-group mb-4">
 						<label>기간(주)<sup class="text-primary">✱</sup></label> <input
-							type="number" name="duration" value="4" min="0"
+							type="number" name="team_act_week" value="4" min="0"
 							class="numberinput form-control">
 					</div>
 					<div class="form-group mb-4">
 						<label>참여비<sup class="text-primary">✱숫자만입력</sup></label> <input
-							type="text" name="fee" placeholder="ex) 10,000"
+							type="text" name="team_fee" placeholder="ex) 10,000"
 							class="form-control">
 					</div>
 
@@ -121,12 +125,12 @@
 					</div>
 
 					<div class="form-group mb-4">
-						<label>스터디 소개<sup class="text-primary">✱</sup></label>
-						<textarea name="studyintro" class="form-control"></textarea>
+						<label>스터디 소개(1000자이내)<sup class="text-primary">✱</sup></label>
+						<textarea name="team_intro" class="form-control"></textarea>
 					</div>
 					<div class="form-group mb-4">
-						<label>리더 소개<sup class="text-primary">✱</sup></label>
-						<textarea name="leaderintro" class="form-control"></textarea>
+						<label>리더 소개(1000자이내)<sup class="text-primary">✱</sup></label>
+						<textarea name="team_leader_intro" class="form-control"></textarea>
 					</div>
 
 					<div class="form-group" align="center">

@@ -31,4 +31,7 @@ public class RecruitDao {
 		return sqlSession.selectOne("recruitMapper.selectOne", team_num);
 	}
 	
+	public int insertRecruit(Recruit recruit) {
+		return sqlSession.insert("recruitMapper.insertRecruit", recruit);
+	}
 }

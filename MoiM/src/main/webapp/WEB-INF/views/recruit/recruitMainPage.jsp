@@ -147,7 +147,7 @@
 						<br>
 						
 						<br>
-						<c:url var="rinsert" value="/rcinsert.do">
+						<c:url var="rinsert" value="/rcwrite.do">
 										
 						</c:url>
 									
@@ -156,12 +156,16 @@
 						<br>
 						<br>
 						</div>
-						<c:url var="rde" value="/rcdetail.do"></c:url>
+						
 						 <div class="container2">
 						
 						 
 						<div class="row" >
 						<c:forEach items="${ requestScope.list }" var="rc">
+						<c:url var="rde" value="/rcdetail.do">
+						<c:param name="team_num" value="${ rc.team_num}" />
+						<c:param name="page" value="${ currentPage }" />
+						</c:url>
 							<div class="col-md-4 mb-4">
 							
 								<div class="card h-100">
@@ -170,6 +174,7 @@
 									<div class="card-body">				
 										<h4 class="font-sans-serif fw-bold fs-md-0 fs-lg-1" style="font-weight: 500; text-align:center; color:#379392; 
 										font-family: geogia;">${ rc.team_name }</h4>
+										<h5 style="text-align:right;">${ rc.field_name }</h5>
 										<a class="text-muted fs--1 stretched-link text-decoration-none"
 											href="${ rde }"></a>
 										<h6>지역&nbsp;&nbsp;&nbsp;  :&nbsp;&nbsp; ${ rc.team_local }</h6>
@@ -193,18 +198,20 @@
 					</div>
 				<br><br>
 				<div style="text-align:center;">
+				
+				<!-- 데이터 추가 후에 수정 -->
 <c:if test="${ currentPage <= 1 }">
 	[맨처음]&nbsp;
 </c:if>
 <c:if test="${ currentPage > 1 }">
-	<c:url var="ubl" value="/blist.do">
+	<c:url var="ubl" value="/rclist.do">
 		<c:param name="page" value="1" />
 	</c:url>
 	<a href="${ ubl }">[맨처음]</a>
 </c:if>
 <!-- 이전 그룹으로 이동 처리 -->
 <c:if test="${ (currentPage - 10) < startPage and (currentPage - 10) > 1 }">
-	<c:url var="ubl2" value="/blist.do">
+	<c:url var="ubl2" value="/rclist.do">
 		<c:param name="page" value="${ startPage - 10 }"/>
 	</c:url>
 	<a href="${ ubl2 }">[이전그룹]</a>
@@ -218,7 +225,7 @@
 		<font color="#379392" size="4"><b>[${ p }]</b></font>
 	</c:if>
 	<c:if test="${ p ne currentPage }">
-		<c:url var="ubl3" value="/blist.do">
+		<c:url var="ubl3" value="/rclist.do">
 			<c:param name="page" value="${ p }"/>
 		</c:url>
 		<a href="${ ubl3 }">${ p }</a>
@@ -226,7 +233,7 @@
 </c:forEach>
 <!-- 다음 그룹으로 이동 처리 -->
 <c:if test="${ (currentPage + 10) > endPage && (currentPage + 10) < maxPage }">
-	<c:url var="ubl4" value="/blist.do">
+	<c:url var="ubl4" value="/rclist.do">
 		<c:param name="page" value="${ endPage + 10 }"/>
 	</c:url>
 	<a href="${ ubl4 }">[다음그룹]</a>
@@ -239,7 +246,7 @@
 	[맨끝]&nbsp;
 </c:if>	
 <c:if test="${ currentPage < maxPage }">
-	<c:url var="ubl5" value="/blist.do">
+	<c:url var="ubl5" value="/rclist.do">
 		<c:param name="page" value="${ maxPage }"/>
 	</c:url>
 	<a href="${ ubl5 }">[맨끝]</a>
