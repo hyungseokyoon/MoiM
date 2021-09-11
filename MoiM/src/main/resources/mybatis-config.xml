@@ -27,19 +27,12 @@
 	</typeAliases>
 	
 	<mappers>
-		<mapper resource="mappers/notice-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
-		<mapper resource="mappers/reply-mapper.xml"/>
-		<mapper resource="mappers/field-mapper.xml"/>
-		<mapper resource="mappers/joinwaiting-mapper.xml"/>
-		<mapper resource="mappers/team-mapper.xml"/>
-		<mapper resource="mappers/teammember-mapper.xml"/>
-<<<<<<< HEAD
 		<mapper resource="mappers/file-mapper.xml" />
-=======
+		<mapper resource="mappers/notice-mapper.xml"/>
+		<mapper resource="mappers/reply-mapper.xml"/>
 		<mapper resource="mappers/teammanage-mapper.xml"/>
 		<mapper resource="mappers/userinfo-mapper.xml"/>
->>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git
 	</mappers>
 	
 </configuration>
