@@ -1,5 +1,7 @@
 package com.finalp.moim.teampage.common.model.vo;
 
+import com.finalp.moim.userinfo.model.vo.UserInfo;
+
 public class JoinWaiting implements java.io.Serializable {
 	private static final long serialVersionUID = 4444L;
 	
@@ -9,6 +11,8 @@ public class JoinWaiting implements java.io.Serializable {
 	private String join_intro;
 	private String join_original_filename;
 	private String join_rename_filename;
+
+	private UserInfo userVO;
 	
 	public JoinWaiting() {}
 
@@ -77,6 +81,14 @@ public class JoinWaiting implements java.io.Serializable {
 
 	public void setJoin_rename_filename(String join_rename_filename) {
 		this.join_rename_filename = join_rename_filename;
+	}
+
+	public UserInfo getUserVO() {
+		return userVO;
+	}
+
+	public void setUserVO(UserInfo userVO) {
+		this.userVO = userVO;
 	}
 
 	public static long getSerialversionuid() {

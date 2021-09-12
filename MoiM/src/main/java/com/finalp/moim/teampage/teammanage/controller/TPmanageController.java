@@ -49,6 +49,8 @@ public class TPmanageController {
 		ArrayList<JoinWaiting> joinlist = tpmanageService.selectJoinMemberList(team_num);
 		ArrayList<TeamMember> memberlist = tpmanageService.selectTeamMemberList(team_num);
 		
+		
+		
 		if (memberlist != null) {
 			model.addAttribute("joinlist", joinlist);
 			model.addAttribute("memberlist", memberlist);

@@ -44,19 +44,21 @@
 	<resultMap id="resultJoinWaiting" type="JoinWaiting">
 		<id column="join_num" property="join_num"/>
 		<result column="team_num" property="team_num"/>
+		<result column="user_no" property="user_no"/>
 		<result column="join_intro" property="join_intro"/>
 		<result column="join_original_filename" property="join_original_filename"/>
 		<result column="join_rename_filename" property="join_rename_filename"/>
-		<association column="user_no" property="user_no" javaType="UserInfo" resultMap="resultUserInfo" />
+		<association property="userVO" resultMap="resultUserInfo" />
 	</resultMap>
 	
 	<!-- TeamMember 객체에 대한 정보 -->
 	<resultMap id="resultTeamMember" type="TeamMember">
 		<id column="team_member_no" property="team_member_no"/>
 		<result column="team_num" property="team_num"/>
+		<result column="user_no" property="user_no"/>
 		<result column="team_member_rank" property="team_member_rank"/>
 		<result column="team_member_date" property="team_member_date"/>
-		<association column="user_no" property="user_no" javaType="UserInfo" resultMap="resultUserInfo" />
+		<association property="userVO" resultMap="resultUserInfo" />
 	</resultMap>
 	
 	<!-- Field 객체에 대한 정보 -->
