@@ -31,4 +31,14 @@
 			  order by board_no desc))
 		where rnum between #{ startRow } and #{ endRow }
 	</select>
+	
+	<!-- 게시글 조회수 1 증가 -->
+	<update id="updateReadCount" parameterType="int">
+		update board set board_readcount = board_readcount + 1 where board_no = #{ board_no }
+	</update>
+	
+	<!-- 전달받은 글번호로 게시글 조회 -->
+	<select id="selectBoard" parameterType="int" resultMap="resultBoard">
+		select * from board where board_no = #{ board_no }
+	</select>
 </mapper>
