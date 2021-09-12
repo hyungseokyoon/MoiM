@@ -75,9 +75,22 @@ public class BoardController {
 	
 	// 게시판 상세보기 페이지 이동
 	@RequestMapping("bdetail.do")
-	public ModelAndView boardDetailMethod(ModelAndView mv, @RequestParam("page") int page) {
-		mv.addObject("currentPage", page);
-		mv.setViewName("board/BoardDetail");
+	public ModelAndView boardDetailMethod(ModelAndView mv, @RequestParam("board_no") int board_no, 
+			@RequestParam("page") int page) {
+		boardService.updateReadCount(board_no);
+		
+		Board board = boardService.selectBoard(board_no);
+		
+		if(board != null) {
+			mv.addObject("board", board);
+			mv.addObject("currentPage", page);
+			
+			mv.setViewName("board/BoardDetail");
+		} else {
+			mv.addObject("message", board_no + "번 게시글 조회 실패");
+			
+			mv.setViewName("common/error");
+		}
 		
 		return mv;
 	}

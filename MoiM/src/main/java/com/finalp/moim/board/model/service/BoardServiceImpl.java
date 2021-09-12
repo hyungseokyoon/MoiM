@@ -26,4 +26,14 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<Board> selectList(Page page) {
 		return boardDao.selectList(page);
 	}
+
+	@Override
+	public int updateReadCount(int board_no) {
+		return boardDao.updateReadCount(board_no);
+	}
+
+	@Override
+	public Board selectBoard(int board_no) {
+		return boardDao.selectBoard(board_no);
+	}
 }
