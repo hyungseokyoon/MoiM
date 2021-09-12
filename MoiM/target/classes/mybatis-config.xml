@@ -29,9 +29,4 @@
 		<mapper resource="mappers/teammanage-mapper.xml"/>
 		<mapper resource="mappers/userinfo-mapper.xml"/>
 	</mappers>
-<<<<<<< HEAD
 </configuration>
-=======
-	
-</configuration>
->>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git
