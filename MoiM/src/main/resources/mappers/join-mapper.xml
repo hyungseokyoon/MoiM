@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="joinMapper">
+
+	<!-- Join 객체에 대한 정보(지원하기 insert) -->
+	<resultMap id="resultJoin" type="Join">
+		<id column="join_num" property="join_num"/>
+		<result column="team_num" property="team_num"/>
+		<result column="user_no" property="user_no"/>
+		<result column="join_intro" property="join_intro"/>
+		<result column="join_original_filename" property="join_original_filename"/>
+		<result column="join_rename_filename" property="join_rename_filename"/>
+	</resultMap>
+
+</mapper>
