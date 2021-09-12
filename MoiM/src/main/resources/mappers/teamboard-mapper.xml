@@ -64,8 +64,9 @@
 		where tn_no = #{ tn_no };
 	</update>
 	
-	<delete id="deleteTeamBoard" parameterType = "int ">
-	
+	<delete id="deleteTeamBoard" parameterType="_int">
+		delete from tb_file
+		where file_num = #{ tn_no }
 	</delete>
 	
 </mapper>
