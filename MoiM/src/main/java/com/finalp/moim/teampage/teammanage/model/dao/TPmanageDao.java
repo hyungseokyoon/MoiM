@@ -35,4 +35,16 @@ public class TPmanageDao {
 		return (ArrayList<TeamMember>)list;
 	}
 
+	public JoinWaiting selectJoinMember(int join_num) {
+		return session.selectOne("teammanageMapper.selectJoinMember", join_num);
+	}
+
+	public int insertTeamMember(JoinWaiting joinwaiting) {
+		return session.insert("teammanageMapper.insertTeamMember", joinwaiting);
+	}
+
+	public int deleteJoinMember(int join_num) {
+		return session.delete("teammanageMapper.deleteJoinMember", join_num);
+	}
+
 }
