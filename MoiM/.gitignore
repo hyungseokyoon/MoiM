@@ -19,7 +19,6 @@ MANIFEST.MF
 target/
 root-context.xml
 *.DS_Store
-.classpath
 
 # External tool builders
 .externalToolBuilders/
