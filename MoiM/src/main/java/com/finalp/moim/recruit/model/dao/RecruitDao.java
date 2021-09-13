@@ -34,4 +34,8 @@ public class RecruitDao {
 	public int insertRecruit(Recruit recruit) {
 		return sqlSession.insert("recruitMapper.insertRecruit", recruit);
 	}
+	
+	public int updateRecruit(Recruit recruit) {
+		return sqlSession.update("recruitMapper.updateRecruit", recruit );
+	}
 }

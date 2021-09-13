@@ -34,4 +34,9 @@ public class RecruitServiceImpl implements RecruitService{
 	public int insertRecruit(Recruit recruit) {
 		return recruitDao.insertRecruit(recruit);
 	}
+	
+	@Override
+	public int updateRecruit(Recruit recruit) {
+		return recruitDao.updateRecruit(recruit);
+	}
 }

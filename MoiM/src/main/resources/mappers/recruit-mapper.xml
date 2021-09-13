@@ -65,13 +65,13 @@
 
 	<update id="updateRecruit" parameterType="Recruit">
 		update tb_team
-		set team_level = #{team_level},
-		team_local = #{team_local}, team_field =
-		#{team_field},
+		set team_level = #{team_level}, 
+		team_local = #{team_local}, field_num =
+		#{field_num},team_limit= #{team_limit},
 		team_act_day = #{team_act_day}, team_act_time =
-		#{team_act_time},
+		#{team_act_time}, 
 		team_act_week = #{team_act_week}, team_fee =
-		#{team_fee},
+		#{team_fee}, team_intro = #{team_intro}, team_leader_intro = #{team_leader_intro}
 
 
 

@@ -10,6 +10,6 @@ public interface RecruitService {
 	int selectListCount();
 	Recruit selectOne(int team_num); //글 상세보기
 	int insertRecruit(Recruit recruit); 
-	
+	int updateRecruit(Recruit recruit);
 	
 }
