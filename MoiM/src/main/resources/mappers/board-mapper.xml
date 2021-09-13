@@ -17,4 +17,28 @@
 		<result column="board_readcount" property="board_readcount"/>
 	</resultMap>
 
+	<!-- 전체 게시글 갯수 조회 -->
+	<select id="getListCount" resultType="int">
+		select count(*) from board
+	</select>
+	
+	<!-- 페이지 안의 게시글 리스트 조회 -->
+	<select id="selectList" parameterType="Page" resultMap="resultBoard">
+		select * from
+		(select rownum rnum, board_no, board_category_no, user_no, board_title, board_content, board_date, 
+			   board_original_filename, board_rename_filename, board_readcount
+		from (select * from board
+			  order by board_no desc))
+		where rnum between #{ startRow } and #{ endRow }
+	</select>
+	
+	<!-- 게시글 조회수 1 증가 -->
+	<update id="updateReadCount" parameterType="int">
+		update board set board_readcount = board_readcount + 1 where board_no = #{ board_no }
+	</update>
+	
+	<!-- 전달받은 글번호로 게시글 조회 -->
+	<select id="selectBoard" parameterType="int" resultMap="resultBoard">
+		select * from board where board_no = #{ board_no }
+	</select>
 </mapper>

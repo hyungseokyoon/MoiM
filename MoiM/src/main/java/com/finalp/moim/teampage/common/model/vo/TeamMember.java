@@ -2,6 +2,8 @@ package com.finalp.moim.teampage.common.model.vo;
 
 import java.sql.Date;
 
+import com.finalp.moim.userinfo.model.vo.UserInfo;
+
 public class TeamMember implements java.io.Serializable {
 	private static final long serialVersionUID = 3333L;
 	
@@ -10,6 +12,8 @@ public class TeamMember implements java.io.Serializable {
 	private int user_no;
 	private int team_member_rank;
 	private java.sql.Date team_member_date;
+	
+	private UserInfo userVO;
 	
 	public TeamMember() {}
 	
@@ -60,6 +64,14 @@ public class TeamMember implements java.io.Serializable {
 
 	public void setTeam_member_date(java.sql.Date team_member_date) {
 		this.team_member_date = team_member_date;
+	}
+
+	public UserInfo getUserVO() {
+		return userVO;
+	}
+
+	public void setUserVO(UserInfo userVO) {
+		this.userVO = userVO;
 	}
 
 	public static long getSerialversionuid() {

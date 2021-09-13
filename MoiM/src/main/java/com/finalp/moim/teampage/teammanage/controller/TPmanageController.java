@@ -3,11 +3,15 @@ package com.finalp.moim.teampage.teammanage.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +20,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.finalp.moim.teampage.common.model.vo.JoinWaiting;
 import com.finalp.moim.teampage.common.model.vo.Team;
 import com.finalp.moim.teampage.common.model.vo.TeamMember;
 import com.finalp.moim.teampage.teammanage.model.service.TPmanageService;
+import com.finalp.moim.userinfo.model.vo.UserInfo;
 
 @Controller
 public class TPmanageController {
@@ -52,6 +58,7 @@ public class TPmanageController {
 		if (memberlist != null) {
 			model.addAttribute("joinlist", joinlist);
 			model.addAttribute("memberlist", memberlist);
+			model.addAttribute("team_num", team_num);
 			return "teampage/teammanage/team_member";  //내보낼 뷰파일명 리턴
 		} else {
 			model.addAttribute("message", team_num + "팀원 정보 조회 실패.");
@@ -134,6 +141,65 @@ public class TPmanageController {
 			return "common/error";
 		}
 		
+	}
+	
+	@RequestMapping(value="tmselect.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String selectJoinMember(@RequestParam("join_num") int join_num) {
+		JoinWaiting joinmember = tpmanageService.selectJoinMember(join_num);
+		
+		logger.info("joinmember : " + joinmember);
+		
+		// 전송용 json 객체 준비
+		JSONObject sendJson = new JSONObject();
+		// list 옮길 json 배열 준비
+		JSONArray jarr = new JSONArray();
+		
+		JSONObject job = new JSONObject();
+		
+		job.put("user_no", joinmember.getUserVO().getUser_no());
+		job.put("user_id", joinmember.getUserVO().getUser_id());
+		job.put("user_nn", joinmember.getUserVO().getUser_nn());
+		job.put("age", joinmember.getUserVO().getAge());
+		job.put("gender", joinmember.getUserVO().getGender());
+		job.put("email", joinmember.getUserVO().getEmail());
+		job.put("join_num", joinmember.getJoin_num());
+		job.put("join_intro", joinmember.getJoin_intro());
+		job.put("join_original_filename", joinmember.getJoin_original_filename());
+		job.put("join_rename_filename", joinmember.getJoin_rename_filename());
+		
+		// job 를 jarr 에 저장
+		jarr.add(job);
+		
+		// 전송용 json 객체에 jarr 담음
+		sendJson.put("list", jarr);
+		
+		return sendJson.toJSONString();	// jsonView 가 리턴됨
+	}
+	
+	@RequestMapping(value="tminsert.do", method = RequestMethod.POST)
+	public String insertTeamMember(JoinWaiting joinmember, @RequestParam("team_num") int team_num, Model model) {
+		int result = tpmanageService.deleteJoinMember(joinmember.getJoin_num());
+		
+		if (tpmanageService.insertTeamMember(joinmember) > 0 && result > 0) {
+			model.addAttribute("team_num", team_num);
+			return "redirect:moveTeamMember.do";
+		} else {
+			model.addAttribute("message", joinmember.getUserVO().getUser_id() + "님의 팀원 등록 실패.");
+			return "common/error";
+		}
+	}
+	
+	@RequestMapping("tjdelete.do")
+	public String deleteJoinWaiting(@RequestParam("join_num") int join_num,
+			@RequestParam("team_num") int team_num, Model model) {
+		if(tpmanageService.deleteJoinMember(join_num) > 0) {
+			model.addAttribute("team_num", team_num);
+			return "redirect:moveTeamMember.do";
+		} else {
+			model.addAttribute("message", join_num + " 번 신청 정보 삭제 실패.");
+			return "common/error";
+		}
 	}
 
 }

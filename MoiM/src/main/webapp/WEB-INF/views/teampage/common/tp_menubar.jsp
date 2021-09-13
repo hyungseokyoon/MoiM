@@ -140,11 +140,18 @@
             <ul class="metismenu">
                 <li class="g_heading">팀 기능</li>
                 <li><a href="moveTPindex.do"><i class="fa fa-dashboard"></i><span>홈</span></a></li>                        
-                <li><a href="${ pageContext.servletContext.contextPath }/moveTPteamboard.do"><i class="fa fa-list-ol"></i><span>공지</span></a></li>
+                <li>
+                	<c:url var="moveTPteamboard" value="moveTPteamboard.do">
+                        	<c:param name="team_num" value="${ team.team_num }"></c:param>
+                    </c:url>
+                	<a href="${ moveTPteamboard }"><i class="fa fa-list-ol"></i><span>공지</span></a>
+                </li>
                 <li><a href="${ pageContext.servletContext.contextPath }/moveTPcalendar.do"><i class="fa fa-calendar-check-o"></i><span>일정</span></a></li>
                 <li><a href="project-ticket.html"><i class="fa fa-list-ul"></i><span>채팅</span></a></li>
-                <li><a href="project-ticket-details.html"><i class="fa fa-file fa-2"></i><span>파일</span></a></li>
+                <li><a href="project-clients.html"><i class="fa fa-user"></i><span>일지</span></a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/flist.do"><i class="fa fa-file fa-2"></i><span>파일</span></a></li>
                 <li><a href="${ pageContext.servletContext.contextPath }/moveTPdaily.do"><i class="fa fa-user"></i><span>일지</span></a></li>
+
                 <li>
                     <a href="javascript:void(0)" class="has-arrow arrow-c" id="updowndisp"><i class="fa fa-lock"></i><span>팀관리</span></a>
                     <ul id="manageoption">

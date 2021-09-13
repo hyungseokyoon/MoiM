@@ -19,8 +19,11 @@ target/
 root-context.xml
 *.DS_Store
 <<<<<<< HEAD
+<<<<<<< HEAD
 .classpath
 .project
+=======
+>>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git
 =======
 >>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git
 
