@@ -198,184 +198,57 @@
                         <div class="row clearfix">
                             <div class="col-lg-12">
                                 <div class="table-responsive" id="users">
-                                    <table class="table table-hover table-vcenter text-nowrap table_custom border-style list">
+                                    <table class="table table-hover table-vcenter text-nowrap table_custom border-style list" style="overflow: scroll;">
+                                        <thead>
+                                        	<tr>
+                                        		<th class="text-center" style="width: 10%;">
+                                                    공지번호
+                                                </th>
+                                                <th class="text-center" style="width: 40%;">
+                                                    제목
+                                                </th>
+                                                <th class="text-center" style="width: 10%;">
+                                                    작성자
+                                                </th>
+                                                <th class="text-center" style="width: 10%;">
+                                                    작성일
+                                                </th>
+                                                <th class="text-center" style="width: 10%;">
+                                                   첨부파일
+                                                </th>
+                                                <th class="text-center" style="width: 20%;">
+                                                    내용보기                                                
+                                                </th>
+                                        	</tr>
                                         <tbody>
-                                            <tr class="">
-                                                <td class="width35 hidden-xs">
-                                                    <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
+                                        	<c:forEach items="${ tblist }" var="tblist">
+                                        	<tr class="">
+                                        		<td class="text-center" style="width: 10%;">
+                                                    <div class="text-center">${ tblist.rownum }</div>
                                                 </td>
-                                                <td class="text-center width40">
-                                                    <div class="avatar d-block">
-                                                        <img class="avatar" src="assets/images/xs/avatar4.jpg" alt="avatar">
-                                                    </div>
+                                                <td class="text-center" style="width: 40%;">
+                                                    <div class="text-center">${ tblist.tn_title }</div>
                                                 </td>
-                                                <td>
-                                                    <div><a href="javascript:void(0);">John Smith</a></div>
-                                                    <div class="text-muted">+264-625-2583</div>
+                                                <td class="text-center" style="width: 10%;">
+                                                    <div class="text-center">${ tblist.userVO.user_nn }</div>
                                                 </td>
-                                                <td class="hidden-xs">
-                                                    <div class="text-muted">johnsmith@info.com</div>
+                                                <td class="text-center" style="width: 10%;">
+                                                    <div class="text-center">${ tblist.tn_date }</div>
                                                 </td>
-                                                <td class="hidden-sm">
-                                                    <div class="text-muted">455 S. Airport St. Moncks Corner, SC 29461</div>                                                
+                                                <td class="text-center" style="width: 10%;">
+                                                	<c:if test="${ tblist.tn_originalfilename != null }">
+                                                		<div class="text-center">O</div>
+                                                	</c:if>
+                                                   	<c:if test="${ tblist.tn_originalfilename == null }">
+                                                		<div class="text-center">X</div>
+                                                	</c:if>
                                                 </td>
-                                                <td class="text-right">
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Phone"><i class="fa fa-phone"></i></a>
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Mail"><i class="fa fa-envelope"></i></a>
-                                                    <a class="btn btn-sm btn-link hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr class="">
-                                                <td class="width35 hidden-xs">
-                                                    <a href="javascript:void(0);" class="mail-star active"><i class="fa fa-star"></i></a>
-                                                </td>
-                                                <td class="text-center width40">
-                                                    <div class="avatar d-block">
-                                                        <img class="avatar" src="assets/images/xs/avatar2.jpg" alt="avatar">
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div><a href="javascript:void(0);">Merri Diamond</a></div>
-                                                    <div class="text-muted">+264-625-2583</div>
-                                                </td>
-                                                <td class="hidden-xs">
-                                                    <div class="text-muted">hermanbeck@info.com</div>
-                                                </td>
-                                                <td class="hidden-sm">
-                                                    <div class="text-muted">455 S. Airport St. Moncks Corner, SC 29461</div>                                                
-                                                </td>
-                                                <td class="text-right">
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Phone"><i class="fa fa-phone"></i></a>
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Mail"><i class="fa fa-envelope"></i></a>
-                                                    <a class="btn btn-sm btn-link hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                                <td class="text-center" style="width: 20%;">
+                                                    <button>111</button>                                              
                                                 </td>
                                             </tr>
-                                            <tr class="">
-                                                <td class="hidden-xs">
-                                                    <a href="javascript:void(0);" class="mail-star love"><i class="fa fa-heart"></i></a>
-                                                </td>
-                                                <td class="text-center width40">
-                                                    <div class="avatar d-block">
-                                                        <img class="avatar" src="assets/images/xs/avatar3.jpg" alt="avatar">
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="from"><a href="javascript:void(0);">Sara Hopkins</a></div>
-                                                    <div class="text-muted">+264-625-3333</div>
-                                                </td>
-                                                <td class="hidden-xs">
-                                                    <div class="text-muted">maryadams@info.com</div>
-                                                </td>
-                                                <td class="hidden-sm">
-                                                    <div class="text-muted">19 Ohio St. Snellville, GA 30039</div>                                                
-                                                </td>
-                                                <td class="text-right">
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Phone"><i class="fa fa-phone"></i></a>
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Mail"><i class="fa fa-envelope"></i></a>
-                                                    <a class="btn btn-sm btn-link hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr class="">
-                                                <td class="hidden-xs">
-                                                    <a href="javascript:void(0);" class="mail-star active"><i class="fa fa-star"></i></a>
-                                                </td>
-                                                <td class="text-center width40">
-                                                    <div class="avatar d-block">
-                                                        <img class="avatar" src="assets/images/xs/avatar7.jpg" alt="avatar">
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="from"><a href="javascript:void(0);">Andrew Patrick</a></div>
-                                                    <div class="text-muted">+264-625-2586</div>
-                                                </td>
-                                                <td class="hidden-xs">
-                                                    <div class="text-muted">mikethimas@info.com</div>
-                                                </td>
-                                                <td class="hidden-sm">
-                                                    <div class="text-muted">728 Blackburn St. Andover, MA 01810</div>                                                
-                                                </td>
-                                                <td class="text-right">
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Phone"><i class="fa fa-phone"></i></a>
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Mail"><i class="fa fa-envelope"></i></a>
-                                                    <a class="btn btn-sm btn-link hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr class="">
-                                                <td class="hidden-xs">
-                                                    <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
-                                                </td>
-                                                <td class="text-center width40">
-                                                    <div class="avatar d-block">
-                                                        <img class="avatar" src="assets/images/xs/avatar5.jpg" alt="avatar">
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="from"><a href="javascript:void(0);">Claire Peters</a></div>
-                                                    <div class="text-muted">+264-625-3333</div>
-                                                </td>
-                                                <td class="hidden-xs">
-                                                    <div class="text-muted">clairepeters@info.com</div>
-                                                </td>
-                                                <td class="hidden-sm">
-                                                    <div class="text-muted">19 Ohio St. Snellville, GA 30039</div>                                                
-                                                </td>
-                                                <td class="text-right">
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Phone"><i class="fa fa-phone"></i></a>
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Mail"><i class="fa fa-envelope"></i></a>
-                                                    <a class="btn btn-sm btn-link hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr class="" >
-                                                <td class="hidden-xs">
-                                                    <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
-                                                </td>
-                                                <td class="text-center width40">
-                                                    <div class="avatar d-block">
-                                                        <img class="avatar" src="assets/images/xs/avatar6.jpg" alt="avatar">
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="from"><a href="javascript:void(0);">Allen Collins</a></div>
-                                                    <div class="text-muted">+264-625-4526</div>
-                                                </td>
-                                                <td class="hidden-xs">
-                                                    <div class="text-muted">kenpatrick@info.com</div>
-                                                </td>
-                                                <td class="hidden-sm">
-                                                    <div class="text-muted">728 Blackburn St. Andover, MA 01810</div>                                                
-                                                </td>
-                                                <td class="text-right">
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Phone"><i class="fa fa-phone"></i></a>
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Mail"><i class="fa fa-envelope"></i></a>
-                                                    <a class="btn btn-sm btn-link hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr class="">
-                                                <td class="width35 hidden-xs">
-                                                    <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
-                                                </td>
-                                                <td class="text-center width40">
-                                                    <div class="avatar d-block">
-                                                        <img class="avatar" src="assets/images/xs/avatar4.jpg" alt="avatar">
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div><a href="javascript:void(0);">Erin Gonzales</a></div>
-                                                    <div class="text-muted">+264-625-1593</div>
-                                                </td>
-                                                <td class="hidden-xs">
-                                                    <div class="text-muted">eringonzales@info.com</div>
-                                                </td>
-                                                <td class="hidden-sm">
-                                                    <div class="text-muted">455 S. Airport St. Moncks Corner, SC 29461</div>                                                
-                                                </td>
-                                                <td class="text-right">
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Phone"><i class="fa fa-phone"></i></a>
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Mail"><i class="fa fa-envelope"></i></a>
-                                                    <a class="btn btn-sm btn-link hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr class="">
+                                            </c:forEach>
+                                            <!-- <tr class="">
                                                 <td class="hidden-xs">
                                                     <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
                                                 </td>
@@ -399,7 +272,7 @@
                                                     <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Mail"><i class="fa fa-envelope"></i></a>
                                                     <a class="btn btn-sm btn-link hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
                                                 </td>
-                                            </tr>
+                                            </tr>  -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -560,19 +433,10 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row clearfix">
-                                            <div class="col-lg-4 col-md-12">
+                                        	<form action="teamboardinsert.do" method="post" enctype="multipart/form-data" style="width: 100%;">
+                                            <div class="col-lg-12 col-md-12">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Enter Name">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-12">
-                                                <div class="form-group">
-                                                    <input type="number" class="form-control" placeholder="Enter Number">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-12">
-                                                <div class="form-group">
-                                                    <input type="email" class="form-control" placeholder="Enter Email">
+                                                    <input type="text" class="form-control" placeholder="제목을 입력하세요...">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">
@@ -581,12 +445,13 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
-                                                <input type="file" class="dropify">
+                                                <input type="file" class="dropify" name="tb_upfile">
                                             </div>
                                             <div class="col-lg-12 mt-3">
                                                 <button type="submit" class="btn btn-primary">Add</button>
-                                                <button type="submit" class="btn btn-default">Cancel</button>
+                                                <button type="reset" class="btn btn-default">Cancel</button>
                                             </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

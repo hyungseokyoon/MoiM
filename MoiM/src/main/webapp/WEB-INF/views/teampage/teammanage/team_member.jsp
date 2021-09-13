@@ -363,5 +363,5 @@ function deleteJoinMember() {
 	location.href="${ pageContext.servletContext.contextPath }/tjdelete.do?join_num=" + join_num + "&team_num=" + team_num;
 }
 </script>
-</body>
+  </body>
 </html>

@@ -49,9 +49,9 @@
             <ul class="navbar-nav ml-auto">
 				<li class="nav-item"> <a href="main.do" class="nav-link active">Home</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/nlist.do" class="nav-link">공지사항</a></li>
-				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/contact.html" class="nav-link">구인게시판</a></li>
+				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rclist.do" class="nav-link">구인게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/blist.do?page=1" class="nav-link">게시판</a></li>
-				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/text.html" class="nav-link">리뷰게시판</a></li>
+				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rvlist.do" class="nav-link">리뷰게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/text.html" class="nav-link">My Page</a></li>
 				<!-- 관리자 페이지 드롭박스 -->
 				<c:if test="${ loginMember.admin == 'Y' }">

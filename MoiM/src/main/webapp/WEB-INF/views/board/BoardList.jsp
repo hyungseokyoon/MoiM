@@ -63,6 +63,7 @@
 				        					<td>${ b.board_no }</td>
 				        					<td>
 				        						<c:url var="bdetail" value="bdetail.do">
+				        							<c:param name="board_no" value="${ b.board_no }"/>
 				        							<c:param name="page" value="${ currentPage }"/>
 				        						</c:url>
 				        						<a href="${ bdetail }">${ b.board_title }</a>
