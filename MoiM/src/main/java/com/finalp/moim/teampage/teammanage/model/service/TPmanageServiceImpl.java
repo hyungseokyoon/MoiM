@@ -33,8 +33,7 @@ public class TPmanageServiceImpl implements TPmanageService {
 
 	@Override
 	public TeamMember selectTeamMember(int team_member_no) {
-		// TODO Auto-generated method stub
-		return null;
+		return tpmanageDao.selectTeamMember(team_member_no);
 	}
 
 	@Override

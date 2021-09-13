@@ -130,5 +130,12 @@
 		delete from tb_join_waiting
 		where join_num = #{ join_num }
 	</delete>
+	
+	<select id="selectTeamMember" parameterType="_int" resultMap="resultTeamMember">
+		select *
+		from tb_team_member tm
+		left join user_info u on (tm.user_no = u.user_no)
+		where team_member_no = #{ team_member_no }
+	</select>
 
 </mapper>

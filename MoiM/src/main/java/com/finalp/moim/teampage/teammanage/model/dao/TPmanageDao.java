@@ -47,4 +47,8 @@ public class TPmanageDao {
 		return session.delete("teammanageMapper.deleteJoinMember", join_num);
 	}
 
+	public TeamMember selectTeamMember(int team_member_no) {
+		return session.selectOne("teammanageMapper.selectTeamMember", team_member_no);
+	}
+
 }

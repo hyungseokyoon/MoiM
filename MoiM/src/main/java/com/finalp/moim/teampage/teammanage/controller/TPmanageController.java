@@ -27,7 +27,6 @@ import com.finalp.moim.teampage.common.model.vo.JoinWaiting;
 import com.finalp.moim.teampage.common.model.vo.Team;
 import com.finalp.moim.teampage.common.model.vo.TeamMember;
 import com.finalp.moim.teampage.teammanage.model.service.TPmanageService;
-import com.finalp.moim.userinfo.model.vo.UserInfo;
 
 @Controller
 public class TPmanageController {
@@ -143,7 +142,7 @@ public class TPmanageController {
 		
 	}
 	
-	@RequestMapping(value="tmselect.do", method=RequestMethod.POST)
+	@RequestMapping(value="tjselect.do", method=RequestMethod.POST)
 	@ResponseBody
 	public String selectJoinMember(@RequestParam("join_num") int join_num) {
 		JoinWaiting joinmember = tpmanageService.selectJoinMember(join_num);
@@ -200,6 +199,39 @@ public class TPmanageController {
 			model.addAttribute("message", join_num + " 번 신청 정보 삭제 실패.");
 			return "common/error";
 		}
+	}
+	
+	@RequestMapping(value="tmselect.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String selectTeamMember(@RequestParam("team_member_no") int team_member_no) {
+		TeamMember teammember = tpmanageService.selectTeamMember(team_member_no);
+		
+		logger.info("teammember : " + teammember);
+		
+		// 전송용 json 객체 준비
+		JSONObject sendJson = new JSONObject();
+		// list 옮길 json 배열 준비
+		JSONArray jarr = new JSONArray();
+		
+		JSONObject job = new JSONObject();
+		
+		job.put("user_no", teammember.getUserVO().getUser_no());
+		job.put("user_id", teammember.getUserVO().getUser_id());
+		job.put("user_nn", teammember.getUserVO().getUser_nn());
+		job.put("age", teammember.getUserVO().getAge());
+		job.put("gender", teammember.getUserVO().getGender());
+		job.put("email", teammember.getUserVO().getEmail());
+		job.put("team_member_no", teammember.getTeam_member_no());
+		job.put("team_member_rank", teammember.getTeam_member_rank());
+		job.put("team_member_date", teammember.getTeam_member_date().toString());
+		
+		// job 를 jarr 에 저장
+		jarr.add(job);
+		
+		// 전송용 json 객체에 jarr 담음
+		sendJson.put("list", jarr);
+		
+		return sendJson.toJSONString();	// jsonView 가 리턴됨
 	}
 
 }
