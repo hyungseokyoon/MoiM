@@ -8,6 +8,7 @@ public class TeamBoard implements java.io.Serializable{
 	private static final long serialVersionUID = 414L;
 	
 	private int tn_no;
+	private int rownum;
 	private int team_num;
 	private int tn_writer;
 	private String tn_title;
@@ -23,9 +24,11 @@ public class TeamBoard implements java.io.Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public TeamBoard(int tn_no, int team_num, int tn_writer, String tn_title, String tn_content, Date tn_date) {
+	public TeamBoard(int tn_no, int rownum, int team_num, int tn_writer, String tn_title, String tn_content,
+			Date tn_date) {
 		super();
 		this.tn_no = tn_no;
+		this.rownum = rownum;
 		this.team_num = team_num;
 		this.tn_writer = tn_writer;
 		this.tn_title = tn_title;
@@ -33,10 +36,11 @@ public class TeamBoard implements java.io.Serializable{
 		this.tn_date = tn_date;
 	}
 
-	public TeamBoard(int tn_no, int team_num, int tn_writer, String tn_title, String tn_content, Date tn_date,
-			String tn_originalfilename, String tn_renamefilename) {
+	public TeamBoard(int tn_no, int rownum, int team_num, int tn_writer, String tn_title, String tn_content,
+			Date tn_date, String tn_originalfilename, String tn_renamefilename) {
 		super();
 		this.tn_no = tn_no;
+		this.rownum = rownum;
 		this.team_num = team_num;
 		this.tn_writer = tn_writer;
 		this.tn_title = tn_title;
@@ -52,6 +56,14 @@ public class TeamBoard implements java.io.Serializable{
 
 	public void setTn_no(int tn_no) {
 		this.tn_no = tn_no;
+	}
+
+	public int getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
 	}
 
 	public int getTeam_num() {
@@ -124,9 +136,12 @@ public class TeamBoard implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "TeamBoard [tn_no=" + tn_no + ", team_num=" + team_num + ", tn_writer=" + tn_writer + ", tn_title="
-				+ tn_title + ", tn_content=" + tn_content + ", tn_date=" + tn_date + ", tn_originalfilename="
-				+ tn_originalfilename + ", tn_renamefilename=" + tn_renamefilename + ", userVO=" + userVO + "]";
+		return "TeamBoard [tn_no=" + tn_no + ", rownum=" + rownum + ", team_num=" + team_num + ", tn_writer="
+				+ tn_writer + ", tn_title=" + tn_title + ", tn_content=" + tn_content + ", tn_date=" + tn_date
+				+ ", tn_originalfilename=" + tn_originalfilename + ", tn_renamefilename=" + tn_renamefilename
+				+ ", userVO=" + userVO + "]";
 	}
+
+	
 	
 }

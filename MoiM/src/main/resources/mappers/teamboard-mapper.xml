@@ -24,6 +24,7 @@
 	<!-- TeamBoard 객체에 대한 정보 -->
 	<resultMap id="resultTeamBoard" type="TeamBoard">
 		<id column="tn_no" property="tn_no"/>
+		<result column="rownum" property="rownum"/>
 		<result column="team_num" property="team_num"/>
 		<result column="tn_writer" property="tn_writer"/>
 		<result column="tn_title" property="tn_title"/>
@@ -35,17 +36,20 @@
 	</resultMap>
 	
 	<select id="selectTeamBoardList" parameterType="_int" resultMap="resultTeamBoard">
-		select * 
+		select rownum, TB.*
+		from (select * 
 		from teamnotice tn
 		left join user_info ui on (tn.tn_writer = ui.user_no)
-		where team_num = #{ team_num };
+		where team_num = 1
+		order by tn_date asc) TB
+		order by TB.tn_date desc
 	</select>
 	
 	<select id="selectTeamBoard" parameterType="_int" resultMap="resultTeamBoard">
 		select * 
 		from teamnotice tn
 		left join user_info ui on (tn.tn_writer = ui.user_no)
-		where tn_no = #{ tn_no };
+		where tn_no = #{ tn_no }
 	</select>
 	
 	<update id="updateTeamBoard" parameterType="TeamBoard">
@@ -61,12 +65,12 @@
 	    , tn_originalfilename = null
 	    , tn_renamefilename = null
 	    </if>
-		where tn_no = #{ tn_no };
+		where tn_no = #{ tn_no }
 	</update>
 	
 	<delete id="deleteTeamBoard" parameterType="_int">
-		delete from tb_file
-		where file_num = #{ tn_no }
+		delete from teamnotice
+		where tn_no = #{ tn_no }
 	</delete>
 	
 </mapper>

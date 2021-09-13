@@ -23,4 +23,12 @@ public class TPteamboardDao {
 	public TeamBoard selectTeamBoard(int tn_no) {
 		return session.selectOne("teamboardMapper.selectTeamBoard", tn_no);
 	}
+	
+	public int updateTeamBoard(TeamBoard teamboard) {
+		return session.update("teamboardMapper.updateTeamBoard", teamboard);
+	}
+	
+	public int deleteTeamBoard(int tn_no) {
+		return session.delete("teamboardMapper.deleteTeamBoard", tn_no);
+	}
 }

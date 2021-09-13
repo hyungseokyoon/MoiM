@@ -24,6 +24,8 @@
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.Team" alias="Team"/>
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.TeamMember" alias="TeamMember"/>
 		<typeAlias type="com.finalp.moim.userinfo.model.vo.UserInfo" alias="UserInfo"/>
+		
+		<typeAlias type="com.finalp.moim.teampage.teamboard.model.vo.TeamBoard" alias="TeamBoard"/>
 	</typeAliases>
 	
 	<mappers>
@@ -33,10 +35,8 @@
 		<mapper resource="mappers/reply-mapper.xml"/>
 		<mapper resource="mappers/teammanage-mapper.xml"/>
 		<mapper resource="mappers/userinfo-mapper.xml"/>
+		<mapper resource="mappers/teamboard-mapper.xml"/>
 	</mappers>
-<<<<<<< HEAD
+
 </configuration>
-=======
-	
-</configuration>
->>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git
+
