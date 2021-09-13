@@ -20,6 +20,7 @@ target/
 root-context.xml
 *.DS_Store
 .classpath
+.project
 
 # External tool builders
 .externalToolBuilders/
