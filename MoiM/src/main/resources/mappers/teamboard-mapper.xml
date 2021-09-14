@@ -24,7 +24,6 @@
 	<!-- TeamBoard 객체에 대한 정보 -->
 	<resultMap id="resultTeamBoard" type="TeamBoard">
 		<id column="tn_no" property="tn_no"/>
-		<result column="rownum" property="rownum"/>
 		<result column="team_num" property="team_num"/>
 		<result column="tn_writer" property="tn_writer"/>
 		<result column="tn_title" property="tn_title"/>
@@ -36,13 +35,11 @@
 	</resultMap>
 	
 	<select id="selectTeamBoardList" parameterType="_int" resultMap="resultTeamBoard">
-		select rownum, TB.*
-		from (select * 
+		select * 
 		from teamnotice tn
 		left join user_info ui on (tn.tn_writer = ui.user_no)
 		where team_num = 1
-		order by tn_date asc) TB
-		order by TB.tn_date desc
+		order by tn_date desc
 	</select>
 	
 	<select id="selectTeamBoard" parameterType="_int" resultMap="resultTeamBoard">
@@ -67,6 +64,18 @@
 	    </if>
 		where tn_no = #{ tn_no }
 	</update>
+	
+	<insert id="insertTeamBoard" parameterType="TeamBoard">
+		insert into teamnotice
+		values((select max(tn_no)+1 from teamnotice), #{ team_num }, #{ tn_writer }, #{ tn_title }, #{ tn_content }, sysdate
+		<if test="tn_originalfilename!=null">
+		, #{ tn_originalfilename }, #{ tn_renamefilename }
+		</if>
+		<if test="tn_originalfilename==null">
+		, null, null
+		</if>
+		)
+	</insert>
 	
 	<delete id="deleteTeamBoard" parameterType="_int">
 		delete from teamnotice
