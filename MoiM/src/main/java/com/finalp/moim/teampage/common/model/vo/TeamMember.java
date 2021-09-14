@@ -10,20 +10,22 @@ public class TeamMember implements java.io.Serializable {
 	private int team_member_no;
 	private int team_num;
 	private int user_no;
-	private int team_member_rank;
+	private String team_member_leader;
 	private java.sql.Date team_member_date;
 	
 	private UserInfo userVO;
 	
 	public TeamMember() {}
-	
-	public TeamMember(int team_member_no, int team_num, int user_no, int team_member_rank, Date team_member_date) {
+
+	public TeamMember(int team_member_no, int team_num, int user_no, String team_member_leader, Date team_member_date,
+			UserInfo userVO) {
 		super();
 		this.team_member_no = team_member_no;
 		this.team_num = team_num;
 		this.user_no = user_no;
-		this.team_member_rank = team_member_rank;
+		this.team_member_leader = team_member_leader;
 		this.team_member_date = team_member_date;
+		this.userVO = userVO;
 	}
 
 	public int getTeam_member_no() {
@@ -50,12 +52,12 @@ public class TeamMember implements java.io.Serializable {
 		this.user_no = user_no;
 	}
 
-	public int getTeam_member_rank() {
-		return team_member_rank;
+	public String getTeam_member_leader() {
+		return team_member_leader;
 	}
 
-	public void setTeam_member_rank(int team_member_rank) {
-		this.team_member_rank = team_member_rank;
+	public void setTeam_member_leader(String team_member_leader) {
+		this.team_member_leader = team_member_leader;
 	}
 
 	public java.sql.Date getTeam_member_date() {
@@ -81,7 +83,8 @@ public class TeamMember implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "TeamMember [team_member_no=" + team_member_no + ", team_num=" + team_num + ", user_no=" + user_no
-				+ ", team_member_rank=" + team_member_rank + ", team_member_date=" + team_member_date + "]";
+				+ ", team_member_leader=" + team_member_leader + ", team_member_date=" + team_member_date + ", userVO="
+				+ userVO + "]";
 	}
 	
 }
