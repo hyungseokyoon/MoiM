@@ -28,14 +28,12 @@ public class TPmanageServiceImpl implements TPmanageService {
 
 	@Override
 	public JoinWaiting selectJoinMember(int join_num) {
-		// TODO Auto-generated method stub
-		return null;
+		return tpmanageDao.selectJoinMember(join_num);
 	}
 
 	@Override
 	public TeamMember selectTeamMember(int team_member_no) {
-		// TODO Auto-generated method stub
-		return null;
+		return tpmanageDao.selectTeamMember(team_member_no);
 	}
 
 	@Override
@@ -49,15 +47,13 @@ public class TPmanageServiceImpl implements TPmanageService {
 	}
 
 	@Override
-	public int insertTeamMember(TeamMember teamMember) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertTeamMember(JoinWaiting joinwaiting) {
+		return tpmanageDao.insertTeamMember(joinwaiting);
 	}
 
 	@Override
 	public int deleteJoinMember(int join_num) {
-		// TODO Auto-generated method stub
-		return 0;
+		return tpmanageDao.deleteJoinMember(join_num);
 	}
 
 	@Override

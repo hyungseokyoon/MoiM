@@ -96,7 +96,8 @@
                                                 </td>
                                             </tr>
                        						<c:forEach items="${ joinlist }" var="joinlist">
-	                                    		<tr class="">
+                       							<input type="hidden" name="join_num" id="join_num" value="${ joinlist.join_num }">
+	                                    		<tr class="joininfo">
 	                                                <td>
 	                                                    <div class="text-center">${ joinlist.userVO.user_id }</div>
 	                                                </td>
@@ -113,7 +114,9 @@
 	                                                    <div class="text-muted">${ joinlist.userVO.email }</div>
 	                                                </td>
 	                                                <td class="text-center">
-	                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask"><font style="vertical-align: inherit;">신청서 확인</font></button>
+	                                                    <button type="button" class="open-selectjoinmember btn btn-primary" data-toggle="modal" data-target="#selectjoinmember" data-join_num="${ joinlist.join_num }">
+	                                                    	<font style="vertical-align: inherit;">신청서 확인</font>
+	                                                    </button>
 	                                                </td>
 	                                            </tr>
                            					</c:forEach>
@@ -121,6 +124,85 @@
                                     </table>
                                 </div>
                            	</div>
+                           	
+                           	<!-- Modal -->
+							<div class="modal fade" id="selectjoinmember" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-ml" role="document">
+									<div class="modal-content">
+										<form action="tminsert.do" method="post">
+							    		<div class="modal-header">
+							        		<h5 class="modal-title" id="exampleModalLabel">신청서 확인</h5>
+							        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							        			<span aria-hidden="true">&times;</span>
+							        		</button>
+							      		</div>
+							      		<div class="modal-body" id="joinmemberdiv">
+							      		<input type="hidden" name="team_num" value="${ team_num }">
+							      		<input type="hidden" name="user_no" id="user_no" value="">
+							      		<input type="hidden" name="join_num" id="join_num" value="">
+							      		<input type="hidden" name="join_rename_filename" id="join_rename_filename" value="">
+							      		
+					                	<div class="row">
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>아이디</label>
+					                                <input class="form-control" type="text" name="user_id" id="user_id" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>닉네임</label>
+					                                <input class="form-control" type="text" name="user_nn" id="user_nn" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>나 이</label>
+					                                <input class="form-control" type="text" name="age" id="age" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>성 별</label>
+					                                <input class="form-control" type="text" name="gender" id="gender" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>이메일</label>
+					                                <input class="form-control" type="text" name="email" id="email" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>지원자 소개</label>
+					                                <textarea class="form-control" name="join_intro" id="join_intro" readonly><c:out value="" /></textarea>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>첨부 파일</label>
+					                                <a><input class="form-control" type="text" name="join_original_filename" id="join_original_filename" value="" readonly></a>
+					                            </div>
+					                        </div>
+					                	</div>
+							      		
+							      		</div>
+									  	<div class="modal-footer">
+				                        	<button type="submit" class="btn btn-primary btn-lg" style="position: relative; left: -20px; z-index: 1;">수락</button>
+									    </div>
+										</form>
+										<form action="tjdelete.do" method="post" style="position: relative; top: -53px;">
+										<div id="deletefooter">
+											<input type="hidden" name="join_num" id="join_num" value="">
+											<input type="hidden" name="team_num" id="team_num" value="${ team_num }">
+											<button type="submit" class="btn btn-primary btn-lg" style="position: relative; left: 310px; z-index: 1;">거절</button>
+										</div>
+										</form>
+									</div>
+								</div>
+							</div>
+                           	
                           	<div class="col-lg-12 h-75" style="padding-top: 10px">
                             <div class="card-header">
                                 <h3 class="card-title">팀원 목록</h3>
@@ -154,7 +236,7 @@
                                                 </td>
                                             </tr>
                        						<c:forEach items="${ memberlist }" var="memberlist">
-	                                    		<tr class="">
+	                                    		<tr class="memberlist">
 	                                                <td>
 	                                                    <div class="text-center">${ memberlist.userVO.user_id }</div>
 	                                                </td>
@@ -177,8 +259,12 @@
 	                                                    <div class="text-muted">${ memberlist.team_member_date }</div>
 	                                                </td>
 	                                                <td class="text-center">
-	                                                    <button class="btn btn-primary" style="margin-right: 15px;"><font style="vertical-align: inherit;">등급 변경</font></button>
-	                                                    <button class="btn btn-primary"><font style="vertical-align: inherit;">회원 강퇴</font></button>
+	                                                    <button type="button" class="open-changerank btn btn-primary" id="rankchange" data-toggle="modal" data-target="#changerankmodal" data-team_member_no="${ memberlist.team_member_no }">
+	                                                    	<font style="vertical-align: inherit;">등급 변경</font>
+	                                                    </button>
+	                                                    <button type="button" class="open-deletemember btn btn-primary" id="memberdelete" data-toggle="modal" data-target="#deletemember" data-team_member_no="${ memberlist.team_member_no }">
+	                                                    	<font style="vertical-align: inherit;">회원 강퇴</font>
+	                                                    </button>
 	                                                </td>
                                             	</tr>
                                             </c:forEach>
@@ -186,193 +272,86 @@
                                     </table>
                                 </div>
                            	</div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="grid" role="tabpanel">
-                        <div class="row row-deck">
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card " >
-                                    <div class="card-body">
-                                        <div class="card-status bg-blue"></div>
-                                        <div class="mb-3"> <img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/sm/avatar1.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">Paul Schmidt</h5>
-                                            <p class="text-muted">Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar1.jpg" alt="Avatar"></li>
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar8.jpg" alt="Avatar"></li>
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar2.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="mb-3"> <img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/sm/avatar2.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">Andrew Patrick</h5>
-                                            <p>Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar1.jpg" alt="Avatar"></li>
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar2.jpg" alt="Avatar"></li>
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar3.jpg" alt="Avatar"></li>
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar4.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="mb-3"> <img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/sm/avatar3.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">Mary Schneider</h5>
-                                            <p>Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar1.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card " >
-                                    <div class="card-body">
-                                        <div class="card-status bg-green"></div>
-                                        <div class="mb-3"> <img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/sm/avatar4.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">Sean Black</h5>
-                                            <p>Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar2.jpg" alt="Avatar"></li>
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar6.jpg" alt="Avatar"></li>
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar5.jpg" alt="Avatar"></li>
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar7.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="mb-3"> <img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/sm/avatar5.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">David Wallace</h5>
-                                            <p>Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar3.jpg" alt="Avatar"></li>
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar4.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="card-status bg-pink"></div>
-                                        <div class="mb-3"> <img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/sm/avatar6.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">Andrew Patrick</h5>
-                                            <p>Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar5.jpg" alt="Avatar"></li>
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar6.jpg" alt="Avatar"></li>
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar1.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="mb-3"> <img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/sm/avatar2.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">Michelle Green</h5>
-                                            <p>Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar8.jpg" alt="Avatar"></li>
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar7.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="mb-3"> <img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/sm/avatar4.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">Mary Schneider</h5>
-                                            <p>Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar2.jpg" alt="Avatar"></li>
-                                            <li><img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar7.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="addnew" role="tabpanel">
-                        <div class="row clearfix">
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row clearfix">
-                                            <div class="col-lg-4 col-md-12">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Enter Name">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-12">
-                                                <div class="form-group">
-                                                    <input type="number" class="form-control" placeholder="Enter Number">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-12">
-                                                <div class="form-group">
-                                                    <input type="email" class="form-control" placeholder="Enter Email">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12">
-                                                <div class="form-group">
-                                                    <textarea type="text" class="form-control" rows="4">Enter your Address</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <input type="file" class="dropify">
-                                            </div>
-                                            <div class="col-lg-12 mt-3">
-                                                <button type="submit" class="btn btn-primary">Add</button>
-                                                <button type="submit" class="btn btn-default">Cancel</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                           	
+                           	<!-- Modal -->
+							<div class="modal fade" id="changerankmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-ml" role="document">
+									<div class="modal-content">
+										<form action="tminsert.do" method="post">
+							    		<div class="modal-header">
+							        		<h5 class="modal-title" id="exampleModalLabel">등급 변경</h5>
+							        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							        			<span aria-hidden="true">&times;</span>
+							        		</button>
+							      		</div>
+							      		<div class="modal-body" id="changerankdiv">
+							      		<input type="hidden" name="team_num" value="${ team_num }">
+							      		<input type="hidden" name="user_no" id="user_no" value="">
+							      		<input type="hidden" name="team_member_no" id="team_member_no" value="">
+							      		
+					                	<div class="row">
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>아이디</label>
+					                                <input class="form-control" type="text" name="user_id" id="user_id" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>닉네임</label>
+					                                <input class="form-control" type="text" name="user_nn" id="user_nn" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>나 이</label>
+					                                <input class="form-control" type="text" name="age" id="age" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>성 별</label>
+					                                <input class="form-control" type="text" name="gender" id="gender" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>이메일</label>
+					                                <input class="form-control" type="text" name="email" id="email" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>등급</label>
+					                                <input class="form-control" type="text" id="team_member_rank" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>가입 날짜</label>
+					                                <input class="form-control" type="text" name="team_member_date" id="team_member_date" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>등급 선택</label> <br>
+					                                <input type="radio" name="team_member_rank" value="1"> 팀장 &nbsp; &nbsp;
+					                                <input type="radio" name="team_member_rank" value="2"> 부팀장 &nbsp; &nbsp;
+					                                <input type="radio" name="team_member_rank" value="3"> 팀원
+					                            </div>
+					                        </div>
+					                	</div>
+							      		
+							      		</div>
+									  	<div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+									        <button type="submit" class="btn btn-primary">변경</button>
+									    </div>
+										</form>
+									</div>
+								</div>
+							</div>
+							
                         </div>
                     </div>
                 </div>
@@ -415,7 +394,96 @@ $(function() {
             error: 'Désolé, le fichier trop volumineux'
         }
     });
+    
+   	$('.joininfo button').on('click', function(){
+   		console.log("script run");
+   		var join_num = $(this).data("join_num");
+   		var join_num_int = parseInt(join_num);
+   		console.log("join_num : " + join_num);
+
+        $.ajax({
+            url : 'tjselect.do',
+            type : 'POST',
+            data : {"join_num" : join_num_int},
+            dataType : "json",
+    		success : function(data) {
+    			console.log("success : " + data);
+    			
+    			//object ==> string 으로 변환
+    			var jsonStr = JSON.stringify(data);
+    			//string ==> json 객체로 바꿈
+    			var json = JSON.parse(jsonStr);
+    			
+    			$('#selectjoinmember').modal('show');
+    			
+    			$("#joinmemberdiv #user_no").val( json.list[0].user_no );
+    			$("#joinmemberdiv #user_id").val( json.list[0].user_id );
+    			$("#joinmemberdiv #user_nn").val( json.list[0].user_nn );
+    			$("#joinmemberdiv #age").val( json.list[0].age );
+    			$("#joinmemberdiv #gender").val( json.list[0].gender );
+    			$("#joinmemberdiv #email").val( json.list[0].email );
+    			$("#joinmemberdiv #join_num").val( json.list[0].join_num );
+    			$("#joinmemberdiv #join_intro").val( json.list[0].join_intro );
+    			$("#joinmemberdiv #join_original_filaname").val( json.list[0].join_original_filaname );
+    			$("#joinmemberdiv #join_rename_filaname").val( json.list[0].join_rename_filaname );
+    			
+    			$("#deletefooter #join_num").val( json.list[0].join_num );
+    		},
+    		error : function(jqXHR, textstatus, errorthrown) {
+    			console.log("error : " + jqXHR + ", " + textstatus + ", "
+    					+ errorthrown);
+    		}
+    	}); //ajax
+   	});
+   	
+   	$('.memberlist #rankchange').on('click', function(){
+   		console.log("script run");
+   		var team_member_no_val = $(this).data("team_member_no");
+   		var team_member_no = parseInt(team_member_no_val);
+   		console.log("team_member_no : " + team_member_no);
+
+        $.ajax({
+            url : 'tmselect.do',
+            type : 'POST',
+            data : {"team_member_no" : team_member_no},
+            dataType : "json",
+    		success : function(data) {
+    			console.log("success : " + data);
+    			
+    			//object ==> string 으로 변환
+    			var jsonStr = JSON.stringify(data);
+    			//string ==> json 객체로 바꿈
+    			var json = JSON.parse(jsonStr);
+    			
+    			$('#changerankmodal').modal('show');
+    			
+    			$("#changerankdiv #user_no").val( json.list[0].user_no );
+    			$("#changerankdiv #user_id").val( json.list[0].user_id );
+    			$("#changerankdiv #user_nn").val( json.list[0].user_nn );
+    			$("#changerankdiv #age").val( json.list[0].age );
+    			$("#changerankdiv #gender").val( json.list[0].gender );
+    			$("#changerankdiv #email").val( json.list[0].email );
+    			$("#changerankdiv #team_member_no").val( json.list[0].team_member_no );
+    			$("#changerankdiv #team_member_rank").val( json.list[0].team_member_rank );
+    			$("#changerankdiv #team_member_date").val( json.list[0].team_member_date );
+    		},
+    		error : function(jqXHR, textstatus, errorthrown) {
+    			console.log("error : " + jqXHR + ", " + textstatus + ", "
+    					+ errorthrown);
+    		}
+    	}); //ajax
+   	});
+   	
 });
+
+function deleteJoinMember() {
+	var join_num_val = $('.modal-body #join_num').val();
+	var join_num = parseInt(join_num_val);
+	var team_num_val = $('.modal-body #team_num').val();
+	var team_num = parseInt(team_num_val);
+	
+	location.href="${ pageContext.servletContext.contextPath }/tjdelete.do?join_num=" + join_num + "&team_num=" + team_num;
+}
 </script>
 </body>
 </html>
