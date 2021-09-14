@@ -243,7 +243,29 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                        	<c:forEach items="${ tdlist }" var="itdlist">
+                                        	<tr>
+                                                <td>${ itdlist.daily_no }</td>
+                                                <td>
+                                                    <h6 class="mb-0">${ itdlist.daily_content }</h6>
+                                                    <span>It is a long established fact that a reader will be distracted...</span>
+                                                </td>
+                                                <td>
+                                                    
+                                                </td>
+                                                <td>
+                                                    <div class="text-info">Start: 3 Jun 2019</div>
+                                                    <div class="text-pink">End: 15 Jun 2019</div>
+                                                </td>
+                                                <td>
+                                                    <span class="tag tag-blue">Planned</span>
+                                                </td>
+                                                <td>
+                                                    <button></button>
+                                                </td>
+                                            </tr>
+                                        	</c:forEach>
+                                            <!-- <tr>
                                                 <td>01</td>
                                                 <td>
                                                     <h6 class="mb-0">New code Update on github</h6>
@@ -262,7 +284,7 @@
                                                 <td>
                                                     <button></button>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>

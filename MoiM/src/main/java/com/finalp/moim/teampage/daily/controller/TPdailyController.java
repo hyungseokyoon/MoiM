@@ -24,6 +24,18 @@ public class TPdailyController {
 	@RequestMapping("moveTPdaily.do")
 	public String moveTPDailyPage(@RequestParam("team_num") int team_num, Model model) {
 		ArrayList<TeamDaily> tdlist = tpteamdailyService.selectTeamDailyList(team_num);
+		
+		if(tdlist != null) {
+			for(TeamDaily td : tdlist) {
+				System.out.print(td.toString());
+			}
+			int tdlistlength = tdlist.size();
+			model.addAttribute("tdlistlength", tdlistlength);
+			model.addAttribute("tdlist", tdlist);
+			return "teampage/daily/tp_daily";
+		}else {
+			model.addAttribute("message", team_num + "팀 일지 목록 조회 실패");
+		}
 		return "teampage/daily/tp_daily";
 	}
 }
