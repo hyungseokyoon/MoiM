@@ -57,15 +57,23 @@ public class TPmanageServiceImpl implements TPmanageService {
 	}
 
 	@Override
-	public int updateTeamMemberRank(TeamMember teamMember) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateTeamMemberRankDown(TeamMember teamleader) {
+		return tpmanageDao.updateTeamMemberRankDown(teamleader);
 	}
 
 	@Override
 	public int deleteTeamMember(int team_member_no) {
-		// TODO Auto-generated method stub
-		return 0;
+		return tpmanageDao.deleteTeamMember(team_member_no);
+	}
+
+	@Override
+	public TeamMember selectTeamLeader(int team_num) {
+		return tpmanageDao.selectTeamLeader(team_num);
+	}
+
+	@Override
+	public int updateTeamMemberRankUp(TeamMember teammember) {
+		return tpmanageDao.updateTeamMemberRankUp(teammember);
 	}
 	
 }

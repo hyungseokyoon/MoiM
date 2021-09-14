@@ -222,7 +222,7 @@ public class TPmanageController {
 		job.put("gender", teammember.getUserVO().getGender());
 		job.put("email", teammember.getUserVO().getEmail());
 		job.put("team_member_no", teammember.getTeam_member_no());
-		job.put("team_member_rank", teammember.getTeam_member_rank());
+		job.put("team_member_leader", teammember.getTeam_member_leader());
 		job.put("team_member_date", teammember.getTeam_member_date().toString());
 		
 		// job 를 jarr 에 저장
@@ -232,6 +232,30 @@ public class TPmanageController {
 		sendJson.put("list", jarr);
 		
 		return sendJson.toJSONString();	// jsonView 가 리턴됨
+	}
+	
+	@RequestMapping(value="tmrankupdate.do", method=RequestMethod.POST)
+	public String updateTeamMemberRank(@RequestParam("team_num") int team_num, TeamMember teammember, Model model) {
+		TeamMember teamleader = tpmanageService.selectTeamLeader(team_num);
+		tpmanageService.updateTeamMemberRankDown(teamleader);
+		
+		if(tpmanageService.updateTeamMemberRankUp(teammember) > 0) {
+			return "redirect:moveTPindex.do";
+		} else {
+			model.addAttribute("message", teammember.getUserVO().getUser_id() + " 회원 팀장 위임 실패.");
+			return "common/error";
+		}
+	}
+	
+	@RequestMapping(value="tmdelete.do", method=RequestMethod.POST)
+	public String deleteTeamMember(@RequestParam("team_num") int team_num, TeamMember teammember, Model model) {
+		if(tpmanageService.deleteTeamMember(teammember.getTeam_member_no()) > 0) {
+			model.addAttribute("team_num", team_num);
+			return "redirect:moveTeamMember.do";
+		} else {
+			model.addAttribute("message", teammember.getUserVO().getUser_id() + " 회원 강퇴 실패.");
+			return "common/error";
+		}
 	}
 
 }
