@@ -30,6 +30,8 @@
 		<typeAlias type="com.finalp.moim.recruit.model.vo.Recruit" alias="Recruit"/>
 		<typeAlias type="com.finalp.moim.review.model.vo.Review" alias="Review"/>
 		<typeAlias type="com.finalp.moim.join.model.vo.Join" alias="Join"/>
+		
+		<typeAlias type="com.finalp.moim.teampage.daily.model.vo.TeamDaily" alias="TeamDaily"/>
 	</typeAliases>
 	
 	<mappers>
@@ -43,6 +45,7 @@
 		<mapper resource="mappers/recruit-mapper.xml"/>
 		<mapper resource="mappers/join-mapper.xml"/>
 		<mapper resource="mappers/review-mapper.xml"/>
+		<mapper resource="mappers/teamdaily-mapper.xml"/>
 	</mappers>
 
 </configuration>
