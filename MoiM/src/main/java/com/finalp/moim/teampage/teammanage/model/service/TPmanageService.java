@@ -14,7 +14,7 @@ public interface TPmanageService {
 	TeamMember selectTeamMember(int team_member_no);
 	ArrayList<JoinWaiting> selectJoinMemberList(int team_num);
 	ArrayList<TeamMember> selectTeamMemberList(int team_num);
-	int insertTeamMember(TeamMember teamMember);
+	int insertTeamMember(JoinWaiting joinmember);
 	int deleteJoinMember(int join_num);
 	int updateTeamMemberRank(TeamMember teamMember);
 	int deleteTeamMember(int team_member_no);
