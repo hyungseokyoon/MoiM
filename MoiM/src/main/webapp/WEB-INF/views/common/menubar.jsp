@@ -48,7 +48,7 @@
           	<div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
 				<li class="nav-item"> <a href="main.do" class="nav-link active">Home</a></li>
-				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/nlist.do" class="nav-link">공지사항</a></li>
+				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/nlist.do?page=1" class="nav-link">공지사항</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rclist.do" class="nav-link">구인게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/blist.do?page=1" class="nav-link">게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rvlist.do" class="nav-link">리뷰게시판</a></li>
