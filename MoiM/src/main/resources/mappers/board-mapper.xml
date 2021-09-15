@@ -41,4 +41,12 @@
 	<select id="selectBoard" parameterType="int" resultMap="resultBoard">
 		select * from board where board_no = #{ board_no }
 	</select>
+	
+	<!-- 게시글 등록 -->
+	<insert id="insertBoard" parameterType="Board">
+		insert into board values(
+			(select max(board_no) + 1 from board), #{board_category_no}, #{user_no}, #{board_title}, #{board_content}, 
+			sysdate, #{board_original_filename}, #{board_rename_filename}, default
+		)
+	</insert>
 </mapper>

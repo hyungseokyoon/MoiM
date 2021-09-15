@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>MoiM - 새로운 글 작성</title>
+<!-- Table에 관련된 css -->
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/asset/bootstrap.css">
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/asset/style.css">
 </head>
 <body>
 	<!-- Menubar -->
@@ -13,62 +16,53 @@
 	
 	<!-- Main Content -->
 	<section>
-		<div class="row align-items-center mt-5">
-			<div class="col-lg-7">
-				<form action="#" class="contact-form text-left">
-					<div class="form-group mb-4">
-						<label>Name<sup class="text-primary">✱</sup></label>
-						<input type="text" name="name" placeholder="e.g. John Smith" class="form-control">
-					</div>
-					<div class="form-group mb-4">
-						<label>Company Email<sup class="text-primary">✱</sup></label>
-						<input type="text" name="email" placeholder="name@company.com" class="form-control">
-					</div>
-					<div class="form-group mb-4">
-						<label>Subject<sup class="text-primary">✱</sup></label>
-						<input type="text" name="subject" placeholder="Briefly describe your question" class="form-control">
-					</div>
-					<div class="form-group mb-4">
-						<label>Now let's hear the details<sup class="text-primary">✱</sup></label>
-						<textarea name="message" placeholder="Let us know what you need" class="form-control"></textarea>
-					</div>
-					<div class="form-group">
-						<input type="submit" value="Send message" class="btn btn-primary">
-					</div>
-				</form>
-			</div>
-			<div class="col-lg-5 contact-details mt-5 mt-lg-0">
-				<div class="box">
-					<div class="icon d-flex align-items-end">
-						<img src="${ pageContext.servletContext.contextPath }/resources/img/placeholder.svg" alt="" class="img-fluid">
-					</div>
-					<h5>Address</h5>
-					<p class="text-small font-weight-light">13/25 New Avenue, New Heaven, 45Y 73J, England, Great Britain</p>
+		<div class="container">
+			<div class="row align-items-center mt-5">
+				<div class="col-lg-7">
+					<form action="binsert.do" class="contact-form text-left" method="post" enctype="multipart/form-data">
+						<div class="form-group mb-4">
+							<label>공지제목<sup class="text-primary">✱</sup></label>
+							<input type="text" name="board_title" placeholder="제목을 입력해주세요." class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label>작성자<sup class="text-primary">✱</sup></label>
+							<input type="text" name="user_name" placeholder="${ loginMember.user_nn }" class="form-control" readonly="readonly">
+							<input type="hidden" name="user_no" value="${ loginMember.user_no }">
+						</div>
+						<div class="form-group mb-4">
+							<label>카테고리</label>
+							<select name="board_category_no" class="dataTable-selector form-select">
+				    			<option value="1">공모전</option>
+				    			<option value="2">인턴십</option>
+				    			<option value="3">자격증</option>
+				    			<option value="4">이벤트</option>
+				    			<option value="5" selected>자유글</option>
+				    		</select>
+						</div>
+						<div class="form-group mb-4">
+							<label>첨부파일<sup class="text-primary"></sup></label>
+							<input type="file" name="upfile" class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label>공지내용<sup class="text-primary">✱</sup></label>
+							<textarea name="board_content" placeholder="공지 내용을 입력해주세요." class="form-control"></textarea>
+						</div>
+						<div class="form-group">
+							<c:url var="blist" value="blist.do">
+								<c:param name="page" value="${ currentPage }"/>
+							</c:url>
+							<input type="submit" value="글등록" class="btn btn-primary">
+							<a href="${ blist }" class="btn btn-primary">목록</a>
+						</div>
+					</form>
 				</div>
-				<div class="box">
-					<div class="icon d-flex align-items-end">
-						<img src="${ pageContext.servletContext.contextPath }/resources/img/technology.svg" alt="" class="img-fluid">
-					</div>
-					<h5>Call center</h5>
-					<p class="text-small font-weight-light">This number is toll free if calling from Great Britain otherwise we advise you to use the electronic form of communicatio</p>
-					<strong class="text-muted">+33 555 444 333</strong>
-				</div>
-				<div class="box">
-					<div class="icon d-flex align-items-end">
-						<img src="${ pageContext.servletContext.contextPath }/resources/img/multimedia.svg" alt="" class="img-fluid">
-					</div>
-						<h5>Electronic support</h5>
-						<p class="text-small font-weight-light">Please feel free to write an email to us or to use our electronic ticketing system.</p>
-						<ul class="text-left">
-							<li><a href="mailto:info@fakeemail.com" class="text-small">info@fakeemail.com</a></li>
-							<li><a href="#" class="text-small">Ticketio - our ticketing support platform </a></li>
-						</ul>
-					</div>
 			</div>
-		</div>
+    	</div>
     </section>
 	
 	<!-- Footer -->
 	<c:import url="/WEB-INF/views/common/footer.jsp" />
 </body>
+<!-- Table에 관련된 js -->
+<script src="${ pageContext.servletContext.contextPath }/resources/asset/simple-datatables.js"></script>
 </html>
