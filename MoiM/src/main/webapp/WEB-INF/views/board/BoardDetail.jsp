@@ -25,7 +25,11 @@
 						${ board.board_content }
 					</p>
 					<c:if test="${ board.board_original_filename != null }">
-						<h3 class="mb-5">첨부파일 : <a href="#">${ board.board_original_filename }</a></h3>
+						<c:url var="bfdown" value="bfiledown.do">
+							<c:param name="ofile" value="${ board.board_original_filename }"/>
+							<c:param name="rfile" value="${ board.board_rename_filename }"/>
+						</c:url>
+						<h3 class="mb-5">첨부파일 : <a href="${ bfdown }">${ board.board_original_filename }</a></h3>
 					</c:if>
 					<c:if test="${ board.board_original_filename == null }">
 						<h3 class="mb-5">첨부파일 : </h3>

@@ -184,6 +184,20 @@ public class BoardController {
 	}
 	
 	// 파일 다운로드
+	@RequestMapping("bfiledown.do")
+	public ModelAndView fileDownMethod(ModelAndView mv, HttpServletRequest request, 
+			@RequestParam("ofile") String originalFileName, @RequestParam("rfile") String renameFileName) {
+		String savePath = request.getSession().getServletContext().getRealPath("resource/board_upfiles");
+		
+		File renameFile = new File(savePath + "\\" + renameFileName);
+		File originalFile = new File(originalFileName);
+		
+		mv.addObject("originalFile", originalFile);
+		mv.addObject("renameFile", renameFile);
+		mv.setViewName("filedown");
+		
+		return mv;
+	}
 	
 	// 게시판 수정
 	
