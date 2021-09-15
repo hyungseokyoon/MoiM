@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<c:set var="currentPage" value="${ currentPage }" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,59 +16,38 @@
 	
 	<!-- Main Content -->
 	<section>
-		<div class="row align-items-center mt-5">
-			<div class="col-lg-7">
-				<form action="#" class="contact-form text-left">
-					<div class="form-group mb-4">
-						<label>Name<sup class="text-primary">✱</sup></label>
-						<input type="text" name="name" placeholder="e.g. John Smith" class="form-control">
-					</div>
-					<div class="form-group mb-4">
-						<label>Company Email<sup class="text-primary">✱</sup></label>
-						<input type="text" name="email" placeholder="name@company.com" class="form-control">
-					</div>
-					<div class="form-group mb-4">
-						<label>Subject<sup class="text-primary">✱</sup></label>
-						<input type="text" name="subject" placeholder="Briefly describe your question" class="form-control">
-					</div>
-					<div class="form-group mb-4">
-						<label>Now let's hear the details<sup class="text-primary">✱</sup></label>
-						<textarea name="message" placeholder="Let us know what you need" class="form-control"></textarea>
-					</div>
-					<div class="form-group">
-						<input type="submit" value="Send message" class="btn btn-primary">
-					</div>
-				</form>
-			</div>
-			<div class="col-lg-5 contact-details mt-5 mt-lg-0">
-				<div class="box">
-					<div class="icon d-flex align-items-end">
-						<img src="${ pageContext.servletContext.contextPath }/resources/img/placeholder.svg" alt="" class="img-fluid">
-					</div>
-					<h5>Address</h5>
-					<p class="text-small font-weight-light">13/25 New Avenue, New Heaven, 45Y 73J, England, Great Britain</p>
+		<div class="container">
+			<div class="row align-items-center mt-5">
+				<div class="col-lg-7">
+					<form action="ninsert.do" class="contact-form text-left" method="post" enctype="multipart/form-data">
+						<div class="form-group mb-4">
+							<label>공지제목<sup class="text-primary">✱</sup></label>
+							<input type="text" name="notice_title" placeholder="제목을 입력해주세요." class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label>작성자<sup class="text-primary">✱</sup></label>
+							<input type="text" name="user_name" placeholder="${ loginMember.user_nn }" class="form-control" readonly="readonly">
+							<input type="hidden" name="user_no" value="${ loginMember.user_no }">
+						</div>
+						<div class="form-group mb-4">
+							<label>첨부파일<sup class="text-primary"></sup></label>
+							<input type="file" name="upfile" class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label>공지내용<sup class="text-primary">✱</sup></label>
+							<textarea name="notice_content" placeholder="공지 내용을 입력해주세요." class="form-control"></textarea>
+						</div>
+						<div class="form-group">
+							<c:url var="nlist" value="nlist.do">
+								<c:param name="page" value="${ currentPage }"/>
+							</c:url>
+							<input type="submit" value="공지등록" class="btn btn-primary">
+							<a href="${ nlist }" class="btn btn-primary">목록</a>
+						</div>
+					</form>
 				</div>
-				<div class="box">
-					<div class="icon d-flex align-items-end">
-						<img src="${ pageContext.servletContext.contextPath }/resources/img/technology.svg" alt="" class="img-fluid">
-					</div>
-					<h5>Call center</h5>
-					<p class="text-small font-weight-light">This number is toll free if calling from Great Britain otherwise we advise you to use the electronic form of communicatio</p>
-					<strong class="text-muted">+33 555 444 333</strong>
-				</div>
-				<div class="box">
-					<div class="icon d-flex align-items-end">
-						<img src="${ pageContext.servletContext.contextPath }/resources/img/multimedia.svg" alt="" class="img-fluid">
-					</div>
-						<h5>Electronic support</h5>
-						<p class="text-small font-weight-light">Please feel free to write an email to us or to use our electronic ticketing system.</p>
-						<ul class="text-left">
-							<li><a href="mailto:info@fakeemail.com" class="text-small">info@fakeemail.com</a></li>
-							<li><a href="#" class="text-small">Ticketio - our ticketing support platform </a></li>
-						</ul>
-					</div>
 			</div>
-		</div>
+    	</div>
     </section>
 	
 	<!-- Footer -->

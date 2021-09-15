@@ -41,4 +41,30 @@
 		select * from notice
 		where notice_no = #{ notice_no }
 	</select>
+	
+	<!-- 공지사항 등록 -->
+	<insert id="insertNotice" parameterType="Notice">
+		insert into notice values(
+			(select max(notice_no) + 1 from notice), #{user_no}, #{notice_title}, #{notice_content}, sysdate, 
+			#{notice_original_filename}, #{notice_rename_filename}
+		)
+	</insert>
+	
+	<!-- 공지사항 수정 -->
+	<update id="updateNotice" parameterType="Notice">
+		update notice
+		set notice_title = #{notice_title}, notice_content = #{notice_content}
+		<if test="notice_original_filename != null">
+			, notice_original_filename = #{notice_original_filename}, notice_rename_filename = #{notice_rename_filename}
+		</if>
+		<if test="notice_original_filename == null">
+			, notice_original_filename = null, notice_rename_filename = null
+		</if>
+		where notice_no = #{notice_no}
+	</update>
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="deleteNotice" parameterType="int">
+		delete from notice where notice_no = #{notice_no}
+	</delete>
 </mapper>
