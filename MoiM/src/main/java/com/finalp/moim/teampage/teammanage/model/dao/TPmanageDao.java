@@ -47,4 +47,24 @@ public class TPmanageDao {
 		return session.delete("teammanageMapper.deleteJoinMember", join_num);
 	}
 
+	public TeamMember selectTeamMember(int team_member_no) {
+		return session.selectOne("teammanageMapper.selectTeamMember", team_member_no);
+	}
+
+	public TeamMember selectTeamLeader(int team_num) {
+		return session.selectOne("teammanageMapper.selectTeamLeader", team_num);
+	}
+
+	public int updateTeamMemberRankDown(TeamMember teamleader) {
+		return session.update("teammanageMapper.updateTeamMemberRankDown", teamleader);
+	}
+
+	public int updateTeamMemberRankUp(TeamMember teammember) {
+		return session.update("teammanageMapper.updateTeamMemberRankUp", teammember);
+	}
+
+	public int deleteTeamMember(int team_member_no) {
+		return session.delete("teammanageMapper.deleteTeamMember", team_member_no);
+	}
+
 }

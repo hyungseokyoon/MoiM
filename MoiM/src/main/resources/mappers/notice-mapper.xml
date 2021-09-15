@@ -22,4 +22,23 @@
 		<result column="notice_date" property="notice_date"/>
 	</resultMap>
 
+	<!-- 공지사항의 글 갯수 조회 -->
+	<select id="selectListCount" resultType="int">
+		select count(*) from notice
+	</select>
+	
+	<!-- 공지사항 전체 리스트 조회 -->
+	<select id="selectList" parameterType="Page" resultMap="resultNotice">
+		select * from
+		(select rownum rnum, notice_no, user_no, notice_title, notice_content, notice_date, notice_original_filename, notice_rename_filename
+		from (select * from notice
+			  order by notice_no desc))
+		where rnum between #{ startRow } and #{ endRow }
+	</select>
+	
+	<!-- 해당 번호의 공지사항 조회 -->
+	<select id="selectNotice" parameterType="int" resultMap="resultNotice">
+		select * from notice
+		where notice_no = #{ notice_no }
+	</select>
 </mapper>

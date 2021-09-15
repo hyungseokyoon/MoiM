@@ -14,14 +14,9 @@
 	<div id="header_top" class="header_top">
 		<div class="container">
 			<div class="hleft">
-				<a class="header-brand" href="index-2.html">
+				<a class="header-brand" href="moveTPindex.do">
 					<img alt="" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/moimicon.png">
 				</a>
-				<div class="dropdown">
-					<a href="javascript:void(0)" class="nav-link user_btn"><img
-						class="avatar" src="assets/images/user.png" alt=""
-						data-toggle="tooltip" data-placement="right" title="User Menu" /></a>
-				</div>
 			</div>
 			<div class="hright">
 				<div class="dropdown">
@@ -68,22 +63,8 @@
                     </li>
                     <li>
                         <label class="custom-switch">
-                            <span class="custom-switch-description">Fix Navbar top</span>
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-fixnavbar">
-                            <span class="custom-switch-indicator"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="custom-switch">
                             <span class="custom-switch-description">Header Dark</span>
                             <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-pageheader" checked="">
-                            <span class="custom-switch-indicator"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="custom-switch">
-                            <span class="custom-switch-description">Min Sidebar Dark</span>
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-min_sidebar">
                             <span class="custom-switch-indicator"></span>
                         </label>
                     </li>
@@ -96,36 +77,8 @@
                     </li>
                     <li>
                         <label class="custom-switch">
-                            <span class="custom-switch-description">Icon Color</span>
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-iconcolor">
-                            <span class="custom-switch-indicator"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="custom-switch">
-                            <span class="custom-switch-description">Gradient Color</span>
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-gradient">
-                            <span class="custom-switch-indicator"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="custom-switch">
-                            <span class="custom-switch-description">Box Shadow</span>
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-boxshadow">
-                            <span class="custom-switch-indicator"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="custom-switch">
                             <span class="custom-switch-description">RTL Support</span>
                             <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-rtl">
-                            <span class="custom-switch-indicator"></span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="custom-switch">
-                            <span class="custom-switch-description">Box Layout</span>
-                            <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input btn-boxlayout">
                             <span class="custom-switch-indicator"></span>
                         </label>
                     </li>
@@ -135,7 +88,7 @@
         </div>
     </div>
 	<div id="left-sidebar" class="sidebar ">
-        <h5 class="brand-name">Soccer <a href="javascript:void(0)" class="menu_option float-right"><i class="fa fa-th-large fa-2" data-toggle="tooltip" data-placement="left" title="Grid & List Toggle"></i></a></h5>
+        <h5 class="brand-name">${ team.team_name }<a href="javascript:void(0)" class="menu_option float-right"><i class="fa fa-th-large fa-2" data-toggle="tooltip" data-placement="left" title="Grid & List Toggle"></i></a></h5>
         <nav id="left-sidebar-nav" class="sidebar-nav">
             <ul class="metismenu">
                 <li class="g_heading">팀 기능</li>

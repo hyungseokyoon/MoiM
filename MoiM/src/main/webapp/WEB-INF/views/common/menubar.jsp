@@ -48,7 +48,7 @@
           	<div id="navbarSupportedContent" class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
 				<li class="nav-item"> <a href="main.do" class="nav-link active">Home</a></li>
-				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/nlist.do" class="nav-link">공지사항</a></li>
+				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/nlist.do?page=1" class="nav-link">공지사항</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rclist.do" class="nav-link">구인게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/blist.do?page=1" class="nav-link">게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rvlist.do" class="nav-link">리뷰게시판</a></li>
@@ -88,14 +88,14 @@
 					</button>
 				</div>
 				<div class="modal-body p-4 p-lg-5">
-					<form action="#" class="login-form text-left">
+					<form action="login.do" class="login-form text-left" method="post">
 						<div class="form-group mb-4">
 							<label>Email address</label>
-							<input type="email" name="email" placeholder="name@company.com" class="form-control">
+							<input type="text" name="user_id" id="user_id" placeholder="name@company.com" class="form-control">
 						</div>
 						<div class="form-group mb-4">
 							<label>Password</label>
-							<input type="password" name="password" placeholder="Min 8 characters" class="form-control">
+							<input type="password" name="user_pwd" id="user_pwd" placeholder="Min 8 characters" class="form-control">
 						</div>
 						
 						<table class="form-group">
@@ -106,9 +106,9 @@
 								<a href="enroll.do" class="btn btn-primary">Join</a>
 							</th>
 							<th width="30%">
-								<a href="">아이디 조회</a>
+								<a href="#">아이디 조회</a>
 								/
-								<a href="">비밀번호 조회</a>
+								<a href="#">비밀번호 조회</a>
 							</th>
 						</table>
 					</form>

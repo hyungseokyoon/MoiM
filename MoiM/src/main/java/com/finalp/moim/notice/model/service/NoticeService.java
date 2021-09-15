@@ -1,5 +1,12 @@
 package com.finalp.moim.notice.model.service;
 
-public interface NoticeService {
+import java.util.ArrayList;
 
+import com.finalp.moim.common.Page;
+import com.finalp.moim.notice.model.vo.Notice;
+
+public interface NoticeService {
+	int selectListCount();
+	ArrayList<Notice> selectList(Page paging);
+	Notice selectNotice(int notice_no);
 }

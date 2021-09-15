@@ -50,11 +50,11 @@
 			    			<table class="table table-striped dataTable-table" id="table1">
 						        <thead>
 						            <tr>
-						            	<th data-sortable="" style="width: 32.4484%;"><a href="#" class="dataTable-sorter">글번호</a></th>
-						            	<th data-sortable="" style="width: 114.676%;"><a href="#" class="dataTable-sorter">글제목</a></th>
-						            	<th data-sortable="" style="width: 30.9734%;"><a href="#" class="dataTable-sorter">작성자</a></th>
-						            	<th data-sortable="" style="width: 40.1917%;"><a href="#" class="dataTable-sorter">작성날짜</a></th>
-						            	<th data-sortable="" style="width: 30.236%;"><a href="#" class="dataTable-sorter">조회수</a></th>
+						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter">글번호</a></th>
+						            	<th data-sortable=""><a href="#" class="dataTable-sorter">글제목</a></th>
+						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter">작성자</a></th>
+						            	<th data-sortable="" style="width: 150px;"><a href="#" class="dataTable-sorter">작성날짜</a></th>
+						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter">조회수</a></th>
 						            </tr>
 						        </thead>
 			        			<tbody>
