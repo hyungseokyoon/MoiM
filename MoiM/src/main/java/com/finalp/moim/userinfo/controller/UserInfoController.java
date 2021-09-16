@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,13 +25,17 @@ public class UserInfoController {
 	@Autowired
 	private UserInfoService userinfoService;
 	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
 	// 로그인
 	@RequestMapping(value="login.do", method = RequestMethod.POST)
 	public String loginMethod(UserInfo userInfo, HttpSession session, 
 			SessionStatus status, Model model) {
 		UserInfo loginMember = userinfoService.selectLogin(userInfo);
 		
-		if(loginMember != null && userInfo.getUser_pwd().equals(loginMember.getUser_pwd()) && loginMember.getLogin_ok().equals("Y")) {
+		if(loginMember != null && bcryptPasswordEncoder.matches(userInfo.getUser_pwd(), loginMember.getUser_pwd())
+				&& loginMember.getLogin_ok().equals("Y")) {
 			session.setAttribute("loginMember", loginMember);
 			status.setComplete();
 			
