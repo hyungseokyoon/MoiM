@@ -49,4 +49,22 @@
 			sysdate, #{board_original_filename}, #{board_rename_filename}, default
 		)
 	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateBoard" parameterType="Board">
+		update board
+		set board_title = #{board_title}, board_content = #{board_content}
+		<if test="board_original_filename != null">
+			, board_original_filename = #{board_original_filename}, board_rename_filename = #{board_rename_filename}
+		</if>
+		<if test="board_original_filename == null">
+			, board_original_filename = null, board_rename_filename = null
+		</if>
+		where board_no = #{board_no}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where board_no = #{board_no}
+	</delete>
 </mapper>

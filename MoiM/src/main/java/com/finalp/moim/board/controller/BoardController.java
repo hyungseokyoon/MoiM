@@ -114,9 +114,23 @@ public class BoardController {
 	}
 	
 	// 게시판 수정 페이지 이동
-	@RequestMapping("bupdate.do")
-	public String boardUpdateFormMethod() {
-		return "board/BoardUpdateForm";
+	@RequestMapping("bupdateform.do")
+	public ModelAndView boardUpdateFormMethod(ModelAndView mv, @RequestParam("board_no") int board_no, 
+			@RequestParam("page") int page) {
+		Board board = boardService.selectBoard(board_no);
+		
+		if(board != null) {
+			mv.addObject("board", board);
+			mv.addObject("currentPage", page);
+			
+			mv.setViewName("board/BoardUpdateForm");
+		} else {
+			mv.addObject("message", board_no + "번 게시글 수정 실패");
+			
+			mv.setViewName("common/error");
+		}
+		
+		return mv;
 	}
 	// --------------------------------------
 	
@@ -200,7 +214,98 @@ public class BoardController {
 	}
 	
 	// 게시판 수정
+	@RequestMapping(value = "bupdate.do", method = RequestMethod.POST)
+	public ModelAndView boardUpdateMethod(ModelAndView mv, Board board, HttpServletRequest request, 
+			@RequestParam(name = "deleteFile", required = false) String delFile, @RequestParam(name = "upfile", required = false) MultipartFile mfile) {
+		String savePath = request.getSession().getServletContext().getRealPath("resources/board_upfiles");
+		
+		if(board.getBoard_original_filename() != null && delFile != null && delFile.equals("yes")) {
+			new File(savePath + "\\" + board.getBoard_rename_filename()).delete();
+			board.setBoard_original_filename(null);
+			board.setBoard_rename_filename(null);
+		}
+		
+		if(!mfile.isEmpty()) {
+			if(board.getBoard_original_filename() != null && delFile != null && delFile.equals("yes")) {
+				new File(savePath + "\\" + board.getBoard_rename_filename()).delete();
+				board.setBoard_original_filename(null);
+				board.setBoard_rename_filename(null);
+			}
+			
+			String fileName = mfile.getOriginalFilename();
+			
+			if(fileName != null && fileName.length() > 0) {
+				try {
+					mfile.transferTo(new File(savePath + "\\" + fileName));
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+					
+					String renameFileName = sdf.format(new Date(System.currentTimeMillis()));
+					renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
+					
+					File originalFile = new File(savePath + "\\" + fileName);
+					File renameFile = new File(savePath + "\\" + renameFileName);
+					
+					if(!originalFile.renameTo(renameFile)) {
+						FileInputStream fin = new FileInputStream(originalFile);
+						FileOutputStream fout = new FileOutputStream(renameFile);
+						
+						int data = -1;
+						byte[] buffer = new byte[1024];
+						
+						while((data = fin.read(buffer, 0, buffer.length)) != -1) {
+							fout.write(buffer, 0, buffer.length);
+						}
+						
+						fin.close();
+						fout.close();
+						originalFile.delete();
+					}
+					
+					board.setBoard_rename_filename(renameFileName);
+				} catch (Exception e) {
+					e.printStackTrace();
+					mv.addObject("message", "파일 등록 실패");
+					mv.setViewName("common/error");
+					
+					return mv;
+				}
+			}
+			
+			board.setBoard_original_filename(mfile.getOriginalFilename());
+		}
+		
+		if(boardService.updateBoard(board) > 0) {
+			mv.addObject("page", 1);
+			
+			mv.setViewName("redirect:blist.do");
+		} else {
+			mv.addObject("message", board.getBoard_no() + "번 글 수정 실패");
+			
+			mv.setViewName("common/error");
+		}
+		
+		return mv;
+	}
 	
 	// 게시판 삭제
+	@RequestMapping("bdelete.do")
+	public ModelAndView boardDeleteMethod(ModelAndView mv, @RequestParam("board_no") int board_no, 
+			@RequestParam(name = "rfile", required = false) String renameFileName, 
+			@RequestParam("page") int currentPage, HttpServletRequest request) {
+		if(boardService.deleteBoard(board_no) > 0) {
+			if(renameFileName != null) {
+				new File(request.getSession().getServletContext().getRealPath("resource/board_upfiles") + "\\"
+						+ renameFileName).delete();
+			}
+			
+			mv.addObject("page", currentPage);
+			mv.setViewName("redirect:blist.do");
+		} else {
+			mv.addObject("message", board_no + "번 게시글 삭제 실패");
+			mv.setViewName("common/error");
+		}
+		
+		return mv;
+	}
 	// --------------------------------------
 }
