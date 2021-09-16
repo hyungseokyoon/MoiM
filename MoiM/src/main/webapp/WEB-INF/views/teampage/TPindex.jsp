@@ -154,31 +154,31 @@
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>팀 소개</label>
-                                            <textarea class="form-control" name="team_intro" style="height: 75px;" readonly><c:out value="" /></textarea>
+                                            <textarea class="form-control" name="team_intro" style="height: 75px;" readonly><c:out value="${ team.team_intro }" /></textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>레 벨</label>
-                                            <input class="form-control" type="text" name="team_level" value="" readonly>
+                                            <input class="form-control" type="text" name="team_level" value="${ team.team_level }" readonly>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>지 역</label>
-                                            <input class="form-control" type="text" name="team_local" value="" readonly>
+                                            <input class="form-control" type="text" name="team_local" value="${ team.team_local }" readonly>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>활동요일</label>
-                                            <input class="form-control" type="text" name="team_act_day" value="" readonly>
+                                            <input class="form-control" type="text" name="team_act_day" value="${ team.team_act_day }" readonly>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>활동시간</label>
-                                            <input class="form-control" type="text" name="team_act_time" value="" readonly>
+                                            <input class="form-control" type="text" name="team_act_time" value=""${ team.team_act_time } readonly>
                                         </div>
                                     </div>
                                 </div>
