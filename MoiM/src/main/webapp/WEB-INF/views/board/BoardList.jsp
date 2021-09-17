@@ -51,6 +51,7 @@
 						        <thead>
 						            <tr>
 						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter" align="center">글번호</a></th>
+						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter" align="center">카테고리</a></th>
 						            	<th data-sortable=""><a href="#" class="dataTable-sorter" align="center">글제목</a></th>
 						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter" align="center">작성자</a></th>
 						            	<th data-sortable="" style="width: 150px;"><a href="#" class="dataTable-sorter" align="center">작성날짜</a></th>
@@ -61,6 +62,7 @@
 			        				<c:forEach items="${ list }" var="b">
 			        					<tr>
 				        					<td align="center">${ b.board_no }</td>
+				        					<td align="center">${ b.cateVO.board_category_name }</td>
 				        					<td>
 				        						<c:url var="bdetail" value="bdetail.do">
 				        							<c:param name="board_no" value="${ b.board_no }"/>
@@ -68,7 +70,7 @@
 				        						</c:url>
 				        						<a href="${ bdetail }">${ b.board_title }</a>
 				        					</td>
-				        					<td align="center">${ b.user_no }</td>
+				        					<td align="center">${ b.userVO.user_name }</td>
 				        					<td align="center"><fmt:formatDate value="${ b.board_date }" type="date" pattern="yyyy-MM-dd" /></td>
 				        					<td align="center">${ b.board_readcount }</td>
 			        					</tr>
