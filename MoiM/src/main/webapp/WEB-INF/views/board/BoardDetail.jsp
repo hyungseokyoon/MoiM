@@ -99,7 +99,7 @@
 					
 					for(var i in json.list){
 						values += "<tbody><tr><td align='center'>"
-								+ json.list[i].user_no
+								+ json.list[i].user_nn
 								+ "</td><td align='center'>"
 								+ decodeURIComponent(json.list[i].reply_content).replace(/\+/gi, " ")
 								+ "</td><td align='center'>"

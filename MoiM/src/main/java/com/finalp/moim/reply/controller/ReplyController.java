@@ -47,6 +47,7 @@ public class ReplyController {
 			job.put("user_no", reply.getUser_no());
 			job.put("reply_content", URLEncoder.encode(reply.getReply_content(), "utf-8"));
 			job.put("reply_date", reply.getReply_date().toString());
+			job.put("user_nn", URLEncoder.encode(reply.getUserVO().getUser_nn(), "utf-8"));
 			
 			jarr.add(job);
 		}
