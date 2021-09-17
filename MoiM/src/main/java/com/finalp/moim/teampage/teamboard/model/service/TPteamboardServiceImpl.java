@@ -33,6 +33,11 @@ public class TPteamboardServiceImpl implements TPteamboardService {
 	public int deleteTeamBoard(int tn_no) {
 		return tpteamboardDao.deleteTeamBoard(tn_no);
 	}
+
+	@Override
+	public ArrayList<TeamBoard> selectBoardTopList(int team_num) {
+		return tpteamboardDao.selectBoardTopList(team_num);
+	}
 	
 	
 }

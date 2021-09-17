@@ -31,4 +31,9 @@ public class TPteamboardDao {
 	public int deleteTeamBoard(int tn_no) {
 		return session.delete("teamboardMapper.deleteTeamBoard", tn_no);
 	}
+
+	public ArrayList<TeamBoard> selectBoardTopList(int team_num) {
+		List<TeamBoard> list = session.selectList("teamboardMapper.selectBoardTopList", team_num);
+		return (ArrayList<TeamBoard>)list;
+	}
 }
