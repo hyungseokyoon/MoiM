@@ -44,4 +44,9 @@
 			(select max(reply_no) + 1 from reply), #{board_no}, #{user_no}, #{reply_content}, sysdate
 		)
 	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply" parameterType="int">
+		delete from reply where reply_no = #{reply_no}
+	</delete>
 </mapper>

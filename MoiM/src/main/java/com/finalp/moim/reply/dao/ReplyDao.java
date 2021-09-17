@@ -25,4 +25,8 @@ public class ReplyDao {
 	public int insertReply(Reply reply) {
 		return sqlSession.insert("replyMapper.insertReply", reply);
 	}
+
+	public int deleteReply(int reply_no) {
+		return sqlSession.delete("replyMapper.deleteReply", reply_no);
+	}
 }

@@ -23,6 +23,7 @@
 		<br><br>
 		<div class="container">
 			<input type="hidden" id="board_no" name="board_no" value="${ board.board_no }">
+			<input type="hidden" id="user_no" name="user_no" value="${ loginMember.user_no }">
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
 					<p class="lead text-muted mb-5">
@@ -45,7 +46,7 @@
 						            <tr>
 						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter" align="center">작성자</a></th>
 						            	<th data-sortable=""><a href="#" class="dataTable-sorter" align="center">댓글내용</a></th>
-						            	<th data-sortable="" style="width: 150px;"><a href="#" class="dataTable-sorter" align="center">수정/삭제</a></th>
+						            	<th data-sortable="" style="width: 150px;"><a href="#" class="dataTable-sorter" align="center">삭제</a></th>
 						            </tr>
 						        </thead>
 			    			</table>
@@ -91,6 +92,7 @@
 		$(function(){
 			console.log("run");
 			var board_no = $(".container #board_no").val();
+			var login_user_no = $(".container #user_no").val();
 			
 			$.ajax({
 				url : "rlist.do", 
@@ -104,12 +106,24 @@
 					values = "";
 					
 					for(var i in json.list){
+						var reply_no = json.list[i].reply_no;
+						
 						values += "<tbody><tr><td align='center'>"
 								+ decodeURIComponent(json.list[i].user_nn).replace(/\+/gi, " ")
 								+ "</td><td align='center'>"
 								+ decodeURIComponent(json.list[i].reply_content).replace(/\+/gi, " ")
 								+ "</td><td align='center'>"
-								+ "<a href='#'>수정</a>/<a href='#'>삭제</a></td>"
+								
+						if(login_user_no == json.list[i].user_no){
+							values += "<form action='rdelete.do'>"
+									+ "<input type='hidden' name='reply_no' value='" + json.list[i].reply_no + "'>"
+									+ "<input type='hidden' name='board_no' value='${ board.board_no }'>"
+									+ "<input type='hidden' name='page' value='${ currentPage }'>"
+									+ "<input type='submit' value='삭제' class='btn btn-primary'></form>"
+									+ "</td></tr></tbody>"
+						} else if(login_user_no != json.list[i].user_no){
+							values += "</td></tr></tbody>"
+						}
 					}
 					
 					$('#reply').html($('#reply').html() + values);

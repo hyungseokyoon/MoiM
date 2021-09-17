@@ -79,4 +79,20 @@ public class ReplyController {
 	// 댓글 수정
 	
 	// 댓글 삭제
+	@RequestMapping("rdelete.do")
+	public ModelAndView replyDeleteMethod(ModelAndView mv, @RequestParam("reply_no") int reply_no, 
+			@RequestParam("board_no") int board_no, @RequestParam("page") int currentPage) {
+		if(replyService.deleteReply(reply_no) > 0) {
+			mv.addObject("board_no", board_no);
+			mv.addObject("page", currentPage);
+			
+			mv.setViewName("redirect:bdetail.do");
+		} else {
+			mv.addObject("message", reply_no + "번 댓글 삭제 실패");
+			
+			mv.setViewName("common/error");
+		}
+		
+		return mv;
+	}
 }
