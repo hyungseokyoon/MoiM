@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.finalp.moim.reply.model.service.ReplyService;
 import com.finalp.moim.reply.model.vo.Reply;
@@ -58,6 +60,21 @@ public class ReplyController {
 	}
 	
 	// 댓글 작성
+	@RequestMapping(value = "rinsert.do", method = RequestMethod.POST)
+	public ModelAndView replyInsertMethod(ModelAndView mv, Reply reply, @RequestParam("page") int currentPage) {
+		if(replyService.insertReply(reply) > 0) {
+			mv.addObject("page", currentPage);
+			mv.addObject("board_no", reply.getBoard_no());
+			
+			mv.setViewName("redirect:bdetail.do");
+		} else {
+			mv.addObject("message", reply.getBoard_no() + "번 글에 댓글 작성 실패");
+			
+			mv.setViewName("common/error");
+		}
+		
+		return mv;
+	}
 	
 	// 댓글 수정
 	

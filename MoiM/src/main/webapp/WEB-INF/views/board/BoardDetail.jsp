@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MoiM - 글 제목</title>
+<title>MoiM - ${ board.board_title }</title>
 <!-- Table에 관련된 css -->
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/asset/bootstrap.css">
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/asset/style.css">
@@ -48,17 +48,23 @@
 						            	<th data-sortable="" style="width: 150px;"><a href="#" class="dataTable-sorter" align="center">수정/삭제</a></th>
 						            </tr>
 						        </thead>
-			        			<%-- <tbody>
-			        				<c:forEach items="${ list }" var="r">
-			        					<tr>
-				        					<td align="center">${ r.user_no }</td>
-				        					<td align="center">${ r.reply_content }</td>
-				        					<td align="center"><fmt:formatDate value="${ r.reply_date }" type="date" pattern="yyyy-MM-dd" /></td>
-			        					</tr>
-			        				</c:forEach>
-								</tbody> --%>
 			    			</table>
 			    		</div>
+			    		<c:if test="${ !empty loginMember }">
+				    		<form action="rinsert.do" class="contact-form text-left" method="post">
+				    			<input type="hidden" name="board_no" value="${ board.board_no }">
+				    			<input type="hidden" name="user_no" value="${ loginMember.user_no }">
+				    			<input type="hidden" name="page" value="${ currentPage }">
+				    			<div class="form-group mb-4">
+									<label>댓글내용<sup class="text-primary">✱</sup></label>
+									<textarea name="reply_content" placeholder="댓글 내용을 입력해주세요." class="form-control"></textarea>
+								</div>
+								<div class="form-group">
+									<input type="submit" value="댓글등록" class="btn btn-primary">
+									<input type="reset" value="취소" class="btn btn-primary">
+								</div>
+				    		</form>
+			    		</c:if>
 					</blockquote>
 					<br>
 					<c:url var="blist" value="blist.do">
@@ -99,7 +105,7 @@
 					
 					for(var i in json.list){
 						values += "<tbody><tr><td align='center'>"
-								+ json.list[i].user_nn
+								+ decodeURIComponent(json.list[i].user_nn).replace(/\+/gi, " ")
 								+ "</td><td align='center'>"
 								+ decodeURIComponent(json.list[i].reply_content).replace(/\+/gi, " ")
 								+ "</td><td align='center'>"

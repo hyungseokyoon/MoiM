@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MoiM - 공지 제목</title>
+<title>MoiM - ${ notice.notice_title }</title>
 </head>
 <body>
 	<!-- Menubar -->

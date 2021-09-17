@@ -21,4 +21,8 @@ public class ReplyDao {
 		List<Reply> list = sqlSession.selectList("replyMapper.selectReplyList", board_no);
 		return (ArrayList<Reply>) list;
 	}
+
+	public int insertReply(Reply reply) {
+		return sqlSession.insert("replyMapper.insertReply", reply);
+	}
 }

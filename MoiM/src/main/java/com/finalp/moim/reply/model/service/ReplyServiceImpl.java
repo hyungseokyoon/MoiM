@@ -20,4 +20,9 @@ public class ReplyServiceImpl implements ReplyService {
 	public ArrayList<Reply> selectReplyList(int board_no) {
 		return replyDao.selectReplyList(board_no);
 	}
+
+	@Override
+	public int insertReply(Reply reply) {
+		return replyDao.insertReply(reply);
+	}
 }
