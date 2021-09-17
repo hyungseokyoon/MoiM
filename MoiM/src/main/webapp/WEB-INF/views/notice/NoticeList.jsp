@@ -68,7 +68,7 @@
 				        						</c:url>
 				        						<a href="${ ndetail }">${ n.notice_title }</a>
 				        					</td>
-				        					<td align="center">${ n.user_no }</td>
+				        					<td align="center">${ n.userVO.user_nn }</td>
 				        					<td align="center"><fmt:formatDate value="${ n.notice_date }" type="date" pattern="yyyy-MM-dd" /></td>
 				        					<c:if test="${ n.notice_original_filename != null }">
 				        						<td align="center">◎</td>

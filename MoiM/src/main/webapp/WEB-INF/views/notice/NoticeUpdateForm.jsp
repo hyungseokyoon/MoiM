@@ -31,7 +31,7 @@
 						</div>
 						<div class="form-group mb-4">
 							<label>작성자<sup class="text-primary">✱</sup></label>
-							<input type="text" name="user_name" placeholder="${ loginMember.user_name }" class="form-control" readonly="readonly">
+							<input type="text" name="user_nn" placeholder="${ loginMember.user_nn }" class="form-control" readonly="readonly">
 							<input type="hidden" name="user_no" value="${ notice.user_no }">
 						</div>
 						<div class="form-group mb-4">
