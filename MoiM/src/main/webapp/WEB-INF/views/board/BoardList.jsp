@@ -70,7 +70,7 @@
 				        						</c:url>
 				        						<a href="${ bdetail }">${ b.board_title }</a>
 				        					</td>
-				        					<td align="center">${ b.userVO.user_name }</td>
+				        					<td align="center">${ b.userVO.user_nn }</td>
 				        					<td align="center"><fmt:formatDate value="${ b.board_date }" type="date" pattern="yyyy-MM-dd" /></td>
 				        					<td align="center">${ b.board_readcount }</td>
 			        					</tr>
