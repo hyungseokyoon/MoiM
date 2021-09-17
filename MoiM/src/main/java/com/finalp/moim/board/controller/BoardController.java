@@ -65,6 +65,8 @@ public class BoardController {
 			mv.addObject("startPage", startPage);
 			mv.addObject("endPage", endPage);
 			mv.addObject("limit", limit);
+			mv.addObject("startRow", startRow);
+			mv.addObject("endRow", endRow);
 			
 			mv.setViewName("board/BoardList");
 		} else {

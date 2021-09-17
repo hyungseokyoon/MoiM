@@ -79,7 +79,7 @@
 			    			</table>
 			    		</div>
 			    		<div class="dataTable-bottom">
-			    			<div class="dataTable-info">${ listCount }개의 글 중 * ~ *번 까지의 결과입니다.</div>
+			    			<div class="dataTable-info">${ listCount }개의 글 중 ${ startRow } ~ ${ endRow }번 까지의 결과입니다.</div>
 			    			<ul class="pagination pagination-primary float-end dataTable-pagination">
 			    				<c:if test="${ currentPage <= 1 }">
 			    					<li class="page-item pager"><a>‹‹</a></li>
