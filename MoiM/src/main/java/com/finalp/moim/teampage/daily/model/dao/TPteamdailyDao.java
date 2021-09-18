@@ -20,4 +20,16 @@ public class TPteamdailyDao {
 		return (ArrayList<TeamDaily>)list;
 	}
 
+	public int insertTeamDaily(TeamDaily teamdaily) {
+		return session.insert("teamdailyMapper.insertTeamDaily", teamdaily);
+	}
+
+	public int updateDailyProgress(int daily_no) {
+		return session.update("teamdailyMapper.updateDailyProgress", daily_no);
+	}
+
+	public int deleteDaily(int daily_no) {
+		return session.delete("teamdailyMapper.deleteDaily", daily_no);
+	}
+
 }

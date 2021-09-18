@@ -146,7 +146,7 @@
                     </c:url>
                 	<a href="${ moveTPteamboard }"><i class="fa fa-list-ol"></i><span>공지</span></a>
                 </li>
-                <li><a href="${ pageContext.servletContext.contextPath }/moveTPcalendar.do"><i class="fa fa-calendar-check-o"></i><span>일정</span></a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/moveTPcalendar.do?team_num=1"><i class="fa fa-calendar-check-o"></i><span>일정</span></a></li>
                 <li><a href="project-ticket.html"><i class="fa fa-list-ul"></i><span>채팅</span></a></li>
                 <li><a href="${ pageContext.servletContext.contextPath }/flist.do"><i class="fa fa-file fa-2"></i><span>파일</span></a></li>
 				<li>

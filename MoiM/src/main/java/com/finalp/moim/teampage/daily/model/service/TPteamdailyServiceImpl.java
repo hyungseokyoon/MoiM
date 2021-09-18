@@ -18,5 +18,20 @@ public class TPteamdailyServiceImpl implements TPteamdailyService {
 	public ArrayList<TeamDaily> selectTeamDailyList(int team_num) {
 		return tpteamdailyDao.selectTeamDailyList(team_num);
 	}
+
+	@Override
+	public int insertTeamDaily(TeamDaily teamdaily) {
+		return tpteamdailyDao.insertTeamDaily(teamdaily);
+	}
+
+	@Override
+	public int updateDailyProgress(int daily_no) {
+		return tpteamdailyDao.updateDailyProgress(daily_no);
+	}
+
+	@Override
+	public int deleteDaily(int daily_no) {
+		return tpteamdailyDao.deleteDaily(daily_no);
+	}
 	
 }
