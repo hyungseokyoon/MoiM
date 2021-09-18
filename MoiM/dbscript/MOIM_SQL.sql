@@ -235,7 +235,6 @@ create table calendar
     cal_title varchar2(100) constraint cal_title_nn not null,
     cal_startdate date constraint cal_startdate_nn not null,
     cal_enddate date constraint cal_enddate_nn not null,
-    cal_category varchar2(20) constraint cal_category_nn not null,
     cal_detail varchar2(100) constraint cal_detail_nn not null
 );
 comment on COLUMN calendar.cal_no is '일정번호';
@@ -244,7 +243,6 @@ comment on COLUMN calendar.cal_writer is '일정작성자';
 comment on COLUMN calendar.cal_title is '일정명';
 comment on COLUMN calendar.cal_startdate is '일정시작';
 comment on COLUMN calendar.cal_enddate is '일정끝';
-comment on COLUMN calendar.cal_category is '일정구분';
 comment on COLUMN calendar.cal_detail is '일정설명';
 
 create table teamnotice
@@ -540,11 +538,11 @@ INSERT INTO DAILY VALUES(5, 1, 1, '2021/08/21', '일지5', 3);
 INSERT INTO DAILY VALUES(6, 1, 1, '2021/09/01', '일지6', 3);
 
 --CALENDAR
-INSERT INTO CALENDAR VALUES(1, 1, 1, '일정1', '2021/08/16', '2021/08/16', '개인용무', '사적인일1');
-INSERT INTO CALENDAR VALUES(2, 1, 1, '일정2', '2021/08/30', '2021/09/02', '개인용무', '사적인일2');
-INSERT INTO CALENDAR VALUES(3, 1, 1, '일정3', '2021/08/22', '2021/08/24', '공적업무', '사적인일3');
-INSERT INTO CALENDAR VALUES(4, 1, 1, '일정4', '2021/08/16', '2021/08/19', '공적업무', '사적인일4');
-INSERT INTO CALENDAR VALUES(5, 1, 1, '일정5', '2021/08/11', '2021/08/14', '휴가', '사적인일5');
+INSERT INTO CALENDAR VALUES(1, 1, 1, '일정1', '2021/08/16', '2021/08/16', '사적인일1');
+INSERT INTO CALENDAR VALUES(2, 1, 1, '일정2', '2021/08/30', '2021/09/02', '사적인일2');
+INSERT INTO CALENDAR VALUES(3, 1, 1, '일정3', '2021/08/22', '2021/08/24', '사적인일3');
+INSERT INTO CALENDAR VALUES(4, 1, 1, '일정4', '2021/08/16', '2021/08/19', '사적인일4');
+INSERT INTO CALENDAR VALUES(5, 1, 1, '일정5', '2021/08/11', '2021/08/14', '사적인일5');
 
 --TEAMNOTICE
 INSERT INTO TEAMNOTICE VALUES(1, 1, 1, '공지1', '공지1입니다', DEFAULT, NULL, NULL);
