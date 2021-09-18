@@ -29,4 +29,9 @@ public class TPteamcalendarServiceImpl implements TPteamcalendarService {
 		return tpteamcalendarDao.deleteCalendar(cal_no);
 	}
 
+	@Override
+	public int updateCalendar(Calendar cal) {
+		return tpteamcalendarDao.updateCalendar(cal);
+	}
+
 }

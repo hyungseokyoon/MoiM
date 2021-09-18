@@ -108,16 +108,62 @@ public class TPcalendarController {
 			return sendJson.toJSONString();
 	}
 	
-	@RequestMapping("deleteCalendar.do")
-	public String deleteCalendarMethod(@RequestParam("cal_no") int cal_no,
-			@RequestParam("team_num") int team_num, Model model) {
+	@RequestMapping(value = "deleteCalendar.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String deleteCalendarMethod(@RequestParam("cal_no") int cal_no) {
+		
+		String result;
+		JSONObject sendJson = new JSONObject();
+		
 		if(tpteamcalendarService.deleteCalendar(cal_no)>0) {
-			model.addAttribute("team_num", team_num);
-			return "teampage/calendar/tp_calendar";
+			result = "delete success";
 		}else {
-			model.addAttribute("message", "일정삭제 실패");
-			return "common/error";
+			result = "delete error";
 		}
+		
+		sendJson.put("result", result);
+		return sendJson.toJSONString();
+	}
+	
+	@RequestMapping(value = "updateCalendar.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String updateCalendarMethod(
+						@RequestParam("cal_no") String calno,
+						@RequestParam("team_num") String tnum,
+						@RequestParam("cal_writer") String calwriter,
+						@RequestParam("cal_title") String caltitle,
+						@RequestParam("cal_startdate") String calstartdate,
+						@RequestParam("cal_enddate") String calenddate,
+						@RequestParam("cal_detail") String caldetail) throws ParseException {
+			String result;
+			int cal_no = Integer.parseInt(calno);
+			int team_num = Integer.parseInt(tnum);
+			int cal_writer = Integer.parseInt(calwriter);
+			System.out.println(calstartdate);
+			System.out.println(calstartdate.getClass());
+			System.out.println(calenddate);
+			Date start_date = Date.valueOf(calstartdate);
+			Date end_date = Date.valueOf(calenddate);
+			
+			Calendar cal = new Calendar();
+			cal.setCal_no(cal_no);
+			cal.setTeam_num(team_num);
+			cal.setCal_writer(cal_writer);
+			cal.setCal_title(caltitle);
+			cal.setCal_startdate(start_date);
+			cal.setCal_enddate(end_date);
+			cal.setCal_detail(caldetail);
+			
+			JSONObject sendJson = new JSONObject();
+			
+			if(tpteamcalendarService.updateCalendar(cal)>0) {
+				result = "update success";
+			}else {
+				result = "update error";
+			}
+			
+			sendJson.put("result", result);
+			return sendJson.toJSONString();
 	}
 	
 }

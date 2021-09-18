@@ -51,4 +51,13 @@
 		where cal_no = #{ cal_no }
 	</delete>
 	
+	<update id="updateCalendar" parameterType="TeamCalendar">
+		update calendar
+		set cal_title = #{ cal_title },
+		cal_startdate = #{ cal_startdate },
+		cal_enddate = #{ cal_enddate },
+		cal_detail = #{ cal_detail }
+		where cal_no = #{ cal_no }
+	</update>
+	
 </mapper>

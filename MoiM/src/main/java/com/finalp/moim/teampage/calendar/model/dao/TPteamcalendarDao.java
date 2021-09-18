@@ -28,4 +28,8 @@ public class TPteamcalendarDao {
 		return session.delete("teamcalendarMapper.deleteCalendar", cal_no);
 	}
 
+	public int updateCalendar(Calendar cal) {
+		return session.update("teamcalendarMapper.updateCalendar", cal);
+	}
+
 }
