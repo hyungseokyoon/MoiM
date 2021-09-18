@@ -10,4 +10,7 @@ public interface BoardService {
 	ArrayList<Board> selectList(Page page);
 	int updateReadCount(int board_no);
 	Board selectBoard(int board_no);
+	int insertBoard(Board board);
+	int updateBoard(Board board);
+	int deleteBoard(int board_no);
 }

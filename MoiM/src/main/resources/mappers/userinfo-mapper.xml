@@ -25,6 +25,5 @@
 	<select id="selectLogin" parameterType="UserInfo" resultMap="resultUser">
 		select * from user_info
 		where user_id = #{ user_id }
-		and user_pwd = #{ user_pwd }
 	</select>
 </mapper>

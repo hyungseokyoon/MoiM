@@ -56,7 +56,7 @@
 				<!-- 관리자 페이지 드롭박스 -->
 				<c:if test="${ loginMember.admin == 'Y' }">
 					<li class="nav-item dropdown">
-						<a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
+						<a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">관리자페이지</a>
 		                <div class="dropdown-menu">
 			                <a href="${ pageContext.servletContext.contextPath }/ulistadmin.do" class="dropdown-item">회원관리</a>
 			                <a href="${ pageContext.servletContext.contextPath }/blistadmin.do" class="dropdown-item">게시판관리</a>
