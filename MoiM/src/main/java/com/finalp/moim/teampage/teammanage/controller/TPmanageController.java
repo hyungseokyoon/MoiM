@@ -3,12 +3,10 @@ package com.finalp.moim.teampage.teammanage.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -23,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.finalp.moim.teampage.common.model.vo.Alert;
 import com.finalp.moim.teampage.common.model.vo.JoinWaiting;
 import com.finalp.moim.teampage.common.model.vo.Team;
 import com.finalp.moim.teampage.common.model.vo.TeamMember;
@@ -133,6 +132,17 @@ public class TPmanageController {
 		}
 
 		if (tpmanageService.updateTeamSetting(team) > 0) {
+			ArrayList<TeamMember> tmlist = tpmanageService.selectTeamMemberNormalList(team.getTeam_num());
+			
+			int result = 0;
+			
+			for(TeamMember tm : tmlist) {
+				tpmanageService.insertAlertTSUpdate(tm);
+				result++;
+			}
+			
+			logger.info("alertinsert result : " + result);
+			
 			model.addAttribute("team_num", team.getTeam_num());
 			return "redirect:moveTeamSetting.do";
 		} else {

@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.finalp.moim.teampage.common.model.vo.Alert;
 import com.finalp.moim.teampage.common.model.vo.JoinWaiting;
 import com.finalp.moim.teampage.common.model.vo.Team;
 import com.finalp.moim.teampage.common.model.vo.TeamMember;
@@ -65,6 +66,15 @@ public class TPmanageDao {
 
 	public int deleteTeamMember(int team_member_no) {
 		return session.delete("teammanageMapper.deleteTeamMember", team_member_no);
+	}
+
+	public int insertAlertTSUpdate(TeamMember tm) {
+		return session.insert("teammanageMapper.insertAlertTSUpdate", tm);
+	}
+
+	public ArrayList<TeamMember> selectTeamMemberNormalList(int team_num) {
+		List<TeamMember> list = session.selectList("teammanageMapper.selectTeamMemberNormalList", team_num);
+		return (ArrayList<TeamMember>)list;
 	}
 
 }

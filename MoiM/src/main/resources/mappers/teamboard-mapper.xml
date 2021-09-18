@@ -73,4 +73,14 @@
 		where tn_no = #{ tn_no }
 	</delete>
 	
+	<select id="selectBoardTopList" parameterType="_int" resultMap="resultTeamBoard">
+		select *
+		from (select rownum, tn_no, team_num, tn_writer, user_nn, tn_title, tn_content, tn_date, tn_originalfilename, tn_renamefilename 
+		        from teamnotice tn 
+		        left join user_info ui on (tn.tn_writer = ui.user_no) 
+		        where team_num = #{ team_num } 
+		        order by tn_date desc) 
+		where rownum between 1 and 10
+	</select>
+	
 </mapper>

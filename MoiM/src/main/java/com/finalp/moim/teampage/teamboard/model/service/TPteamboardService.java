@@ -10,4 +10,5 @@ public interface TPteamboardService {
 	TeamBoard selectTeamBoard(int tn_no);
 	int updateTeamBoard(TeamBoard teamboard);
 	int deleteTeamBoard(int tn_no);
+	ArrayList<TeamBoard> selectBoardTopList(int team_num);
 }

@@ -75,8 +75,8 @@
 	                            </div>
                                 <div class="table-responsive" id="users" style="height: 165px;">
                                     <table class="table table-hover table-vcenter text-nowrap table_custom border-style list">
-                       					<tbody>
-                      						<tr class="text-center">
+                       					<thead>
+                       						<tr class="text-center">
                                                 <td>
                                                     <div class="text-muted">아이디</div>
                                                 </td>
@@ -95,6 +95,8 @@
                                                 <td class="text-center" width="150px">
                                                 </td>
                                             </tr>
+                       					</thead>
+                       					<tbody>
                        						<c:forEach items="${ joinlist }" var="joinlist">
                        							<input type="hidden" name="join_num" id="join_num" value="${ joinlist.join_num }">
 	                                    		<tr class="joininfo">
@@ -209,8 +211,8 @@
                             </div>
                                 <div class="table-responsive" id="users" style="height: 550px;">
                                     <table class="table table-hover table-vcenter text-nowrap table_custom border-style list">
-                                        <tbody>
-                                            <tr class="text-center">
+                                        <thead>
+                                        	<tr class="text-center">
                                                 <td>
                                                     <div class="text-muted">아이디</div>
                                                 </td>
@@ -235,6 +237,8 @@
                                                 <td class="text-center" width="250px">
                                                 </td>
                                             </tr>
+                                        </thead>
+                                        <tbody>
                        						<c:forEach items="${ memberlist }" var="memberlist">
 	                                    		<tr class="memberlist">
 	                                                <td>

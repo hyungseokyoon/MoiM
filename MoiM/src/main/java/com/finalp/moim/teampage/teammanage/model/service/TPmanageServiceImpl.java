@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.finalp.moim.teampage.common.model.vo.Alert;
 import com.finalp.moim.teampage.common.model.vo.JoinWaiting;
 import com.finalp.moim.teampage.common.model.vo.Team;
 import com.finalp.moim.teampage.common.model.vo.TeamMember;
@@ -74,6 +75,16 @@ public class TPmanageServiceImpl implements TPmanageService {
 	@Override
 	public int updateTeamMemberRankUp(TeamMember teammember) {
 		return tpmanageDao.updateTeamMemberRankUp(teammember);
+	}
+
+	@Override
+	public int insertAlertTSUpdate(TeamMember tm) {
+		return tpmanageDao.insertAlertTSUpdate(tm);
+	}
+
+	@Override
+	public ArrayList<TeamMember> selectTeamMemberNormalList(int team_num) {
+		return tpmanageDao.selectTeamMemberNormalList(team_num);
 	}
 	
 }

@@ -1,12 +1,12 @@
-package com.finalp.moim.file.model.service;
+package com.finalp.moim.teampage.file.model.service;
 
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.finalp.moim.file.model.dao.FileDao;
-import com.finalp.moim.file.model.vo.TFile;
+import com.finalp.moim.teampage.file.model.dao.FileDao;
+import com.finalp.moim.teampage.file.model.vo.TFile;
 
 @Service("fileService")
 public class FileServiceImpl implements FileService{
@@ -37,6 +37,11 @@ public class FileServiceImpl implements FileService{
 	@Override
 	public int deleteFile(TFile tfile) {
 		return fileDao.deleteFile(tfile);
+	}
+
+	@Override
+	public ArrayList<TFile> selectFileRecentList(int team_num) {
+		return fileDao.selectFileRecentList(team_num);
 	}
 
 }
