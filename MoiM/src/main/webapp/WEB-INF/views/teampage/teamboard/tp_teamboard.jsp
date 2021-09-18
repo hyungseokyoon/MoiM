@@ -10,7 +10,7 @@
 
 <link rel="icon" href="${ pageContext.servletContext.contextPath }/resources/team_page/images/favicon.ico" type="image/x-icon" />
 
-<title>teamboard</title>
+<title>팀 공지페이지</title>
 
 <!-- Bootstrap Core and vandor -->
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/bootstrap/css/bootstrap.min.css" />
@@ -46,69 +46,6 @@
                             <span class="input-icon-addon"><i class="fa fa-search fa-2"></i></span>
                         </div>
                         <div class="notification d-flex">
-                            <div class="dropdown d-flex">
-                                <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown"><i class="fa fa-language"></i></a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="assets/images/flags/us.svg">English</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="assets/images/flags/es.svg">Spanish</a>
-                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="assets/images/flags/jp.svg">japanese</a>
-                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="assets/images/flags/bl.svg">France</a>
-                                </div>
-                            </div>
-                            <div class="dropdown d-flex">
-                                <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="badge badge-success nav-unread"></span></a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <ul class="right_chat list-unstyled w350 p-0">
-                                        <li class="online">
-                                            <a href="javascript:void(0);" class="media">
-                                                <img class="media-object" src="assets/images/xs/avatar4.jpg" alt="">
-                                                <div class="media-body">
-                                                    <span class="name">Donald Gardner</span>
-                                                    <div class="message">It is a long established fact that a reader</div>
-                                                    <small>11 mins ago</small>
-                                                    <span class="badge badge-outline status"></span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="online">
-                                            <a href="javascript:void(0);" class="media">
-                                                <img class="media-object " src="assets/images/xs/avatar5.jpg" alt="">
-                                                <div class="media-body">
-                                                    <span class="name">Wendy Keen</span>
-                                                    <div class="message">There are many variations of passages of Lorem Ipsum</div>
-                                                    <small>18 mins ago</small>
-                                                    <span class="badge badge-outline status"></span>
-                                                </div>
-                                            </a>                            
-                                        </li>
-                                        <li class="offline">
-                                            <a href="javascript:void(0);" class="media">
-                                                <img class="media-object " src="assets/images/xs/avatar2.jpg" alt="">
-                                                <div class="media-body">
-                                                    <span class="name">Matt Rosales</span>
-                                                    <div class="message">Contrary to popular belief, Lorem Ipsum is not simply</div>
-                                                    <small>27 mins ago</small>
-                                                    <span class="badge badge-outline status"></span>
-                                                </div>
-                                            </a>                            
-                                        </li>
-                                        <li class="online">
-                                            <a href="javascript:void(0);" class="media">
-                                                <img class="media-object " src="assets/images/xs/avatar3.jpg" alt="">
-                                                <div class="media-body">
-                                                    <span class="name">Phillip Smith</span>
-                                                    <div class="message">It has roots in a piece of classical Latin literature from 45 BC</div>
-                                                    <small>33 mins ago</small>
-                                                    <span class="badge badge-outline status"></span>
-                                                </div>
-                                            </a>                            
-                                        </li>                        
-                                    </ul>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item text-center text-muted-dark readall">Mark all as read</a>
-                                </div>
-                            </div>
                             <div class="dropdown d-flex">
                                 <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="badge badge-primary nav-unread"></span></a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -178,8 +115,8 @@
                             <div class="card-body" style="padding-top: 0; background-color: lightsteelblue; ">
                                 <div class="d-md-flex justify-content-between">
                                     <ul class="nav nav-tabs b-none">
-                                        <li class="nav-item"><a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" style="color: black;"><i class="fa fa-list-ul"></i> List</a></li>
-                                        <li class="nav-item"><a class="nav-link" id="addnew-tab" data-toggle="tab" href="#addnew" style="color: black;"><i class="fa fa-plus"></i> Add New</a></li>
+                                        <li class="nav-item"><a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" style="color: black;"><i class="fa fa-list-ul"></i>목록</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="addnew-tab" data-toggle="tab" href="#addnew" style="color: black;"><i class="fa fa-plus"></i>공지쓰기</a></li>
                                     </ul>
                                 </div>
                                 <div class="input-group mt-2">
@@ -221,208 +158,47 @@
                                                 </th>
                                         	</tr>
                                         <tbody>
-                                        	<c:forEach items="${ tblist }" var="tblist">
-                                        	<tr class="">
+                                        	<c:forEach items="${ tblist }" var="itblist" varStatus="status">
+                                        	<tr class="tbtable">
                                         		<td class="text-center" style="width: 10%;">
-                                                    <div class="text-center">${ tblist.rownum }</div>
+                                                    <div class="text-center">
+														<c:out value="${ tblistlength - status.index }"/>
+													</div>
                                                 </td>
                                                 <td class="text-center" style="width: 40%;">
-                                                    <div class="text-center">${ tblist.tn_title }</div>
+                                                    <div class="text-center">${ itblist.tn_title }</div>
                                                 </td>
                                                 <td class="text-center" style="width: 10%;">
-                                                    <div class="text-center">${ tblist.userVO.user_nn }</div>
+                                                    <div class="text-center">${ itblist.userVO.user_nn }</div>
                                                 </td>
                                                 <td class="text-center" style="width: 10%;">
-                                                    <div class="text-center">${ tblist.tn_date }</div>
+                                                    <div class="text-center">${ itblist.tn_date }</div>
                                                 </td>
                                                 <td class="text-center" style="width: 10%;">
-                                                	<c:if test="${ tblist.tn_originalfilename != null }">
+                                                	<c:if test="${ itblist.tn_originalfilename != null }">
                                                 		<div class="text-center">O</div>
                                                 	</c:if>
-                                                   	<c:if test="${ tblist.tn_originalfilename == null }">
+                                                   	<c:if test="${ itblist.tn_originalfilename == null }">
                                                 		<div class="text-center">X</div>
                                                 	</c:if>
                                                 </td>
                                                 <td class="text-center" style="width: 20%;">
-                                                    <button>111</button>                                              
+                                                    <button type="button" class="open-tndetail btn btn-primary" data-toggle="modal" data-target="#selecttn" data-tn_no="${ itblist.tn_no }">
+                                                    	<font style="vertical-align: inherit;">자세히보기</font>
+                                                    </button>
+                                                    <c:url var="deletetb" value="/teamboarddelete.do">
+												    	<c:param name="tn_no" value="${ itblist.tn_no }"/>
+												    	<c:param name="team_num" value="${ itblist.team_num }"/>
+												    	<c:if test="${ !empty itblist.tn_originalfilename }">
+															<c:param name="tn_renamefilename" value="${itblist.tn_renamefilename }" />
+														</c:if>
+												    </c:url>
+												    <button class="btn btn-primary" onclick="javascript:location.href='${ deletetb }';">글삭제</button>                                         
                                                 </td>
                                             </tr>
                                             </c:forEach>
-                                            <!-- <tr class="">
-                                                <td class="hidden-xs">
-                                                    <a href="javascript:void(0);" class="mail-star"><i class="fa fa-star"></i></a>
-                                                </td>
-                                                <td class="text-center width40">
-                                                    <div class="avatar d-block">
-                                                        <img class="avatar" src="assets/images/xs/avatar5.jpg" alt="avatar">
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="from"><a href="javascript:void(0);">Harry McCall</a></div>
-                                                    <div class="text-muted">+264-625-2468</div>
-                                                </td>
-                                                <td class="hidden-xs">
-                                                    <div class="text-muted">susiewillis@info.com</div>
-                                                </td>
-                                                <td class="hidden-sm">
-                                                    <div class="text-muted">19 Ohio St. Snellville, GA 30039</div>                                                
-                                                </td>
-                                                <td class="text-right">
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Phone"><i class="fa fa-phone"></i></a>
-                                                    <a class="btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="Mail"><i class="fa fa-envelope"></i></a>
-                                                    <a class="btn btn-sm btn-link hidden-xs js-sweetalert" data-type="confirm" href="javascript:void(0)" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
-                                                </td>
-                                            </tr>  -->
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="grid" role="tabpanel">
-                        <div class="row row-deck">
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card " >
-                                    <div class="card-body">
-                                        <div class="card-status bg-blue"></div>
-                                        <div class="mb-3"> <img src="assets/images/sm/avatar1.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">Paul Schmidt</h5>
-                                            <p class="text-muted">Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="assets/images/xs/avatar1.jpg" alt="Avatar"></li>
-                                            <li><img src="assets/images/xs/avatar8.jpg" alt="Avatar"></li>
-                                            <li><img src="assets/images/xs/avatar2.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="mb-3"> <img src="assets/images/sm/avatar2.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">Andrew Patrick</h5>
-                                            <p>Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="assets/images/xs/avatar1.jpg" alt="Avatar"></li>
-                                            <li><img src="assets/images/xs/avatar2.jpg" alt="Avatar"></li>
-                                            <li><img src="assets/images/xs/avatar3.jpg" alt="Avatar"></li>
-                                            <li><img src="assets/images/xs/avatar4.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="mb-3"> <img src="assets/images/sm/avatar3.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">Mary Schneider</h5>
-                                            <p>Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="assets/images/xs/avatar1.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card " >
-                                    <div class="card-body">
-                                        <div class="card-status bg-green"></div>
-                                        <div class="mb-3"> <img src="assets/images/sm/avatar4.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">Sean Black</h5>
-                                            <p>Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="assets/images/xs/avatar2.jpg" alt="Avatar"></li>
-                                            <li><img src="assets/images/xs/avatar6.jpg" alt="Avatar"></li>
-                                            <li><img src="assets/images/xs/avatar5.jpg" alt="Avatar"></li>
-                                            <li><img src="assets/images/xs/avatar7.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="mb-3"> <img src="assets/images/sm/avatar5.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">David Wallace</h5>
-                                            <p>Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="assets/images/xs/avatar3.jpg" alt="Avatar"></li>
-                                            <li><img src="assets/images/xs/avatar4.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="card-status bg-pink"></div>
-                                        <div class="mb-3"> <img src="assets/images/sm/avatar6.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">Andrew Patrick</h5>
-                                            <p>Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="assets/images/xs/avatar5.jpg" alt="Avatar"></li>
-                                            <li><img src="assets/images/xs/avatar6.jpg" alt="Avatar"></li>
-                                            <li><img src="assets/images/xs/avatar1.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="mb-3"> <img src="assets/images/sm/avatar2.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">Michelle Green</h5>
-                                            <p>Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="assets/images/xs/avatar8.jpg" alt="Avatar"></li>
-                                            <li><img src="assets/images/xs/avatar7.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="card ">
-                                    <div class="card-body">
-                                        <div class="mb-3"> <img src="assets/images/sm/avatar4.jpg" class="rounded-circle w100" alt=""> </div>
-                                        <div class="mb-2">
-                                            <h5 class="mb-0">Mary Schneider</h5>
-                                            <p>Aalizeethomas@info.com</p>
-                                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt</span>
-                                        </div>
-                                        <span class="font-12 text-muted">Common Contact</span>
-                                        <ul class="list-unstyled team-info margin-0 pt-2">
-                                            <li><img src="assets/images/xs/avatar2.jpg" alt="Avatar"></li>
-                                            <li><img src="assets/images/xs/avatar7.jpg" alt="Avatar"></li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -434,22 +210,24 @@
                                     <div class="card-body">
                                         <div class="row clearfix">
                                         	<form action="teamboardinsert.do" method="post" enctype="multipart/form-data" style="width: 100%;">
+                                        	<input type="hidden" name="team_num" value=1>
+                                        	<input type="hidden" name="tn_writer" value="1">
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="제목을 입력하세요...">
+                                                    <input type="text" class="form-control" name="tn_title" placeholder="제목을 입력하세요...">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="form-group">
-                                                    <textarea type="text" class="form-control" rows="4">Enter your Address</textarea>
+                                                    <textarea class="form-control" name="tn_content" rows="4" placeholder="내용을 입력하세요...."></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
-                                                <input type="file" class="dropify" name="tb_upfile">
+                                                <input type="file" class="dropify" name="upfile">
                                             </div>
                                             <div class="col-lg-12 mt-3">
-                                                <button type="submit" class="btn btn-primary">Add</button>
-                                                <button type="reset" class="btn btn-default">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">등록</button>
+                                                <button type="reset" class="btn btn-default">취소</button>
                                             </div>
                                             </form>
                                         </div>
@@ -461,6 +239,62 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="selecttn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-ml" role="document">
+				<div class="modal-content">
+					<form action="teamboarddelete.do" method="post">
+		    		<div class="modal-header">
+		        		<h5 class="modal-title" id="exampleModalLabel">공지자세히보기</h5>
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		        			<span aria-hidden="true">&times;</span>
+		        		</button>
+		      		</div>
+		      		<div class="modal-body">
+		      		<input type="hidden" name="team_num" value="${ team_num }">
+		      		<input type="hidden" name="user_no" id="user_no" value="">
+		      		<input type="hidden" name="join_num" id="join_num" value="">
+		      		<input type="hidden" name="join_rename_filename" id="join_rename_filename" value="">
+		      		
+                	<div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>제목</label>
+                                <input class="form-control" type="text" name="tntitle" id="tntitle" value="" >
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>작성자</label>
+                                <input class="form-control" type="text" name="tnwriternn" id="tnwriternn" value="" >
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>작성일</label>
+                                <input class="form-control" type="date" name="tndate" id="tndate" value="" >
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>내용</label>
+                                <textarea class="form-control" name="tncontent" id="tncontent"><c:out value="" /></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group filetab">
+                                
+                            </div>
+                        </div>
+                	</div>
+		      		
+		      		</div>
+				  	<div class="modal-footer">
+                       	<button class="btn btn-primary" data-dismiss="modal">닫기</button>
+				    </div>
+					</form>
+				</div>
+			</div>
+		</div>
         <c:import url="/WEB-INF/views/teampage/common/tp_footer.jsp" />
     </div>
 </div>
@@ -496,7 +330,60 @@ $(function() {
             error: 'Désolé, le fichier trop volumineux'
         }
     });
+    
+    $('.tbtable button').on('click', function(){
+   		var tn_no = $(this).data("tn_no");
+   		tn_no = parseInt(tn_no);
+
+        $.ajax({
+            url : 'selectTN.do',
+            type : 'POST',
+            data : {"tn_no" : tn_no},
+            dataType : "json",
+    		success : function(data) {
+    			console.log("success : " + data);
+    			//object ==> string 으로 변환
+    			var jsonStr = JSON.stringify(data);
+    			//string ==> json 객체로 바꿈
+    			var json = JSON.parse(jsonStr);
+    			
+    			var ogfilename = json.list[0].tn_originalfilename
+    			console.log(ogfilename);
+    			var line = "";
+    			
+    			$('#selecttn').modal('show');
+    			$(".modal-body #tntitle").val( json.list[0].tn_title );
+    			$(".modal-body #tnwriternn").val( json.list[0].tn_writer );
+    			$(".modal-body #tndate").val( json.list[0].tn_date );
+    			$(".modal-body #tncontent").val( json.list[0].tn_content );
+    			
+    			if(ogfilename != null){
+    				line += '<label>첨부 파일</label><br>';
+    				line += '<c:url var="tnd" value="/tndown.do">';
+    				line += '<c:param name="ofile" value="' + json.list[0].tn_originalfilename + '"/>';
+    				line += '<c:param name="rfile" value="' + json.list[0].tn_renamefilename + '"/>';
+    				line += '</c:url>';
+    				line += '<a href="${ tnd }"></a>';
+    				console.log(line);
+    				$('.modal-body .filetab').html(line);
+        			$('.modal-body a').text( json.list[0].tn_originalfilename )
+    			}else{
+    				line += '<label>첨부 파일</label>';
+    				line += '등록된 파일이 없습니다';
+    				console.log(line);
+    				$(".modal-body #filetab").html(line);
+    			}
+	
+    		},
+    		error : function(jqXHR, textstatus, errorthrown) {
+    			console.log("error : " + jqXHR + ", " + textstatus + ", "
+    					+ errorthrown);
+    		}
+    	}); //ajax
+   	});
 });
+
+
 </script>
 </body>
 

@@ -12,7 +12,7 @@
 
 <link rel="icon" href="${ pageContext.servletContext.contextPath }/resources/team_page/images/favicon.ico" type="image/x-icon" />
 
-<title>:: Soccer :: Project Dashboard</title>
+<title>팀 일정</title>
 
 <!-- Bootstrap Core and vandor -->
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/bootstrap/css/bootstrap.min.css" />
@@ -42,166 +42,10 @@
 						<div class="left">
 							<a href="javascript:void(0)" class="icon menu_toggle mr-3"><i
 								class="fa  fa-align-left"></i></a>
-							<h1 class="page-title">Dashboard</h1>
+							<h1 class="page-title">팀 캘린더</h1>
 						</div>
 						<div class="right">
-							<div class="input-icon xs-hide mr-4">
-								<input type="text" class="form-control"
-									placeholder="Search for..."> <span
-									class="input-icon-addon"><i class="fa fa-search fa-2"></i></span>
-							</div>
 							<div class="notification d-flex">
-								<div class="dropdown d-flex">
-									<a
-										class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2"
-										data-toggle="dropdown"><i class="fa fa-envelope"></i><span
-										class="badge badge-success nav-unread"></span></a>
-									<div
-										class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-										<ul class="right_chat list-unstyled w350 p-0">
-											<li class="online"><a href="javascript:void(0);"
-												class="media"> <img class="media-object"
-													src="assets/images/xs/avatar4.jpg" alt="">
-													<div class="media-body">
-														<span class="name">Donald Gardner</span>
-														<div class="message">It is a long established fact
-															that a reader</div>
-														<small>11 mins ago</small> <span
-															class="badge badge-outline status"></span>
-													</div>
-											</a></li>
-											<li class="online"><a href="javascript:void(0);"
-												class="media"> <img class="media-object "
-													src="assets/images/xs/avatar5.jpg" alt="">
-													<div class="media-body">
-														<span class="name">Wendy Keen</span>
-														<div class="message">There are many variations of
-															passages of Lorem Ipsum</div>
-														<small>18 mins ago</small> <span
-															class="badge badge-outline status"></span>
-													</div>
-											</a></li>
-											<li class="offline"><a href="javascript:void(0);"
-												class="media"> <img class="media-object "
-													src="assets/images/xs/avatar2.jpg" alt="">
-													<div class="media-body">
-														<span class="name">Matt Rosales</span>
-														<div class="message">Contrary to popular belief,
-															Lorem Ipsum is not simply</div>
-														<small>27 mins ago</small> <span
-															class="badge badge-outline status"></span>
-													</div>
-											</a></li>
-											<li class="online"><a href="javascript:void(0);"
-												class="media"> <img class="media-object "
-													src="assets/images/xs/avatar3.jpg" alt="">
-													<div class="media-body">
-														<span class="name">Phillip Smith</span>
-														<div class="message">It has roots in a piece of
-															classical Latin literature from 45 BC</div>
-														<small>33 mins ago</small> <span
-															class="badge badge-outline status"></span>
-													</div>
-											</a></li>
-										</ul>
-										<div class="dropdown-divider"></div>
-										<a href="javascript:void(0)"
-											class="dropdown-item text-center text-muted-dark readall">Mark
-											all as read</a>
-									</div>
-								</div>
-								<div class="dropdown d-flex">
-									<a
-										class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2"
-										data-toggle="dropdown"><i class="fa fa-bell"></i><span
-										class="badge badge-primary nav-unread"></span></a>
-									<div
-										class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-										<ul class="list-unstyled feeds_widget">
-											<li>
-												<div class="feeds-left">
-													<i class="fa fa-check"></i>
-												</div>
-												<div class="feeds-body">
-													<h4 class="title text-danger">
-														Issue Fixed <small class="float-right text-muted">11:05</small>
-													</h4>
-													<small>WE have fix all Design bug with Responsive</small>
-												</div>
-											</li>
-											<li>
-												<div class="feeds-left">
-													<i class="fa fa-user"></i>
-												</div>
-												<div class="feeds-body">
-													<h4 class="title">
-														New User <small class="float-right text-muted">10:45</small>
-													</h4>
-													<small>I feel great! Thanks team</small>
-												</div>
-											</li>
-											<li>
-												<div class="feeds-left">
-													<i class="fa fa-thumbs-o-up"></i>
-												</div>
-												<div class="feeds-body">
-													<h4 class="title">
-														7 New Feedback <small class="float-right text-muted">Today</small>
-													</h4>
-													<small>It will give a smart finishing to your site</small>
-												</div>
-											</li>
-											<li>
-												<div class="feeds-left">
-													<i class="fa fa-question-circle"></i>
-												</div>
-												<div class="feeds-body">
-													<h4 class="title text-warning">
-														Server Warning <small class="float-right text-muted">10:50</small>
-													</h4>
-													<small>Your connection is not private</small>
-												</div>
-											</li>
-											<li>
-												<div class="feeds-left">
-													<i class="fa fa-shopping-cart"></i>
-												</div>
-												<div class="feeds-body">
-													<h4 class="title">
-														7 New Orders <small class="float-right text-muted">11:35</small>
-													</h4>
-													<small>You received a new oder from Tina.</small>
-												</div>
-											</li>
-										</ul>
-										<div class="dropdown-divider"></div>
-										<a href="javascript:void(0)"
-											class="dropdown-item text-center text-muted-dark readall">Mark
-											all as read</a>
-									</div>
-								</div>
-								<div class="dropdown d-flex">
-									<a
-										class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2"
-										data-toggle="dropdown"><i class="fa fa-user"></i></a>
-									<div
-										class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-										<a class="dropdown-item" href="page-profile.html"><i
-											class="dropdown-icon fe fe-user"></i> Profile</a> <a
-											class="dropdown-item" href="app-setting.html"><i
-											class="dropdown-icon fe fe-settings"></i> Settings</a> <a
-											class="dropdown-item" href="javascript:void(0)"><span
-											class="float-right"><span class="badge badge-primary">6</span></span><i
-											class="dropdown-icon fe fe-mail"></i> Inbox</a> <a
-											class="dropdown-item" href="javascript:void(0)"><i
-											class="dropdown-icon fe fe-send"></i> Message</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="javascript:void(0)"><i
-											class="dropdown-icon fe fe-help-circle"></i> Need help?</a> <a
-											class="dropdown-item" href="login.html"><i
-											class="dropdown-icon fe fe-log-out"></i> Sign out</a>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -244,69 +88,34 @@
 	                <h4 class="modal-title">새로운 일정</h4>
 	            </div>
 	            <div class="modal-body">
-	                <div class="row">
-                            <div class="col-md-12">
-                                <label class="col-md-4" for="edit-allDay">하루종일</label>
-                                <input class='allDayNewEvent' id="edit-allDay" type="checkbox"></label>
-                            </div>
-                        </div>
                    	<div class="row">
                         <div class="col-md-12">
-                            <label class="col-md-4" for="edit-title">일정명</label>
-                            <input class="inputModal" type="text" name="edit-title" id="edit-title"
-                                required="required" />
+                            <label class="col-md-4" for="event-name">일정명</label>
+                            <input class="inputModal" type="text" name="event-name" id="event-name" required/>
                         </div>
                    	</div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label class="col-md-4" for="edit-start">시작</label>
-                            <input class="inputModal" type="date" name="edit-start" id="edit-start" />
+                            <label class="col-md-4" for="event-start">시작</label>
+                            <input class="inputModal" type="date" name="event-start" id="event-start" required/>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label class="col-md-4" for="edit-end">끝</label>
-                            <input class="inputModal" type="date" name="edit-end" id="edit-end" />
+                            <label class="col-md-4" for="event-end">끝</label>
+                            <input class="inputModal" type="date" name="event-end" id="event-end" required/>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label class="col-md-4" for="edit-type">구분</label>
-                            <select class="inputModal" type="text" name="edit-type" id="edit-type">
-                                <option value="카테고리1">카테고리1</option>
-                                <option value="카테고리2">카테고리2</option>
-                                <option value="카테고리3">카테고리3</option>
-                                <option value="카테고리4">카테고리4</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label class="col-md-4" for="edit-color">색상</label>
-                            <select class="inputModal" name="color" id="edit-color">
-                                <option value="#D25565" style="color:#D25565;">빨간색</option>
-                                <option value="#9775fa" style="color:#9775fa;">보라색</option>
-                                <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
-                                <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
-                                <option value="#f06595" style="color:#f06595;">핑크색</option>
-                                <option value="#63e6be" style="color:#63e6be;">연두색</option>
-                                <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
-                                <option value="#4d638c" style="color:#4d638c;">남색</option>
-                                <option value="#495057" style="color:#495057;">검정색</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label class="col-md-4" for="edit-desc">설명</label>
-                            <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
-                                id="edit-desc"></textarea>
+                            <label class="col-md-4" for="event-desc">설명</label>
+                            <textarea rows="4" cols="50" class="inputModal" name="event-desc" id="event-desc"></textarea>
                         </div>
                     </div>
 	            </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary" id="updateEvent">저장</button>
+                	<button type="button" class="btn btn-primary" id="saveEvent">저장</button>
+                    <button type="reset" class="btn btn-default" data-dismiss="modal">닫기</button>
                 </div>
 	        </div>
 	    </div>
@@ -318,42 +127,277 @@
 	            <div class="modal-header">
 	                <h4 class="modal-title">일정 수정</h4>
 	            </div>
+	            <form class="caleditform">
+	            <input type="hidden" name="cal_no">
+	            <input type="hidden" name="cal_writer">
 	            <div class="modal-body">
 	                <div class="row">
 	                    <div class="col-md-6">
 	                        <div class="form-group">
-	                            <label>Event Name</label>
-	                            <input class="form-control" name="event-name" type="text" />
+	                            <label>제목</label>
+	                            <input class="form-control" name="event-title" type="text" value=""/>
 	                        </div>
 	                    </div>
 	                    <div class="col-md-6">
 	                        <div class="form-group">
-	                            <label>Event Type</label>
-	                            <select name="event-bg" class="form-control">
-	                                <option value="success">Success</option>
-	                                <option value="danger">Danger</option>
-	                                <option value="info">Info</option>
-	                                <option value="primary">Primary</option>
-	                                <option value="warning">Warning</option>
-	                            </select>
+	                            <label>시작</label>
+	                            <input class="form-control" name="event-start" type="date" value=""/>
+	                        </div>
+	                    </div>
+	                    <div class="col-md-6">
+	                        <div class="form-group">
+	                            <label>끝</label>
+	                            <input class="form-control" name="event-end" type="date" value=""/>
+	                        </div>
+	                    </div>
+	                    <div class="col-md-6">
+	                        <div class="form-group">
+	                            <label>내용</label>
+	                            <input class="form-control" name="event-detail" type="text" value=""/>
 	                        </div>
 	                    </div>
 	                </div>
 	            </div>
 	            <div class="modal-footer">
-	                <button class="btn mr-auto delete-btn btn-danger">삭제</button>
-	                <button class="btn save-btn btn-success">저장</button>
-	                <button class="btn btn-default" data-dismiss="modal">닫기</button>
+	                <button type="button" class="updateCalendar btn mr-auto btn-danger">수정</button>
+                    <button type="button" class="deleteCalendar btn btn-primary">삭제</button>
+	                <button type="reset" class="btn btn-default" data-dismiss="modal">닫기</button>
 	            </div>
+	            </form>
 	        </div>
 	    </div>
 	</div>
-	<script src="${ pageContext.servletContext.contextPath }/resources/team_page/bundles/lib.vendor.bundle.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/team_page/bundles/lib.vendor.bundle.js"></script>
 
-	<script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/core.js"></script>
-	<script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/page/calendar.js"></script>
-	<!-- fullcalendar js -->
-	<script src="${ pageContext.servletContext.contextPath }/resources/team_page/bundles/fullcalendar.bundle.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/core.js"></script>
+<%-- <script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/page/calendar.js"></script> --%>
+<!-- fullcalendar js -->
+<script src="${ pageContext.servletContext.contextPath }/resources/team_page/bundles/fullcalendar.bundle.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/page/moment.min.js"></script>
+<script>
+$(function() {
+	var eventlist;
+	var team_num = ${team_num};
+	$.ajax({
+		url: "selectcalendarlist.do",
+		async: false,
+		type: "post",
+		data: {"team_num" : team_num},
+		dataType : "json",
+		success: function(data){
+			console.log("success : " + data);
+			var jsonStr = JSON.stringify(data);
+			var json = JSON.parse(jsonStr);
+			eventlist = json.clist;
+		},
+		error : function(jqXHR, textstatus, errorthrown) {
+			console.log("error : " + jqXHR + ", " + textstatus + ", " + errorthrown);
+    	}
+	}); //ajax
+
+    $(".save-event").on('click', function() {
+        var categoryName = $('#addNewEvent form').find("input[name='category-name']").val();
+        var categoryColor = $('#addNewEvent form').find("select[name='category-color']").val();
+        if (categoryName !== null && categoryName.length != 0) {
+            $('#event-list').append('<div class="fc-event bg-' + categoryColor + '" data-class="bg-' + categoryColor + '">' + categoryName + '</div>');
+            $('#addNewEvent form').find("input[name='category-name']").val("");
+            $('#addNewEvent form').find("select[name='category-color']").val("");
+            enableDrag();
+        }
+    });
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+    var current = yyyy + '-' + mm + '-';
+    var calendar = $('#calendar');
+    // Add direct event to calendar
+    var newEvent = function(start) {
+        $('#addDirectEvent input[name="event-name"]').val("");
+		$('#addDirectEvent input[name="event-start"]').val("");
+		$('#addDirectEvent input[name="event-end"]').val("");
+		$('#addDirectEvent textarea[name="event-desc"]').val("");
+        $('#addDirectEvent').modal('show');
+        $('#addDirectEvent #saveEvent').unbind();
+        $('#addDirectEvent #saveEvent').on('click', function() {
+        	var team_num = ${team_num};
+			var cal_writer = 1;
+            var cal_title = $('#addDirectEvent input[name="event-name"]').val();
+            var cal_startdate = $('#addDirectEvent input[name="event-start"]').val();
+			var cal_enddate = $('#addDirectEvent input[name="event-end"]').val();
+			var cal_detail = $('#addDirectEvent textarea[name="event-desc"]').val();
+			var eventData = {
+				title: cal_title,
+				start: cal_startdate,
+				end: cal_enddate,
+				cal_writer: cal_writer,
+				team_num: team_num,
+				cal_detail: cal_detail
+			}
+			
+			if (eventData.start > eventData.end){
+				alert('끝나는 날짜가 앞설 수 없습니다.');
+				return false;
+			}
+			
+			if (eventData.title === ''){
+				alert("일정명은 필수입니다.");
+				return false;
+			}
+			
+			eventData.start = moment(eventData.start).format('YYYY-MM-DD');
+			eventData.end = moment(eventData.end).add(1, 'days').format('YYYY-MM-DD');
+			
+            calendar.fullCalendar('renderEvent', eventData, true);
+            $('#addDirectEvent').modal('hide');
+			
+			$.ajax({
+				type: "post",
+				url: "insertCalendar.do",
+				data: eventData,
+				dataType: "json",
+				success: function(result){
+					var jsonStr = JSON.stringify(result);
+					if(jsonStr === "insert error"){
+						alert("일정 저장 실패함.");
+					}
+					location.href="moveTPcalendar.do?team_num=" + team_num;
+				},
+				error: function(jqXHR, textstatus, errorthrown) {
+    			console.log("error : " + jqXHR + ", " + textstatus + ", "
+    					+ errorthrown);
+    			}
+			});
+			
+        });
+    }
+    // initialize the calendar
+    calendar.fullCalendar({
+        header: {
+	                left   : 'today, prevYear, nextYear',
+	                center : 'prev, title, next',
+	                right  : 'month, agendaWeek, agendaDay, listWeek'
+	            },
+        editable: false,
+		locale: 'ko',
+        droppable: true,
+        eventLimit: true, // allow "more" link when too many events
+        selectable: true,
+        eventRender: function(eventObj, $el) {
+	      $el.popover({
+	        title: eventObj.title,
+	        content: '작성자 : ' + eventObj.username + '<br>' + '내용 : ' + eventObj.description,
+	        trigger: 'hover',
+	        placement: 'top',
+	        container: 'body',
+	        html: true
+	      });
+    	},
+		events: eventlist,
+        select: function(start, end, allDay) {
+            newEvent(start);
+        },
+        eventClick: function(calEvent, jsEvent, view) {
+            //var title = prompt('Event Title:', calEvent.title, { buttons: { Ok: true, Cancel: false} });
+            var eventModal = $('#eventEditModal');
+            eventModal.modal('show');
+            eventModal.find('input[name="cal_no"]').val(calEvent._id);
+            eventModal.find('input[name="cal_writer"]').val(calEvent.cal_writer);
+            eventModal.find('input[name="event-title"]').val(calEvent.title);
+            var startdate = new Date(calEvent.start);
+            var enddate = new Date(calEvent.end);
+            eventModal.find('input[name="event-start"]').val(dateFormat(startdate));
+            eventModal.find('input[name="event-end"]').val(dateFormat(enddate));
+            eventModal.find('input[name="event-detail"]').val(calEvent.description);
+            // if (title){
+            //     calEvent.title = title;
+            //     calendar.fullCalendar('updateEvent',calEvent);
+            // }
+        }
+    });
+    function dateFormat(date) {
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let hour = date.getHours();
+        let minute = date.getMinutes();
+        let second = date.getSeconds();
+
+        month = month >= 10 ? month : '0' + month;
+        day = day >= 10 ? day : '0' + day;
+        hour = hour >= 10 ? hour : '0' + hour;
+        minute = minute >= 10 ? minute : '0' + minute;
+        second = second >= 10 ? second : '0' + second;
+
+        return date.getFullYear() + '-' + month + '-' + day;
+	}
+    $('#eventEditModal .deleteCalendar').on('click', function(){
+    	var id = $('#eventEditModal input[name="cal_no"]').val();
+    	var team_num = ${team_num};
+    	$.ajax({
+    		url: "deleteCalendar.do",
+    		type: "post",
+    		data: {"cal_no" : id},
+    		success: function(result){
+    			var jsonStr = JSON.stringify(result);
+				if(jsonStr === "delete error"){
+					alert("일정 삭제 실패함.");
+				}
+				location.href="moveTPcalendar.do?team_num=" + team_num;
+    		},
+    		error : function(jqXHR, textstatus, errorthrown) {
+    			console.log("error : " + jqXHR + ", " + textstatus + ", " + errorthrown);
+        	}
+    	}); //ajax
+    });
+    //일정수정용
+    $('#eventEditModal .updateCalendar').on('click', function(){
+    	var calno = $('#eventEditModal input[name="cal_no"]').val();
+    	var calwriter = $('#eventEditModal input[name="cal_writer"]').val();
+    	var caltitle = $('#eventEditModal input[name="event-title"]').val();
+    	console.log(caltitle);
+    	var teamnum = ${team_num};
+    	var calstartdate = $('#eventEditModal input[name="event-start"]').val();
+    	var calenddate = $('#eventEditModal input[name="event-end"]').val();
+    	var caldetail = $('#eventEditModal input[name="event-detail"]').val();
+    	
+    	//객체생성
+    	var Calendar = {
+    			cal_no: calno,
+    			team_num: teamnum,
+    			cal_title: caltitle,
+    			cal_writer: calwriter,
+    			cal_startdate: calstartdate,
+    			cal_enddate: calenddate,
+    			cal_detail: caldetail
+    	};
+    	//date 변환
+    	Calendar.cal_startdate = moment(Calendar.cal_startdate).format('YYYY-MM-DD');
+    	Calendar.cal_enddate = moment(Calendar.cal_enddate).add(1, 'days').format('YYYY-MM-DD');
+    	console.log(Calendar);
+    	$.ajax({
+    		url: "updateCalendar.do",
+    		type: "post",
+    		data: Calendar,
+    		success: function(result){
+    			var jsonStr = JSON.stringify(result);
+				if(jsonStr === "update error"){
+					alert("일정 수정 실패함.");
+				}
+				location.href="moveTPcalendar.do?team_num=" + teamnum;
+    		},
+    		error : function(jqXHR, textstatus, errorthrown) {
+    			console.log("error : " + jqXHR + ", " + textstatus + ", " + errorthrown);
+        	}
+    	}); //ajax
+    });
+});
+</script>
 </body>
 <!-- soccer/project/index.html  07 Jan 2020 03:37:47 GMT -->
 </html>
