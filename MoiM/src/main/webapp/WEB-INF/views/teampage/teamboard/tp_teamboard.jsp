@@ -251,10 +251,6 @@
 		      		</div>
 		      		<div class="modal-body">
 		      		<input type="hidden" name="team_num" value="${ team_num }">
-		      		<input type="hidden" name="user_no" id="user_no" value="">
-		      		<input type="hidden" name="join_num" id="join_num" value="">
-		      		<input type="hidden" name="join_rename_filename" id="join_rename_filename" value="">
-		      		
                 	<div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
@@ -347,9 +343,8 @@ $(function() {
     			//string ==> json 객체로 바꿈
     			var json = JSON.parse(jsonStr);
     			
-    			var ogfilename = json.list[0].tn_originalfilename
-    			console.log(ogfilename);
-    			var line = "";
+    			var ogfilename = json.list[0].tn_originalfilename;
+    			var rnfilename = json.list[0].tn_renamefilename;
     			
     			$('#selecttn').modal('show');
     			$(".modal-body #tntitle").val( json.list[0].tn_title );
@@ -358,18 +353,14 @@ $(function() {
     			$(".modal-body #tncontent").val( json.list[0].tn_content );
     			
     			if(ogfilename != null){
-    				line += '<label>첨부 파일</label><br>';
-    				line += '<c:url var="tnd" value="/tndown.do">';
-    				line += '<c:param name="ofile" value="' + json.list[0].tn_originalfilename + '"/>';
-    				line += '<c:param name="rfile" value="' + json.list[0].tn_renamefilename + '"/>';
-    				line += '</c:url>';
-    				line += '<a href="${ tnd }"></a>';
+    				var line = '<label>첨부 파일</label><br>'+'<a href="tndown.do?ofile='+ogfilename+'&'+'rfile='+rnfilename+'"></a>';
     				console.log(line);
     				$('.modal-body .filetab').html(line);
         			$('.modal-body a').text( json.list[0].tn_originalfilename )
+        			$('.modal-body #ofile').val(ogfilename);
+        			$('.modal-body #rfile').val(rnfilename);
     			}else{
-    				line += '<label>첨부 파일</label>';
-    				line += '등록된 파일이 없습니다';
+    				var line = '<label>첨부 파일</label><br>등록된 파일이 없습니다';
     				console.log(line);
     				$(".modal-body #filetab").html(line);
     			}
@@ -382,10 +373,7 @@ $(function() {
     	}); //ajax
    	});
 });
-
-
 </script>
 </body>
-
 <!-- soccer/project/app-contact.html  07 Jan 2020 03:40:35 GMT -->
 </html>
