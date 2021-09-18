@@ -193,7 +193,7 @@
 															<c:param name="tn_renamefilename" value="${itblist.tn_renamefilename }" />
 														</c:if>
 												    </c:url>
-												    <a href="${ deletetb }">[글삭제]</a>                                             
+												    <button class="btn btn-primary" onclick="javascript:location.href='${ deletetb }';">글삭제</button>                                         
                                                 </td>
                                             </tr>
                                             </c:forEach>
@@ -281,8 +281,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12">
-                            <div class="form-group" id="filetab">
-                                <label>첨부 파일</label>
+                            <div class="form-group filetab">
                                 
                             </div>
                         </div>
@@ -343,30 +342,36 @@ $(function() {
             dataType : "json",
     		success : function(data) {
     			console.log("success : " + data);
-    			
     			//object ==> string 으로 변환
     			var jsonStr = JSON.stringify(data);
     			//string ==> json 객체로 바꿈
     			var json = JSON.parse(jsonStr);
     			
     			var ogfilename = json.list[0].tn_originalfilename
+    			console.log(ogfilename);
     			var line = "";
-    			if(ogfilename != null){
-    				line += "<c:url var='ubf' value='/bfdown.do'><c:param name='ofile' value=''/><c:param name='rfile' value=''/></c:url>";
-    				line += "<a href='${ ubf }'></a>"
-    			}else{
-    				line += "&nbsp;"
-    			}
+    			
     			$('#selecttn').modal('show');
     			$(".modal-body #tntitle").val( json.list[0].tn_title );
     			$(".modal-body #tnwriternn").val( json.list[0].tn_writer );
     			$(".modal-body #tndate").val( json.list[0].tn_date );
     			$(".modal-body #tncontent").val( json.list[0].tn_content );
-    			$(".modal-body #filetab").append(line);
+    			
     			if(ogfilename != null){
-    				$(".modal-body c:param[name=ofile]").val( json.list[0].tn_originalfilename );
-        			$(".modal-body c:param[name=rfile]").val( json.list[0].tn_renamefilename );
-        			$(".modal-body a").val( json.list[0].tn_originalfilename )
+    				line += '<label>첨부 파일</label><br>';
+    				line += '<c:url var="tnd" value="/tndown.do">';
+    				line += '<c:param name="ofile" value="' + json.list[0].tn_originalfilename + '"/>';
+    				line += '<c:param name="rfile" value="' + json.list[0].tn_renamefilename + '"/>';
+    				line += '</c:url>';
+    				line += '<a href="${ tnd }"></a>';
+    				console.log(line);
+    				$('.modal-body .filetab').html(line);
+        			$('.modal-body a').text( json.list[0].tn_originalfilename )
+    			}else{
+    				line += '<label>첨부 파일</label>';
+    				line += '등록된 파일이 없습니다';
+    				console.log(line);
+    				$(".modal-body #filetab").html(line);
     			}
 	
     		},

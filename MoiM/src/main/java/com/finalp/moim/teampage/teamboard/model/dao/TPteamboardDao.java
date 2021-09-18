@@ -36,4 +36,8 @@ public class TPteamboardDao {
 		// TODO Auto-generated method stub
 		return session.insert("teamboardMapper.insertTeamBoard", teamboard);
 	}
+	public ArrayList<TeamBoard> selectBoardTopList(int team_num) {
+		List<TeamBoard> list = session.selectList("teamboardMapper.selectBoardTopList", team_num);
+		return (ArrayList<TeamBoard>)list;
+	}
 }

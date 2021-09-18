@@ -5,7 +5,7 @@
 <mapper namespace="userinfoMapper">
 
 	<!-- Board 객체에 대한 정보 -->
-	<resultMap id="resultBoard" type="UserInfo">
+	<resultMap id="resultUser" type="UserInfo">
 		<id column="user_no" property="user_no"/>
 		<result column="user_id" property="user_id"/>
 		<result column="user_nn" property="user_nn"/>
@@ -21,4 +21,9 @@
 		<result column="admin" property="admin"/>
 	</resultMap>
 
+	<!-- 비밀번호 암호화를 사용하지 않는 로그인(임시) -->
+	<select id="selectLogin" parameterType="UserInfo" resultMap="resultUser">
+		select * from user_info
+		where user_id = #{ user_id }
+	</select>
 </mapper>

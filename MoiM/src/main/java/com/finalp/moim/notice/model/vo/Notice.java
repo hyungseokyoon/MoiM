@@ -2,6 +2,8 @@ package com.finalp.moim.notice.model.vo;
 
 import java.sql.Date;
 
+import com.finalp.moim.userinfo.model.vo.UserInfo;
+
 public class Notice implements java.io.Serializable {
 	private static final long serialVersionUID = 1000L;
 
@@ -12,6 +14,9 @@ public class Notice implements java.io.Serializable {
 	private Date notice_date;
 	private String notice_original_filename;
 	private String notice_rename_filename;
+	
+	// DI
+	private UserInfo userVO;
 	
 	public Notice() {}
 
@@ -81,6 +86,14 @@ public class Notice implements java.io.Serializable {
 
 	public void setNotice_rename_filename(String notice_rename_filename) {
 		this.notice_rename_filename = notice_rename_filename;
+	}
+	
+	public UserInfo getUserVO() {
+		return userVO;
+	}
+
+	public void setUserVO(UserInfo userVO) {
+		this.userVO = userVO;
 	}
 
 	public static long getSerialversionuid() {

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.finalp.moim.teampage.teamboard.model.service.TPteamboardService;
 import com.finalp.moim.teampage.teamboard.model.vo.TeamBoard;
@@ -35,11 +36,7 @@ public class TPteamboardController {
 	public String moveTPTeamboardPage(@RequestParam("team_num") int team_num, Model model) {
 		ArrayList<TeamBoard> tblist = tpteamboardService.selectTeamBoardList(team_num);
 		if (tblist != null) {	
-			for(TeamBoard tb : tblist) {
-				System.out.println(tb.toString());
-			}
 			int tblistlength = tblist.size();
-			System.out.println(tblistlength);
 			model.addAttribute("tblistlength", tblistlength);
 			model.addAttribute("tblist", tblist);
 			return "teampage/teamboard/tp_teamboard";
@@ -147,21 +144,43 @@ public class TPteamboardController {
 	}
 	
 	@RequestMapping("teamboarddelete.do")
-	public String teamboardDeleteMethod(@RequestParam("tn_no") int tn_no, 
-			@RequestParam(name="tn_renamefilename", required=false) String tn_renamefilename, 
-			@RequestParam("team_num") int team_num, 
+	public String teamboardDeleteMethod(@RequestParam("tn_no") String tnno,  
+			@RequestParam("team_num") String teamnum, 
+			@RequestParam(name="tn_renamefilename", required=false) String tn_renamefilename,
 			HttpServletRequest request, Model model) {
-		if (tpteamboardService.deleteTeamBoard(tn_no) > 0) {
-			// 글삭제 성공하면 저장폴더에 첨부파일도 삭제 처리
-			if (tn_renamefilename != null) {
-				new File(request.getSession().getServletContext().getRealPath("resources/team_page/teamboard_upfiles") + "\\"
-						+ tn_renamefilename).delete();
-			}
+	  System.out.println(tnno);
+	  System.out.println(teamnum);
+	  int tn_no = Integer.parseInt(tnno);
+	  int team_num = Integer.parseInt(teamnum);
+		
+	  if (tpteamboardService.deleteTeamBoard(tn_no) > 0) { // 글삭제 성공하면 저장폴더에 첨부파일도 삭제 처리 
+		  if (tn_renamefilename != null) { 
+			  new File(request.getSession().getServletContext().getRealPath("resources/team_page/teamboard_upfiles") + "\\" +
+					  	tn_renamefilename).delete(); 
+		  }
+	  
+		  	  return "redirect: moveTPteamboard.do?team_num=" + team_num; 
+	  } else {
+			  model.addAttribute("message", "글 삭제 실패."); 
+			  return "common/error"; 
+	  }
+	}
+	
+	// 첨부파일 다운로드 요청 처리용
+	@RequestMapping("tndown.do")
+	public ModelAndView fileDownMethod(HttpServletRequest request, @RequestParam("ofile") String originFileName,
+			@RequestParam("rfile") String renameFileName, ModelAndView mv) {
 
-			return "redirect: moveTPteamboard.do?team_num=" + team_num;
-		} else {
-			model.addAttribute("message", "글 삭제 실패.");
-			return "common/error";
-		}
+		String savePath = request.getSession().getServletContext().getRealPath("resources/team_page/teamboard_upfiles");
+		// 저장 폴더에서 파일 읽기 위해 경로 포함
+		File renameFile = new File(savePath + "\\" + renameFileName);
+		// response 에 다운 파일명 등록용 (경로 제외)
+		File originalFile = new File(originFileName);
+
+		mv.setViewName("filedown");
+		mv.addObject("renameFile", renameFile);
+		mv.addObject("originalFile", originalFile);
+
+		return mv;
 	}
 }

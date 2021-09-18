@@ -17,12 +17,13 @@
 		<typeAlias type="com.finalp.moim.common.SearchDate" alias="SearchDate"/>
 
 
-		<typeAlias type="com.finalp.moim.file.model.vo.TFile" alias="TFile" />	
+		<typeAlias type="com.finalp.moim.teampage.file.model.vo.TFile" alias="TFile" />	
 
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.Field" alias="Field"/>
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.JoinWaiting" alias="JoinWaiting"/>
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.Team" alias="Team"/>
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.TeamMember" alias="TeamMember"/>
+		<typeAlias type="com.finalp.moim.teampage.common.model.vo.Alert" alias="Alert"/>
 		<typeAlias type="com.finalp.moim.userinfo.model.vo.UserInfo" alias="UserInfo"/>
 		
 		<typeAlias type="com.finalp.moim.teampage.teamboard.model.vo.TeamBoard" alias="TeamBoard"/>

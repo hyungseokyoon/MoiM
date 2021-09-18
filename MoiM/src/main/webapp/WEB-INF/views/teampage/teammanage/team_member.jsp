@@ -75,8 +75,8 @@
 	                            </div>
                                 <div class="table-responsive" id="users" style="height: 165px;">
                                     <table class="table table-hover table-vcenter text-nowrap table_custom border-style list">
-                       					<tbody>
-                      						<tr class="text-center">
+                       					<thead>
+                       						<tr class="text-center">
                                                 <td>
                                                     <div class="text-muted">아이디</div>
                                                 </td>
@@ -95,6 +95,8 @@
                                                 <td class="text-center" width="150px">
                                                 </td>
                                             </tr>
+                       					</thead>
+                       					<tbody>
                        						<c:forEach items="${ joinlist }" var="joinlist">
                        							<input type="hidden" name="join_num" id="join_num" value="${ joinlist.join_num }">
 	                                    		<tr class="joininfo">
@@ -136,7 +138,7 @@
 							        			<span aria-hidden="true">&times;</span>
 							        		</button>
 							      		</div>
-							      		<div class="modal-body">
+							      		<div class="modal-body" id="joinmemberdiv">
 							      		<input type="hidden" name="team_num" value="${ team_num }">
 							      		<input type="hidden" name="user_no" id="user_no" value="">
 							      		<input type="hidden" name="join_num" id="join_num" value="">
@@ -189,14 +191,14 @@
 							      		
 							      		</div>
 									  	<div class="modal-footer">
-				                        	<button type="submit" class="btn btn-primary">수락</button>
+				                        	<button type="submit" class="btn btn-primary btn-lg" style="position: relative; left: -20px; z-index: 1;">수락</button>
 									    </div>
 										</form>
-										<form action="tjdelete.do" method="post">
-										<div id="deletefooter" style="position: relative; top: -49px;">
+										<form action="tjdelete.do" method="post" style="position: relative; top: -53px;">
+										<div id="deletefooter">
 											<input type="hidden" name="join_num" id="join_num" value="">
 											<input type="hidden" name="team_num" id="team_num" value="${ team_num }">
-											<button type="submit" class="btn btn-primary" style="position: relative; left: 350px;">거절</button>
+											<button type="submit" class="btn btn-primary btn-lg" style="position: relative; left: 310px; z-index: 1;">거절</button>
 										</div>
 										</form>
 									</div>
@@ -209,8 +211,8 @@
                             </div>
                                 <div class="table-responsive" id="users" style="height: 550px;">
                                     <table class="table table-hover table-vcenter text-nowrap table_custom border-style list">
-                                        <tbody>
-                                            <tr class="text-center">
+                                        <thead>
+                                        	<tr class="text-center">
                                                 <td>
                                                     <div class="text-muted">아이디</div>
                                                 </td>
@@ -235,8 +237,10 @@
                                                 <td class="text-center" width="250px">
                                                 </td>
                                             </tr>
+                                        </thead>
+                                        <tbody>
                        						<c:forEach items="${ memberlist }" var="memberlist">
-	                                    		<tr class="">
+	                                    		<tr class="memberlist">
 	                                                <td>
 	                                                    <div class="text-center">${ memberlist.userVO.user_id }</div>
 	                                                </td>
@@ -253,14 +257,18 @@
 	                                                    <div class="text-muted">${ memberlist.userVO.email }</div>
 	                                                </td>
 	                                                <td>
-	                                                    <div class="text-center">${ memberlist.team_member_rank }</div>
+	                                                    <div class="text-center">${ memberlist.team_member_leader }</div>
 	                                                </td>
 	                                                <td class="hidden-ms">
 	                                                    <div class="text-muted">${ memberlist.team_member_date }</div>
 	                                                </td>
 	                                                <td class="text-center">
-	                                                    <button class="btn btn-primary" style="margin-right: 15px;"><font style="vertical-align: inherit;">등급 변경</font></button>
-	                                                    <button class="btn btn-primary"><font style="vertical-align: inherit;">회원 강퇴</font></button>
+	                                                    <button type="button" class="open-changerank btn btn-primary" id="rankchange" data-toggle="modal" data-target="#changerankmodal" data-team_member_no="${ memberlist.team_member_no }">
+	                                                    	<font style="vertical-align: inherit;">팀장 위임</font>
+	                                                    </button>
+	                                                    <button type="button" class="open-deletemember btn btn-primary" id="memberdelete" data-toggle="modal" data-target="#deletemembermodal" data-team_member_no="${ memberlist.team_member_no }">
+	                                                    	<font style="vertical-align: inherit;">회원 강퇴</font>
+	                                                    </button>
 	                                                </td>
                                             	</tr>
                                             </c:forEach>
@@ -268,6 +276,158 @@
                                     </table>
                                 </div>
                            	</div>
+                           	
+                           	<!-- Modal -->
+							<div class="modal fade" id="changerankmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-ml" role="document">
+									<div class="modal-content">
+										<form action="tmrankupdate.do" method="post">
+							    		<div class="modal-header">
+							        		<h5 class="modal-title" id="exampleModalLabel">팀장 위임</h5>
+							        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							        			<span aria-hidden="true">&times;</span>
+							        		</button>
+							      		</div>
+							      		<div class="modal-body" id="changerankdiv">
+							      		<input type="hidden" name="team_num" value="${ team_num }">
+							      		<input type="hidden" name="user_no" id="user_no" value="">
+							      		<input type="hidden" name="team_member_no" id="team_member_no" value="">
+							      		
+					                	<div class="row">
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>아이디</label>
+					                                <input class="form-control" type="text" name="user_id" id="user_id" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>닉네임</label>
+					                                <input class="form-control" type="text" name="user_nn" id="user_nn" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>나 이</label>
+					                                <input class="form-control" type="text" name="age" id="age" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>성 별</label>
+					                                <input class="form-control" type="text" name="gender" id="gender" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>이메일</label>
+					                                <input class="form-control" type="text" name="email" id="email" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>등급</label>
+					                                <input class="form-control" type="text" id="team_member_leader" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>가입 날짜</label>
+					                                <input class="form-control" type="text" name="team_member_date" id="team_member_date" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group text-center">
+					                                <h4><font style="vertical-align: inherit;">정말로 팀장을 위임하시겠습니까?</font></h4>
+					                            </div>
+					                        </div>
+					                	</div>
+							      		
+							      		</div>
+									  	<div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+									        <button type="submit" class="btn btn-primary">변경</button>
+									    </div>
+										</form>
+									</div>
+								</div>
+							</div>
+							
+							<!-- Modal -->
+							<div class="modal fade" id="deletemembermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-ml" role="document">
+									<div class="modal-content">
+										<form action="tmdelete.do" method="post">
+							    		<div class="modal-header">
+							        		<h5 class="modal-title" id="exampleModalLabel">팀원 강퇴</h5>
+							        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							        			<span aria-hidden="true">&times;</span>
+							        		</button>
+							      		</div>
+							      		<div class="modal-body" id="deletememberdiv">
+							      		<input type="hidden" name="team_num" value="${ team_num }">
+							      		<input type="hidden" name="user_no" id="user_no" value="">
+							      		<input type="hidden" name="team_member_no" id="team_member_no" value="">
+							      		
+					                	<div class="row">
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>아이디</label>
+					                                <input class="form-control" type="text" name="user_id" id="user_id" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>닉네임</label>
+					                                <input class="form-control" type="text" name="user_nn" id="user_nn" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>나 이</label>
+					                                <input class="form-control" type="text" name="age" id="age" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>성 별</label>
+					                                <input class="form-control" type="text" name="gender" id="gender" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>이메일</label>
+					                                <input class="form-control" type="text" name="email" id="email" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>등급</label>
+					                                <input class="form-control" type="text" id="team_member_leader" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>가입 날짜</label>
+					                                <input class="form-control" type="text" name="team_member_date" id="team_member_date" value="" readonly>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group text-center">
+					                                <h4><font style="vertical-align: inherit;">정말로 팀원을 강퇴하시겠습니까?</font></h4>
+					                            </div>
+					                        </div>
+					                	</div>
+							      		
+							      		</div>
+									  	<div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+									        <button type="submit" class="btn btn-primary btn-danger">강퇴</button>
+									    </div>
+										</form>
+									</div>
+								</div>
+							</div>
                         </div>
                     </div>
                 </div>
@@ -318,7 +478,7 @@ $(function() {
    		console.log("join_num : " + join_num);
 
         $.ajax({
-            url : 'tmselect.do',
+            url : 'tjselect.do',
             type : 'POST',
             data : {"join_num" : join_num_int},
             dataType : "json",
@@ -332,18 +492,108 @@ $(function() {
     			
     			$('#selectjoinmember').modal('show');
     			
-    			$(".modal-body #user_no").val( json.list[0].user_no );
-    			$(".modal-body #user_id").val( json.list[0].user_id );
-    			$(".modal-body #user_nn").val( json.list[0].user_nn );
-    			$(".modal-body #age").val( json.list[0].age );
-    			$(".modal-body #gender").val( json.list[0].gender );
-    			$(".modal-body #email").val( json.list[0].email );
-    			$(".modal-body #join_num").val( json.list[0].join_num );
-    			$(".modal-body #join_intro").val( json.list[0].join_intro );
-    			$(".modal-body #join_original_filaname").val( json.list[0].join_original_filaname );
-    			$(".modal-body #join_rename_filaname").val( json.list[0].join_rename_filaname );
+    			$("#joinmemberdiv #user_no").val( json.list[0].user_no );
+    			$("#joinmemberdiv #user_id").val( json.list[0].user_id );
+    			$("#joinmemberdiv #user_nn").val( json.list[0].user_nn );
+    			$("#joinmemberdiv #age").val( json.list[0].age );
+    			$("#joinmemberdiv #gender").val( json.list[0].gender );
+    			$("#joinmemberdiv #email").val( json.list[0].email );
+    			$("#joinmemberdiv #join_num").val( json.list[0].join_num );
+    			$("#joinmemberdiv #join_intro").val( json.list[0].join_intro );
+    			$("#joinmemberdiv #join_original_filaname").val( json.list[0].join_original_filaname );
+    			$("#joinmemberdiv #join_rename_filaname").val( json.list[0].join_rename_filaname );
     			
     			$("#deletefooter #join_num").val( json.list[0].join_num );
+    		},
+    		error : function(jqXHR, textstatus, errorthrown) {
+    			console.log("error : " + jqXHR + ", " + textstatus + ", "
+    					+ errorthrown);
+    		}
+    	}); //ajax
+   	});
+   	
+   	$('.memberlist #rankchange').on('click', function(){
+   		console.log("script run");
+   		var team_member_no_val = $(this).data("team_member_no");
+   		var team_member_no = parseInt(team_member_no_val);
+   		console.log("team_member_no : " + team_member_no);
+
+        $.ajax({
+            url : 'tmselect.do',
+            type : 'POST',
+            data : {"team_member_no" : team_member_no},
+            dataType : "json",
+    		success : function(data) {
+    			console.log("success : " + data);
+    			
+    			//object ==> string 으로 변환
+    			var jsonStr = JSON.stringify(data);
+    			//string ==> json 객체로 바꿈
+    			var json = JSON.parse(jsonStr);
+    			
+    			$('#changerankmodal').modal('show');
+    			
+    			$("#changerankdiv #user_no").val( json.list[0].user_no );
+    			$("#changerankdiv #user_id").val( json.list[0].user_id );
+    			$("#changerankdiv #user_nn").val( json.list[0].user_nn );
+    			$("#changerankdiv #age").val( json.list[0].age );
+    			$("#changerankdiv #gender").val( json.list[0].gender );
+    			$("#changerankdiv #email").val( json.list[0].email );
+    			$("#changerankdiv #team_member_no").val( json.list[0].team_member_no );
+    			$("#changerankdiv #team_member_date").val( json.list[0].team_member_date );
+    			
+    			console.log(json.list[0].team_member_leader);
+    			
+    			if(json.list[0].team_member_leader === "Y") {
+    				$("#changerankdiv #team_member_leader").val("팀장");
+    			} else {
+    				$("#changerankdiv #team_member_leader").val("팀원");
+    			}
+    		},
+    		error : function(jqXHR, textstatus, errorthrown) {
+    			console.log("error : " + jqXHR + ", " + textstatus + ", "
+    					+ errorthrown);
+    		}
+    	}); //ajax
+   	});
+   	
+   	$('.memberlist #memberdelete').on('click', function(){
+   		console.log("script run");
+   		var team_member_no_val = $(this).data("team_member_no");
+   		var team_member_no = parseInt(team_member_no_val);
+   		console.log("team_member_no : " + team_member_no);
+
+        $.ajax({
+            url : 'tmselect.do',
+            type : 'POST',
+            data : {"team_member_no" : team_member_no},
+            dataType : "json",
+    		success : function(data) {
+    			console.log("success : " + data);
+    			
+    			//object ==> string 으로 변환
+    			var jsonStr = JSON.stringify(data);
+    			//string ==> json 객체로 바꿈
+    			var json = JSON.parse(jsonStr);
+    			
+    			$('#deletemembermodal').modal('show');
+    			
+    			$("#deletememberdiv #user_no").val( json.list[0].user_no );
+    			$("#deletememberdiv #user_id").val( json.list[0].user_id );
+    			$("#deletememberdiv #user_nn").val( json.list[0].user_nn );
+    			$("#deletememberdiv #age").val( json.list[0].age );
+    			$("#deletememberdiv #gender").val( json.list[0].gender );
+    			$("#deletememberdiv #email").val( json.list[0].email );
+    			$("#deletememberdiv #team_member_no").val( json.list[0].team_member_no );
+    			$("#deletememberdiv #team_member_date").val( json.list[0].team_member_date );
+    			
+    			console.log(json.list[0].team_member_leader);
+    			
+    			if(json.list[0].team_member_leader === "Y") {
+    				$("#deletememberdiv #team_member_leader").val("팀장");
+    			} else {
+    				$("#deletememberdiv #team_member_leader").val("팀원");
+    			}
     		},
     		error : function(jqXHR, textstatus, errorthrown) {
     			console.log("error : " + jqXHR + ", " + textstatus + ", "
@@ -363,5 +613,5 @@ function deleteJoinMember() {
 	location.href="${ pageContext.servletContext.contextPath }/tjdelete.do?join_num=" + join_num + "&team_num=" + team_num;
 }
 </script>
-  </body>
+</body>
 </html>

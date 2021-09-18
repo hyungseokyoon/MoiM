@@ -38,5 +38,9 @@ public class TPteamboardServiceImpl implements TPteamboardService {
 	public int insertTeamBoard(TeamBoard teamboard) {
 		return tpteamboardDao.insertTeamBoard(teamboard);
 	}
+
+	public ArrayList<TeamBoard> selectBoardTopList(int team_num) {
+		return tpteamboardDao.selectBoardTopList(team_num);
+	}
 	
 }

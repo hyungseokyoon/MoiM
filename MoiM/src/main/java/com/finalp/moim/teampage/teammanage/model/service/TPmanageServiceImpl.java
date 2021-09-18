@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.finalp.moim.teampage.common.model.vo.Alert;
 import com.finalp.moim.teampage.common.model.vo.JoinWaiting;
 import com.finalp.moim.teampage.common.model.vo.Team;
 import com.finalp.moim.teampage.common.model.vo.TeamMember;
@@ -33,8 +34,7 @@ public class TPmanageServiceImpl implements TPmanageService {
 
 	@Override
 	public TeamMember selectTeamMember(int team_member_no) {
-		// TODO Auto-generated method stub
-		return null;
+		return tpmanageDao.selectTeamMember(team_member_no);
 	}
 
 	@Override
@@ -58,15 +58,33 @@ public class TPmanageServiceImpl implements TPmanageService {
 	}
 
 	@Override
-	public int updateTeamMemberRank(TeamMember teamMember) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateTeamMemberRankDown(TeamMember teamleader) {
+		return tpmanageDao.updateTeamMemberRankDown(teamleader);
 	}
 
 	@Override
 	public int deleteTeamMember(int team_member_no) {
-		// TODO Auto-generated method stub
-		return 0;
+		return tpmanageDao.deleteTeamMember(team_member_no);
+	}
+
+	@Override
+	public TeamMember selectTeamLeader(int team_num) {
+		return tpmanageDao.selectTeamLeader(team_num);
+	}
+
+	@Override
+	public int updateTeamMemberRankUp(TeamMember teammember) {
+		return tpmanageDao.updateTeamMemberRankUp(teammember);
+	}
+
+	@Override
+	public int insertAlertTSUpdate(TeamMember tm) {
+		return tpmanageDao.insertAlertTSUpdate(tm);
+	}
+
+	@Override
+	public ArrayList<TeamMember> selectTeamMemberNormalList(int team_num) {
+		return tpmanageDao.selectTeamMemberNormalList(team_num);
 	}
 	
 }
