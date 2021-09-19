@@ -40,7 +40,7 @@
 				    				<option value="20">20</option>
 				    				<option value="25">25</option>
 				    			</select>
-				    			<label>페이지당 게시글</label>
+				    			<label>카테고리 선택</label>
 			    			</div>
 			    			<div class="dataTable-search">
 			    				<input class="dataTable-input" placeholder="Search..." type="text">
@@ -50,12 +50,12 @@
 			    			<table class="table table-striped dataTable-table" id="table1">
 						        <thead>
 						            <tr>
-						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter" align="center">글번호</a></th>
-						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter" align="center">카테고리</a></th>
-						            	<th data-sortable=""><a href="#" class="dataTable-sorter" align="center">글제목</a></th>
-						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter" align="center">작성자</a></th>
-						            	<th data-sortable="" style="width: 150px;"><a href="#" class="dataTable-sorter" align="center">작성날짜</a></th>
-						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter" align="center">조회수</a></th>
+						            	<th style="width: 100px; text-align: center;">글번호</th>
+						            	<th style="width: 100px; text-align: center;">카테고리</th>
+						            	<th style="text-align: center;">글제목</th>
+						            	<th style="width: 100px; text-align: center;">작성자</th>
+						            	<th style="width: 150px; text-align: center;">작성날짜</th>
+						            	<th style="width: 100px; text-align: center;">조회수</th>
 						            </tr>
 						        </thead>
 			        			<tbody>
@@ -79,7 +79,7 @@
 			    			</table>
 			    		</div>
 			    		<div class="dataTable-bottom">
-			    			<div class="dataTable-info">${ listCount }개의 글 중 ${ startRow } ~ ${ endRow }번 까지의 결과입니다.</div>
+			    			<div class="dataTable-info">${ listCount }개의 글 중 ${ startRow + (listCount - limit) } ~ ${ endRow + (listCount - limit) }번 까지의 결과입니다.</div>
 			    			<ul class="pagination pagination-primary float-end dataTable-pagination">
 			    				<c:if test="${ currentPage <= 1 }">
 			    					<li class="page-item pager"><a>‹‹</a></li>

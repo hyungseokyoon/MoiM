@@ -20,16 +20,6 @@
 	<div class="card-body">
     	<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
     		<div class="dataTable-top">
-    			<div class="dataTable-dropdown">
-	    			<select class="dataTable-selector form-select">
-	    				<option value="5">5</option>
-	    				<option value="10" selected="">10</option>
-	    				<option value="15">15</option>
-	    				<option value="20">20</option>
-	    				<option value="25">25</option>
-	    			</select>
-	    			<label>entries per page</label>
-    			</div>
     			<div class="dataTable-search">
     				<input class="dataTable-input" placeholder="Search..." type="text">
     			</div>
@@ -38,14 +28,14 @@
     			<table class="table table-striped dataTable-table" id="table1">
 			        <thead>
 			            <tr>
-			            	<th data-sortable="" style="width: 100px;"><a href="#" align="center" class="dataTable-sorter">회원번호</a></th>
-			            	<th data-sortable="" style="width: 100px;"><a href="#" align="center" class="dataTable-sorter">회원이름</a></th>
-			            	<th data-sortable="" style="width: 150px;"><a href="#" align="center" class="dataTable-sorter">닉네임</a></th>
-			            	<th data-sortable="" style="width: 100px;"><a href="#" align="center" class="dataTable-sorter">성별</a></th>
-			            	<th data-sortable=""><a href="#" align="center" class="dataTable-sorter">Email</a></th>
-			            	<th data-sortable="" style="width: 150px;"><a href="#" align="center" class="dataTable-sorter">로그인여부</a></th>
-			            	<th data-sortable="" style="width: 150px;"><a href="#" align="center" class="dataTable-sorter">관리자권한</a></th>
-			            	<th data-sortable="" style="width: 200px;"><a href="#" align="center" class="dataTable-sorter">강제탈퇴</a></th>
+			            	<th style="width: 100px; text-align: center;">회원번호</th>
+			            	<th style="width: 100px; text-align: center;">회원이름</th>
+			            	<th style="width: 150px; text-align: center;">닉네임</th>
+			            	<th style="width: 100px; text-align: center;">성별</th>
+			            	<th style="text-align: center;">Email</th>
+			            	<th style="width: 150px; text-align: center;">로그인여부</th>
+			            	<th style="width: 150px; text-align: center;">관리자권한</th>
+			            	<th style="width: 200px; text-align: center;">강제탈퇴</th>
 			            </tr>
 			        </thead>
         			<tbody>
@@ -85,7 +75,7 @@
     			</table>
     		</div>
     		<div class="dataTable-bottom">
-    			<div class="dataTable-info">${ listCount }명 중 ${ startRow } ~ ${ endRow }번 회원까지의 결과입니다.</div>
+    			<div class="dataTable-info">${ listCount }명 중 ${ startRow + (listCount - limit) } ~ ${ endRow + (listCount - limit) }번 회원까지의 결과입니다.</div>
     			<ul class="pagination pagination-primary float-end dataTable-pagination">
 			    				<c:if test="${ currentPage <= 1 }">
 			    					<li class="page-item pager"><a>‹‹</a></li>

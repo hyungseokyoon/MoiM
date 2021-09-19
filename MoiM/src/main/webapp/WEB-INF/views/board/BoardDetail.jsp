@@ -45,9 +45,9 @@
 			    			<table id="reply" class="table table-striped dataTable-table" id="table1">
 						        <thead>
 						            <tr>
-						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter" align="center">작성자</a></th>
-						            	<th data-sortable=""><a href="#" class="dataTable-sorter" align="center">댓글내용</a></th>
-						            	<th data-sortable="" style="width: 150px;"><a href="#" class="dataTable-sorter" align="center">삭제</a></th>
+						            	<th style="width: 100px; text-align: center;">작성자</th>
+						            	<th style="text-align: center;">댓글내용</th>
+						            	<th style="width: 150px; text-align: center;">삭제</th>
 						            </tr>
 						        </thead>
 			    			</table>
