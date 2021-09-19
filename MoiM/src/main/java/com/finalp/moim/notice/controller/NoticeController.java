@@ -301,5 +301,51 @@ public class NoticeController {
 		
 		return mv;
 	}
+	
+	// 공지사항 제목으로 키워드 검색
+	@RequestMapping(value="nsearch.do", method = RequestMethod.POST)
+	public ModelAndView noticeSearchMethod(ModelAndView mv, @RequestParam("keyword") String keyword, 
+			@RequestParam(name="page", required=false) String page) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = Integer.parseInt(page);
+		}
+		
+		int limit = 10;
+		int listCount = noticeService.selectListCount();
+		
+		int maxPage = (int)((double)listCount / limit + 0.9);
+		int startPage = (int)((double)currentPage / limit + 0.9);
+		int endPage = startPage + 10 - 1;
+		if(maxPage < endPage) {
+			endPage = maxPage;
+		}
+		
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		Page paging = new Page(startRow, endRow);
+		
+		ArrayList<Notice> list = noticeService.selectSearchNotice(keyword);
+		
+		if(list != null && list.size() > 0) {
+			mv.addObject("list", list);
+			mv.addObject("listCount", listCount);
+			mv.addObject("maxPage", maxPage);
+			mv.addObject("currentPage", currentPage);
+			mv.addObject("startPage", startPage);
+			mv.addObject("endPage", endPage);
+			mv.addObject("limit", limit);
+			mv.addObject("startRow", startRow);
+			mv.addObject("endRow", endRow);
+			
+			mv.setViewName("notice/NoticeList");
+		} else {
+			mv.addObject("message", currentPage + "페이지 목록 조회 실패!");
+			
+			mv.setViewName("common/error");
+		}
+		
+		return mv;
+	}
 	// ------------------------------------
 }
