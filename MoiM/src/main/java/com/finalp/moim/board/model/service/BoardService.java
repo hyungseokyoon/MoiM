@@ -13,4 +13,5 @@ public interface BoardService {
 	int insertBoard(Board board);
 	int updateBoard(Board board);
 	int deleteBoard(int board_no);
+	ArrayList<Board> selectSearchBoard(int board_category_no, String keyword);
 }

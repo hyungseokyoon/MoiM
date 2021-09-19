@@ -32,18 +32,23 @@
 				<div class="card-body">
 			    	<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 			    		<div class="dataTable-top">
-			    			<div class="dataTable-dropdown">
-				    			<select class="dataTable-selector form-select">
-				    				<option value="5">5</option>
-				    				<option value="10" selected>10</option>
-				    				<option value="15">15</option>
-				    				<option value="20">20</option>
-				    				<option value="25">25</option>
-				    			</select>
-				    			<label>카테고리 선택</label>
-			    			</div>
 			    			<div class="dataTable-search">
-			    				<input class="dataTable-input" placeholder="Search..." type="text">
+			    				<form action="bsearch.do" method="post">
+			    					<input type="hidden" name="page" value="1">
+			    					<label>카테고리 선택</label>
+				    				<label>
+					    				<select name="board_category_no" class="dataTable-selector form-select">
+					    					<option value="0" selected>전체</option>
+						    				<option value="1">공모전</option>
+						    				<option value="2">인턴십</option>
+						    				<option value="3">자격증</option>
+						    				<option value="4">이벤트</option>
+						    				<option value="5">자유글</option>
+						    			</select>
+					    			</label>
+			    					<label><input type="search" name="keyword" placeholder="Search..."></label>
+			    					<input type="submit" value="검색">
+			    				</form>
 			    			</div>
 			    		</div>
 			    		<div class="dataTable-container">
@@ -79,7 +84,6 @@
 			    			</table>
 			    		</div>
 			    		<div class="dataTable-bottom">
-			    			<div class="dataTable-info">${ listCount }개의 글 중 ${ startRow + (listCount - limit) } ~ ${ endRow + (listCount - limit) }번 까지의 결과입니다.</div>
 			    			<ul class="pagination pagination-primary float-end dataTable-pagination">
 			    				<c:if test="${ currentPage <= 1 }">
 			    					<li class="page-item pager"><a>‹‹</a></li>
