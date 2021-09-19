@@ -40,5 +40,19 @@ public class UserInfoDao {
 
 	public int updateUserAdmin(UserInfo userInfo) {
 		return session.update("userinfoMapper.updateUserAdmin", userInfo);
+	}
+
+	public ArrayList<UserInfo> selectUserSearch(int category_no, String keyword) {
+		List<UserInfo> list = null;
+		
+		if(category_no == 1) {
+			session.selectList("userinfoMapper.searchUserName", keyword);
+		} else if(category_no == 2) {
+			session.selectList("userinfoMapper.searchUserNickname", keyword);
+		} else if(category_no == 3) {
+			session.selectList("userinfoMapper.searchUserEmail", keyword);
+		}
+
+		return (ArrayList<UserInfo>) list;
 	};
 }

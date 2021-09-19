@@ -21,7 +21,19 @@
     	<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
     		<div class="dataTable-top">
     			<div class="dataTable-search">
-    				<input class="dataTable-input" placeholder="Search..." type="text">
+    				<form action="usearch.do" method="post">
+	  					<input type="hidden" name="page" value="1">
+	  					<label>검색 카테고리 선택</label>
+	   					<label>
+		    				<select name="category_no" class="dataTable-selector form-select">
+		    					<option value="1" selected>회원이름</option>
+			    				<option value="2">닉네임</option>
+			    				<option value="3">이메일</option>
+			    			</select>
+	    				</label>
+	  					<label><input type="search" name="keyword" placeholder="Search..."></label>
+	  					<input type="submit" value="검색">
+	  				</form>
     			</div>
     		</div>
     		<div class="dataTable-container">
@@ -75,56 +87,55 @@
     			</table>
     		</div>
     		<div class="dataTable-bottom">
-    			<div class="dataTable-info">${ listCount }명 중 ${ startRow + (listCount - limit) } ~ ${ endRow + (listCount - limit) }번 회원까지의 결과입니다.</div>
     			<ul class="pagination pagination-primary float-end dataTable-pagination">
-			    				<c:if test="${ currentPage <= 1 }">
-			    					<li class="page-item pager"><a>‹‹</a></li>
-			    				</c:if>
-			    				<c:if test="${ currentPage > 1 }">
-			    					<c:url var="first" value="/ulistadmin.do">
-			    						<c:param name="page" value="1"/>
-			    					</c:url>
-			    					<li class="page-item pager"><a href="${ first }" class="page-link">‹‹</a></li>
-			    				</c:if>
-			    				<c:if test="${ !((currentPage - 10) < startPage and (currentPage - 10) > 1) }">
-			    					<li class="page-item pager"><a>‹</a></li>
-			    				</c:if>
-			    				<c:if test="${ (currentPage - 10) < startPage and (currentPage - 10) > 1 }">
-			    					<c:url var="prev" value="/ulistadmin.do">
-			    						<c:param name="page" value="${ startPage - 10 }"/>
-			    					</c:url>
-			    					<li class="page-item pager"><a href="${ prev }" class="page-link">‹</a></li>
-			    				</c:if>
-			    				<c:forEach var="p" begin="${ startPage }" end="${ endPage }" step="1">
-			    					<c:if test="${ p == currentPage }">
-			    						<li class="page-item pager"><a>${ p }</a></li>
-			    					</c:if>
-			    					<c:if test="${ p != currentPage }">
-			    						<c:url var="num" value="/ulistadmin.do">
-			    							<c:param name="page" value="${ p }"/>
-			    						</c:url>
-			    						<li class="page-item pager"><a href="${ num }" class="page-link">${ p }</a></li>
-			    					</c:if>
-			    				</c:forEach>
-			    				<c:if test="${ !((currentPage + 10) > endPage && (currentPage + 10) < maxPage) }">
-			    					<li class="page-item pager"><a>›</a></li>
-			    				</c:if>
-			    				<c:if test="${ (currentPage + 10) > endPage && (currentPage + 10) < maxPage }">
-			    					<c:url var="next" value="/ulistadmin.do">
-			    						<c:param name="page" value="${ endPage + 10 }"/>
-			    					</c:url>
-			    					<li class="page-item pager"><a href="${ next }" class="page-link">›</a></li>
-			    				</c:if>
-			    				<c:if test="${ currentPage >= maxPage }">
-			    					<li class="page-item pager"><a>››</a></li>
-			    				</c:if>
-			    				<c:if test="${ currentPage < maxPage }">
-			    					<c:url var="last" value="/ulistadmin.do">
-			    						<c:param name="page" value="${ maxPage }"/>
-			    					</c:url>
-			    					<li class="page-item pager"><a href="${ last }" class="page-link">››</a></li>
-			    				</c:if>
-			    			</ul>
+	   				<c:if test="${ currentPage <= 1 }">
+	   					<li class="page-item pager"><a>‹‹</a></li>
+	   				</c:if>
+	   				<c:if test="${ currentPage > 1 }">
+	   					<c:url var="first" value="/ulistadmin.do">
+	   						<c:param name="page" value="1"/>
+	   					</c:url>
+	   					<li class="page-item pager"><a href="${ first }" class="page-link">‹‹</a></li>
+	   				</c:if>
+	   				<c:if test="${ !((currentPage - 10) < startPage and (currentPage - 10) > 1) }">
+	   					<li class="page-item pager"><a>‹</a></li>
+	   				</c:if>
+	   				<c:if test="${ (currentPage - 10) < startPage and (currentPage - 10) > 1 }">
+	   					<c:url var="prev" value="/ulistadmin.do">
+	   						<c:param name="page" value="${ startPage - 10 }"/>
+	   					</c:url>
+	   					<li class="page-item pager"><a href="${ prev }" class="page-link">‹</a></li>
+	   				</c:if>
+	   				<c:forEach var="p" begin="${ startPage }" end="${ endPage }" step="1">
+	   					<c:if test="${ p == currentPage }">
+	   						<li class="page-item pager"><a>${ p }</a></li>
+	   					</c:if>
+	   					<c:if test="${ p != currentPage }">
+	   						<c:url var="num" value="/ulistadmin.do">
+	   							<c:param name="page" value="${ p }"/>
+	   						</c:url>
+	   						<li class="page-item pager"><a href="${ num }" class="page-link">${ p }</a></li>
+	   					</c:if>
+	   				</c:forEach>
+	   				<c:if test="${ !((currentPage + 10) > endPage && (currentPage + 10) < maxPage) }">
+	   					<li class="page-item pager"><a>›</a></li>
+	   				</c:if>
+	   				<c:if test="${ (currentPage + 10) > endPage && (currentPage + 10) < maxPage }">
+	   					<c:url var="next" value="/ulistadmin.do">
+	   						<c:param name="page" value="${ endPage + 10 }"/>
+	   					</c:url>
+	   					<li class="page-item pager"><a href="${ next }" class="page-link">›</a></li>
+	   				</c:if>
+	   				<c:if test="${ currentPage >= maxPage }">
+	   					<li class="page-item pager"><a>››</a></li>
+	   				</c:if>
+	   				<c:if test="${ currentPage < maxPage }">
+	   					<c:url var="last" value="/ulistadmin.do">
+	   						<c:param name="page" value="${ maxPage }"/>
+	   					</c:url>
+	   					<li class="page-item pager"><a href="${ last }" class="page-link">››</a></li>
+	   				</c:if>
+	   			</ul>
     		</div>
     	</div>
 	</div>

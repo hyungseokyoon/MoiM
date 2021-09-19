@@ -55,4 +55,20 @@
 		set admin = #{admin}
 		where user_no = #{user_no}
 	</update>
+	
+	<!-- 회원이름으로 검색 -->
+	<select id="searchUserName" parameterType="String" resultMap="resultUser">
+		select * from user_info where user_name like '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 닉네임으로 검색 -->
+	<select id="searchUserNickname" parameterType="String" resultMap="resultUser">
+		select * from user_info where user_nn like '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 이메일로 검색 -->
+	<select id="searchUserEmail" parameterType="String" resultMap="resultUser">
+		select * from user_info where email like '%' || #{keyword} || '%'
+	</select>
+	
 </mapper>

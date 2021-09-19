@@ -154,4 +154,51 @@ public class UserInfoController {
 		
 		return mv;
 	}
+	
+	// 관리자 페이지 - 회원 정보 검색
+	@RequestMapping(value = "usearch.do", method = RequestMethod.POST)
+	public ModelAndView userSearchMethod(ModelAndView mv, @RequestParam("category_no") int category_no,
+			@RequestParam("keyword") String keyword, @RequestParam(name="page", required=false) String page) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = Integer.parseInt(page);
+		}
+		
+		int limit = 10;
+		int listCount = userinfoService.selectListCount();
+		
+		int maxPage = (int)((double)listCount / limit + 0.9);
+		int startPage = (int)((double)currentPage / limit + 0.9);
+		int endPage = startPage + 10 - 1;
+		if(maxPage < endPage) {
+			endPage = maxPage;
+		}
+		
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		Page paging = new Page(startRow, endRow);
+		
+		ArrayList<UserInfo> list = userinfoService.selectUserSearch(category_no, keyword);
+		
+		if(list != null && list.size() > 0) {
+			mv.addObject("list", list);
+			mv.addObject("listCount", listCount);
+			mv.addObject("maxPage", maxPage);
+			mv.addObject("currentPage", currentPage);
+			mv.addObject("startPage", startPage);
+			mv.addObject("endPage", endPage);
+			mv.addObject("limit", limit);
+			mv.addObject("startRow", startRow);
+			mv.addObject("endRow", endRow);
+			
+			mv.setViewName("admin/AdminUserList");
+		} else {
+			mv.addObject("message", currentPage + "회원 정보 목록 조회 실패!");
+			
+			mv.setViewName("common/error");
+		}
+		
+		return mv;
+	}
+	// -----------------------------------------
 }

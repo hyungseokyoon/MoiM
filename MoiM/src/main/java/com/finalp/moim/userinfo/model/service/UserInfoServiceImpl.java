@@ -44,5 +44,10 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public int updateUserAdmin(UserInfo userInfo) {
 		return userinfoDao.updateUserAdmin(userInfo);
+	}
+
+	@Override
+	public ArrayList<UserInfo> selectUserSearch(int category_no, String keyword) {
+		return userinfoDao.selectUserSearch(category_no, keyword);
 	};
 }
