@@ -52,7 +52,7 @@
                 <div class="row clearfix">
                     <div class="col-lg-12">
                         <div class="mb-4">
-                            <h4>Welcome User Nickname</h4>
+                            <h4>Welcome ${ sessionScope.loginMember.user_nn }</h4>
                         </div>                        
                     </div>
                 </div>

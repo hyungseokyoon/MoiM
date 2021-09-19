@@ -49,6 +49,7 @@
 		<mapper resource="mappers/review-mapper.xml"/>
 		<mapper resource="mappers/teamdaily-mapper.xml"/>
 		<mapper resource="mappers/teamcalendar-mapper.xml"/>
+		<mapper resource="mappers/teammain-mapper.xml"/>
 	</mappers>
 
 </configuration>
