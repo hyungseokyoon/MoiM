@@ -124,7 +124,7 @@
                     </ul>
                 </li>
 				<li><a href="app-chat.html"><i class="fa fa-comments"></i><span>팀 탈퇴</span></a></li>
-                <li><a href="app-contact.html"><i class="fa fa-address-book"></i><span>나가기</span></a></li>
+                <li><a href="exitTeampage.do"><i class="fa fa-address-book"></i><span>나가기</span></a></li>
             </ul>
         </nav>        
     </div>
