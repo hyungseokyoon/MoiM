@@ -172,16 +172,36 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">일지</h3>
-                                <div class="card-options">
-                                    <button class="btn btn-sm btn-outline-secondary mr-1" id="one_month">1M</button>
-                                    <button class="btn btn-sm btn-outline-secondary mr-1" id="six_months">6M</button>
-                                    <button class="btn btn-sm btn-outline-secondary mr-1" id="one_year" class="active">1Y</button>
-                                    <button class="btn btn-sm btn-outline-secondary mr-1" id="ytd">YTD</button>
-                                    <button class="btn btn-sm btn-outline-secondary" id="all">ALL</button>
-                                </div>
                             </div>
                             <div class="card-body">
-                                <div id="apex-timeline-chart"></div>
+                            <div class="row clearfix mt-2">
+                                <div class="col-lg-4 col-md-6">
+                        			<div class="card plannedcard" id="on">
+				                          <div class="card-body text-center">
+				                              <h6>Planned</h6>
+				                              <a href="#">
+				                              <input type="text" class="knob" value="${ planned }" data-width="90" data-height="90" data-thickness="0.1" data-fgColor="#6e7687" readonly>
+				                              </a>
+				                          </div>
+                        			</div>
+                    			</div>
+			                    <div class="col-lg-4 col-md-6">
+			                        <div class="card inprogresscard" id="on">
+			                            <div class="card-body text-center">
+			                                <h6>In progress</h6>
+			                                <input type="text" class="knob" value="${ inprogress }" data-width="90" data-height="90" data-thickness="0.1" data-fgColor="#6e7687" readonly>
+			                            </div>
+			                        </div>
+			                    </div>
+			                   	<div class="col-lg-4 col-md-6">
+			                        <div class="card completecard" id="on">
+			                            <div class="card-body text-center">
+			                                <h6>Completed</h6>
+			                                <input type="text" class="knob" value="${ complete }" data-width="90" data-height="90" data-thickness="0.1" data-fgColor="#6e7687" readonly>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>
                             </div>
                         </div>                
                     </div>
@@ -235,6 +255,7 @@
 
 <script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/core.js"></script>
 <script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/page/project-index.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/chart/knobjs.js"></script>
 </body>
 <!-- soccer/project/index.html  07 Jan 2020 03:37:47 GMT -->
 </html>

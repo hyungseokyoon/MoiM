@@ -31,12 +31,11 @@ public class TPcalendarController {
 	// 뷰 페이지 이동 처리용 -------------------------------
 	@RequestMapping("moveTPcalendar.do")
 	public String moveTPCalendarPage(@RequestParam("team_num") int team_num, Model model) {
-		
-		model.addAttribute("team_num", team_num);
+		/* model.addAttribute("team_num", team_num); */
 		return "teampage/calendar/tp_calendar";
 	}
 	
-	@SuppressWarnings({ "deprecation", "unchecked" })
+	@SuppressWarnings({ "unchecked" })
 	@RequestMapping(value = "selectcalendarlist.do", method=RequestMethod.POST)
 	@ResponseBody
 	public String selectCalendarListMethod(@RequestParam("team_num") int team_num) throws UnsupportedEncodingException  {
