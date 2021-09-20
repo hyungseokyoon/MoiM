@@ -10,7 +10,7 @@
 
 <link rel="icon" href="${ pageContext.servletContext.contextPath }/resources/team_page/images/favicon.ico" type="image/x-icon" />
 
-<title>team - daily</title>
+<title>팀 일지</title>
 
 <!-- Bootstrap Core and vandor -->
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/bootstrap/css/bootstrap.min.css" />
@@ -151,24 +151,28 @@
                                                     </c:if>
                                                 </td >
                                                 <td style="width: 20%;">
-                                                	<c:if test="${ itdlist.daily_progress eq 1}">
+                                                	<c:if test="${ itdlist.daily_writer eq sessionScope.loginMember.user_no }">
+                                                		<c:if test="${ itdlist.daily_progress eq 1}">
                                                 		<c:url var="updatedaily" value="/updatedaily.do">
-												    	<c:param name="daily_no" value="${ itdlist.daily_no }"/>
-												    	<c:param name="daily_progress" value="${ itdlist.daily_progress }"/>
+													    	<c:param name="daily_no" value="${ itdlist.daily_no }"/>
+													    	<c:param name="daily_progress" value="${ itdlist.daily_progress }"/>
 												    	</c:url>
-                                                    	<button type="button" onclick="location.href='${ updatedaily }'" class="btn btn-primary">시작하기</button>
-                                                    </c:if>
-                                                    <c:if test="${ itdlist.daily_progress eq 2}">
+                                                   		<button type="button" onclick="location.href='${ updatedaily }'" class="btn btn-primary">시작하기</button>
+                                                    	</c:if>
+                                                    	<c:if test="${ itdlist.daily_progress eq 2}">
                                                     	<c:url var="updatedaily" value="/updatedaily.do">
-												    	<c:param name="daily_no" value="${ itdlist.daily_no }"/>
-												    	<c:param name="daily_progress" value="${ itdlist.daily_progress }"/>
+													    	<c:param name="daily_no" value="${ itdlist.daily_no }"/>
+													    	<c:param name="daily_progress" value="${ itdlist.daily_progress }"/>
 												    	</c:url>
-                                                    	<button type="button" onclick="location.href='${ updatedaily }'" class="btn btn-primary" style="background: green;">완료하기</button>
-                                                    </c:if>
-                                                    <c:url var="deletedaily" value="/deletedaily.do">
-											    	<c:param name="daily_no" value="${ itdlist.daily_no }"/>
-											    	</c:url>
-                                                    <button type="button" onclick="location.href='${ deletedaily }'" class="btn btn-primary" style="background: #dc3545;">삭제하기</button>
+                                                   		<button type="button" onclick="location.href='${ updatedaily }'" class="btn btn-primary" style="background: green;">완료하기</button>
+                                                    	</c:if>
+                                                	</c:if>
+                                                	<c:if test="${ itdlist.daily_writer eq sessionScope.loginMember.user_no || sessionScope.team_leader eq 'Y' }">
+                                                		<c:url var="deletedaily" value="/deletedaily.do">
+												    		<c:param name="daily_no" value="${ itdlist.daily_no }"/>
+												    	</c:url>
+                                                    	<button type="button" onclick="location.href='${ deletedaily }'" class="btn btn-primary" style="background: #dc3545;">삭제하기</button>
+                                                	</c:if>
                                                 </td>
                                             </tr>
                                         	</c:forEach>
