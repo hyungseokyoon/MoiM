@@ -42,8 +42,35 @@
 				<div class="left">
 					<a href="javascript:void(0)" class="icon menu_toggle mr-3"><i
 						class="fa  fa-align-left"></i></a>
-					<h1 class="page-title">Dashboard</h1>
+					<h1 class="page-title">${ team.team_name }</h1>
 				</div>
+				<div class="right">
+	                <div class="notification d-flex">
+	                    <div class="dropdown d-flex show">
+	                        <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-bell"></i><span class="badge badge-primary nav-unread"></span></a>
+	                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" x-placement="bottom-end" style="position: absolute; transform: translate3d(-312px, 34px, 0px); top: 0px; left: 0px; will-change: transform;">
+	                            <ul class="list-unstyled feeds_widget">
+	                            	<c:forEach items="${ alertlist }" var="alertlist">
+		                                <li>
+		                                    <div class="feeds-body">
+		                                    	<c:url var="alertdelone" value="alertdelone.do">
+		                                    		<c:param name="alert_num" value="${ alertlist.alert_num }" />
+		                                    	</c:url>
+		                                        <h4 class="title text-muted">${ alertlist.alert_cate }<small class="float-right text-muted">${ alertlist.alert_date }</small></h4><a href="${ alertdelone }" class="float-right"><i class="fa fa-trash-o"></i></a>
+		                                        <small class="title text-muted">${ alertlist.alert_content }</small>
+		                                    </div>
+		                                </li>
+	                                </c:forEach>                  
+	                            </ul>
+	                            <div class="dropdown-divider"></div>
+	                            <c:url var="alertdelall" value="alertdelall.do">
+	                            	<c:param name="team_member_no" value="${ teammember.team_member_no }"></c:param>
+	                            </c:url>
+	                            <a href="${ alertdelall }" class="dropdown-item text-center text-muted-dark readall">모든 알람 삭제</a>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
 			</div>
 		</div>
 	</div>

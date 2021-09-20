@@ -2,6 +2,7 @@ package com.finalp.moim.teampage;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.finalp.moim.teampage.common.model.service.TPmainService;
+import com.finalp.moim.teampage.common.model.vo.Alert;
 import com.finalp.moim.teampage.common.model.vo.Team;
 import com.finalp.moim.teampage.common.model.vo.TeamMember;
 import com.finalp.moim.teampage.file.model.service.FileService;
@@ -46,10 +48,15 @@ public class TPmainController {
 		Team team = tpmanageService.selectTeamSetting(team_num);
 		ArrayList<TeamBoard> boardtoplist = tpboardService.selectBoardTopList(team_num);
 		ArrayList<TFile> filerecentlist = fileService.selectFileRecentList(team_num);
+		UserInfo userinfo = (UserInfo) session.getAttribute("loginMember");
+		TeamMember teammember = tpmanageService.selectUserNoTeamMember(userinfo.getUser_no());
+		ArrayList<Alert> alertlist = tpmainService.selectAlertList(teammember.getTeam_member_no());
 
 		if (team != null) {
 			session.setAttribute("team_num", team_num);
 			session.setAttribute("team_leader", team_leader);
+			session.setAttribute("teammember", teammember);
+			session.setAttribute("alertlist", alertlist);
 			status.setComplete();
 			model.addAttribute("team", team);
 			model.addAttribute("boardtoplist", boardtoplist);
@@ -73,11 +80,37 @@ public class TPmainController {
 	}
 	
 	@RequestMapping("exitTeampage.do")
-	public String exitTeamPageMEthod(HttpSession session, SessionStatus status, Model model) {
+	public String exitTeamPageMethod(HttpSession session, SessionStatus status, Model model) {
 		
 		session.removeAttribute("team_num");
 		session.removeAttribute("team_leader");
+		session.removeAttribute("teammember");
+		session.removeAttribute("alertlist");
 		
 		return "redirect:main.do";
+	}
+	
+	@RequestMapping("alertdelone.do")
+	public String deleteAlertOneMethod(@RequestParam("alert_num") int alert_num, HttpSession session, HttpServletRequest request, Model model) {
+		if(tpmainService.deleteAlertOne(alert_num) > 0) {
+			int team_num = (int) session.getAttribute("team_num");
+			model.addAttribute("team_num", team_num);
+			return "redirect:" + request.getHeader("Referer");
+		} else {
+			model.addAttribute("message", alert_num + "번 해당 알람 삭제 실패.");
+			return "common/error";
+		}
+	}
+	
+	@RequestMapping("alertdelall.do")
+	public String deleteAlertAllMethod(@RequestParam("team_member_no") int team_member_no, HttpSession session, HttpServletRequest request, Model model) {
+		if(tpmainService.deleteAlertAll(team_member_no) > 0) {
+			int team_num = (int) session.getAttribute("team_num");
+			model.addAttribute("team_num", team_num);
+			return "redirect:" + request.getHeader("Referer");
+		} else {
+			model.addAttribute("message", team_member_no + "번 팀원의 알람 삭제 실패.");
+			return "common/error";
+		}
 	}
 }
