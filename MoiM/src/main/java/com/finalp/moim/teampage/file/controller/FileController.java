@@ -34,7 +34,7 @@ public class FileController {
 	public String fileListMethod(Model model) {
 		ArrayList<TFile> list = fileService.selectAll();
 
-		if (list.size() > 0) {
+		if (list.size() >= 0) {
 			model.addAttribute("list", list);
 			return "file/fileList";
 		} else {

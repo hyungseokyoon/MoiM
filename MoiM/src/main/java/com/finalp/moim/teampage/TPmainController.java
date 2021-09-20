@@ -49,7 +49,7 @@ public class TPmainController {
 	// 뷰 페이지 이동 처리용 -------------------------------
 	@RequestMapping("moveTPindex.do")
 	public String moveTPMainPage(Model model, HttpSession session, SessionStatus status,
-			@RequestParam("team_num") int team_num, @RequestParam("leaderok") String team_leader) {
+			@RequestParam("team_num") int team_num) {
 		Team team = tpmanageService.selectTeamSetting(team_num);
 		ArrayList<TeamBoard> boardtoplist = tpboardService.selectBoardTopList(team_num);
 		ArrayList<TFile> filerecentlist = fileService.selectFileRecentList(team_num);
@@ -77,7 +77,7 @@ public class TPmainController {
 		
 		if (team != null) {
 			session.setAttribute("team_num", team_num);
-			session.setAttribute("team_leader", team_leader);
+			session.setAttribute("team_leader", teammember.getTeam_member_leader());
 			session.setAttribute("teammember", teammember);
 			session.setAttribute("alertlist", alertlist);
 			status.setComplete();
