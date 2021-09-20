@@ -14,7 +14,11 @@
 	<div id="header_top" class="header_top">
 		<div class="container">
 			<div class="hleft">
-				<a class="header-brand" href="moveTPindex.do">
+				<c:url var="moveTPindex" value="moveTPindex.do">
+                	<c:param name="team_num" value="${ sessionScope.team_num }"></c:param>
+                	<c:param name="leaderok" value="${ sessionScope.team_leader }"></c:param>
+                </c:url>
+				<a class="header-brand" href="${ moveTPindex }">
 					<img alt="" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/moimicon.png">
 				</a>
 			</div>
@@ -119,21 +123,23 @@
                     </c:url>
                 	<a href="${ moveTPdaily }"><i class="fa fa-user"></i><span>일지</span></a>
                 </li>
-                <li>
-                    <a href="javascript:void(0)" class="has-arrow arrow-c" id="updowndisp"><i class="fa fa-lock"></i><span>팀관리</span></a>
-                    <ul id="manageoption">
-                        <li>
-                        <c:url var="moveTeamSetting" value="moveTeamSetting.do">
-                        	<c:param name="team_num" value="${ team_num }"></c:param>
-                        </c:url>
-                        <a href="${ moveTeamSetting }">팀정보 관리</a></li>
-                        <li>
-                        <c:url var="moveTeamMember" value="moveTeamMember.do">
-                        	<c:param name="team_num" value="${ team_num }"></c:param>
-                        </c:url>
-                        <a href="${ moveTeamMember }">팀원 관리</a></li>
-                    </ul>
-                </li>
+                <c:if test="${ sessionScope.team_leader eq 'Y' }">
+	                <li>
+	                    <a href="javascript:void(0)" class="has-arrow arrow-c" id="updowndisp"><i class="fa fa-lock"></i><span>팀관리</span></a>
+	                    <ul id="manageoption">
+	                        <li>
+	                        <c:url var="moveTeamSetting" value="moveTeamSetting.do">
+	                        	<c:param name="team_num" value="${ team_num }"></c:param>
+	                        </c:url>
+	                        <a href="${ moveTeamSetting }">팀정보 관리</a></li>
+	                        <li>
+	                        <c:url var="moveTeamMember" value="moveTeamMember.do">
+	                        	<c:param name="team_num" value="${ team_num }"></c:param>
+	                        </c:url>
+	                        <a href="${ moveTeamMember }">팀원 관리</a></li>
+	                    </ul>
+	                </li>
+                </c:if>
 				<li><a href="app-chat.html"><i class="fa fa-comments"></i><span>팀 탈퇴</span></a></li>
                 <li><a href="exitTeampage.do"><i class="fa fa-address-book"></i><span>나가기</span></a></li>
             </ul>

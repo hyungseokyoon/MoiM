@@ -42,25 +42,32 @@
                         <h1 class="page-title">팀원 관리</h1>                        
                     </div>
                     <div class="right">
-                        <div class="input-icon xs-hide mr-4">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-icon-addon"><i class="fe fe-search"></i></span>
-                        </div>
-                        <div class="notification d-flex">
-                            <div class="dropdown d-flex">
-                                <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown"><i class="fa fa-user"></i></a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="page-profile.html"><i class="dropdown-icon fe fe-user"></i> Profile</a>
-                                    <a class="dropdown-item" href="app-setting.html"><i class="dropdown-icon fe fe-settings"></i> Settings</a>
-                                    <a class="dropdown-item" href="javascript:void(0)"><span class="float-right"><span class="badge badge-primary">6</span></span><i class="dropdown-icon fe fe-mail"></i> Inbox</a>
-                                    <a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-send"></i> Message</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-help-circle"></i> Need help?</a>
-                                    <a class="dropdown-item" href="login.html"><i class="dropdown-icon fe fe-log-out"></i> Sign out</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+		                <div class="notification d-flex">
+		                    <div class="dropdown d-flex show">
+		                        <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-bell"></i><span class="badge badge-primary nav-unread"></span></a>
+		                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" x-placement="bottom-end" style="position: absolute; transform: translate3d(-312px, 34px, 0px); top: 0px; left: 0px; will-change: transform;">
+		                            <ul class="list-unstyled feeds_widget">
+		                            	<c:forEach items="${ alertlist }" var="alertlist">
+			                                <li>
+			                                    <div class="feeds-body">
+			                                    	<c:url var="alertdelone" value="alertdelone.do">
+			                                    		<c:param name="alert_num" value="${ alertlist.alert_num }" />
+			                                    	</c:url>
+			                                        <h4 class="title text-muted">${ alertlist.alert_cate }<small class="float-right text-muted">${ alertlist.alert_date }</small></h4><a href="${ alertdelone }" class="float-right"><i class="fa fa-trash-o"></i></a>
+			                                        <small class="title text-muted">${ alertlist.alert_content }</small>
+			                                    </div>
+			                                </li>
+		                                </c:forEach>                  
+		                            </ul>
+		                            <div class="dropdown-divider"></div>
+		                            <c:url var="alertdelall" value="alertdelall.do">
+		                            	<c:param name="team_member_no" value="${ teammember.team_member_no }"></c:param>
+		                            </c:url>
+		                            <a href="${ alertdelall }" class="dropdown-item text-center text-muted-dark readall">모든 알람 삭제</a>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
                 </div>
             </div>
         </div>

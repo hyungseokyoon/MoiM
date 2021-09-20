@@ -250,13 +250,11 @@ public class TPmanageController {
 	@RequestMapping(value="tmrankupdate.do", method=RequestMethod.POST)
 	public String updateTeamMemberRank(HttpSession session, SessionStatus status, TeamMember teammember, Model model) {
 		int team_num = (int) session.getAttribute("team_num");
-		String team_leader = (String) session.getAttribute("team_leader");
 		TeamMember teamleader = tpmanageService.selectTeamLeader(team_num);
 		tpmanageService.updateTeamMemberRankDown(teamleader);
 		
 		if(tpmanageService.updateTeamMemberRankUp(teammember) > 0) {
 			model.addAttribute("team_num", team_num);
-			model.addAttribute("leaderok", team_leader);
 			return "redirect:moveTPindex.do";
 		} else {
 			model.addAttribute("message", teammember.getUserVO().getUser_id() + " 회원 팀장 위임 실패.");
