@@ -22,8 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.finalp.moim.teampage.common.model.service.TPmainService;
+import com.finalp.moim.teampage.common.model.vo.TeamMember;
 import com.finalp.moim.teampage.teamboard.model.service.TPteamboardService;
 import com.finalp.moim.teampage.teamboard.model.vo.TeamBoard;
+import com.finalp.moim.teampage.teammanage.model.service.TPmanageService;
 
 @Controller
 public class TPteamboardController {
@@ -31,6 +34,12 @@ public class TPteamboardController {
 	
 	@Autowired
 	private TPteamboardService tpteamboardService;
+	
+	@Autowired
+	private TPmanageService tpmanageService;
+	
+	@Autowired
+	private TPmainService tpmainService;
 	
 	@RequestMapping("moveTPteamboard.do")
 	public String moveTPTeamboardPage(@RequestParam("team_num") int team_num, Model model) {
@@ -136,6 +145,17 @@ public class TPteamboardController {
 		}//첨부파일이 있을때
 		
 		if(tpteamboardService.insertTeamBoard(teamboard)>0) {
+			ArrayList<TeamMember> tmlist = tpmanageService.selectTeamMemberNormalList(teamboard.getTeam_num());
+			
+			int result = 0;
+			
+			for(TeamMember tm : tmlist) {
+				tpmainService.insertAlertTBInsert(tm);
+				result++;
+			}
+			
+			logger.info("alertinsert result : " + result);
+			
 			return "redirect: moveTPteamboard.do?team_num=" + teamboard.getTeam_num();
 		}else {
 			model.addAttribute("message", "공지글 등록 실패");

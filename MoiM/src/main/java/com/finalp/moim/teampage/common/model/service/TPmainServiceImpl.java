@@ -39,5 +39,15 @@ public class TPmainServiceImpl implements TPmainService{
 	public int deleteAlertAll(int team_member_no) {
 		return tpmainDao.deleteAlertAll(team_member_no);
 	}
+
+	@Override
+	public int deleteTeamMember(TeamMember teammember) {
+		return tpmainDao.deleteTeamMember(teammember);
+	}
+
+	@Override
+	public int insertAlertTBInsert(TeamMember teammember) {
+		return tpmainDao.insertAlertTBInsert(teammember);
+	}
 	
 }

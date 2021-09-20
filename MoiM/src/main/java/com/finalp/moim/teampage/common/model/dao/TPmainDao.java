@@ -37,5 +37,13 @@ public class TPmainDao {
 	public int deleteAlertAll(int team_member_no) {
 		return session.delete("tpmainMapper.deleteAlertAll", team_member_no);
 	}
+
+	public int deleteTeamMember(TeamMember teammember) {
+		return session.delete("tpmainMapper.deleteTeamMember", teammember);
+	}
+
+	public int insertAlertTBInsert(TeamMember teammember) {
+		return session.insert("tpmainMapper.insertAlertTBInsert", teammember);
+	}
 	
 }

@@ -140,7 +140,12 @@
 	                    </ul>
 	                </li>
                 </c:if>
-				<li><a href="app-chat.html"><i class="fa fa-comments"></i><span>팀 탈퇴</span></a></li>
+                <c:if test="${ sessionScope.team_leader eq 'N' }">
+                	<c:url var="teamquit" value="teamquit.do">
+                		<c:param name="team_member_no" value="${ teammember.team_member_no }" />
+                	</c:url>
+					<li><a href="${ teamquit }"><i class="fa fa-comments"></i><span>팀 탈퇴</span></a></li>
+				</c:if>
                 <li><a href="exitTeampage.do"><i class="fa fa-address-book"></i><span>나가기</span></a></li>
             </ul>
         </nav>        

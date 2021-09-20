@@ -82,8 +82,8 @@ public class TPmanageServiceImpl implements TPmanageService {
 	}
 
 	@Override
-	public TeamMember selectUserNoTeamMember(int user_no) {
-		return tpmanageDao.selectUserNoTeamMember(user_no);
+	public TeamMember selectUserNoTeamMember(TeamMember teammember) {
+		return tpmanageDao.selectUserNoTeamMember(teammember);
 	}
 	
 }
