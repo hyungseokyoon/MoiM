@@ -16,6 +16,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.finalp.moim.teampage.common.model.service.TPmainService;
 import com.finalp.moim.teampage.common.model.vo.Team;
 import com.finalp.moim.teampage.common.model.vo.TeamMember;
+import com.finalp.moim.teampage.daily.model.service.TPteamdailyService;
+import com.finalp.moim.teampage.daily.model.vo.TeamDaily;
 import com.finalp.moim.teampage.file.model.service.FileService;
 import com.finalp.moim.teampage.file.model.vo.TFile;
 import com.finalp.moim.teampage.teamboard.model.service.TPteamboardService;
@@ -37,6 +39,9 @@ public class TPmainController {
 	private TPmainService tpmainService;
 	
 	@Autowired
+	private TPteamdailyService tpteamdailyService;
+	
+	@Autowired
 	private FileService fileService;
 
 	// 뷰 페이지 이동 처리용 -------------------------------
@@ -46,7 +51,25 @@ public class TPmainController {
 		Team team = tpmanageService.selectTeamSetting(team_num);
 		ArrayList<TeamBoard> boardtoplist = tpboardService.selectBoardTopList(team_num);
 		ArrayList<TFile> filerecentlist = fileService.selectFileRecentList(team_num);
-
+		ArrayList<TeamDaily> tdlist = tpteamdailyService.selectTeamDailyList(team_num);
+		
+		int inprogress = 0;
+		int planned = 0;
+		int complete = 0;
+		
+		if(tdlist != null) {
+			
+			for(TeamDaily td : tdlist) {
+				if(td.getDaily_progress() == 1) {
+					planned += 1;
+				}else if(td.getDaily_progress() == 2) {
+					inprogress += 1;
+				}else {
+					complete += 1;
+				}
+			}
+		}
+		
 		if (team != null) {
 			session.setAttribute("team_num", team_num);
 			session.setAttribute("team_leader", team_leader);
@@ -54,6 +77,9 @@ public class TPmainController {
 			model.addAttribute("team", team);
 			model.addAttribute("boardtoplist", boardtoplist);
 			model.addAttribute("filerecentlist", filerecentlist);
+			model.addAttribute("planned", planned);
+			model.addAttribute("inprogress", inprogress);
+			model.addAttribute("complete", complete);
 			return "teampage/TPindex";
 		} else {
 			model.addAttribute("message", team + "팀 정보 조회 실패.");
