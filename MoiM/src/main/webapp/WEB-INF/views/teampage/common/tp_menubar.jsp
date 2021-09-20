@@ -92,19 +92,30 @@
         <nav id="left-sidebar-nav" class="sidebar-nav">
             <ul class="metismenu">
                 <li class="g_heading">팀 기능</li>
-                <li><a href="moveTPindex.do"><i class="fa fa-dashboard"></i><span>홈</span></a></li>                        
+                <li>
+                	<c:url var="moveTPindex" value="moveTPindex.do">
+                        	<c:param name="team_num" value="${ sessionScope.team_num }"></c:param>
+                        	<c:param name="leaderok" value="${ sessionScope.team_leader }"></c:param>
+                    </c:url>
+                	<a href="${ moveTPindex }"><i class="fa fa-dashboard"></i><span>홈</span></a>
+               	</li>                        
                 <li>
                 	<c:url var="moveTPteamboard" value="moveTPteamboard.do">
-                        	<c:param name="team_num" value="${ team_num }"></c:param>
+                        	<c:param name="team_num" value="${ sessionScope.team_num }"></c:param>
                     </c:url>
                 	<a href="${ moveTPteamboard }"><i class="fa fa-list-ol"></i><span>공지</span></a>
                 </li>
-                <li><a href="${ pageContext.servletContext.contextPath }/moveTPcalendar.do?team_num=1"><i class="fa fa-calendar-check-o"></i><span>일정</span></a></li>
+                <li>
+                	<c:url var="moveTPcalendar" value="moveTPcalendar.do">
+                        	<c:param name="team_num" value="${ sessionScope.team_num }"></c:param>
+                    </c:url>
+                	<a href="${ moveTPcalendar }"><i class="fa fa-calendar-check-o"></i><span>일정</span></a>
+                </li>
                 <li><a href="project-ticket.html"><i class="fa fa-list-ul"></i><span>채팅</span></a></li>
                 <li><a href="${ pageContext.servletContext.contextPath }/flist.do"><i class="fa fa-file fa-2"></i><span>파일</span></a></li>
 				<li>
                 	<c:url var="moveTPdaily" value="moveTPdaily.do">
-                        	<c:param name="team_num" value="${ team.team_num }"></c:param>
+                        	<c:param name="team_num" value="${ sessionScope.team_num }"></c:param>
                     </c:url>
                 	<a href="${ moveTPdaily }"><i class="fa fa-user"></i><span>일지</span></a>
                 </li>

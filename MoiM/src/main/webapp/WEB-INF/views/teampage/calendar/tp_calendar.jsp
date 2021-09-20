@@ -57,19 +57,13 @@
                     	<div class="col-lg-12 col-md-12">
                         	<div class="card">
                             	<div class="card-header bline">
-                                	<h3 class="card-title">팀 일정</h3>
+                                	<h3 class="card-title">팀 캘린더</h3>
                                 	<div class="card-options">
                                     	<a href="#" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
                                 	</div>
                             	</div>
 	                            <div class="card-body">
 	                                <div id="calendar"></div>
-	                            </div>
-	                            <div class="card-header bline">
-                                	<h3 class="card-title">필터</h3>
-                            	</div>
-	                            <div class="card-body">
-	                            	SICK
 	                            </div>					
                         	</div>
                     	</div>
@@ -125,11 +119,12 @@
 	    <div class="modal-dialog" role="document">
 	        <div class="modal-content">
 	            <div class="modal-header">
-	                <h4 class="modal-title">일정 수정</h4>
+	                <h4 class="modal-title">일정 자세히보기</h4>
 	            </div>
 	            <form class="caleditform">
 	            <input type="hidden" name="cal_no">
 	            <input type="hidden" name="cal_writer">
+	            <input type="hidden" name="team_leader" value="${ sessionScope.team_leader }">
 	            <div class="modal-body">
 	                <div class="row">
 	                    <div class="col-md-6">
@@ -159,9 +154,7 @@
 	                </div>
 	            </div>
 	            <div class="modal-footer">
-	                <button type="button" class="updateCalendar btn mr-auto btn-danger">수정</button>
-                    <button type="button" class="deleteCalendar btn btn-primary">삭제</button>
-	                <button type="reset" class="btn btn-default" data-dismiss="modal">닫기</button>
+	            	
 	            </div>
 	            </form>
 	        </div>
@@ -177,7 +170,7 @@
 <script>
 $(function() {
 	var eventlist;
-	var team_num = ${team_num};
+	var team_num = ${ sessionScope.team_num };
 	$.ajax({
 		url: "selectcalendarlist.do",
 		async: false,
@@ -226,8 +219,8 @@ $(function() {
         $('#addDirectEvent').modal('show');
         $('#addDirectEvent #saveEvent').unbind();
         $('#addDirectEvent #saveEvent').on('click', function() {
-        	var team_num = ${team_num};
-			var cal_writer = 1;
+        	var team_num = ${ sessionScope.team_num };
+			var cal_writer = ${ sessionScope.loginMember.user_no };
             var cal_title = $('#addDirectEvent input[name="event-name"]').val();
             var cal_startdate = $('#addDirectEvent input[name="event-start"]').val();
 			var cal_enddate = $('#addDirectEvent input[name="event-end"]').val();
@@ -315,10 +308,20 @@ $(function() {
             eventModal.find('input[name="event-start"]').val(dateFormat(startdate));
             eventModal.find('input[name="event-end"]').val(dateFormat(enddate));
             eventModal.find('input[name="event-detail"]').val(calEvent.description);
-            // if (title){
-            //     calEvent.title = title;
-            //     calendar.fullCalendar('updateEvent',calEvent);
-            // }
+            
+            //사용자에 따라 보이는 페이지가 다른경우
+            $('.modal-footer button').remove();
+            if (${ sessionScope.loginMember.user_no } == calEvent.cal_writer){
+            	var line1 = '<button type="button" class="updateCalendar btn mr-auto btn-danger">수정</button>';
+            	eventModal.find('.modal-footer').append(line1);
+            }
+            if (${ sessionScope.loginMember.user_no } == calEvent.cal_writer  || ${ sessionScope.team_leader eq 'Y' }){
+            	var line2 = '<button type="button" class="deleteCalendar btn btn-primary">삭제</button>';
+            	eventModal.find('.modal-footer').append(line2);
+            }
+            var line3 = '<button type="reset" class="btn btn-default" data-dismiss="modal">닫기</button>';
+            eventModal.find('.modal-footer').append(line3);
+            
         }
     });
     function dateFormat(date) {
@@ -336,66 +339,72 @@ $(function() {
 
         return date.getFullYear() + '-' + month + '-' + day;
 	}
-    $('#eventEditModal .deleteCalendar').on('click', function(){
-    	var id = $('#eventEditModal input[name="cal_no"]').val();
-    	var team_num = ${team_num};
-    	$.ajax({
-    		url: "deleteCalendar.do",
-    		type: "post",
-    		data: {"cal_no" : id},
-    		success: function(result){
-    			var jsonStr = JSON.stringify(result);
-				if(jsonStr === "delete error"){
-					alert("일정 삭제 실패함.");
-				}
-				location.href="moveTPcalendar.do?team_num=" + team_num;
-    		},
-    		error : function(jqXHR, textstatus, errorthrown) {
-    			console.log("error : " + jqXHR + ", " + textstatus + ", " + errorthrown);
-        	}
-    	}); //ajax
-    });
-    //일정수정용
-    $('#eventEditModal .updateCalendar').on('click', function(){
-    	var calno = $('#eventEditModal input[name="cal_no"]').val();
-    	var calwriter = $('#eventEditModal input[name="cal_writer"]').val();
-    	var caltitle = $('#eventEditModal input[name="event-title"]').val();
-    	console.log(caltitle);
-    	var teamnum = ${team_num};
-    	var calstartdate = $('#eventEditModal input[name="event-start"]').val();
-    	var calenddate = $('#eventEditModal input[name="event-end"]').val();
-    	var caldetail = $('#eventEditModal input[name="event-detail"]').val();
-    	
-    	//객체생성
-    	var Calendar = {
-    			cal_no: calno,
-    			team_num: teamnum,
-    			cal_title: caltitle,
-    			cal_writer: calwriter,
-    			cal_startdate: calstartdate,
-    			cal_enddate: calenddate,
-    			cal_detail: caldetail
-    	};
-    	//date 변환
-    	Calendar.cal_startdate = moment(Calendar.cal_startdate).format('YYYY-MM-DD');
-    	Calendar.cal_enddate = moment(Calendar.cal_enddate).add(1, 'days').format('YYYY-MM-DD');
-    	console.log(Calendar);
-    	$.ajax({
-    		url: "updateCalendar.do",
-    		type: "post",
-    		data: Calendar,
-    		success: function(result){
-    			var jsonStr = JSON.stringify(result);
-				if(jsonStr === "update error"){
-					alert("일정 수정 실패함.");
-				}
-				location.href="moveTPcalendar.do?team_num=" + teamnum;
-    		},
-    		error : function(jqXHR, textstatus, errorthrown) {
-    			console.log("error : " + jqXHR + ", " + textstatus + ", " + errorthrown);
-        	}
-    	}); //ajax
-    });
+    
+});
+
+</script>
+<script>
+$(document).on('click', '#eventEditModal .deleteCalendar', function(){
+	var id = $('#eventEditModal input[name="cal_no"]').val();
+	var team_num = ${ sessionScope.team_num };
+	console.log(team_num);
+	$.ajax({
+		url: "deleteCalendar.do",
+		type: "post",
+		data: {"cal_no" : id},
+		success: function(result){
+			var jsonStr = JSON.stringify(result);
+			if(jsonStr === "delete error"){
+				alert("일정 삭제 실패함.");
+			}
+			location.href="moveTPcalendar.do?team_num=" + team_num;
+		},
+		error : function(jqXHR, textstatus, errorthrown) {
+			console.log("error : " + jqXHR + ", " + textstatus + ", " + errorthrown);
+    	}
+	}); //ajax
+});
+
+//일정수정용
+$(document).on('click', '#eventEditModal .updateCalendar', function(){
+	var calno = $('#eventEditModal input[name="cal_no"]').val();
+	var calwriter = $('#eventEditModal input[name="cal_writer"]').val();
+	var caltitle = $('#eventEditModal input[name="event-title"]').val();
+	console.log(caltitle);
+	var teamnum = ${ sessionScope.team_num };
+	var calstartdate = $('#eventEditModal input[name="event-start"]').val();
+	var calenddate = $('#eventEditModal input[name="event-end"]').val();
+	var caldetail = $('#eventEditModal input[name="event-detail"]').val();
+	
+	//객체생성
+	var Calendar = {
+			cal_no: calno,
+			team_num: teamnum,
+			cal_title: caltitle,
+			cal_writer: calwriter,
+			cal_startdate: calstartdate,
+			cal_enddate: calenddate,
+			cal_detail: caldetail
+	};
+	//date 변환
+	Calendar.cal_startdate = moment(Calendar.cal_startdate).format('YYYY-MM-DD');
+	Calendar.cal_enddate = moment(Calendar.cal_enddate).add(1, 'days').format('YYYY-MM-DD');
+	console.log(Calendar);
+	$.ajax({
+		url: "updateCalendar.do",
+		type: "post",
+		data: Calendar,
+		success: function(result){
+			var jsonStr = JSON.stringify(result);
+			if(jsonStr === "update error"){
+				alert("일정 수정 실패함.");
+			}
+			location.href="moveTPcalendar.do?team_num=" + teamnum;
+		},
+		error : function(jqXHR, textstatus, errorthrown) {
+			console.log("error : " + jqXHR + ", " + textstatus + ", " + errorthrown);
+    	}
+	}); //ajax
 });
 </script>
 </body>
