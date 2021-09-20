@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -19,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.finalp.moim.teampage.common.model.service.TPmainService;
 import com.finalp.moim.teampage.common.model.vo.Alert;
 import com.finalp.moim.teampage.common.model.vo.JoinWaiting;
 import com.finalp.moim.teampage.common.model.vo.Team;
@@ -34,9 +37,13 @@ public class TPmanageController {
 	
 	@Autowired
 	private TPmanageService tpmanageService;
+
+	@Autowired
+	private TPmainService tpmainService;
 	
 	@RequestMapping("moveTeamSetting.do")
-	public String moveTeamSetting(@RequestParam("team_num") int team_num, Model model) {
+	public String moveTeamSetting(HttpSession session, SessionStatus status,Model model) {
+		int team_num = (int) session.getAttribute("team_num");
 		Team team = tpmanageService.selectTeamSetting(team_num);
 		
 		if (team != null) {
@@ -49,14 +56,14 @@ public class TPmanageController {
 	}
 	
 	@RequestMapping("moveTeamMember.do")
-	public String moveTeamMember(@RequestParam("team_num") int team_num, Model model) {
+	public String moveTeamMember(HttpSession session, SessionStatus status, Model model) {
+		int team_num = (int) session.getAttribute("team_num");
 		ArrayList<JoinWaiting> joinlist = tpmanageService.selectJoinMemberList(team_num);
 		ArrayList<TeamMember> memberlist = tpmanageService.selectTeamMemberList(team_num);
 		
 		if (memberlist != null) {
 			model.addAttribute("joinlist", joinlist);
 			model.addAttribute("memberlist", memberlist);
-			model.addAttribute("team_num", team_num);
 			return "teampage/teammanage/team_member";  //내보낼 뷰파일명 리턴
 		} else {
 			model.addAttribute("message", team_num + "팀원 정보 조회 실패.");
@@ -137,13 +144,12 @@ public class TPmanageController {
 			int result = 0;
 			
 			for(TeamMember tm : tmlist) {
-				tpmanageService.insertAlertTSUpdate(tm);
+				tpmainService.insertAlertTSUpdate(tm);
 				result++;
 			}
 			
 			logger.info("alertinsert result : " + result);
 			
-			model.addAttribute("team_num", team.getTeam_num());
 			return "redirect:moveTeamSetting.do";
 		} else {
 			model.addAttribute("message", team.getTeam_name() + "의 정보 수정 실패.");
@@ -187,11 +193,10 @@ public class TPmanageController {
 	}
 	
 	@RequestMapping(value="tminsert.do", method = RequestMethod.POST)
-	public String insertTeamMember(JoinWaiting joinmember, @RequestParam("team_num") int team_num, Model model) {
+	public String insertTeamMember(JoinWaiting joinmember, Model model) {
 		int result = tpmanageService.deleteJoinMember(joinmember.getJoin_num());
 		
 		if (tpmanageService.insertTeamMember(joinmember) > 0 && result > 0) {
-			model.addAttribute("team_num", team_num);
 			return "redirect:moveTeamMember.do";
 		} else {
 			model.addAttribute("message", joinmember.getUserVO().getUser_id() + "님의 팀원 등록 실패.");
@@ -200,10 +205,8 @@ public class TPmanageController {
 	}
 	
 	@RequestMapping("tjdelete.do")
-	public String deleteJoinWaiting(@RequestParam("join_num") int join_num,
-			@RequestParam("team_num") int team_num, Model model) {
+	public String deleteJoinWaiting(@RequestParam("join_num") int join_num, Model model) {
 		if(tpmanageService.deleteJoinMember(join_num) > 0) {
-			model.addAttribute("team_num", team_num);
 			return "redirect:moveTeamMember.do";
 		} else {
 			model.addAttribute("message", join_num + " 번 신청 정보 삭제 실패.");
@@ -245,11 +248,15 @@ public class TPmanageController {
 	}
 	
 	@RequestMapping(value="tmrankupdate.do", method=RequestMethod.POST)
-	public String updateTeamMemberRank(@RequestParam("team_num") int team_num, TeamMember teammember, Model model) {
+	public String updateTeamMemberRank(HttpSession session, SessionStatus status, TeamMember teammember, Model model) {
+		int team_num = (int) session.getAttribute("team_num");
+		String team_leader = (String) session.getAttribute("team_leader");
 		TeamMember teamleader = tpmanageService.selectTeamLeader(team_num);
 		tpmanageService.updateTeamMemberRankDown(teamleader);
 		
 		if(tpmanageService.updateTeamMemberRankUp(teammember) > 0) {
+			model.addAttribute("team_num", team_num);
+			model.addAttribute("leaderok", team_leader);
 			return "redirect:moveTPindex.do";
 		} else {
 			model.addAttribute("message", teammember.getUserVO().getUser_id() + " 회원 팀장 위임 실패.");
@@ -258,9 +265,8 @@ public class TPmanageController {
 	}
 	
 	@RequestMapping(value="tmdelete.do", method=RequestMethod.POST)
-	public String deleteTeamMember(@RequestParam("team_num") int team_num, TeamMember teammember, Model model) {
+	public String deleteTeamMember(TeamMember teammember, Model model) {
 		if(tpmanageService.deleteTeamMember(teammember.getTeam_member_no()) > 0) {
-			model.addAttribute("team_num", team_num);
 			return "redirect:moveTeamMember.do";
 		} else {
 			model.addAttribute("message", teammember.getUserVO().getUser_id() + " 회원 강퇴 실패.");

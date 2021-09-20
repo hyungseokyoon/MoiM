@@ -257,18 +257,25 @@
 	                                                    <div class="text-muted">${ memberlist.userVO.email }</div>
 	                                                </td>
 	                                                <td>
-	                                                    <div class="text-center">${ memberlist.team_member_leader }</div>
+	                                                	<c:if test="${ memberlist.team_member_leader eq 'Y' }">
+	                                                    	<div class="text-center">팀장</div>
+	                                                    </c:if>
+	                                                    <c:if test="${ memberlist.team_member_leader eq 'N' }">
+	                                                    	<div class="text-center">팀원</div>
+	                                                    </c:if>
 	                                                </td>
 	                                                <td class="hidden-ms">
 	                                                    <div class="text-muted">${ memberlist.team_member_date }</div>
 	                                                </td>
 	                                                <td class="text-center">
-	                                                    <button type="button" class="open-changerank btn btn-primary" id="rankchange" data-toggle="modal" data-target="#changerankmodal" data-team_member_no="${ memberlist.team_member_no }">
-	                                                    	<font style="vertical-align: inherit;">팀장 위임</font>
-	                                                    </button>
-	                                                    <button type="button" class="open-deletemember btn btn-primary" id="memberdelete" data-toggle="modal" data-target="#deletemembermodal" data-team_member_no="${ memberlist.team_member_no }">
-	                                                    	<font style="vertical-align: inherit;">회원 강퇴</font>
-	                                                    </button>
+	                                                	<c:if test="${ memberlist.team_member_leader eq 'N' }">
+		                                                    <button type="button" class="open-changerank btn btn-primary" id="rankchange" data-toggle="modal" data-target="#changerankmodal" data-team_member_no="${ memberlist.team_member_no }">
+		                                                    	<font style="vertical-align: inherit;">팀장 위임</font>
+		                                                    </button>
+		                                                    <button type="button" class="open-deletemember btn btn-primary" id="memberdelete" data-toggle="modal" data-target="#deletemembermodal" data-team_member_no="${ memberlist.team_member_no }">
+		                                                    	<font style="vertical-align: inherit;">회원 강퇴</font>
+		                                                    </button>
+	                                                    </c:if>
 	                                                </td>
                                             	</tr>
                                             </c:forEach>

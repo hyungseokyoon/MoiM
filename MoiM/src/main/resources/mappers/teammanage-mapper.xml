@@ -67,15 +67,6 @@
 		<result column="field_name" property="field_name"/>
 	</resultMap>
 	
-	<!-- Alert 객체에 대한 정보 -->
-	<resultMap id="resultAlert" type="Alert">
-		<id column="alert_num" property="alert_num"/>
-		<result column="team_member_no" property="team_member_no"/>
-		<result column="team_num" property="team_num"/>
-		<result column="alert_content" property="alert_content"/>
-		<result column="alert_date" property="alert_date"/>
-	</resultMap>
-	
 	<select id="selectTeamSetting" parameterType="_int" resultMap="resultTeam">
 		select * from tb_team
 		where team_num = #{ team_num }
@@ -175,12 +166,14 @@
 		select *
 		from tb_team_member tm
 		left join user_info u on (tm.user_no = u.user_no)
-		where team_member_no = #{ team_member_no } and team_member_leader = 'N'
+		where team_num = #{ team_num } and team_member_leader = 'N'
 	</select>
 	
-	<insert id="insertAlertTSUpdate" parameterType="TeamMember">
-		insert into tb_alert (alert_num, team_member_no, team_num, alert_content, alert_date)
-		values ((select max(alert_num) + 1 from tb_alert), #{ team_member_no }, #{ team_num }, '팀장님이 팀 정보를 변경하였습니다.', default)
-	</insert>
+	<select id="selectUserNoTeamMember" parameterType="_int" resultMap="resultTeamMember">
+		select *
+		from tb_team_member tm
+		left join user_info u on (tm.user_no = u.user_no)
+		where u.user_no = #{ user_no }
+	</select>
 
 </mapper>

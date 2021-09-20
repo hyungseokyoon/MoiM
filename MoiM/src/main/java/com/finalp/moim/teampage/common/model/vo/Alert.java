@@ -8,16 +8,19 @@ public class Alert implements java.io.Serializable {
 	private int alert_num;
 	private int team_member_no;
 	private int team_num;
+	private String alert_cate;
 	private String alert_content;
 	private java.sql.Date alert_date;
 	
 	public Alert() {}
 
-	public Alert(int alert_num, int team_member_no, int team_num, String alert_content, Date alert_date) {
+	public Alert(int alert_num, int team_member_no, int team_num, String alert_cate, String alert_content,
+			Date alert_date) {
 		super();
 		this.alert_num = alert_num;
 		this.team_member_no = team_member_no;
 		this.team_num = team_num;
+		this.alert_cate = alert_cate;
 		this.alert_content = alert_content;
 		this.alert_date = alert_date;
 	}
@@ -46,6 +49,14 @@ public class Alert implements java.io.Serializable {
 		this.team_num = team_num;
 	}
 
+	public String getAlert_cate() {
+		return alert_cate;
+	}
+
+	public void setAlert_cate(String alert_cate) {
+		this.alert_cate = alert_cate;
+	}
+
 	public String getAlert_content() {
 		return alert_content;
 	}
@@ -69,7 +80,8 @@ public class Alert implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "Alert [alert_num=" + alert_num + ", team_member_no=" + team_member_no + ", team_num=" + team_num
-				+ ", alert_content=" + alert_content + ", alert_date=" + alert_date + "]";
+				+ ", alert_cate=" + alert_cate + ", alert_content=" + alert_content + ", alert_date=" + alert_date
+				+ "]";
 	}
 
 }
