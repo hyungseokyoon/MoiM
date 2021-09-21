@@ -1,5 +1,7 @@
 package com.finalp.moim.join.model.service;
 
-public interface JoinService {
+import com.finalp.moim.join.model.vo.Join;
 
+public interface JoinService {
+	int insertJoin(Join join);
 }

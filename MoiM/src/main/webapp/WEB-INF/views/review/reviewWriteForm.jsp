@@ -71,7 +71,59 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     })
 });
-</script>
+function getCheckboxValue(event)  {
+	  let result = '';
+	  if(event.target.checked)  {
+	    result = event.target.value;
+	  }else {
+	    result = event.target.value;
+	  }
+	  
+	  document.getElementById('result').innerText
+	    = result;
+	  
+	  document.form1.review_grade.value=result;
+	}
+	</script>	
+<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+function change(){
+	var selectedVal = $("#selectTeam option:selected").val();
+	var field_name;
+	console.log(selectedVal);
+	$(function() {	
+	$.ajax({
+		url : 'searchteam.do?team_name='+selectedVal,
+		type : 'post',
+		data : selectedVal ,
+		dataType : 'json',
+		success : function(data) {
+			
+			var jsonStr = JSON.stringify(data);
+			field_name = data["field_name"]
+			console.log("success : " + data);
+			console.log("success : " + jsonStr);
+			console.log(data["field_name"]);
+			console.log(field_name);
+			document.form1.field_name.value=field_name;
+			$("#toplist").html(data["field_name"]);
+		}, //for in
+		error : function(jqXHR, textstatus, errorthrown) {
+			console.log("error : " + jqXHR + ", " + textstatus + ", "
+					+ errorthrown);
+		}
+	});
+
+	});
+	
+
+}
+
+
+
+
+	</script>
+
 
 <body>
 	<!-- navbar-->
@@ -88,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function(){
 			<h2>리뷰 작성</h2>
 
 			<div class="row" align="center">
-				<form action="/Shoesgone/quinsert" method="post"
+				<form action="rvinsert.do" method="post" name="form1" enctype="multipart/form-data"
 					style="align: center;">
 					<table class="table table-striped"
 						style="text-align: center; border: 1px solid #dddddd; width: 1000px; align: center;">
@@ -102,32 +154,21 @@ document.addEventListener('DOMContentLoaded', function(){
 									placeholder="글 제목" name="review_title" maxlength="50"
 									 required></td>
 							</tr>
-						
 							<tr>
-
-								<td>
-									<select name="field" class="select form-control"
-									style="padding: 0; ">
-
-										<option value="1">영어</option>
-										<option value="2">중국어</option>
-										<option value="3">기타 언어</option>
-										<option value="4">프로그래밍</option>
-										<option value="5">인문학/책</option>
-										<option value="6">사진/영상</option>
-										<option value="7">음악/악기</option>
-										<option value="8">자격증</option>
-										<option value="9">공모전</option>
-										<option value="10">고시/공무원</option>
-										<option value="11">기타학문</option>
-										<option value="12">자유주제</option>
-								</select></td>
+								<td><select id="selectTeam" name="team_name" class="form-control" onchange="change()" style="padding: 0;">
+								<option selected>팀명선택</option>
+								<c:forEach items="${teamlist}" var="t">
+									<option><c:out value="${ t.team_name }"></c:out></option>
+								</c:forEach>
+								
+								</select>
+								
+								</td>
 							</tr>
 							<tr>
-								<td><input type="text" class="form-control"
-									placeholder="스터디명" name="team_name" maxlength="50"
-									 required></td>
+								<td id="toplist" style="text-align:left;">분야</td>
 							</tr>
+							
 						  <!-- 평점 선택창 -->
 											 <tr>
 						  <td>
@@ -135,19 +176,19 @@ document.addEventListener('DOMContentLoaded', function(){
             <div class="warning_msg">별점을 선택해 주세요.</div>
             <div class="rating">
                 <!-- 해당 별점을 클릭하면 해당 별과 그 왼쪽의 모든 별의 체크박스에 checked 적용 -->
-                <input type="checkbox" name="rating" id="rating1" value="1" class="rate_radio" title="1점">
+                <input type="checkbox" id="rating1" value="1" class="rate_radio" title="1점" onclick='getCheckboxValue(event)'>
                 <label for="rating1"></label>
-                <input type="checkbox" name="rating" id="rating2" value="2" class="rate_radio" title="2점">
+                <input type="checkbox" id="rating2" value="2" class="rate_radio" title="2점" onclick='getCheckboxValue(event)'>
                 <label for="rating2"></label>
-                <input type="checkbox" name="rating" id="rating3" value="3" class="rate_radio" title="3점" >
+                <input type="checkbox" id="rating3" value="3" class="rate_radio" title="3점" onclick='getCheckboxValue(event)'>
                 <label for="rating3"></label>
-                <input type="checkbox" name="rating" id="rating4" value="4" class="rate_radio" title="4점">
+                <input type="checkbox" id="rating4" value="4" class="rate_radio" title="4점" onclick='getCheckboxValue(event)'>
                 <label for="rating4"></label>
-                <input type="checkbox" name="rating" id="rating5" value="5" class="rate_radio" title="5점">
+                <input type="checkbox" id="rating5" value="5" class="rate_radio" title="5점" onclick='getCheckboxValue(event)'>
                 <label for="rating5"></label>
             </div>
         </div>
-	
+	<div id='result'></div>
 </td>
 </tr>
    			<tr>
@@ -158,17 +199,22 @@ document.addEventListener('DOMContentLoaded', function(){
 		
 							<tr>
 							<td align="left">
-							<input type="file" name="review_original_filepath" style="align:left;">
+							<input type="file" name="upfile" style="align:left;">
 							</td>
 							</tr>
+							<tr><td>
+							<input type="hidden" name="field_name" value="">
+							<input type="hidden" name="review_grade" value="">
+							<input type="hidden" name="review_writer" value="${ loginMember.user_nn }"></td>
+							</tr>
 						</tbody>
+						
 					</table>
 					<!-- 버튼 --><br>
 					<center>
 						<input type="submit" value="등록하기" class="btn btn-primary">
 						&nbsp; <input type="reset" value="작성취소" class="btn btn-primary">
-						&nbsp; <input type="button" value="목록" class="btn btn-primary"
-							onclick="javascript:location.href='/Shoesgone/qulist?page=1'; return false;">
+						&nbsp; <button type="button" class="btn btn-primary" onclick="javascript:history.go(-1); return false;">목록</button>
 					</center>
 				</form>
 			</div>

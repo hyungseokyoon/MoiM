@@ -17,27 +17,23 @@
 		<typeAlias type="com.finalp.moim.common.SearchDate" alias="SearchDate"/>
 
 
-<<<<<<< HEAD
-
-=======
-		<typeAlias type="com.finalp.moim.file.model.vo.TFile" alias="TFile" />	
->>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git
+		<typeAlias type="com.finalp.moim.teampage.file.model.vo.TFile" alias="TFile" />	
 
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.Field" alias="Field"/>
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.JoinWaiting" alias="JoinWaiting"/>
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.Team" alias="Team"/>
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.TeamMember" alias="TeamMember"/>
+		<typeAlias type="com.finalp.moim.teampage.common.model.vo.Alert" alias="Alert"/>
 		<typeAlias type="com.finalp.moim.userinfo.model.vo.UserInfo" alias="UserInfo"/>
 		
-<<<<<<< HEAD
-		
-=======
 		<typeAlias type="com.finalp.moim.teampage.teamboard.model.vo.TeamBoard" alias="TeamBoard"/>
->>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git
 		
 		<typeAlias type="com.finalp.moim.recruit.model.vo.Recruit" alias="Recruit"/>
 		<typeAlias type="com.finalp.moim.review.model.vo.Review" alias="Review"/>
 		<typeAlias type="com.finalp.moim.join.model.vo.Join" alias="Join"/>
+		
+		<typeAlias type="com.finalp.moim.teampage.daily.model.vo.TeamDaily" alias="TeamDaily"/>
+		<typeAlias type="com.finalp.moim.teampage.calendar.model.vo.Calendar" alias="TeamCalendar"/>
 	</typeAliases>
 	
 	<mappers>
@@ -51,11 +47,9 @@
 		<mapper resource="mappers/recruit-mapper.xml"/>
 		<mapper resource="mappers/join-mapper.xml"/>
 		<mapper resource="mappers/review-mapper.xml"/>
+		<mapper resource="mappers/teamdaily-mapper.xml"/>
+		<mapper resource="mappers/teamcalendar-mapper.xml"/>
+		<mapper resource="mappers/teammain-mapper.xml"/>
 	</mappers>
 
-<<<<<<< HEAD
 </configuration>
-=======
-</configuration>
-
->>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git

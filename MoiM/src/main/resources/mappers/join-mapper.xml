@@ -14,4 +14,12 @@
 		<result column="join_rename_filename" property="join_rename_filename"/>
 	</resultMap>
 
+
+	<insert id="insertJoin" parameterType="Join">
+		insert into tb_join_waiting (join_num, team_num, user_no, join_intro, join_original_filename, join_rename_filename)
+		values 
+		((select max(join_num) +1 from tb_join_waiting), #{team_num}, #{user_no},
+		#{join_intro}, #{join_original_filename}, #{join_rename_filename})
+	
+	</insert>
 </mapper>

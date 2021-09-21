@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.finalp.moim.common.Page;
 import com.finalp.moim.recruit.model.service.RecruitService;
 import com.finalp.moim.recruit.model.vo.Recruit;
+import com.finalp.moim.recruit.model.vo.SearchRecruit;
 import com.finalp.moim.review.controller.ReviewController;
 
 @Controller
@@ -115,7 +116,7 @@ public class RecruitController {
 
 	// 파일 업로드 기능이 있는 게시글 등록 처리용
 	@RequestMapping(value = "rcinsert.do", method = RequestMethod.POST)
-	public String RecruitInsertMethod(Recruit recruit, HttpServletRequest request, Model model,
+	public String RecruitInsertMethod(Recruit recruit, HttpServletRequest request, Model model, 
 			@RequestParam(name = "upfile", required = false) MultipartFile mfile) {
 		// 업로드된 파일 저장 폴더 지정하기
 		String savePath = request.getSession().getServletContext().getRealPath("resources/recruit_files");
@@ -203,11 +204,10 @@ public class RecruitController {
 
 	}
 
-	// 게시글 수정 요청 처리용
 	@RequestMapping(value = "rcupdate.do", method = RequestMethod.POST)
-	public String boardUpdateMethod(Recruit recruit, HttpServletRequest request, Model model,
+	public String recruitUpdateMethod(Recruit recruit, HttpServletRequest request, Model model,
 			@RequestParam(name = "delflag", required = false) String delFlag,
-			@RequestParam(name = "upfile", required = false) MultipartFile mfile, @RequestParam("page") int page) {
+			@RequestParam(name = "upfile", required = false) MultipartFile mfile, @RequestParam("team_num") int team_num, @RequestParam("page") int page) {
 
 		// 업로드된 파일 저장 폴더 지정하기
 		String savePath = request.getSession().getServletContext().getRealPath("resources/recruit_files");
@@ -284,12 +284,71 @@ public class RecruitController {
 		if (recruitService.updateRecruit(recruit) > 0) {
 			model.addAttribute("page", page);
 			model.addAttribute("team_num", recruit.getTeam_num());
-			return "redirect:rvdetail.do";
+			logger.info("rcupdate.do : " + recruit);
+			return "redirect:rcdetail.do?team_num=" + recruit.getTeam_num() + "&page=" + page;
 		} else {
 			model.addAttribute("message", recruit.getTeam_num() + "번 팀 구인글 수정 실패");
 			return "common/error";
 		}
 
 	}
+	
+	@RequestMapping(value="rcsearch.do", method=RequestMethod.POST)
+	public String recruitSearchMethod(HttpServletRequest request,Model model, 
+			@RequestParam(name = "team_level", required = false) String team_level,
+			@RequestParam(name = "field_name", required = false) String field_name,
+			@RequestParam(name = "team_local", required = false) String team_local,
+			@RequestParam(name = "team_name", required = false) String team_name,
+			@RequestParam(name = "team_act_day", required = false) String team_act_day,
+			@RequestParam(name = "page", required = false) String page) {
+		
+		int currentPage = 1;
+		if (page != null) {
+			currentPage = Integer.parseInt(page);
+		}
+
+		// 페이징 처리
+		int limit = 10; // 한 페이지에 출력할 목록 갯수
+		// 페이지 계산을 위해 총 목록갯수 조회
+		int listCount = recruitService.selectListCount();
+		// 페이지 수 계산
+		// 목록이 11개이면 총2페이지가 나오게 계산식 작성
+		int maxPage = (int) ((double) listCount / limit + 0.9);
+		// 현재 페이지가 포함된 페이지 그룹의 시작값
+		// 뷰페이지에 페이지 숫자를 10개씩 보여지게 한다면
+		int startPage = (int) ((double) currentPage / 10 + 0.9);
+		// 현재 페이지가 포함된 페이지 그룹의 끝값
+		// 페이지 수가 10개이면
+		int endPage = startPage + 10 - 1;
+
+		if (maxPage < endPage) {
+			endPage = maxPage;
+		}
+
+		// 쿼리문에 전달할 현재 페이지에 출력할 목록의 첫행과 끝행
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+
+		
+		ArrayList<Recruit> list = null;
+		list = recruitService.selectSearchRecruit(new SearchRecruit(team_level, field_name, team_local, team_name, team_act_day, startRow, endRow));
+		
+		if(list.size() > 0) {
+			model.addAttribute("list",list);
+			model.addAttribute("listCount",listCount);
+			model.addAttribute("maxPage",maxPage);
+			model.addAttribute("currentPage",currentPage);
+			model.addAttribute("startPage",startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("limit", limit);
+			
+			return "recruit/recruitMainPage";
+			}else {
+				model.addAttribute("message", "검색에 대한 결과가 존재하지 않습니다.");
+				return "common/error";
+			}
+	}
+	
 
 }

@@ -31,10 +31,11 @@
 				<div class="col-lg-7">
 					<form action="rcupdate.do" class="contact-form text-left"
 						method="post" enctype="multipart/form-data">
-						<input type="hidden" name="team_name" value="${ recruit.team_num }">
-						<input type="hidden" name="page" value="${ currentPage }">
+						<input type="hidden" name="team_num" value="${ recruit.team_num }">
+						<input type="hidden" name="page" value="${ page }">
 						<input type="hidden" name="team_original_image"
-							value="${ recruit.team_original_image }"> <input
+							value="${ recruit.team_original_image }"> 
+						<input
 							type="hidden" name="team_rename_image"
 							value="${ recruit.team_rename_image }">
 						<div class="form-group mb-4">
@@ -42,6 +43,11 @@
 								type="text" name="team_name" class="form-control"
 								value="${ recruit.team_name }" readonly>
 						</div>
+						<c:if test="${ !empty recruit.team_original_image }">		
+			${ recruit.team_original_image } &nbsp; 
+			<input type="checkbox" name="delflag" value="yes"> 파일삭제
+			<br>
+		</c:if>
 						<div class="form-group mb-4">
 							<label>메인사진(jpg,png)<sup class="text-primary">✱</sup></label><br>
 							<input type="file" name="upfile">
@@ -50,6 +56,7 @@
 							<label>레벨<sup class="text-primary">✱</sup></label> <select
 								name="team_level" class="select form-control" 
 								style="padding: 0;">
+								<option  value="${ recruit.team_level }" selected>${ recruit.team_level }</option>
 								<option value="초급" style="font-size: 10;">초급</option>
 								<option value="중급">중급</option>
 								<option value="고급">고급</option>
@@ -59,6 +66,7 @@
 							<label>지역<sup class="text-primary">✱</sup></label> <select
 								name="team_local" class="select form-control"
 								style="padding: 0;">
+								<option  value="${ recruit.team_local }" selected>${ recruit.team_local }</option>
 								<option value="서울">서울</option>
 								<option value="경기">경기</option>
 								<option value="인천">인천</option>
@@ -76,7 +84,7 @@
 						<div class="form-group mb-4">
 							<label>분야<sup class="text-primary">✱</sup></label> <select
 								name="field_num" class="select form-control" style="padding: 0;">
-
+								<option  value="${ recruit.field_num }" selected>${ recruit.field_name }</option>
 								<option value="1">영어</option>
 								<option value="2">중국어</option>
 								<option value="3">기타 언어</option>
@@ -95,6 +103,7 @@
 							<label>요일<sup class="text-primary">✱</sup></label> <select
 								name="team_act_day" class="select form-control" 
 								style="padding: 0;">
+								<option  value="${ recruit.team_act_day }" selected>${ recruit.team_act_day }</option>
 								<option value="월">월</option>
 								<option value="화">화</option>
 								<option value="수">수</option>
@@ -113,7 +122,7 @@
 						<div class="form-group mb-4">
 							<label>시간<sup class="text-primary">✱</sup></label> <input
 								type="text" name="team_act_time" placeholder="ex) 14:00~16:00"
-								class="form-control" value="${ recruit.team_time }">
+								class="form-control" value="${ recruit.team_act_time }">
 						</div>
 						<div class="form-group mb-4">
 							<label>기간(주)<sup class="text-primary">✱</sup></label> <input
@@ -144,8 +153,8 @@
 						</div>
 
 						<div class="form-group" align="center">
-							<a href=""> <input type="submit" value="개설하기"
-								class="btn btn-primary"></a>
+							<input type="submit" value="수정하기"
+								class="btn btn-primary">
 						</div>
 					</form>
 

@@ -32,16 +32,16 @@
 			<div class="col-lg-7">
 				<form action="rcinsert.do" class="contact-form text-left" method="post" enctype="multipart/form-data">
 					<div class="form-group mb-4">
-						<label>스터디명<sup class="text-primary">✱</sup></label> <input
-							type="text" name="team_name" class="form-control">
+						<label>스터디명<sup class="text-primary">✱수정불가</sup></label> <input
+							type="text" name="team_name" class="form-control" required>
 					</div>
 					<div class="form-group mb-4">
-						<label>메인사진(jpg,png)<sup class="text-primary">✱</sup></label><br> <input
+						<label>메인사진(jpg,png)<sup class="text-primary">500*250/700*450권장(업로드 하지 않을 시 기본사진으로 올라갑니다.)</sup></label><br> <input
 							type="file" name="upfile">
 					</div>
 					<div class="form-group mb-4">
 						<label>레벨<sup class="text-primary">✱</sup></label> <select
-							name="team_level" class="select form-control" style="padding: 0;">
+							name="team_level" class="select form-control" style="padding: 0;" required>
 							<option value="초급" style="font-size: 10;">초급</option>
 							<option value="중급">중급</option>
 							<option value="고급">고급</option>
@@ -49,7 +49,7 @@
 					</div>
 					<div class="form-group mb-4">
 						<label>지역<sup class="text-primary">✱</sup></label> <select
-							name="team_local" class="select form-control" style="padding: 0;">
+							name="team_local" class="select form-control" style="padding: 0;" required>
 							<option value="서울">서울</option>
 							<option value="경기">경기</option>
 							<option value="인천">인천</option>
@@ -66,7 +66,7 @@
 					</div>
 					<div class="form-group mb-4">
 						<label>분야<sup class="text-primary">✱</sup></label> <select
-							name="field_num" class="select form-control" style="padding: 0;">
+							name="field_num" class="select form-control" style="padding: 0;" required>
 
 							<option value="1">영어</option>
 							<option value="2">중국어</option>
@@ -84,7 +84,7 @@
 					</div>
 					<div class="form-group mb-4">
 						<label>요일<sup class="text-primary">✱</sup></label> <select
-							name="team_act_day" class="select form-control" style="padding: 0;">
+							name="team_act_day" class="select form-control" style="padding: 0;" required>
 							<option value="월">월</option>
 							<option value="화">화</option>
 							<option value="수">수</option>
@@ -98,22 +98,22 @@
 					<div class="form-group mb-4">
 						<label>인원<sup class="text-primary">✱</sup></label> <input
 							type="number" name="team_limit" value="2" min="0"
-							class="numberinput form-control">
+							class="numberinput form-control" required>
 					</div>
 					<div class="form-group mb-4">
 						<label>시간<sup class="text-primary">✱</sup></label> <input
 							type="text" name="team_act_time" placeholder="ex) 14:00~16:00"
-							class="form-control">
+							class="form-control" required>
 					</div>
 					<div class="form-group mb-4">
 						<label>기간(주)<sup class="text-primary">✱</sup></label> <input
 							type="number" name="team_act_week" value="4" min="0"
-							class="numberinput form-control">
+							class="numberinput form-control" required>
 					</div>
 					<div class="form-group mb-4">
 						<label>참여비<sup class="text-primary">✱숫자만입력</sup></label> <input
 							type="text" name="team_fee" placeholder="ex) 10,000"
-							class="form-control">
+							class="form-control" required>
 					</div>
 
 
@@ -126,17 +126,20 @@
 
 					<div class="form-group mb-4">
 						<label>스터디 소개(1000자이내)<sup class="text-primary">✱</sup></label>
-						<textarea name="team_intro" class="form-control"></textarea>
+						<textarea name="team_intro" class="form-control" required></textarea>
 					</div>
 					<div class="form-group mb-4">
 						<label>리더 소개(1000자이내)<sup class="text-primary">✱</sup></label>
-						<textarea name="team_leader_intro" class="form-control"></textarea>
+						<textarea name="team_leader_intro" class="form-control" required></textarea>
 					</div>
 
 					<div class="form-group" align="center">
 						<a href=""> <input type="submit"
 							value="개설하기" class="btn btn-primary"></a>
 					</div>
+					
+					<input type="hidden" name="user_no" value="${ loginMember.user_no }">
+						
 				</form>
 
 
