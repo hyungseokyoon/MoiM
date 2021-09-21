@@ -29,6 +29,7 @@ import com.finalp.moim.teampage.common.model.vo.JoinWaiting;
 import com.finalp.moim.teampage.common.model.vo.Team;
 import com.finalp.moim.teampage.common.model.vo.TeamMember;
 import com.finalp.moim.teampage.teammanage.model.service.TPmanageService;
+import com.finalp.moim.userinfo.model.vo.UserInfo;
 
 @Controller
 public class TPmanageController {
@@ -197,6 +198,17 @@ public class TPmanageController {
 		int result = tpmanageService.deleteJoinMember(joinmember.getJoin_num());
 		
 		if (tpmanageService.insertTeamMember(joinmember) > 0 && result > 0) {
+			ArrayList<TeamMember> tmlist = tpmanageService.selectTeamMemberNormalList(joinmember.getTeam_num());
+			
+			int alertresult = 0;
+			
+			for(TeamMember tm : tmlist) {
+				tpmainService.insertAlertTMInsert(tm);
+				alertresult++;
+			}
+			
+			logger.info("alertinsert result : " + alertresult);
+			
 			return "redirect:moveTeamMember.do";
 		} else {
 			model.addAttribute("message", joinmember.getUserVO().getUser_id() + "님의 팀원 등록 실패.");
@@ -263,8 +275,24 @@ public class TPmanageController {
 	}
 	
 	@RequestMapping(value="tmdelete.do", method=RequestMethod.POST)
-	public String deleteTeamMember(TeamMember teammember, Model model) {
-		if(tpmanageService.deleteTeamMember(teammember.getTeam_member_no()) > 0) {
+	public String deleteTeamMember(TeamMember teammember, @RequestParam("user_nn") String user_nn, HttpSession session, Model model) {
+		if(tpmainService.deleteAlertAll(teammember.getTeam_member_no()) > 0 && tpmanageService.deleteTeamMember(teammember.getTeam_member_no()) > 0) {
+			int team_num = (int)session.getAttribute("team_num");
+			ArrayList<TeamMember> tmlist = tpmanageService.selectTeamMemberNormalList(team_num);
+			
+			int alertresult = 0;
+			
+			for(TeamMember tm : tmlist) {
+				Alert alert = new Alert();
+				alert.setTeam_member_no(tm.getTeam_member_no());
+				alert.setTeam_num(team_num);
+				alert.setAlert_content("팀장님이 " + user_nn + " 님을 강퇴하였습니다.");
+				tpmainService.insertAlertTMdelete(alert);
+				alertresult++;
+			}
+			
+			logger.info("alertinsert result : " + alertresult);
+			
 			return "redirect:moveTeamMember.do";
 		} else {
 			model.addAttribute("message", teammember.getUserVO().getUser_id() + " 회원 강퇴 실패.");

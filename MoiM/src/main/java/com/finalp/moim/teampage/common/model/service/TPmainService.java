@@ -13,4 +13,7 @@ public interface TPmainService {
 	int deleteAlertAll(int team_member_no);
 	int deleteTeamMember(TeamMember teammember);
 	int insertAlertTBInsert(TeamMember teammember);
+	int insertAlertTMInsert(TeamMember teammember);
+	int insertAlertTMquit(Alert alert);
+	int insertAlertTMdelete(Alert alert);
 }

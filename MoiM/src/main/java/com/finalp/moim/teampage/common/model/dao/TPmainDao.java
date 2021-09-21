@@ -45,5 +45,17 @@ public class TPmainDao {
 	public int insertAlertTBInsert(TeamMember teammember) {
 		return session.insert("tpmainMapper.insertAlertTBInsert", teammember);
 	}
+
+	public int insertAlertTMInsert(TeamMember teammember) {
+		return session.insert("tpmainMapper.insertAlertTMInsert", teammember);
+	}
+
+	public int insertAlertTMquit(Alert alert) {
+		return session.delete("tpmainMapper.insertAlertTMquit", alert);
+	}
+
+	public int insertAlertTMdelete(Alert alert) {
+		return session.delete("tpmainMapper.insertAlertTMdelete", alert);
+	}
 	
 }

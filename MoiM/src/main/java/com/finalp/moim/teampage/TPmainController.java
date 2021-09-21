@@ -153,6 +153,22 @@ public class TPmainController {
 		teammember.setTeam_num(team_num);
 		
 		if(tpmainService.deleteAlertAll(teammember.getTeam_member_no()) > 0 && tpmainService.deleteTeamMember(teammember) > 0) {
+			ArrayList<TeamMember> tmlist = tpmanageService.selectTeamMemberList(team_num);
+			
+			int alertresult = 0;
+			UserInfo loginmember = (UserInfo) session.getAttribute("loginMember");
+			
+			for(TeamMember tm : tmlist) {
+				Alert alert = new Alert();
+				alert.setTeam_member_no(tm.getTeam_member_no());
+				alert.setTeam_num(team_num);
+				alert.setAlert_content(loginmember.getUser_nn() + " 님이 팀을 탈퇴하였습니다.");
+				tpmainService.insertAlertTMquit(alert);
+				alertresult++;
+			}
+			
+			logger.info("alertinsert result : " + alertresult);
+			
 			session.removeAttribute("team_num");
 			session.removeAttribute("team_leader");
 			session.removeAttribute("teammember");

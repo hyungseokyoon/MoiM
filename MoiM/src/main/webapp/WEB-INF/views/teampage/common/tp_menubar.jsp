@@ -141,14 +141,39 @@
 	                </li>
                 </c:if>
                 <c:if test="${ sessionScope.team_leader eq 'N' }">
-                	<c:url var="teamquit" value="teamquit.do">
-                		<c:param name="team_member_no" value="${ teammember.team_member_no }" />
-                	</c:url>
-					<li><a href="${ teamquit }"><i class="fa fa-comments"></i><span>팀 탈퇴</span></a></li>
+					<li><a class="nav-link" href="#teamquitModal" data-toggle="modal"><i class="fa fa-comments"></i><span>팀 탈퇴</span></a></li>
 				</c:if>
                 <li><a href="exitTeampage.do"><i class="fa fa-address-book"></i><span>나가기</span></a></li>
             </ul>
         </nav>        
     </div>
+    
+    <div class="modal fade" id="teamquitModal" tabindex="-1" role="dialog" aria-labelledby="teamquitModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-ml" role="document">
+			<div class="modal-content">
+				<form action="teamquit.do" method="post">
+	    		<div class="modal-header">
+	        		<h5 class="modal-title" id="teamquitModalLabel">팀 탈퇴</h5>
+	        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        			<span aria-hidden="true">&times;</span>
+	        		</button>
+	      		</div>
+	      		<div class="modal-body" id="changerankdiv">
+	      			<input type="hidden" name="team_member_no" value="${ teammember.team_member_no }">
+		      		<div class="col-sm-12">
+					    <div class="form-group text-center">
+					        <h3><font style="vertical-align: inherit;">정말로 팀을 탈퇴하시겠습니까?</font></h3><br>
+					        <h6 class="text-danger"><font style="vertical-align: inherit;">무단 탈퇴 시, 추후 불이익을 받을 수 있습니다.</font></h6>
+					    </div>
+					</div>
+	      		</div>
+			  	<div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+			        <button type="submit" class="btn btn-primary">탈퇴</button>
+			    </div>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
