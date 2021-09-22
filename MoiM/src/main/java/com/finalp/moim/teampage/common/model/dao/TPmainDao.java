@@ -38,10 +38,6 @@ public class TPmainDao {
 		return session.delete("tpmainMapper.deleteAlertAll", team_member_no);
 	}
 
-	public int deleteTeamMember(TeamMember teammember) {
-		return session.delete("tpmainMapper.deleteTeamMember", teammember);
-	}
-
 	public int insertAlertTBInsert(TeamMember teammember) {
 		return session.insert("tpmainMapper.insertAlertTBInsert", teammember);
 	}
@@ -56,6 +52,10 @@ public class TPmainDao {
 
 	public int insertAlertTMdelete(Alert alert) {
 		return session.delete("tpmainMapper.insertAlertTMdelete", alert);
+	}
+
+	public int deleteTeamQuit(int team_member_no) {
+		return session.delete("tpmainMapper.deleteTeamQuit", team_member_no);
 	}
 	
 }

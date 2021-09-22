@@ -203,6 +203,9 @@ public class TPmanageController {
 			int alertresult = 0;
 			
 			for(TeamMember tm : tmlist) {
+				if(joinmember.getUser_no() == tm.getUser_no()) {
+					continue;
+				}
 				tpmainService.insertAlertTMInsert(tm);
 				alertresult++;
 			}
@@ -276,7 +279,7 @@ public class TPmanageController {
 	
 	@RequestMapping(value="tmdelete.do", method=RequestMethod.POST)
 	public String deleteTeamMember(TeamMember teammember, @RequestParam("user_nn") String user_nn, HttpSession session, Model model) {
-		if(tpmainService.deleteAlertAll(teammember.getTeam_member_no()) > 0 && tpmanageService.deleteTeamMember(teammember.getTeam_member_no()) > 0) {
+		if(tpmainService.deleteAlertAll(teammember.getTeam_member_no()) >= 0 && tpmanageService.deleteTeamMember(teammember.getTeam_member_no()) > 0) {
 			int team_num = (int)session.getAttribute("team_num");
 			ArrayList<TeamMember> tmlist = tpmanageService.selectTeamMemberNormalList(team_num);
 			

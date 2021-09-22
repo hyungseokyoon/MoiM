@@ -152,7 +152,7 @@ public class TPmainController {
 		teammember.setTeam_member_no(team_member_no);
 		teammember.setTeam_num(team_num);
 		
-		if(tpmainService.deleteAlertAll(teammember.getTeam_member_no()) > 0 && tpmainService.deleteTeamMember(teammember) > 0) {
+		if(tpmainService.deleteAlertAll(teammember.getTeam_member_no()) >= 0 && tpmanageService.deleteTeamMember(teammember.getTeam_member_no()) > 0) {
 			ArrayList<TeamMember> tmlist = tpmanageService.selectTeamMemberList(team_num);
 			
 			int alertresult = 0;
@@ -176,7 +176,7 @@ public class TPmainController {
 			
 			return "redirect:main.do";
 		} else {
-			model.addAttribute("message", model);
+			model.addAttribute("message", team_member_no + "님, " + team_num + "에서의 탈퇴 실패.");
 			return "common/error";
 		}
 	}

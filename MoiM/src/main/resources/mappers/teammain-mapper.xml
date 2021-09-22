@@ -84,9 +84,9 @@
 		where team_member_no = #{ team_member_no }
 	</delete>
 	
-	<delete id="deleteTeamMember" parameterType="TeamMember">
+	<delete id="deleteTeamQuit" parameterType="_int">
 		delete from tb_team_member
-		where team_member_no = #{ team_member_no } and team_num = #{ team_num }
+		where team_member_no = #{ team_member_no }
 	</delete>
 	
 	<insert id="insertAlertTBInsert" parameterType="TeamMember">

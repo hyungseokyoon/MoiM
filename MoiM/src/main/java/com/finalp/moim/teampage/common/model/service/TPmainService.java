@@ -11,9 +11,9 @@ public interface TPmainService {
 	ArrayList<Alert> selectAlertList(int team_member_no);
 	int deleteAlertOne(int alert_num);
 	int deleteAlertAll(int team_member_no);
-	int deleteTeamMember(TeamMember teammember);
 	int insertAlertTBInsert(TeamMember teammember);
 	int insertAlertTMInsert(TeamMember teammember);
 	int insertAlertTMquit(Alert alert);
 	int insertAlertTMdelete(Alert alert);
+	int deleteTeamQuit(int team_member_no);
 }

@@ -41,11 +41,6 @@ public class TPmainServiceImpl implements TPmainService{
 	}
 
 	@Override
-	public int deleteTeamMember(TeamMember teammember) {
-		return tpmainDao.deleteTeamMember(teammember);
-	}
-
-	@Override
 	public int insertAlertTBInsert(TeamMember teammember) {
 		return tpmainDao.insertAlertTBInsert(teammember);
 	}
@@ -63,6 +58,11 @@ public class TPmainServiceImpl implements TPmainService{
 	@Override
 	public int insertAlertTMdelete(Alert alert) {
 		return tpmainDao.insertAlertTMdelete(alert);
+	}
+
+	@Override
+	public int deleteTeamQuit(int team_member_no) {
+		return tpmainDao.deleteTeamQuit(team_member_no);
 	}
 	
 }
