@@ -347,7 +347,6 @@ $(function() {
 $(document).on('click', '#eventEditModal .deleteCalendar', function(){
 	var id = $('#eventEditModal input[name="cal_no"]').val();
 	var team_num = ${ sessionScope.team_num };
-	console.log(team_num);
 	$.ajax({
 		url: "deleteCalendar.do",
 		type: "post",
@@ -370,7 +369,6 @@ $(document).on('click', '#eventEditModal .updateCalendar', function(){
 	var calno = $('#eventEditModal input[name="cal_no"]').val();
 	var calwriter = $('#eventEditModal input[name="cal_writer"]').val();
 	var caltitle = $('#eventEditModal input[name="event-title"]').val();
-	console.log(caltitle);
 	var teamnum = ${ sessionScope.team_num };
 	var calstartdate = $('#eventEditModal input[name="event-start"]').val();
 	var calenddate = $('#eventEditModal input[name="event-end"]').val();
@@ -389,7 +387,6 @@ $(document).on('click', '#eventEditModal .updateCalendar', function(){
 	//date 변환
 	Calendar.cal_startdate = moment(Calendar.cal_startdate).format('YYYY-MM-DD');
 	Calendar.cal_enddate = moment(Calendar.cal_enddate).add(1, 'days').format('YYYY-MM-DD');
-	console.log(Calendar);
 	$.ajax({
 		url: "updateCalendar.do",
 		type: "post",
