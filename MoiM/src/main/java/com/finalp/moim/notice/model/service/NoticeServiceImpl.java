@@ -51,4 +51,9 @@ public class NoticeServiceImpl implements NoticeService {
 	public ArrayList<Notice> selectSearchNotice(String keyword) {
 		return noticeDao.selectSearchNotice(keyword);
 	}
+
+	@Override
+	public ArrayList<Notice> selectNewTop5() {
+		return noticeDao.selectNewTop5();
+	}
 }
