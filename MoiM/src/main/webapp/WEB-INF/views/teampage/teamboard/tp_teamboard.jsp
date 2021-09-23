@@ -358,14 +358,12 @@ $(function() {
     			
     			if(ogfilename != null){
     				var line = '<label>첨부 파일</label><br>'+'<a href="tndown.do?ofile='+ogfilename+'&'+'rfile='+rnfilename+'"></a>';
-    				console.log(line);
     				$('.modal-body .filetab').html(line);
         			$('.modal-body a').text( json.list[0].tn_originalfilename )
         			$('.modal-body #ofile').val(ogfilename);
         			$('.modal-body #rfile').val(rnfilename);
     			}else{
     				var line = '<label>첨부 파일</label><br>등록된 파일이 없습니다';
-    				console.log(line);
     				$(".modal-body #filetab").html(line);
     			}
 	
@@ -385,8 +383,6 @@ $(function() {
 		for(var i=0; i<tablerow.length; i++){
 			var titletab = tablerow[i].getElementsByClassName("titletab");
 			var usernntab = tablerow[i].getElementsByClassName("usernntab");
-			console.log(titletab);
-			console.log(usernntab);
 			if(titletab[0].innerText.toUpperCase().includes(value) || usernntab[0].innerText.toUpperCase().includes(value)){
 				tablerow[i].style.display = ""
 			}else{

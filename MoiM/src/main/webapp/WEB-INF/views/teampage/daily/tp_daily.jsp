@@ -316,8 +316,6 @@ $(function() {
 		for(var i=0; i<tablerow.length; i++){
 			var contenttab = tablerow[i].getElementsByClassName("contenttab");
 			var usernntab = tablerow[i].getElementsByClassName("usernntab");
-			console.log(contenttab);
-			console.log(usernntab);
 			if(contenttab[0].innerText.toUpperCase().includes(value) || usernntab[0].innerText.toUpperCase().includes(value)){
 				tablerow[i].style.display = ""
 			}else{
