@@ -129,7 +129,7 @@ public class RecruitController {
 			String fileName = mfile.getOriginalFilename();
 			if (fileName != null && fileName.length() > 0) {
 				try {
-					mfile.transferTo(new File(savePath + "/" + fileName));
+					mfile.transferTo(new File(savePath + "\\" + fileName));
 
 					// 저장된 원본 파일의 이름 바꾸기 하려면...
 					// 저장 폴더에 같은 이름의 파일이 있을 경우를 대비하기 위함
@@ -145,8 +145,8 @@ public class RecruitController {
 					renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
 
 					// 파일명 바꾸기 실행함 : java.io.File 을 이용함
-					File originFile = new File(savePath + "/" + fileName);
-					File renameFile = new File(savePath + "/" + renameFileName);
+					File originFile = new File(savePath + "\\" + fileName);
+					File renameFile = new File(savePath + "\\" + renameFileName);
 
 					if (!originFile.renameTo(renameFile)) {
 						// renameTo() 메소드가 실패한 경우(false)
@@ -231,7 +231,7 @@ public class RecruitController {
 			if (recruit.getTeam_original_image() != null) {
 				logger.info("이전첨부파일 삭제");
 				// 저장 폴더에서 파일을 삭제함
-				new File(savePath + "/" + recruit.getTeam_rename_image()).delete();
+				new File(savePath + "\\" + recruit.getTeam_rename_image()).delete();
 				recruit.setTeam_original_image(null);
 				recruit.setTeam_rename_image(null);
 			}
@@ -239,7 +239,7 @@ public class RecruitController {
 			String fileName = mfile.getOriginalFilename();
 			if (fileName != null && fileName.length() > 0) {
 				try {
-					mfile.transferTo(new File(savePath + "/" + fileName));
+					mfile.transferTo(new File(savePath + "\\" + fileName));
 
 					// 저장된 첨부파일 이름 바꾸기
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -250,8 +250,8 @@ public class RecruitController {
 					renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
 
 					// 파일명 바꾸기 실행함 : java.io.File 을 이용함
-					File originFile = new File(savePath + "/" + fileName);
-					File renameFile = new File(savePath + "/" + renameFileName);
+					File originFile = new File(savePath + "\\" + fileName);
+					File renameFile = new File(savePath + "\\" + renameFileName);
 
 					if (!originFile.renameTo(renameFile)) {
 						// 파일 이름바꾸기 실패시 직접 바꾸기

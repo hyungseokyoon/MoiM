@@ -44,7 +44,7 @@ public class JoinController {
 				String fileName = mfile.getOriginalFilename();
 				if (fileName != null && fileName.length() > 0) {
 					try {
-						mfile.transferTo(new File(savePath + "/" + fileName));
+						mfile.transferTo(new File(savePath + "\\" + fileName));
 
 						// 저장된 원본 파일의 이름 바꾸기 하려면...
 						// 저장 폴더에 같은 이름의 파일이 있을 경우를 대비하기 위함
@@ -60,8 +60,8 @@ public class JoinController {
 						renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
 
 						// 파일명 바꾸기 실행함 : java.io.File 을 이용함
-						File originFile = new File(savePath + "/" + fileName);
-						File renameFile = new File(savePath + "/" + renameFileName);
+						File originFile = new File(savePath + "\\" + fileName);
+						File renameFile = new File(savePath + "\\" + renameFileName);
 
 						if (!originFile.renameTo(renameFile)) {
 							// renameTo() 메소드가 실패한 경우(false)

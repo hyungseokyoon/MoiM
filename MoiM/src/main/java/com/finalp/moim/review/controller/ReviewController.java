@@ -128,7 +128,7 @@ public class ReviewController {
 		String savePath = request.getSession().getServletContext().getRealPath("resources/review_files");
 
 		// 저장폴더에서 파일 읽기 위해 경로 포함
-		File renameFile = new File(savePath + "/" + renameFileName);
+		File renameFile = new File(savePath + "\\" + renameFileName);
 		// response에 다운 파일명 등록을 위한 파일 (경로 제외)
 		File originalFile = new File(originFileName);
 
@@ -177,7 +177,7 @@ public class ReviewController {
 				String fileName = mfile.getOriginalFilename();
 				if (fileName != null && fileName.length() > 0) {
 					try {
-						mfile.transferTo(new File(savePath + "/" + fileName));
+						mfile.transferTo(new File(savePath + "\\" + fileName));
 
 						// 저장된 원본 파일의 이름 바꾸기 하려면...
 						// 저장 폴더에 같은 이름의 파일이 있을 경우를 대비하기 위함
@@ -193,8 +193,8 @@ public class ReviewController {
 						renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
 
 						// 파일명 바꾸기 실행함 : java.io.File 을 이용함
-						File originFile = new File(savePath + "/" + fileName);
-						File renameFile = new File(savePath + "/" + renameFileName);
+						File originFile = new File(savePath + "\\" + fileName);
+						File renameFile = new File(savePath + "\\" + renameFileName);
 
 						if (!originFile.renameTo(renameFile)) {
 							// renameTo() 메소드가 실패한 경우(false)
@@ -289,7 +289,7 @@ public class ReviewController {
 				String fileName = mfile.getOriginalFilename();
 				if (fileName != null && fileName.length() > 0) {
 					try {
-						mfile.transferTo(new File(savePath + "/" + fileName));
+						mfile.transferTo(new File(savePath + "\\" + fileName));
 
 						// 저장된 첨부파일 이름 바꾸기
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -300,8 +300,8 @@ public class ReviewController {
 						renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
 
 						// 파일명 바꾸기 실행함 : java.io.File 을 이용함
-						File originFile = new File(savePath + "/" + fileName);
-						File renameFile = new File(savePath + "/" + renameFileName);
+						File originFile = new File(savePath + "\\" + fileName);
+						File renameFile = new File(savePath + "\\" + renameFileName);
 
 						if (!originFile.renameTo(renameFile)) {
 							//파일 이름바꾸기 실패시 직접 바꾸기
@@ -352,7 +352,7 @@ public class ReviewController {
 				//첨부파일이 있는 글일 때, 저장폴더에 있는 파일도 삭제함 
 				if(renameFileName != null) {
 					new File(request.getSession().getServletContext().getRealPath("resources/review_files")
-					+ "/" + renameFileName).delete();
+					+ "\\" + renameFileName).delete();
 				}
 				ra.addFlashAttribute("msg", "delsuccess");
 				return "redirect:rvlist.do";
