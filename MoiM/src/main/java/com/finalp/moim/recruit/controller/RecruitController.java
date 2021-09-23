@@ -3,10 +3,12 @@ package com.finalp.moim.recruit.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -350,5 +353,11 @@ public class RecruitController {
 			}
 	}
 	
+	@RequestMapping(value = "searchtname.do")
+	@ResponseBody
+	public int searchTeamNameMethod(@RequestParam("team_name") String team_name) {
+		
+		return recruitService.selectSearchTeamName(team_name);
+	}
 
 }

@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.finalp.moim.common.Page;
-import com.finalp.moim.recruit.model.vo.Recruit;
 import com.finalp.moim.review.model.service.ReviewService;
 import com.finalp.moim.review.model.vo.Review;
 import com.finalp.moim.review.model.vo.UserTeam;
@@ -72,6 +72,8 @@ public class ReviewController {
 			mv.addObject("startPage", startPage);
 			mv.addObject("endPage", endPage);
 			mv.addObject("limit", limit);
+			mv.addObject("startRow", startRow);
+			mv.addObject("endRow", endRow);
 			
 			mv.setViewName("review/reviewListView");
 		} else {
@@ -345,17 +347,63 @@ public class ReviewController {
 		@RequestMapping("rvdelete.do")
 		public String ReviewDeleteMethod(@RequestParam("review_no") int review_no,
 				@RequestParam(name = "rfile", required = false) String renameFileName,
-				HttpServletRequest request, Model model) {
+				HttpServletRequest request, Model model, RedirectAttributes ra) {
 			if(reviewService.deleteReview(review_no) > 0) {
 				//첨부파일이 있는 글일 때, 저장폴더에 있는 파일도 삭제함 
 				if(renameFileName != null) {
 					new File(request.getSession().getServletContext().getRealPath("resources/review_files")
 					+ "/" + renameFileName).delete();
 				}
+				ra.addFlashAttribute("msg", "delsuccess");
 				return "redirect:rvlist.do";
 			}else {
 				model.addAttribute("message",review_no + "번 게시글 삭제 실패.");
 				return "common/error";
 			}
+		}
+		
+		@RequestMapping(value = "rvsearch.do", method = RequestMethod.POST)
+		public ModelAndView ReviewSearchMethod(ModelAndView mv,
+				@RequestParam("keyword") String keyword, @RequestParam(name="page", required=false) String page) {
+			int currentPage = 1;
+			if(page != null) {
+				currentPage = Integer.parseInt(page);
+			}
+			
+			int limit = 10;
+			int listCount = reviewService.selectListCount();
+			
+			int maxPage = (int)((double)listCount / limit + 0.9);
+			int startPage = (int)((double)currentPage / limit + 0.9);
+			int endPage = startPage + 10 - 1;
+			if(maxPage < endPage) {
+				endPage = maxPage;
+			}
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			Page paging = new Page(startRow, endRow);
+			
+			ArrayList<Review> list = reviewService.selectSearchReview(keyword);
+			
+			if(list != null && list.size() > 0) {
+				mv.addObject("list", list);
+				mv.addObject("listCount", listCount);
+				mv.addObject("maxPage", maxPage);
+				mv.addObject("currentPage", currentPage);
+				mv.addObject("startPage", startPage);
+				mv.addObject("endPage", endPage);
+				mv.addObject("limit", limit);
+				mv.addObject("startRow", startRow);
+				mv.addObject("endRow", endRow);
+				
+				mv.setViewName("review/reviewListView");
+			} else {
+				mv.addObject("message", keyword + "에 대한 검색결과가 존재하지 않습니다.");
+				
+				mv.setViewName("common/error");
+			}
+			
+			return mv;
 		}
 }

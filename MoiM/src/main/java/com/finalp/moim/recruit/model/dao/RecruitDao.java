@@ -44,4 +44,8 @@ public class RecruitDao {
 	List<Recruit> list = sqlSession.selectList("recruitMapper.selectSearchRecruit", sr);
 		return (ArrayList<Recruit>)list;
 	}
+	
+	public int selectSearchTeamName(String team_name) {
+		return sqlSession.selectOne("recruitMapper.selectSearchTeamName", team_name);
+	}
 }

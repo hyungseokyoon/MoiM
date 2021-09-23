@@ -3,11 +3,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+
+<c:set var="listCount" value="${ listCount }" />
+<c:set var="startPage" value="${ startPage }" />
+<c:set var="endPage" value="${ endPage }" />
+<c:set var="maxPage" value="${ maxPage }" />
+<c:set var="currentPage" value="${ currentPage }" />
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MoiM - 공지사항</title>
+<title>MoiM - 리뷰게시판</title>
+<!-- Table에 관련된 css -->
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/asset/bootstrap.css">
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/asset/style.css">
 </head>
 <body>
 	<!-- Menubar -->
@@ -24,30 +35,24 @@
 				<div class="card-body">
 			    	<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 			    		<div class="dataTable-top">
-			    			<div class="dataTable-dropdown">
-				    			<select class="dataTable-selector form-select">
-				    				<option value="5">5</option>
-				    				<option value="10" selected>10</option>
-				    				<option value="15">15</option>
-				    				<option value="20">20</option>
-				    				<option value="25">25</option>
-				    			</select>
-				    			<label>페이지당 게시글</label>
-			    			</div>
 			    			<div class="dataTable-search">
-			    				<input class="dataTable-input" placeholder="Search..." type="text">
+			    				<form action="rvsearch.do" method="post">
+			    					<input type="hidden" name="page" value="1">
+			    					<label><input type="search" name="keyword" placeholder="분류, 제목, 작성자 검색" class="form-control"></label>
+			    					<input type="submit" value="검색">
+			    				</form>
 			    			</div>
 			    		</div>
 			    		<div class="dataTable-container">
 			    			<table class="table table-striped dataTable-table" id="table1">
 						        <thead>
 						            <tr style="text-align:center;">
-						            	<th data-sortable="" style="width: 100px;">번호</th>
-						            	<th data-sortable="" style="width: 100px;">분류</th>
-						            	<th data-sortable="">글제목</th>
-						            	<th data-sortable="" style="width: 100px;">작성자</th>
-						            	<th data-sortable="" style="width: 150px;">작성날짜</th>
-						            	<th data-sortable="" style="width: 100px;">조회수</th>
+						            	<th data-sortable="" style="width: 100px; text-align:center;">번호</th>
+						            	<th data-sortable="" style="width: 100px; text-align:center;">분류</th>
+						            	<th data-sortable="" style="text-align:center;">글제목</th>
+						            	<th data-sortable="" style="width: 100px; text-align:center;">작성자</th>
+						            	<th data-sortable="" style="width: 150px; text-align:center;">작성날짜</th>
+						            	<th data-sortable="" style="width: 100px; text-align:center;">조회수</th>
 						            </tr>
 						        </thead>
 			        			<tbody>
@@ -70,11 +75,14 @@
 								</tbody>
 			    			</table>
 			    		</div>
-			    		<div class="dataTable-bottom">
-			    			<div class="dataTable-info">${ listCount }개의 글 중 * ~ *번 까지의 결과입니다.</div>
+			    		<c:url var="rvwirte" value="/rvwrite.do">
+			    						<c:param name="user_no" value="${ loginMember.user_no }"/>
+			    					</c:url>
+						    		<div class="dataTable-bottom">
+			    			
 			    			<ul class="pagination pagination-primary float-end dataTable-pagination">
 			    				<c:if test="${ currentPage <= 1 }">
-			    					<li class="page-item pager" class="page-link"><a>‹‹</a></li>
+			    					<li class="page-item pager"><a>‹‹</a></li>
 			    				</c:if>
 			    				<c:if test="${ currentPage > 1 }">
 			    					<c:url var="first" value="/rvlist.do">
@@ -120,15 +128,13 @@
 			    					</c:url>
 			    					<li class="page-item pager"><a href="${ last }" class="page-link">››</a></li>
 			    				</c:if>
-			    				
-			    			</ul>
-			    			<c:url var="rvwirte" value="/rvwrite.do">
-			    						<c:param name="user_no" value="${ loginMember.user_no }"/>
-			    					</c:url>
-			    			<c:if test="${ !empty loginMember }">
+			    				<c:if test="${ !empty loginMember }">
 			    					
-			    					<a href="${ rvwirte }"><button class="btn btn-primary">글작성</button></a>
+			    					<li><a href="${ rvwirte }" class="btn btn-primary">글작성</a></li>
 			    				</c:if>
+			    			</ul>
+			    			
+			    			
 			    		</div>
 			    	</div>
 				</div>

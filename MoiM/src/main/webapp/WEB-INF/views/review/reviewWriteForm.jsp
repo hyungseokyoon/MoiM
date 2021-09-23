@@ -99,11 +99,10 @@ function change(){
 		dataType : 'json',
 		success : function(data) {
 			
-			var jsonStr = JSON.stringify(data);
+	
 			field_name = data["field_name"]
 			console.log("success : " + data);
-			console.log("success : " + jsonStr);
-			console.log(data["field_name"]);
+	
 			console.log(field_name);
 			document.form1.field_name.value=field_name;
 			$("#toplist").html(data["field_name"]);
@@ -118,7 +117,6 @@ function change(){
 	
 
 }
-
 
 
 
@@ -155,8 +153,8 @@ function change(){
 									 required></td>
 							</tr>
 							<tr>
-								<td><select id="selectTeam" name="team_name" class="form-control" onchange="change()" style="padding: 0;">
-								<option selected>팀명선택</option>
+								<td><select id="selectTeam" name="team_name" class="form-control" onchange="change()" style="padding: 0;" required>
+								<option value="" selected>팀 선택</option>
 								<c:forEach items="${teamlist}" var="t">
 									<option><c:out value="${ t.team_name }"></c:out></option>
 								</c:forEach>
@@ -176,8 +174,8 @@ function change(){
             <div class="warning_msg">별점을 선택해 주세요.</div>
             <div class="rating">
                 <!-- 해당 별점을 클릭하면 해당 별과 그 왼쪽의 모든 별의 체크박스에 checked 적용 -->
-                <input type="checkbox" id="rating1" value="1" class="rate_radio" title="1점" onclick='getCheckboxValue(event)'>
-                <label for="rating1"></label>
+                <input type="checkbox" id="rating1" value="1" class="rate_radio" title="1점" onclick='getCheckboxValue(event)' checked>
+                <label for="rating1" ></label>
                 <input type="checkbox" id="rating2" value="2" class="rate_radio" title="2점" onclick='getCheckboxValue(event)'>
                 <label for="rating2"></label>
                 <input type="checkbox" id="rating3" value="3" class="rate_radio" title="3점" onclick='getCheckboxValue(event)'>
@@ -204,7 +202,7 @@ function change(){
 							</tr>
 							<tr><td>
 							<input type="hidden" name="field_name" value="">
-							<input type="hidden" name="review_grade" value="">
+							<input type="hidden" name="review_grade" value="1">
 							<input type="hidden" name="review_writer" value="${ loginMember.user_nn }"></td>
 							</tr>
 						</tbody>

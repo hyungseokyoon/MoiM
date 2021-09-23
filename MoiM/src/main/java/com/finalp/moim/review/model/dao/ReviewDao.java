@@ -57,4 +57,9 @@ public class ReviewDao {
 	public int deleteReview(int review_no) {
 		return sqlSession.delete("reviewMapper.deleteReview", review_no);
 	}
+	
+	public ArrayList<Review> selectSearchReview(String keyword) {
+		List<Review> list = sqlSession.selectList("reviewMapper.selectSearchReview", keyword);
+		return (ArrayList<Review>) list;
+	}
 }

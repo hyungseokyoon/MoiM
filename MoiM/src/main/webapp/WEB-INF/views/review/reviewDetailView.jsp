@@ -7,6 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>moim</title>
+<script type="text/javascript">
+const result = "${msg}"
+if( result === "delsuccess"){
+	alert('삭제 완료.');
+}
+</script>
 <style type="text/css">
 .rating .rate_radio {
 	position: relative;
@@ -40,6 +46,7 @@
 	background-color: #ff8;
 }
 </style>
+
 </head>
 <body>
 	<!-- navbar-->
@@ -138,7 +145,7 @@
 								<c:param name="rfile" value="${ review.review_rename_filepath }" />
 							</c:if>
 						</c:url>
-						<a href="${ ubd }">글삭제</a>
+						<a href="${ ubd }">	<button type="button" class="btn btn-default" onclick="return confirm('정말로 삭제하시겠습니까?')">글삭제</button></a>
 	    &nbsp; &nbsp; 
     </c:if>
 </c:if>

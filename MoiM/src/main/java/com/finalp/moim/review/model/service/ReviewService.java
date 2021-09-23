@@ -16,4 +16,5 @@ public interface ReviewService {
 	int insertReview(Review review);
 	int updateReview(Review review);
 	int deleteReview(int review_no);
+	ArrayList<Review> selectSearchReview(String keyword);
 }

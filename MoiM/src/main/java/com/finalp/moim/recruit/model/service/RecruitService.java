@@ -13,4 +13,5 @@ public interface RecruitService {
 	int insertRecruit(Recruit recruit); 
 	int updateRecruit(Recruit recruit);
 	ArrayList<Recruit> selectSearchRecruit(SearchRecruit sr);
+	int selectSearchTeamName(String team_name);
 }

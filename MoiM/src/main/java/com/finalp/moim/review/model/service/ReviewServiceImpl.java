@@ -61,4 +61,9 @@ public class ReviewServiceImpl implements ReviewService{
 	public int deleteReview(int review_no) {
 		return reviewDao.deleteReview(review_no);
 	}
+	
+	@Override
+	public ArrayList<Review> selectSearchReview(String keyword){
+		return reviewDao.selectSearchReview(keyword);
+	}
 }

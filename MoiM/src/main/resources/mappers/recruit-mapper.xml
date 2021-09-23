@@ -110,7 +110,11 @@
         where team_level like '%' || #{ team_level } || '%' and field_name like  '%' || #{ field_name } || '%'
         and team_local like  '%' || #{ team_local } || '%' and team_name like '%' || #{ team_name } || '%' 
         and team_act_day like  '%' || #{ team_act_day } || '%')
-        where rnum >= #{startRow} and rnum <= #{endRow}
+        
         ]]>
+	</select>
+	
+	<select id="selectSearchTeamName" parameterType="string" resultType="_int">
+		select count(*) from tb_team where team_name = #{ team_name }
 	</select>
 </mapper>
