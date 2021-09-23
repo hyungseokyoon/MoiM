@@ -41,69 +41,32 @@
                         <h1 class="page-title">Contact</h1>                        
                     </div>
                     <div class="right">
-                        <div class="input-icon xs-hide mr-4">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-icon-addon"><i class="fa fa-search fa-2"></i></span>
-                        </div>
-                        <div class="notification d-flex">
-                            <div class="dropdown d-flex">
-                                <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="badge badge-primary nav-unread"></span></a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <ul class="list-unstyled feeds_widget">
-                                        <li>
-                                            <div class="feeds-left"><i class="fa fa-check"></i></div>
-                                            <div class="feeds-body">
-                                                <h4 class="title text-danger">Issue Fixed <small class="float-right text-muted">11:05</small></h4>
-                                                <small>WE have fix all Design bug with Responsive</small>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="feeds-left"><i class="fa fa-user"></i></div>
-                                            <div class="feeds-body">
-                                                <h4 class="title">New User <small class="float-right text-muted">10:45</small></h4>
-                                                <small>I feel great! Thanks team</small>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="feeds-left"><i class="fa fa-thumbs-o-up"></i></div>
-                                            <div class="feeds-body">
-                                                <h4 class="title">7 New Feedback <small class="float-right text-muted">Today</small></h4>
-                                                <small>It will give a smart finishing to your site</small>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="feeds-left"><i class="fa fa-question-circle"></i></div>
-                                            <div class="feeds-body">
-                                                <h4 class="title text-warning">Server Warning <small class="float-right text-muted">10:50</small></h4>
-                                                <small>Your connection is not private</small>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="feeds-left"><i class="fa fa-shopping-cart"></i></div>
-                                            <div class="feeds-body">
-                                                <h4 class="title">7 New Orders <small class="float-right text-muted">11:35</small></h4>
-                                                <small>You received a new oder from Tina.</small>
-                                            </div>
-                                        </li>                                   
-                                    </ul>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item text-center text-muted-dark readall">Mark all as read</a>
-                                </div>
-                            </div>
-                            <div class="dropdown d-flex">
-                                <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown"><i class="fa fa-user"></i></a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="page-profile.html"><i class="dropdown-icon fe fe-user"></i> Profile</a>
-                                    <a class="dropdown-item" href="app-setting.html"><i class="dropdown-icon fe fe-settings"></i> Settings</a>
-                                    <a class="dropdown-item" href="javascript:void(0)"><span class="float-right"><span class="badge badge-primary">6</span></span><i class="dropdown-icon fe fe-mail"></i> Inbox</a>
-                                    <a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-send"></i> Message</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-help-circle"></i> Need help?</a>
-                                    <a class="dropdown-item" href="login.html"><i class="dropdown-icon fe fe-log-out"></i> Sign out</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+							<div class="notification d-flex">
+								<div class="dropdown d-flex show">
+	                        		<a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-bell"></i><span class="badge badge-primary nav-unread"></span></a>
+	                        		<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" x-placement="bottom-end" style="position: absolute; transform: translate3d(-312px, 34px, 0px); top: 0px; left: 0px; will-change: transform;">
+	                            		<ul class="list-unstyled feeds_widget">
+	                            			<c:forEach items="${ alertlist }" var="alertlist">
+		                                	<li>
+		                                    	<div class="feeds-body">
+		                                    	<c:url var="alertdelone" value="alertdelone.do">
+		                                    		<c:param name="alert_num" value="${ alertlist.alert_num }" />
+		                                    	</c:url>
+		                                        <h4 class="title text-muted">${ alertlist.alert_cate }<small class="float-right text-muted">${ alertlist.alert_date }</small></h4><a href="${ alertdelone }" class="float-right"><i class="fa fa-trash-o"></i></a>
+		                                        <small class="title text-muted">${ alertlist.alert_content }</small>
+		                                    	</div>
+		                                	</li>
+	                                		</c:forEach>                  
+	                            		</ul>
+	                            	<div class="dropdown-divider"></div>
+	                            	<c:url var="alertdelall" value="alertdelall.do">
+	                            		<c:param name="team_member_no" value="${ teammember.team_member_no }"></c:param>
+	                            	</c:url>
+	                            	<a href="${ alertdelall }" class="dropdown-item text-center text-muted-dark readall">모든 알람 삭제</a>
+	                        		</div>
+	                    		</div>
+							</div>
+						</div>
                 </div>
             </div>
         </div>
