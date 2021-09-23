@@ -11,6 +11,78 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
 
+<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+function search(){
+//팀명 유효성 검사(1 = 중복 / 0 != 중복)
+$("#team_name").blur(function() {
+	var team_name = $('#team_name').val();
+	$.ajax({
+		url : 'searchtname.do?team_name='+ team_name,
+		type : 'get',
+		success : function(data) {
+			console.log("1 = 중복o / 0 = 중복x : "+ data);							
+			
+			if (data == 1) {
+					// 1 : 아이디가 중복되는 문구
+					$("#name_check").text("사용중인 팀명입니다. 다시 입력해주세요");
+					$("#submitform").attr("disabled", true);
+				}else if(data == 0){
+					$("#name_check").text("");
+					$("#submitform").attr("disabled", false);
+				}
+				
+			}, error : function() {
+					console.log("실패");
+			}
+		});
+	});
+}
+
+function content(){
+    var content = $("#content1").val();
+
+    if (content.length > 1000){
+        $("#content1").val(content.substring(0, 1000));
+        $("#length_check").text("최대 1000자까지 입력 가능합니다.");
+        $("#submitform").attr("disabled", true);
+    }else {
+    	$("#length_check").text("");
+		$("#submitform").attr("disabled", false);
+    }
+}
+
+function content_leader(){
+    var leader = $("#leader").val();
+
+    if (leader.length > 1000){
+        $("#leader").val(leader.substring(0, 1000));
+        $("#length_check_leader").text("최대 1000자까지 입력 가능합니다.");
+        $("#submitform").attr("disabled", true);
+    }else {
+    	$("#length_check_leader").text("");
+		$("#submitform").attr("disabled", false);
+    }
+}
+
+function fileCheck(){
+    var fm = document.form1;
+	var fname = document.getElementById("fileNm").value; //파일의 풀 경로를 fname에 변수에 저장
+	var fext = fname.substr(fname.length-3).toLowerCase();//파일의 풀 경로에서 끝에서 3번째까지의 글자를 잘라 소문자로 변경
+	console.log(fext)
+	if(fext == 'jpg' || fext == 'png'){
+	
+		return true;
+	}else{
+		alert('jpg,png파일만 업로드 가능합니다.')
+		return false;
+	}
+	
+}
+
+
+</script>
+</head>
 <body>
 	<!-- navbar-->
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
@@ -30,18 +102,23 @@
 		</header>
 		<div>
 			<div class="col-lg-7">
-				<form action="rcinsert.do" class="contact-form text-left" method="post" enctype="multipart/form-data">
+				<form action="rcinsert.do" class="contact-form text-left" method="post" enctype="multipart/form-data" name="form1">
 					<div class="form-group mb-4">
-						<label>스터디명<sup class="text-primary">✱</sup></label> <input
-							type="text" name="team_name" class="form-control">
+						<label>스터디명<sup class="text-primary">✱수정불가</sup></label> <input id="team_name" onkeyup="search()"
+							type="text" name="team_name" class="form-control" required>
+					<div class="check_font" id="name_check">
 					</div>
+					</div>
+
 					<div class="form-group mb-4">
-						<label>메인사진(jpg,png)<sup class="text-primary">✱</sup></label><br> <input
-							type="file" name="upfile">
+						<label>메인사진(jpg,png)<sup class="text-primary">500*250/700*450권장(업로드 하지 않을 시 기본사진으로 올라갑니다.)</sup></label><br> <input
+							type="file" name="upfile" id="fileNm">
+							<div class="check_font" id="file_check">
+					</div>
 					</div>
 					<div class="form-group mb-4">
 						<label>레벨<sup class="text-primary">✱</sup></label> <select
-							name="team_level" class="select form-control" style="padding: 0;">
+							name="team_level" class="select form-control" style="padding: 0;" required>
 							<option value="초급" style="font-size: 10;">초급</option>
 							<option value="중급">중급</option>
 							<option value="고급">고급</option>
@@ -49,7 +126,7 @@
 					</div>
 					<div class="form-group mb-4">
 						<label>지역<sup class="text-primary">✱</sup></label> <select
-							name="team_local" class="select form-control" style="padding: 0;">
+							name="team_local" class="select form-control" style="padding: 0;" required>
 							<option value="서울">서울</option>
 							<option value="경기">경기</option>
 							<option value="인천">인천</option>
@@ -66,7 +143,7 @@
 					</div>
 					<div class="form-group mb-4">
 						<label>분야<sup class="text-primary">✱</sup></label> <select
-							name="field_num" class="select form-control" style="padding: 0;">
+							name="field_num" class="select form-control" style="padding: 0;" required>
 
 							<option value="1">영어</option>
 							<option value="2">중국어</option>
@@ -84,7 +161,7 @@
 					</div>
 					<div class="form-group mb-4">
 						<label>요일<sup class="text-primary">✱</sup></label> <select
-							name="team_act_day" class="select form-control" style="padding: 0;">
+							name="team_act_day" class="select form-control" style="padding: 0;" required>
 							<option value="월">월</option>
 							<option value="화">화</option>
 							<option value="수">수</option>
@@ -98,22 +175,22 @@
 					<div class="form-group mb-4">
 						<label>인원<sup class="text-primary">✱</sup></label> <input
 							type="number" name="team_limit" value="2" min="0"
-							class="numberinput form-control">
+							class="numberinput form-control" required>
 					</div>
 					<div class="form-group mb-4">
 						<label>시간<sup class="text-primary">✱</sup></label> <input
 							type="text" name="team_act_time" placeholder="ex) 14:00~16:00"
-							class="form-control">
+							class="form-control" required>
 					</div>
 					<div class="form-group mb-4">
 						<label>기간(주)<sup class="text-primary">✱</sup></label> <input
 							type="number" name="team_act_week" value="4" min="0"
-							class="numberinput form-control">
+							class="numberinput form-control" required>
 					</div>
 					<div class="form-group mb-4">
 						<label>참여비<sup class="text-primary">✱숫자만입력</sup></label> <input
-							type="text" name="team_fee" placeholder="ex) 10,000"
-							class="form-control">
+							type="text" name="team_fee" placeholder="ex) 10,000" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+							class="form-control" required>
 					</div>
 
 
@@ -126,17 +203,24 @@
 
 					<div class="form-group mb-4">
 						<label>스터디 소개(1000자이내)<sup class="text-primary">✱</sup></label>
-						<textarea name="team_intro" class="form-control"></textarea>
+						<textarea name="team_intro" class="form-control" id="content1" onkeyup="content()" required></textarea>
+					<div class="check_font" id="length_check">
+					</div>
 					</div>
 					<div class="form-group mb-4">
 						<label>리더 소개(1000자이내)<sup class="text-primary">✱</sup></label>
-						<textarea name="team_leader_intro" class="form-control"></textarea>
+						<textarea name="team_leader_intro" class="form-control" id="leader" onkeyup="content_leader()" required></textarea>
+					<div class="check_font" id="length_check_leader">
+					</div>
 					</div>
 
 					<div class="form-group" align="center">
-						<a href=""> <input type="submit"
+						<a href=""> <input type="submit" id="submitform" onclick="return fileCheck()"
 							value="개설하기" class="btn btn-primary"></a>
 					</div>
+					
+					<input type="hidden" name="user_no" value="${ loginMember.user_no }">
+						
 				</form>
 
 

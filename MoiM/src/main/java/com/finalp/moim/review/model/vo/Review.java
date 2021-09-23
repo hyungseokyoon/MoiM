@@ -10,6 +10,7 @@ public class Review implements java.io.Serializable {
 	private String team_name;
 	private String field_name;
 	private String review_title;
+	private String review_writer;
 	private String review_content;
 	private int review_grade;
 	private String review_original_filepath;
@@ -20,14 +21,15 @@ public class Review implements java.io.Serializable {
 	public Review() {}
 
 	public Review(int review_no, int team_num, String team_name, String field_name, String review_title,
-			String review_content, int review_grade, String review_original_filepath, String review_rename_filepath,
-			int review_readcount, Date review_date) {
+			String review_writer, String review_content, int review_grade, String review_original_filepath,
+			String review_rename_filepath, int review_readcount, Date review_date) {
 		super();
 		this.review_no = review_no;
 		this.team_num = team_num;
 		this.team_name = team_name;
 		this.field_name = field_name;
 		this.review_title = review_title;
+		this.review_writer = review_writer;
 		this.review_content = review_content;
 		this.review_grade = review_grade;
 		this.review_original_filepath = review_original_filepath;
@@ -74,6 +76,14 @@ public class Review implements java.io.Serializable {
 
 	public void setReview_title(String review_title) {
 		this.review_title = review_title;
+	}
+
+	public String getReview_writer() {
+		return review_writer;
+	}
+
+	public void setReview_writer(String review_writer) {
+		this.review_writer = review_writer;
 	}
 
 	public String getReview_content() {
@@ -127,12 +137,13 @@ public class Review implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "Review [review_no=" + review_no + ", team_num=" + team_num + ", team_name=" + team_name
-				+ ", field_name=" + field_name + ", review_title=" + review_title + ", review_content=" + review_content
-				+ ", review_grade=" + review_grade + ", review_original_filepath=" + review_original_filepath
-				+ ", review_rename_filepath=" + review_rename_filepath + ", review_readcount=" + review_readcount
-				+ ", review_date=" + review_date + "]";
+				+ ", field_name=" + field_name + ", review_title=" + review_title + ", review_writer=" + review_writer
+				+ ", review_content=" + review_content + ", review_grade=" + review_grade
+				+ ", review_original_filepath=" + review_original_filepath + ", review_rename_filepath="
+				+ review_rename_filepath + ", review_readcount=" + review_readcount + ", review_date=" + review_date
+				+ "]";
 	}
-	
+
 	
 	
 }

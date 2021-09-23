@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.finalp.moim.common.Page;
 import com.finalp.moim.recruit.model.vo.Recruit;
+import com.finalp.moim.recruit.model.vo.SearchRecruit;
 
 @Repository("recruitDao")
 public class RecruitDao {
@@ -33,5 +34,18 @@ public class RecruitDao {
 	
 	public int insertRecruit(Recruit recruit) {
 		return sqlSession.insert("recruitMapper.insertRecruit", recruit);
+	}
+	
+	public int updateRecruit(Recruit recruit) {
+		return sqlSession.update("recruitMapper.updateRecruit", recruit );
+	}
+	
+	public ArrayList<Recruit> selectList(SearchRecruit sr){
+	List<Recruit> list = sqlSession.selectList("recruitMapper.selectSearchRecruit", sr);
+		return (ArrayList<Recruit>)list;
+	}
+	
+	public int selectSearchTeamName(String team_name) {
+		return sqlSession.selectOne("recruitMapper.selectSearchTeamName", team_name);
 	}
 }

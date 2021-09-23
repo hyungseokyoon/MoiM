@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.finalp.moim.common.Page;
 import com.finalp.moim.recruit.model.dao.RecruitDao;
 import com.finalp.moim.recruit.model.vo.Recruit;
+import com.finalp.moim.recruit.model.vo.SearchRecruit;
 
 @Service("recruitService")
 public class RecruitServiceImpl implements RecruitService{
@@ -33,5 +34,20 @@ public class RecruitServiceImpl implements RecruitService{
 	@Override
 	public int insertRecruit(Recruit recruit) {
 		return recruitDao.insertRecruit(recruit);
+	}
+	
+	@Override
+	public int updateRecruit(Recruit recruit) {
+		return recruitDao.updateRecruit(recruit);
+	}
+	
+	@Override
+	public ArrayList<Recruit> selectSearchRecruit(SearchRecruit sr){
+		return recruitDao.selectList(sr);
+	}
+	
+	@Override
+	public int selectSearchTeamName(String team_name) {
+		return recruitDao.selectSearchTeamName(team_name);
 	}
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,13 +11,19 @@
 
 <style type="text/css">
 </style>
+<script type="text/javascript">
+const result = "${msg}"
+if( result === "success"){
+	alert('지원 완료.');
+}
+</script>
 </head>
 <body>
 
 	<!-- navbar-->
 
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
-	
+
 	<!-- FAQ Section-->
 	<br>
 	<br>
@@ -25,23 +31,40 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8">
-					<img class="w-100" src="${ pageContext.servletContext.contextPath }/resources/img/pic.jpg" alt="...">
+					<c:if test="${ empty recruit.team_rename_image }">
+						<img class="card-img-top w-100"
+							src="${ pageContext.servletContext.contextPath }/resources/img/pic.jpg"
+							alt="courses" width="700" height="450">
+					</c:if>
+					<c:if test="${ !empty recruit.team_rename_image }">
+						<img class="card-img-top w-100"
+							src="${ pageContext.servletContext.contextPath }/resources/recruit_files/${ recruit.team_rename_image }"
+							alt="courses" width="700" height="450">
+					</c:if>
+					
 					<h1 class="my-4">스터디 소개</h1>
 					<p>${ recruit.team_intro }</p>
 
 					<h1>리더 소개</h1>
 					<p>${ recruit.team_leader_intro }</p>
-					<br>
-					<br>
-					<br>
-					<br>
+					<br> <br> <br> <br>
+
+					<c:url var="rcup" value="/rcupview.do">
+						<c:param name="team_num" value="${ recruit.team_num }" />
+						<c:param name="page" value="${ currentPage }" />
+					</c:url>
 					<center>
+
+						<c:if test="${ !empty loginMember and loginMember.user_no ne recruit.user_no}">
 						<button class="btn btn-primary" id="openModalBtn">지원하기</button>
-						<button type="button" class="btn btn-default">목록</button>
+						</c:if>
+						<c:if test="${ !empty loginMember and loginMember.user_no eq recruit.user_no}">
+						<a href="${ rcup }"><button type="button"
+								class="btn btn-primary">수정하기</button></a>
+						</c:if>
+						<button type="button" class="btn btn-default" onclick="javascript:history.go(-1); return false;">목록</button>
 					</center>
-					<br>
-					<br>
-					<br>
+					<br> <br> <br>
 
 
 
@@ -53,12 +76,9 @@
 							<li class="list-group-item"><strong>인원 </strong>: ${ recruit.team_limit }명</li>
 							<li class="list-group-item"><strong>참가비 </strong>: ${ recruit.team_fee }원</li>
 							<li class="list-group-item"><strong>시간 </strong>: ${ recruit.team_act_time }</li>
-							<li class="list-group-item"><strong>레벨 </strong>:
-								${ recruit.team_level }</li>
-							<li class="list-group-item"><strong>기간 </strong>:
-								${ recruit.team_act_week }주</li>
-							<li class="list-group-item"><strong>요일 </strong>:
-								${ recruit.team_act_day }</li>
+							<li class="list-group-item"><strong>레벨 </strong>: ${ recruit.team_level }</li>
+							<li class="list-group-item"><strong>기간 </strong>: ${ recruit.team_act_week }주</li>
+							<li class="list-group-item"><strong>요일 </strong>: ${ recruit.team_act_day }</li>
 						</ul>
 					</div>
 				</div>
@@ -73,28 +93,36 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">스터디 지원</h4>
+					<h4 class="modal-title" id="myModalLabel">스터디 지원</h4>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">×</span>
 					</button>
-					
+
 				</div>
+
 				<div class="modal-body">
-				<div class="form-group mb-4">
-                <label>지원자 소개<sup class="text-primary">✱</sup></label>
-                <textarea name="studyintro" class="form-control"></textarea>
-              </div>
-              <div class="form-group mb-4">
-                <label>첨부파일</label><br>
-                <input type="file" name="email">
-              </div>
-              
-              
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">지원하기</button>
-					<button type="button" class="btn btn-default" id="closeModalBtn">취소</button>
+					<form action="joininsert.do" class="contact-form text-left"
+						method="post" enctype="multipart/form-data">
+						<div class="form-group mb-4">
+							<input type="hidden" name="team_num"
+								value="${ recruit.team_num }"> <input type="hidden"
+								name="page" value="${ currentPage }"> 
+								<input type="hidden" name="user_no" value=${ loginMember.user_no }>
+							<textarea name="join_intro" class="form-control"></textarea>
+						</div>
+						<div class="form-group mb-4">
+							<label>첨부파일</label><br> <input type="file" name="upfile">
+						</div>
+
+
+
+
+						<button type="submit" class="btn btn-primary" id="submitBtn">지원하기</button>
+						<button type="button" class="btn btn-default" id="closeModalBtn">취소</button>
+
+
+					</form>
 				</div>
 			</div>
 		</div>
@@ -104,13 +132,15 @@
 
 
 
-<!-- Footer -->
+	<!-- Footer -->
 	<c:import url="/WEB-INF/views/common/footer.jsp" />
 
 	<!-- JavaScript files-->
-	
+
 
 	<script>
+	
+	
 // 모달 버튼에 이벤트를 건다.
 $('#openModalBtn').on('click', function(){
 $('#modalBox').modal('show');
