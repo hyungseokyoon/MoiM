@@ -46,4 +46,9 @@ public class NoticeServiceImpl implements NoticeService {
 	public int deleteNotice(int notice_no) {
 		return noticeDao.deleteNotice(notice_no);
 	}
+
+	@Override
+	public ArrayList<Notice> selectSearchNotice(String keyword) {
+		return noticeDao.selectSearchNotice(keyword);
+	}
 }

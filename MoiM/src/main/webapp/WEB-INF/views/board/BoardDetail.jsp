@@ -24,6 +24,7 @@
 		<div class="container">
 			<input type="hidden" id="board_no" name="board_no" value="${ board.board_no }">
 			<input type="hidden" id="user_no" name="user_no" value="${ loginMember.user_no }">
+			<input type="hidden" id="admin" name="admin" value="${ loginMember.admin }">
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
 					<p class="lead text-muted mb-5">
@@ -44,9 +45,9 @@
 			    			<table id="reply" class="table table-striped dataTable-table" id="table1">
 						        <thead>
 						            <tr>
-						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter" align="center">작성자</a></th>
-						            	<th data-sortable=""><a href="#" class="dataTable-sorter" align="center">댓글내용</a></th>
-						            	<th data-sortable="" style="width: 150px;"><a href="#" class="dataTable-sorter" align="center">삭제</a></th>
+						            	<th style="width: 100px; text-align: center;">작성자</th>
+						            	<th style="text-align: center;">댓글내용</th>
+						            	<th style="width: 150px; text-align: center;">삭제</th>
 						            </tr>
 						        </thead>
 			    			</table>
@@ -72,12 +73,31 @@
 						<c:param name="page" value="${ currentPage }"/>
 					</c:url>
 					<a href="${ blist }" class="btn btn-primary">목록</a>
-					<c:if test="${ loginMember.user_no == board.user_no }">
+					<c:if test="${ loginMember.user_no == board.user_no and loginMember.admin != 'Y' }">
 						<c:url var="bupdateform" value="bupdateform.do">
 							<c:param name="board_no" value="${ board.board_no }"/>
 							<c:param name="page" value="${ currentPage }"/>
 						</c:url>
 						&nbsp;&nbsp;<a href="${ bupdateform }" class="btn btn-primary">수정</a>
+						<c:url var="bdelete" value="bdelete.do">
+							<c:param name="board_no" value="${ board.board_no }"/>
+							<c:param name="page" value="${ currentPage }"/>
+						</c:url>
+						&nbsp;&nbsp;<a href="${ bdelete }" class="btn btn-primary">삭제</a>
+					</c:if>
+					<c:if test="${ loginMember.user_no == board.user_no and loginMember.admin == 'Y' }">
+						<c:url var="bupdateform" value="bupdateform.do">
+							<c:param name="board_no" value="${ board.board_no }"/>
+							<c:param name="page" value="${ currentPage }"/>
+						</c:url>
+						&nbsp;&nbsp;<a href="${ bupdateform }" class="btn btn-primary">수정</a>
+						<c:url var="bdelete" value="bdelete.do">
+							<c:param name="board_no" value="${ board.board_no }"/>
+							<c:param name="page" value="${ currentPage }"/>
+						</c:url>
+						&nbsp;&nbsp;<a href="${ bdelete }" class="btn btn-primary">삭제</a>
+					</c:if>
+					<c:if test="${ loginMember.admin == 'Y' }">
 						<c:url var="bdelete" value="bdelete.do">
 							<c:param name="board_no" value="${ board.board_no }"/>
 							<c:param name="page" value="${ currentPage }"/>
@@ -93,6 +113,7 @@
 			console.log("run");
 			var board_no = $(".container #board_no").val();
 			var login_user_no = $(".container #user_no").val();
+			var admin = $(".container #admin").val();
 			
 			$.ajax({
 				url : "rlist.do", 
@@ -121,6 +142,13 @@
 									+ "<input type='hidden' name='page' value='${ currentPage }'>"
 									+ "<input type='submit' value='삭제' class='btn btn-primary'></form>"
 									+ "</td></tr></tbody>"
+						} else if(admin == "Y") {
+							values += "<form action='rdelete.do'>"
+								+ "<input type='hidden' name='reply_no' value='" + json.list[i].reply_no + "'>"
+								+ "<input type='hidden' name='board_no' value='${ board.board_no }'>"
+								+ "<input type='hidden' name='page' value='${ currentPage }'>"
+								+ "<input type='submit' value='삭제' class='btn btn-primary'></form>"
+								+ "</td></tr></tbody>"
 						} else if(login_user_no != json.list[i].user_no){
 							values += "</td></tr></tbody>"
 						}

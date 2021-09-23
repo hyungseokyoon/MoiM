@@ -1,5 +1,8 @@
 package com.finalp.moim.userinfo.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,5 +19,40 @@ public class UserInfoDao {
 
 	public UserInfo selectLogin(UserInfo userInfo) {
 		return session.selectOne("userinfoMapper.selectLogin", userInfo);
+	}
+
+	public ArrayList<UserInfo> selectUserList() {
+		List<UserInfo> list = session.selectList("userinfoMapper.selectUserList");
+		return (ArrayList<UserInfo>) list;
+	}
+
+	public int selectListCount() {
+		return session.selectOne("userinfoMapper.getListCount");
+	}
+
+	public UserInfo selectUser(int user_no) {
+		return session.selectOne("userinfoMapper.selectUser", user_no);
+	}
+
+	public int updateUserLoginOK(UserInfo userInfo) {
+		return session.update("userinfoMapper.updateUserLoginOK", userInfo);
+	}
+
+	public int updateUserAdmin(UserInfo userInfo) {
+		return session.update("userinfoMapper.updateUserAdmin", userInfo);
+	}
+
+	public ArrayList<UserInfo> selectUserSearch(int category_no, String keyword) {
+		List<UserInfo> list = null;
+		
+		if(category_no == 1) {
+			session.selectList("userinfoMapper.searchUserName", keyword);
+		} else if(category_no == 2) {
+			session.selectList("userinfoMapper.searchUserNickname", keyword);
+		} else if(category_no == 3) {
+			session.selectList("userinfoMapper.searchUserEmail", keyword);
+		}
+
+		return (ArrayList<UserInfo>) list;
 	};
 }

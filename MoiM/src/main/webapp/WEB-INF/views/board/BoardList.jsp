@@ -32,30 +32,35 @@
 				<div class="card-body">
 			    	<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 			    		<div class="dataTable-top">
-			    			<div class="dataTable-dropdown">
-				    			<select class="dataTable-selector form-select">
-				    				<option value="5">5</option>
-				    				<option value="10" selected>10</option>
-				    				<option value="15">15</option>
-				    				<option value="20">20</option>
-				    				<option value="25">25</option>
-				    			</select>
-				    			<label>페이지당 게시글</label>
-			    			</div>
 			    			<div class="dataTable-search">
-			    				<input class="dataTable-input" placeholder="Search..." type="text">
+			    				<form action="bsearch.do" method="post">
+			    					<input type="hidden" name="page" value="1">
+			    					<label>카테고리 선택</label>
+				    				<label>
+					    				<select name="board_category_no" class="dataTable-selector form-select">
+					    					<option value="0" selected>전체</option>
+						    				<option value="1">공모전</option>
+						    				<option value="2">인턴십</option>
+						    				<option value="3">자격증</option>
+						    				<option value="4">이벤트</option>
+						    				<option value="5">자유글</option>
+						    			</select>
+					    			</label>
+			    					<label><input type="search" name="keyword" placeholder="Search..."></label>
+			    					<input type="submit" value="검색">
+			    				</form>
 			    			</div>
 			    		</div>
 			    		<div class="dataTable-container">
 			    			<table class="table table-striped dataTable-table" id="table1">
 						        <thead>
 						            <tr>
-						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter" align="center">글번호</a></th>
-						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter" align="center">카테고리</a></th>
-						            	<th data-sortable=""><a href="#" class="dataTable-sorter" align="center">글제목</a></th>
-						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter" align="center">작성자</a></th>
-						            	<th data-sortable="" style="width: 150px;"><a href="#" class="dataTable-sorter" align="center">작성날짜</a></th>
-						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter" align="center">조회수</a></th>
+						            	<th style="width: 100px; text-align: center;">글번호</th>
+						            	<th style="width: 100px; text-align: center;">카테고리</th>
+						            	<th style="text-align: center;">글제목</th>
+						            	<th style="width: 100px; text-align: center;">작성자</th>
+						            	<th style="width: 150px; text-align: center;">작성날짜</th>
+						            	<th style="width: 100px; text-align: center;">조회수</th>
 						            </tr>
 						        </thead>
 			        			<tbody>
@@ -79,7 +84,6 @@
 			    			</table>
 			    		</div>
 			    		<div class="dataTable-bottom">
-			    			<div class="dataTable-info">${ listCount }개의 글 중 ${ startRow } ~ ${ endRow }번 까지의 결과입니다.</div>
 			    			<ul class="pagination pagination-primary float-end dataTable-pagination">
 			    				<c:if test="${ currentPage <= 1 }">
 			    					<li class="page-item pager"><a>‹‹</a></li>

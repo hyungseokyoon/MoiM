@@ -51,4 +51,9 @@ public class BoardServiceImpl implements BoardService {
 	public int deleteBoard(int board_no) {
 		return boardDao.deleteBoard(board_no);
 	}
+
+	@Override
+	public ArrayList<Board> selectSearchBoard(int board_category_no, String keyword) {
+		return boardDao.selectSearchBoard(board_category_no, keyword);
+	}
 }

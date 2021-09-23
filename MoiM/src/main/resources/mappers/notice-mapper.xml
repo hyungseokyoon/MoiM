@@ -86,4 +86,9 @@
 	<delete id="deleteNotice" parameterType="int">
 		delete from notice where notice_no = #{notice_no}
 	</delete>
+	
+	<!-- 제목 키워드로 공지사항 검색 -->
+	<select id="selectSearchNotice" parameterType="String" resultMap="resultNotice">
+		select * from notice where notice_title like '%' || #{keyword} || '%'
+	</select>
 </mapper>

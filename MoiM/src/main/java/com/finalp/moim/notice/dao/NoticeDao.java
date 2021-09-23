@@ -42,4 +42,9 @@ public class NoticeDao {
 	public int deleteNotice(int notice_no) {
 		return sqlSession.delete("noticeMapper.deleteNotice", notice_no);
 	}
+
+	public ArrayList<Notice> selectSearchNotice(String keyword) {
+		List<Notice> list = sqlSession.selectList("noticeMapper.selectSearchNotice", keyword);
+		return (ArrayList<Notice>) list;
+	}
 }
