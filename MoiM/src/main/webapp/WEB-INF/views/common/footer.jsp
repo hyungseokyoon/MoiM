@@ -30,7 +30,7 @@
 					<h5 class="footer-heading">Product</h5>
 					<ul class="list-unstyled">
 						<li> <a href="${ pageContext.servletContext.contextPath }/moveTPindex.do" class="footer-link">Why Appton?</a></li>
-						<li> <a href="#" class="footer-link">Enterprise</a></li>
+						<li> <a href="${ pageContext.servletContext.contextPath }/moveMyTeamList.do" class="footer-link">Enterprise</a></li>
 						<li> <a href="#" class="footer-link">Blog</a></li>
 						<li> <a href="#" class="footer-link">Pricing</a></li>
 					</ul>

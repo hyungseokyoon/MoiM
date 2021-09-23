@@ -21,10 +21,54 @@
 		<result column="admin" property="admin"/>
 	</resultMap>
 
-	<!-- 비밀번호 암호화를 사용하지 않는 로그인(임시) -->
+	<!-- 비밀번호 암호화를 사용하는 로그인 -->
 	<select id="selectLogin" parameterType="UserInfo" resultMap="resultUser">
 		select * from user_info
 		where user_id = #{ user_id }
-		and user_pwd = #{ user_pwd }
 	</select>
+	
+	<!-- 관리자 페이지 - 전체 회원 목록 조회 -->
+	<select id="selectUserList" resultMap="resultUser">
+		select * from user_info
+	</select>
+	
+	<!-- 관리자 페이지 - 전체 회원수 조회 -->
+	<select id="getListCount" resultType="int">
+		select count(*) from user_info
+	</select>
+	
+	<!-- 유저 한 명의 정보 조회 -->
+	<select id="selectUser" parameterType="int" resultMap="resultUser">
+		select * from user_info where user_no = #{user_no}
+	</select>
+	
+	<!-- 유저 한 명의 로그인 가능 여부 변경 -->
+	<update id="updateUserLoginOK" parameterType="UserInfo">
+		update user_info
+		set login_ok = #{login_ok}
+		where user_no = #{user_no}
+	</update>
+	
+	<!-- 유저 한 명의 관리자 여부 변경 -->
+	<update id="updateUserAdmin" parameterType="UserInfo">
+		update user_info
+		set admin = #{admin}
+		where user_no = #{user_no}
+	</update>
+	
+	<!-- 회원이름으로 검색 -->
+	<select id="searchUserName" parameterType="String" resultMap="resultUser">
+		select * from user_info where user_name like '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 닉네임으로 검색 -->
+	<select id="searchUserNickname" parameterType="String" resultMap="resultUser">
+		select * from user_info where user_nn like '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 이메일로 검색 -->
+	<select id="searchUserEmail" parameterType="String" resultMap="resultUser">
+		select * from user_info where email like '%' || #{keyword} || '%'
+	</select>
+	
 </mapper>

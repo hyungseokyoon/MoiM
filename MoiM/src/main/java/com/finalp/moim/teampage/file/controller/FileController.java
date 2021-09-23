@@ -1,4 +1,4 @@
-package com.finalp.moim.file.controller;
+package com.finalp.moim.teampage.file.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.finalp.moim.file.model.service.FileService;
-import com.finalp.moim.file.model.vo.TFile;
+import com.finalp.moim.teampage.file.model.service.FileService;
+import com.finalp.moim.teampage.file.model.vo.TFile;
 
 
 
@@ -34,7 +34,7 @@ public class FileController {
 	public String fileListMethod(Model model) {
 		ArrayList<TFile> list = fileService.selectAll();
 
-		if (list.size() > 0) {
+		if (list.size() >= 0) {
 			model.addAttribute("list", list);
 			return "file/fileList";
 		} else {

@@ -1,5 +1,24 @@
 $(function() {
     enableDrag();
+	var eventlist;
+	var team_num = ${team_num};
+	$.ajax({
+		url: "selectcalendarlist.do",
+		async: false,
+		type: "post",
+		data: {"team_num" : team_num},
+		dataType : "json",
+		success: function(data){
+			console.log("success : " + data);
+			var jsonStr = JSON.stringify(data);
+			var json = JSON.parse(jsonStr);
+			eventlist = json.clist;
+			console.log(eventlist);
+		},
+		error : function(jqXHR, textstatus, errorthrown) {
+			console.log("error : " + jqXHR + ", " + textstatus + ", " + errorthrown);
+    	}
+	}); //ajax
 
     function enableDrag() {
         $('#external-events .fc-event').each(function() {
@@ -40,23 +59,59 @@ $(function() {
     // Add direct event to calendar
     var newEvent = function(start) {
         $('#addDirectEvent input[name="event-name"]').val("");
-        $('#addDirectEvent select[name="event-bg"]').val("");
+		$('#addDirectEvent input[name="event-start"]').val("");
+		$('#addDirectEvent input[name="event-end"]').val("");
+        $('#addDirectEvent select[name="event-color"]').val("");
+		$('#addDirectEvent textarea[name="event-desc"]').val("");
         $('#addDirectEvent').modal('show');
-        $('#addDirectEvent .save-btn').unbind();
-        $('#addDirectEvent .save-btn').on('click', function() {
-            var title = $('#addDirectEvent input[name="event-name"]').val();
-            var classes = 'bg-' + $('#addDirectEvent select[name="event-bg"]').val();
-            if (title) {
-                var eventData = {
-                    title: title,
-                    start: start,
-                    className: classes
-                };
-                calendar.fullCalendar('renderEvent', eventData, true);
-                $('#addDirectEvent').modal('hide');
-            } else {
-                alert("Title can't be blank. Please try again.")
-            }
+        $('#addDirectEvent #saveEvent').unbind();
+        $('#addDirectEvent #saveEvent').on('click', function() {
+			var team_num = 1;
+			var cal_writer = 1;
+            var cal_title = $('#addDirectEvent input[name="event-name"]').val();
+            var cal_startdate = $('#addDirectEvent input[name="event-name"]').val();
+			var cal_enddate = $('#addDirectEvent input[name="event-name"]').val();
+			var cal_color = $('#addDirectEvent input[name="event-name"]').val();
+			var cal_detail = $('#addDirectEvent input[name="event-name"]').val();
+            
+			var eventData = {
+				title: cal_title,
+				start: cal_startdate,
+				end: cal_enddate,
+				cal_writer: cal_writer,
+				team_num: team_num,
+				cal_detail: cal_detail,
+				eventColor: cal_color,
+				allDay: true
+			}
+			
+			if (eventData.start > eventData.end){
+				alert('끝나는 날짜가 앞설 수 없습니다.');
+				return false;
+			}
+			
+			if (eventData.title === ''){
+				alert("일정명은 필수입니다.");
+				return false;
+			}
+			
+            calendar.fullCalendar('renderEvent', eventData, true);
+            $('#addDirectEvent').modal('hide');
+			
+			$.ajax({
+				type: "post",
+				url: "",
+				data: eventData,
+				success: function(result){
+					alert("success" + result);
+					location.href = "moveTPcalendar.do";
+				},
+				error: function(jqXHR, textstatus, errorthrown) {
+    			console.log("error : " + jqXHR + ", " + textstatus + ", "
+    					+ errorthrown);
+    			}
+			});
+			
         });
     }
     // initialize the calendar
@@ -67,6 +122,7 @@ $(function() {
 	                right  : 'month, agendaWeek, agendaDay, listWeek'
 	            },
         editable: true,
+		locale: 'ko',
         droppable: true,
         eventLimit: true, // allow "more" link when too many events
         selectable: true,
@@ -79,51 +135,7 @@ $(function() {
 	        container: 'body'
 	      });
     	},
-        events: [{
-                title: 'Birthday Party',
-                start: current + '01',
-                className: 'bg-info'
-            },{
-                title: 'Conference',
-                start: current + '05',
-                end: '2019-09-06',
-                className: 'bg-warning'
-            },{
-                title: 'Meeting',
-                start: current + '09T12:30:00',
-                allDay: false, // will make the time show
-                className: 'bg-success',
-            },{
-                title: 'Meeting',
-                start: current + '09T18:30:00',
-                allDay: false, // will make the time show
-                className: 'bg-info',
-            },{
-                title: 'BOD Event',
-                start: '2019-09-16',
-                end: '2019-09-16',
-                className: 'bg-indigo'
-            },{
-                title: 'June Challenge',
-                start: '2019-09-10',
-                end: '2019-09-12',
-                className: 'bg-gray'
-            },{
-                title: 'Earthcon Exhibition',
-                start: '2019-09-18',
-                end: '2019-09-22',
-                className: 'bg-red'
-            },{
-                title: 'Toastmasters Meeting #3',
-                start: '2019-09-26',
-                end: '2019-09-26',
-                className: 'bg-orange'
-            },{
-                title: 'Salary',
-                start: '2019-09-07',
-                end: '2019-09-07',
-                className: 'bg-pink'
-            }],
+		events: eventlist,
         drop: function(date, jsEvent) {
             // var originalEventObject = $(this).data('eventObject');
             // var $categoryClass = $(this).attr('data-class');

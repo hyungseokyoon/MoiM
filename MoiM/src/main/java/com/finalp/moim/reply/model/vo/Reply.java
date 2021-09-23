@@ -2,6 +2,8 @@ package com.finalp.moim.reply.model.vo;
 
 import java.sql.Date;
 
+import com.finalp.moim.userinfo.model.vo.UserInfo;
+
 public class Reply implements java.io.Serializable {
 	private static final long serialVersionUID = 1005L;
 	
@@ -10,6 +12,9 @@ public class Reply implements java.io.Serializable {
 	private int user_no;
 	private String reply_content;
 	private Date reply_date;
+	
+	// DI
+	private UserInfo userVO;
 	
 	public Reply() {}
 
@@ -60,6 +65,14 @@ public class Reply implements java.io.Serializable {
 
 	public void setReply_date(Date reply_date) {
 		this.reply_date = reply_date;
+	}
+	
+	public UserInfo getUserVO() {
+		return userVO;
+	}
+
+	public void setUserVO(UserInfo userVO) {
+		this.userVO = userVO;
 	}
 
 	public static long getSerialversionuid() {

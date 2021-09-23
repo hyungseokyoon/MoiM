@@ -67,4 +67,13 @@ public class TPmanageDao {
 		return session.delete("teammanageMapper.deleteTeamMember", team_member_no);
 	}
 
+	public ArrayList<TeamMember> selectTeamMemberNormalList(int team_num) {
+		List<TeamMember> list = session.selectList("teammanageMapper.selectTeamMemberNormalList", team_num);
+		return (ArrayList<TeamMember>)list;
+	}
+
+	public TeamMember selectUserNoTeamMember(int user_no) {
+		return session.selectOne("teammanageMapper.selectUserNoTeamMember", user_no);
+	}
+
 }

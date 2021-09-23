@@ -1,4 +1,4 @@
-package com.finalp.moim.file.model.dao;
+package com.finalp.moim.teampage.file.model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.finalp.moim.file.model.vo.TFile;
+import com.finalp.moim.teampage.file.model.vo.TFile;
 
 
 @Repository("fileDao")
@@ -40,6 +40,12 @@ public class FileDao {
 	public int deleteFile(TFile tfile) {
 		return sqlSession.delete(
 				"fileMapper.deleteFile", tfile);
+	}
+
+	public ArrayList<TFile> selectFileRecentList(int team_num) {
+		List<TFile> list = sqlSession.selectList(
+				"fileMapper.selectFileRecentList", team_num);
+		return (ArrayList<TFile>)list;
 	}
 
 }

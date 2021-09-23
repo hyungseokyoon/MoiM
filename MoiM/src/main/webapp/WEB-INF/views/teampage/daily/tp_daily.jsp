@@ -10,7 +10,7 @@
 
 <link rel="icon" href="${ pageContext.servletContext.contextPath }/resources/team_page/images/favicon.ico" type="image/x-icon" />
 
-<title>team - daily</title>
+<title>팀 일지</title>
 
 <!-- Bootstrap Core and vandor -->
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/bootstrap/css/bootstrap.min.css" />
@@ -20,6 +20,17 @@
 <!-- Core css -->
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/css/main.css"/>
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/css/theme1.css"/>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<style type="text/css">
+.modal {
+	position: absolute;
+	float: left;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+</style>
 </head>
 
 <body class="font-montserrat">
@@ -37,135 +48,8 @@
                 <div class="page-header">
                     <div class="left">
                         <a href="javascript:void(0)" class="icon menu_toggle mr-3"><i class="fa  fa-align-left"></i></a>
-                        <h1 class="page-title">TaskBoard</h1>
+                        <h1 class="page-title">할일 페이지</h1>
                         
-                    </div>
-                    <div class="right">
-                        <div class="input-icon xs-hide mr-4">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-icon-addon"><i class="fa fa-search fa-2"></i></span>
-                        </div>
-                        <div class="notification d-flex">
-                            <div class="dropdown d-flex">
-                                <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown"><i class="fa fa-language"></i></a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="assets/images/flags/us.svg">English</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="assets/images/flags/es.svg">Spanish</a>
-                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="assets/images/flags/jp.svg">japanese</a>
-                                    <a class="dropdown-item" href="#"><img class="w20 mr-2" src="assets/images/flags/bl.svg">France</a>
-                                </div>
-                            </div>
-                            <div class="dropdown d-flex">
-                                <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="badge badge-success nav-unread"></span></a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <ul class="right_chat list-unstyled w350 p-0">
-                                        <li class="online">
-                                            <a href="javascript:void(0);" class="media">
-                                                <img class="media-object" src="assets/images/xs/avatar4.jpg" alt="">
-                                                <div class="media-body">
-                                                    <span class="name">Donald Gardner</span>
-                                                    <div class="message">It is a long established fact that a reader</div>
-                                                    <small>11 mins ago</small>
-                                                    <span class="badge badge-outline status"></span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="online">
-                                            <a href="javascript:void(0);" class="media">
-                                                <img class="media-object " src="assets/images/xs/avatar5.jpg" alt="">
-                                                <div class="media-body">
-                                                    <span class="name">Wendy Keen</span>
-                                                    <div class="message">There are many variations of passages of Lorem Ipsum</div>
-                                                    <small>18 mins ago</small>
-                                                    <span class="badge badge-outline status"></span>
-                                                </div>
-                                            </a>                            
-                                        </li>
-                                        <li class="offline">
-                                            <a href="javascript:void(0);" class="media">
-                                                <img class="media-object " src="assets/images/xs/avatar2.jpg" alt="">
-                                                <div class="media-body">
-                                                    <span class="name">Matt Rosales</span>
-                                                    <div class="message">Contrary to popular belief, Lorem Ipsum is not simply</div>
-                                                    <small>27 mins ago</small>
-                                                    <span class="badge badge-outline status"></span>
-                                                </div>
-                                            </a>                            
-                                        </li>
-                                        <li class="online">
-                                            <a href="javascript:void(0);" class="media">
-                                                <img class="media-object " src="assets/images/xs/avatar3.jpg" alt="">
-                                                <div class="media-body">
-                                                    <span class="name">Phillip Smith</span>
-                                                    <div class="message">It has roots in a piece of classical Latin literature from 45 BC</div>
-                                                    <small>33 mins ago</small>
-                                                    <span class="badge badge-outline status"></span>
-                                                </div>
-                                            </a>                            
-                                        </li>                        
-                                    </ul>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item text-center text-muted-dark readall">Mark all as read</a>
-                                </div>
-                            </div>
-                            <div class="dropdown d-flex">
-                                <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="badge badge-primary nav-unread"></span></a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <ul class="list-unstyled feeds_widget">
-                                        <li>
-                                            <div class="feeds-left"><i class="fa fa-check"></i></div>
-                                            <div class="feeds-body">
-                                                <h4 class="title text-danger">Issue Fixed <small class="float-right text-muted">11:05</small></h4>
-                                                <small>WE have fix all Design bug with Responsive</small>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="feeds-left"><i class="fa fa-user"></i></div>
-                                            <div class="feeds-body">
-                                                <h4 class="title">New User <small class="float-right text-muted">10:45</small></h4>
-                                                <small>I feel great! Thanks team</small>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="feeds-left"><i class="fa fa-thumbs-o-up"></i></div>
-                                            <div class="feeds-body">
-                                                <h4 class="title">7 New Feedback <small class="float-right text-muted">Today</small></h4>
-                                                <small>It will give a smart finishing to your site</small>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="feeds-left"><i class="fa fa-question-circle"></i></div>
-                                            <div class="feeds-body">
-                                                <h4 class="title text-warning">Server Warning <small class="float-right text-muted">10:50</small></h4>
-                                                <small>Your connection is not private</small>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="feeds-left"><i class="fa fa-shopping-cart"></i></div>
-                                            <div class="feeds-body">
-                                                <h4 class="title">7 New Orders <small class="float-right text-muted">11:35</small></h4>
-                                                <small>You received a new oder from Tina.</small>
-                                            </div>
-                                        </li>                                   
-                                    </ul>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="javascript:void(0)" class="dropdown-item text-center text-muted-dark readall">Mark all as read</a>
-                                </div>
-                            </div>
-                            <div class="dropdown d-flex">
-                                <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown"><i class="fa fa-user"></i></a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="page-profile.html"><i class="dropdown-icon fe fe-user"></i> Profile</a>
-                                    <a class="dropdown-item" href="app-setting.html"><i class="dropdown-icon fe fe-settings"></i> Settings</a>
-                                    <a class="dropdown-item" href="javascript:void(0)"><span class="float-right"><span class="badge badge-primary">6</span></span><i class="dropdown-icon fe fe-mail"></i> Inbox</a>
-                                    <a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-send"></i> Message</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)"><i class="dropdown-icon fe fe-help-circle"></i> Need help?</a>
-                                    <a class="dropdown-item" href="login.html"><i class="dropdown-icon fe fe-log-out"></i> Sign out</a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -177,47 +61,39 @@
                         <div class="d-md-flex justify-content-between align-items-center">
                             <ul class="nav nav-tabs page-header-tab">
                                 <li class="nav-item"><a class="nav-link active" id="TaskBoard-tab" data-toggle="tab" href="#TaskBoard-list">List View</a></li>
-                                <li class="nav-item"><a class="nav-link" id="TaskBoard-tab" data-toggle="tab" href="#TaskBoard-grid">Grid View</a></li>
                             </ul>
                             <div class="header-action d-flex">
-                                <div class="input-group mr-2">
-                                    <input type="text" class="form-control" placeholder="Search...">
-                                </div>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask"><i class="fe fe-plus mr-2"></i>Add</button>
+                            	<input onkeyup="filter()" type="text" id="value" placeholder="Search for...">
+                            	&nbsp;
+                                <button id="addbutton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask"><i class="fa fa-plus fa-1" aria-hidden="true"></i>추가</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row clearfix mt-2">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card plannedcard" id="on">
                             <div class="card-body text-center">
                                 <h6>Planned</h6>
-                                <input type="text" class="knob" value="23" data-width="90" data-height="90" data-thickness="0.1" data-fgColor="#6e7687">
+                                <a href="#">
+                                <input type="text" class="knob" value="${ planned }" data-width="90" data-height="90" data-thickness="0.1" data-fgColor="#6e7687" readonly>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card inprogresscard" id="on">
                             <div class="card-body text-center">
                                 <h6>In progress</h6>
-                                <input type="text" class="knob" value="43" data-width="90" data-height="90" data-thickness="0.1" data-fgColor="#6e7687">
+                                <input type="text" class="knob" value="${ inprogress }" data-width="90" data-height="90" data-thickness="0.1" data-fgColor="#6e7687" readonly>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card completecard" id="on">
                             <div class="card-body text-center">
                                 <h6>Completed</h6>
-                                <input type="text" class="knob" value="83" data-width="90" data-height="90" data-thickness="0.1" data-fgColor="#6e7687">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <h6>In Completed</h6>
-                                <input type="text" class="knob" value="12" data-width="90" data-height="90" data-thickness="0.1" data-fgColor="#6e7687">
+                                <input type="text" class="knob" value="${ complete }" data-width="90" data-height="90" data-thickness="0.1" data-fgColor="#6e7687" readonly>
                             </div>
                         </div>
                     </div>
@@ -231,376 +107,77 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-vcenter mb-0 table_custom spacing8 text-nowrap">
+                                    <table class="table table-hover table-vcenter mb-0 table_custom spacing8 text-nowrap" style="overflow: scroll;">
                                         <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Task</th>
-                                                <th>Team</th>
-                                                <th>Duration</th>
-                                                <th>Action</th>
+                                            <tr style="text-align: center;">
+                                                <th style="color:black;">#</th>
+                                                <th style="color:black;">작업내용</th>
+                                                <th style="color:black;">작성자</th>
+                                                <th style="color:black;">작업시작일</th>
+                                                <th style="color:black;">작업상태</th>
                                                 <th class="w200"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>
-                                                    <h6 class="mb-0">New code Update on github</h6>
-                                                    <span>It is a long established fact that a reader will be distracted...</span>
+                                        	<c:forEach items="${ tdlist }" var="itdlist" varStatus="status">
+                                        	<c:if test="${ itdlist.daily_progress eq 1}">
+                                            	<tr class="planned dailytb" style="text-align: center;">
+                                            </c:if>
+                                            <c:if test="${ itdlist.daily_progress eq 2}">
+                                            	<tr class="inprogress dailytb" style="text-align: center;">
+                                            </c:if>
+                                           	<c:if test="${ itdlist.daily_progress eq 3}">
+                                           		<tr class="complete dailytb" style="text-align: center;">
+                                           	</c:if>
+                                                <td style="width: 5%;">${ tdlistlength - status.index }</td>
+                                                <td class="contenttab" style="width: 50%;">
+                                                    ${ itdlist.daily_content }
                                                 </td>
-                                                <td>
-                                                    <ul class="list-unstyled team-info mb-0">
-                                                        <li><img src="assets/images/xs/avatar1.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="assets/images/xs/avatar2.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                    </ul>
+                                                <td class="usernntab" style="width: 10%;">
+                                                    ${ itdlist.userVO.user_nn }
                                                 </td>
-                                                <td>
-                                                    <div class="text-info">Start: 3 Jun 2019</div>
-                                                    <div class="text-pink">End: 15 Jun 2019</div>
+                                                <td style="width: 10%;">
+                                                    <div class="text-info">${ itdlist.daily_date }</div>
                                                 </td>
-                                                <td>
+                                                <td style="width: 5%;">
+                                                	<c:if test="${ itdlist.daily_progress eq 1}">
                                                     <span class="tag tag-blue">Planned</span>
-                                                </td>
-                                                <td>
-                                                    <div class="clearfix">
-                                                        <div class="float-left"><strong>0%</strong></div>
-                                                        <div class="float-right"><small class="text-muted">Progress</small></div>
-                                                    </div>
-                                                    <div class="progress progress-xs">
-                                                        <div class="progress-bar bg-azure" role="progressbar" style="width: 0%" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>02</td>
-                                                <td>
-                                                    <h6 class="mb-0">Design Events</h6>
-                                                    <span>It is a long established fact that a reader will be distracted...</span>
-                                                </td>
-                                                <td>
-                                                    <ul class="list-unstyled team-info mb-0">
-                                                        <li><img src="assets/images/xs/avatar1.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                    </ul>
-                                                </td>
-                                                <td>
-                                                    <div class="text-info">Start: 02 Jun 2019</div>
-                                                    <div class="text-pink">End: 08 Jun 2019</div>
-                                                </td>
-                                                <td>
-                                                    <span class="tag tag-green">Completed</span>
-                                                </td>
-                                                <td>
-                                                    <div class="clearfix">
-                                                        <div class="float-left"><strong>100%</strong></div>
-                                                        <div class="float-right"><small class="text-muted">Progress</small></div>
-                                                    </div>
-                                                    <div class="progress progress-xs">
-                                                        <div class="progress-bar bg-green" role="progressbar" style="width: 100%" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
+                                                    </c:if>
+                                                    <c:if test="${ itdlist.daily_progress eq 2}">
+                                                    <span class="tag tag-green">In Progress</span>
+                                                    </c:if>
+                                                    <c:if test="${ itdlist.daily_progress eq 3}">
+                                                    <span class="tag tag-orange">Complete</span>
+                                                    </c:if>
+                                                </td >
+                                                <td style="width: 20%;">
+                                                	<c:if test="${ itdlist.daily_writer eq sessionScope.loginMember.user_no }">
+                                                		<c:if test="${ itdlist.daily_progress eq 1}">
+                                                		<c:url var="updatedaily" value="/updatedaily.do">
+													    	<c:param name="daily_no" value="${ itdlist.daily_no }"/>
+													    	<c:param name="daily_progress" value="${ itdlist.daily_progress }"/>
+												    	</c:url>
+                                                   		<button type="button" onclick="location.href='${ updatedaily }'" class="btn btn-primary">시작하기</button>
+                                                    	</c:if>
+                                                    	<c:if test="${ itdlist.daily_progress eq 2}">
+                                                    	<c:url var="updatedaily" value="/updatedaily.do">
+													    	<c:param name="daily_no" value="${ itdlist.daily_no }"/>
+													    	<c:param name="daily_progress" value="${ itdlist.daily_progress }"/>
+												    	</c:url>
+                                                   		<button type="button" onclick="location.href='${ updatedaily }'" class="btn btn-primary" style="background: green;">완료하기</button>
+                                                    	</c:if>
+                                                	</c:if>
+                                                	<c:if test="${ itdlist.daily_writer eq sessionScope.loginMember.user_no || sessionScope.team_leader eq 'Y' }">
+                                                		<c:url var="deletedaily" value="/deletedaily.do">
+												    		<c:param name="daily_no" value="${ itdlist.daily_no }"/>
+												    	</c:url>
+                                                    	<button type="button" onclick="location.href='${ deletedaily }'" class="btn btn-primary" style="background: #dc3545;">삭제하기</button>
+                                                	</c:if>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>03</td>
-                                                <td>
-                                                    <h6 class="mb-0">Feed Details on Dribbble</h6>
-                                                    <span>The point of using Lorem Ipsum is that...</span>
-                                                </td>
-                                                <td>
-                                                    <ul class="list-unstyled team-info mb-0">
-                                                        <li><img src="assets/images/xs/avatar1.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="assets/images/xs/avatar2.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                    </ul>
-                                                </td>
-                                                <td>
-                                                    <div class="text-info">Start: 3 Jun 2019</div>
-                                                    <div class="text-pink">End: 15 Jun 2019</div>
-                                                </td>
-                                                <td>
-                                                    <span class="tag tag-orange">In progress</span>
-                                                </td>
-                                                <td>
-                                                    <div class="clearfix">
-                                                        <div class="float-left"><strong>35%</strong></div>
-                                                        <div class="float-right"><small class="text-muted">Progress</small></div>
-                                                    </div>
-                                                    <div class="progress progress-xs">
-                                                        <div class="progress-bar bg-azure" role="progressbar" style="width: 35%" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>04</td>
-                                                <td>
-                                                    <h6 class="mb-0">New code Update on github</h6>
-                                                    <span>It is a long established fact that a reader will be distracted...</span>
-                                                </td>
-                                                <td>
-                                                    <ul class="list-unstyled team-info mb-0">
-                                                        <li><img src="assets/images/xs/avatar1.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="assets/images/xs/avatar2.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="assets/images/xs/avatar3.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="assets/images/xs/avatar7.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                    </ul>
-                                                </td>
-                                                <td>
-                                                    <div class="text-info">Start: 13 Jun 2019</div>
-                                                    <div class="text-pink">End: 23 Jun 2019</div>
-                                                </td>
-                                                <td>
-                                                    <span class="tag tag-orange">In progress</span>
-                                                </td>
-                                                <td>
-                                                    <div class="clearfix">
-                                                        <div class="float-left"><strong>75%</strong></div>
-                                                        <div class="float-right"><small class="text-muted">Progress</small></div>
-                                                    </div>
-                                                    <div class="progress progress-xs">
-                                                        <div class="progress-bar bg-green" role="progressbar" style="width: 75%" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>05</td>
-                                                <td>
-                                                    <h6 class="mb-0">New code Update on github</h6>
-                                                    <span>Contrary to popular belief, Lorem Ipsum is not simply random text.</span>
-                                                </td>
-                                                <td>
-                                                    <ul class="list-unstyled team-info mb-0">
-                                                        <li><img src="assets/images/xs/avatar4.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="assets/images/xs/avatar6.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="assets/images/xs/avatar7.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                    </ul>
-                                                </td>
-                                                <td>
-                                                    <div class="text-info">Start: 8 Jun 2019</div>
-                                                    <div class="text-pink">End: 15 Jun 2019</div>
-                                                </td>
-                                                <td>
-                                                    <span class="tag tag-orange">In progress</span>
-                                                </td>
-                                                <td>
-                                                    <div class="clearfix">
-                                                        <div class="float-left"><strong>35%</strong></div>
-                                                        <div class="float-right"><small class="text-muted">Progress</small></div>
-                                                    </div>
-                                                    <div class="progress progress-xs">
-                                                        <div class="progress-bar bg-azure" role="progressbar" style="width: 35%" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>06</td>
-                                                <td>
-                                                    <h6 class="mb-0">Angular App Design bug</h6>
-                                                    <span>There are many variations of passages of Lorem Ipsum available...</span>
-                                                </td>
-                                                <td>
-                                                    <ul class="list-unstyled team-info mb-0">
-                                                        <li><img src="assets/images/xs/avatar3.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="assets/images/xs/avatar4.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        <li><img src="assets/images/xs/avatar7.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                    </ul>
-                                                </td>
-                                                <td>
-                                                    <div class="text-info">Start: 3 Jun 2019</div>
-                                                    <div class="text-pink">End: 15 Jun 2019</div>
-                                                </td>
-                                                <td>
-                                                    <span class="tag tag-orange">Planned</span>
-                                                </td>
-                                                <td>
-                                                    <div class="clearfix">
-                                                        <div class="float-left"><strong>35%</strong></div>
-                                                        <div class="float-right"><small class="text-muted">Progress</small></div>
-                                                    </div>
-                                                    <div class="progress progress-xs">
-                                                        <div class="progress-bar bg-azure" role="progressbar" style="width: 35%" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        	</c:forEach>
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="TaskBoard-grid" role="tabpanel">
-                        <div class="row clearfix">
-                            <div class="col-lg-4 col-md-12">
-                                <div class="card planned_task">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Planned</h3>
-                                        <div class="card-options">
-                                            <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-                                            <a href="#" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
-                                            <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
-                                            <div class="item-action dropdown ml-2">
-                                                <a href="javascript:void(0)" data-toggle="dropdown"><i class="fe fe-more-vertical"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i> Download</a>                                            
-                                                        <div class="dropdown-divider"></div>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-copy"></i> Copy to</a>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-folder"></i> Move to</a>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-edit"></i> Rename</a>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-trash"></i> Delete</a>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="dd" data-plugin="nestable">
-                                            <ol class="dd-list">
-                                                <li class="dd-item" data-id="1">
-                                                    <div class="dd-handle">
-                                                        <h6>Dashbaord</h6>
-                                                        <span class="time"><span class="text-primary">Start: 5 Aug</span> to <span class="text-danger">Complete: 15 Aug</span></span>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                                        <ul class="list-unstyled team-info">
-                                                            <li><img src="assets/images/xs/avatar1.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                            <li><img src="assets/images/xs/avatar2.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                            <li><img src="assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        </ul>                                            
-                                                    </div>
-                                                </li>
-                                                <li class="dd-item" data-id="2">
-                                                    <div class="dd-handle">
-                                                        <h6>New project</h6>
-                                                        <span class="time"><span class="text-primary">Start: 6 Aug</span> to <span class="text-danger">Complete: 28 Aug</span></span>
-                                                        <p>It is a long established fact that a reader will be distracted.</p>
-                                                    </div>
-                                                </li>
-                                                <li class="dd-item" data-id="3">
-                                                    <div class="dd-handle">
-                                                        <h6>Feed Details</h6>
-                                                        <p>here are many variations of passages of Lorem Ipsum available, but the majority have suffered.</p>
-                                                    </div>
-                                                </li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-12">
-                                <div class="card progress_task">
-                                    <div class="card-header">
-                                        <h3 class="card-title">In progress</h3>
-                                        <div class="card-options">
-                                            <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-                                            <a href="#" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
-                                            <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
-                                            <div class="item-action dropdown ml-2">
-                                                <a href="javascript:void(0)" data-toggle="dropdown"><i class="fe fe-more-vertical"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i> Download</a>                                            
-                                                        <div class="dropdown-divider"></div>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-copy"></i> Copy to</a>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-folder"></i> Move to</a>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-edit"></i> Rename</a>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-trash"></i> Delete</a>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="dd" data-plugin="nestable">
-                                            <ol class="dd-list">
-                                                <li class="dd-item" data-id="1">
-                                                    <div class="dd-handle">
-                                                        <h6>New Code Update</h6>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                                    </div>
-                                                </li>
-                                                <li class="dd-item" data-id="2">
-                                                    <div class="dd-handle">
-                                                        <h6>Meeting</h6>
-                                                        <span class="time"><span class="text-primary">Start: 5 Aug</span> to <span class="text-danger">Complete: 11 Aug</span></span>
-                                                        <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero</p>
-                                                        <ul class="list-unstyled team-info">                                                
-                                                            <li><img src="assets/images/xs/avatar7.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                            <li><img src="assets/images/xs/avatar9.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                <li class="dd-item" data-id="2">
-                                                    <div class="dd-handle">
-                                                        <h6>New project</h6>
-                                                        <p>It is a long established fact that a reader will be distracted.</p>
-                                                    </div>
-                                                </li>                                    
-                                                <li class="dd-item" data-id="3">
-                                                    <div class="dd-handle">
-                                                        <h6>Feed Details</h6>
-                                                        <p>here are many variations of passages of Lorem Ipsum available, but the majority have suffered.</p>
-                                                    </div>
-                                                </li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-12">
-                                <div class="card completed_task">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Completed</h3>
-                                        <div class="card-options">
-                                            <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-                                            <a href="#" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
-                                            <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
-                                            <div class="item-action dropdown ml-2">
-                                                <a href="javascript:void(0)" data-toggle="dropdown"><i class="fe fe-more-vertical"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details </a>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share </a>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i> Download</a>                                            
-                                                        <div class="dropdown-divider"></div>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-copy"></i> Copy to</a>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-folder"></i> Move to</a>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-edit"></i> Rename</a>
-                                                        <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-trash"></i> Delete</a>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="dd" data-plugin="nestable">
-                                            <ol class="dd-list">                                   
-                                                <li class="dd-item" data-id="1">
-                                                    <div class="dd-handle">                                        
-                                                        <h6>Job title</h6>
-                                                        <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-                                                        <ul class="list-unstyled team-info">
-                                                            <li><img src="assets/images/xs/avatar4.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                            <li><img src="assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                            <li><img src="assets/images/xs/avatar6.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                            <li><img src="assets/images/xs/avatar8.jpg" data-toggle="tooltip" data-placement="top" title="Avatar" alt="Avatar"></li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                <li class="dd-item" data-id="2">
-                                                    <div class="dd-handle">
-                                                        <h6>Event Done</h6>
-                                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical</p>
-                                                    </div>
-                                                </li>
-                                                <li class="dd-item" data-id="1">
-                                                    <div class="dd-handle">
-                                                        <h6>New Code Update</h6>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                                    </div>
-                                                </li>
-                                            </ol>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -617,51 +194,35 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 class="title" id="defaultModalLabel">Add New Task</h6>
+                <h6 class="title" id="defaultModalLabel">할일 추가하기</h6>
             </div>
-            <div class="modal-body">
-                <div class="row clearfix">
-                    <div class="col-12">
-                        <div class="form-group">                                    
-                            <input type="text" class="form-control" placeholder="Task no.">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">                                   
-                            <input type="text" class="form-control" placeholder="Job title">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Description"></textarea>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <select class="form-control show-tick">
-                                <option>Select Team</option>
-                                <option>John Smith</option>
-                                <option>Claire Peters</option>
-                                <option>Allen Collins</option>
-                                <option>Cory Carter</option>
-                                <option>Rochelle Barton</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <label>Range</label>
-                        <div class="input-daterange input-group" data-provide="datepicker">
-                            <input type="text" class="form-control" name="start">
-                            <span class="input-group-addon"> to </span>
-                            <input type="text" class="form-control" name="end">
-                        </div>
-                    </div>                    
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Add</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+            <form class="dailyform" action="tdinsert.do" method="POST">
+	            <div class="modal-body">
+	            	<input type="hidden" name="daily_writer" value=1>
+	            	<input type="hidden" name="team_num" value=1>
+	                <div class="row clearfix">
+	                    <div class="col-12">
+	                        <div class="form-group">
+	                        	<label>할일</label>   
+	                            <textarea class="form-control" placeholder="Description" name="daily_content"></textarea>
+	                        </div>
+	                    </div>
+	                    <div class="col-12">
+	                        <label>시작일</label>
+	                        <div class="input-daterange input-group">
+	                            <input type="text" id="datepicker" class="form-control" name="daily_date">
+	                        </div>
+	                        <!-- <div class="input-daterange input-group" data-provide="datepicker">
+	                            <input type="text" class="form-control" name="start">
+	                        </div> -->
+	                    </div>                
+	                </div>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="submit" class="btn btn-primary">저장</button>
+	                <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
+	            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -675,7 +236,93 @@
 <script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/core.js"></script>
 <script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/page/sortable-nestable.js"></script>
 <script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/chart/knobjs.js"></script>
-</body>
 
-<!-- soccer/project/project-taskboard.html  07 Jan 2020 03:41:12 GMT -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.plannedcard').css("background-color", "lightgreen");
+	$('.inprogresscard').css("background-color", "lightgreen");
+	$('.completecard').css("background-color", "lightgreen");
+});
+
+$(function() {
+	$('.plannedcard').on("click", function(){
+		var status = $('.plannedcard').attr('id');
+		if(status == "off"){
+			$('.plannedcard').attr('id', 'on');
+			$('.plannedcard').css("background-color", "lightgreen");
+			$('.planned').css("display", "");
+		}else{
+			$('.plannedcard').attr('id', 'off');
+			$('.plannedcard').css("background-color", "#fff");
+			$('.planned').css("display", "none");
+		}
+	});
+	
+	$('.inprogresscard').on("click", function(){
+		var status = $('.inprogresscard').attr('id');
+		if(status == "off"){
+			$('.inprogresscard').attr('id', 'on');
+			$('.inprogresscard').css("background-color", "lightgreen");
+			$('.inprogress').css("display", "");
+		}else{
+			$('.inprogresscard').attr('id', 'off');
+			$('.inprogresscard').css("background-color", "#fff");
+			$('.inprogress').css("display", "none");
+		}
+	});
+	
+	$('.completecard').on("click", function(){
+		var status = $('.completecard').attr('id');
+		if(status == "off"){
+			$('.completecard').attr('id', 'on');
+			$('.completecard').css("background-color", "lightgreen");
+			$('.complete').css("display", "");
+		}else{
+			$('.completecard').attr('id', 'off');
+			$('.completecard').css("background-color", "#fff");
+			$('.complete').css("display", "none");
+		}
+	});
+});
+</script>
+<script>
+    $.datepicker.setDefaults({
+        dateFormat: 'yy-mm-dd',
+        prevText: '이전 달',
+        nextText: '다음 달',
+        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+        showMonthAfterYear: true,
+        yearSuffix: '년',
+        beforeShow: function() {
+            setTimeout(function(){
+                $('.ui-datepicker').css('z-index', 99999999999999);
+            }, 0);
+        }
+    });
+
+    $(function() {
+        $("#datepicker").datepicker();
+    });
+</script>
+<script type="text/javascript">
+	function filter(){
+		var value = document.getElementById("value").value.toUpperCase();
+		var tablerow = document.getElementsByClassName("dailytb");
+		for(var i=0; i<tablerow.length; i++){
+			var contenttab = tablerow[i].getElementsByClassName("contenttab");
+			var usernntab = tablerow[i].getElementsByClassName("usernntab");
+			if(contenttab[0].innerText.toUpperCase().includes(value) || usernntab[0].innerText.toUpperCase().includes(value)){
+				tablerow[i].style.display = ""
+			}else{
+				tablerow[i].style.display = "none"
+			}
+		}
+	}
+</script>
+</body>
 </html>

@@ -14,7 +14,11 @@
 	<div id="header_top" class="header_top">
 		<div class="container">
 			<div class="hleft">
-				<a class="header-brand" href="moveTPindex.do">
+				<c:url var="moveTPindex" value="moveTPindex.do">
+                	<c:param name="team_num" value="${ sessionScope.team_num }"></c:param>
+                	<c:param name="leaderok" value="${ sessionScope.team_leader }"></c:param>
+                </c:url>
+				<a class="header-brand" href="${ moveTPindex }">
 					<img alt="" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/moimicon.png">
 				</a>
 			</div>
@@ -92,36 +96,52 @@
         <nav id="left-sidebar-nav" class="sidebar-nav">
             <ul class="metismenu">
                 <li class="g_heading">팀 기능</li>
-                <li><a href="moveTPindex.do"><i class="fa fa-dashboard"></i><span>홈</span></a></li>                        
+                <li>
+                	<c:url var="moveTPindex" value="moveTPindex.do">
+                        	<c:param name="team_num" value="${ sessionScope.team_num }"></c:param>
+                        	<c:param name="leaderok" value="${ sessionScope.team_leader }"></c:param>
+                    </c:url>
+                	<a href="${ moveTPindex }"><i class="fa fa-dashboard"></i><span>홈</span></a>
+               	</li>                        
                 <li>
                 	<c:url var="moveTPteamboard" value="moveTPteamboard.do">
-                        	<c:param name="team_num" value="${ team.team_num }"></c:param>
+                        	<c:param name="team_num" value="${ sessionScope.team_num }"></c:param>
                     </c:url>
                 	<a href="${ moveTPteamboard }"><i class="fa fa-list-ol"></i><span>공지</span></a>
                 </li>
-                <li><a href="${ pageContext.servletContext.contextPath }/moveTPcalendar.do"><i class="fa fa-calendar-check-o"></i><span>일정</span></a></li>
-                <li><a href="project-ticket.html"><i class="fa fa-list-ul"></i><span>채팅</span></a></li>
-                <li><a href="project-clients.html"><i class="fa fa-user"></i><span>일지</span></a></li>
-                <li><a href="${ pageContext.servletContext.contextPath }/flist.do"><i class="fa fa-file fa-2"></i><span>파일</span></a></li>
-                <li><a href="${ pageContext.servletContext.contextPath }/moveTPdaily.do"><i class="fa fa-user"></i><span>일지</span></a></li>
-
                 <li>
-                    <a href="javascript:void(0)" class="has-arrow arrow-c" id="updowndisp"><i class="fa fa-lock"></i><span>팀관리</span></a>
-                    <ul id="manageoption">
-                        <li>
-                        <c:url var="moveTeamSetting" value="moveTeamSetting.do">
-                        	<c:param name="team_num" value="${ team.team_num }"></c:param>
-                        </c:url>
-                        <a href="${ moveTeamSetting }">팀정보 관리</a></li>
-                        <li>
-                        <c:url var="moveTeamMember" value="moveTeamMember.do">
-                        	<c:param name="team_num" value="${ team.team_num }"></c:param>
-                        </c:url>
-                        <a href="${ moveTeamMember }">팀원 관리</a></li>
-                    </ul>
+                	<c:url var="moveTPcalendar" value="moveTPcalendar.do">
+                        	<c:param name="team_num" value="${ sessionScope.team_num }"></c:param>
+                    </c:url>
+                	<a href="${ moveTPcalendar }"><i class="fa fa-calendar-check-o"></i><span>일정</span></a>
                 </li>
+                <li><a href="project-ticket.html"><i class="fa fa-list-ul"></i><span>채팅</span></a></li>
+                <li><a href="${ pageContext.servletContext.contextPath }/flist.do"><i class="fa fa-file fa-2"></i><span>파일</span></a></li>
+				<li>
+                	<c:url var="moveTPdaily" value="moveTPdaily.do">
+                        	<c:param name="team_num" value="${ sessionScope.team_num }"></c:param>
+                    </c:url>
+                	<a href="${ moveTPdaily }"><i class="fa fa-user"></i><span>일지</span></a>
+                </li>
+                <c:if test="${ sessionScope.team_leader eq 'Y' }">
+	                <li>
+	                    <a href="javascript:void(0)" class="has-arrow arrow-c" id="updowndisp"><i class="fa fa-lock"></i><span>팀관리</span></a>
+	                    <ul id="manageoption">
+	                        <li>
+	                        <c:url var="moveTeamSetting" value="moveTeamSetting.do">
+	                        	<c:param name="team_num" value="${ team_num }"></c:param>
+	                        </c:url>
+	                        <a href="${ moveTeamSetting }">팀정보 관리</a></li>
+	                        <li>
+	                        <c:url var="moveTeamMember" value="moveTeamMember.do">
+	                        	<c:param name="team_num" value="${ team_num }"></c:param>
+	                        </c:url>
+	                        <a href="${ moveTeamMember }">팀원 관리</a></li>
+	                    </ul>
+	                </li>
+                </c:if>
 				<li><a href="app-chat.html"><i class="fa fa-comments"></i><span>팀 탈퇴</span></a></li>
-                <li><a href="app-contact.html"><i class="fa fa-address-book"></i><span>나가기</span></a></li>
+                <li><a href="exitTeampage.do"><i class="fa fa-address-book"></i><span>나가기</span></a></li>
             </ul>
         </nav>        
     </div>

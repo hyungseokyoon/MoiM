@@ -53,16 +53,9 @@
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/blist.do?page=1" class="nav-link">게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rvlist.do" class="nav-link">리뷰게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/text.html" class="nav-link">My Page</a></li>
-				<!-- 관리자 페이지 드롭박스 -->
+				<!-- 관리자 - 회원관리 페이지 -->
 				<c:if test="${ loginMember.admin == 'Y' }">
-					<li class="nav-item dropdown">
-						<a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
-		                <div class="dropdown-menu">
-			                <a href="${ pageContext.servletContext.contextPath }/ulistadmin.do" class="dropdown-item">회원관리</a>
-			                <a href="${ pageContext.servletContext.contextPath }/blistadmin.do" class="dropdown-item">게시판관리</a>
-			                <a href="${ pageContext.servletContext.contextPath }/teamlistadmin.do" class="dropdown-item">모임관리</a>
-		                </div>
-					</li>
+					<li class="nav-item dropdown"><a href="${ pageContext.servletContext.contextPath }/ulistadmin.do?page=1" class="nav-link">회원관리</a></li>
 				</c:if>
             </ul>
             <!-- 비 로그인 시 : 로그인 창 띄우기 -->
@@ -71,7 +64,7 @@
             </c:if>
           	<!-- 로그인 시 : 로그아웃 하기-->
           	<c:if test="${ !empty loginMember }">
-          		<a href="#" onClick = "javascript:location.href='logout.do';" data-toggle="modal" data-target="#login" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Logout </a>
+          		<a href="#" onClick = "javascript:location.href='logout.do';" data-target="#login" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Logout </a>
           	</c:if>
           </div>
         </div>
