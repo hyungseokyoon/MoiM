@@ -37,5 +37,25 @@ public class TPmainDao {
 	public int deleteAlertAll(int team_member_no) {
 		return session.delete("tpmainMapper.deleteAlertAll", team_member_no);
 	}
+
+	public int insertAlertTBInsert(TeamMember teammember) {
+		return session.insert("tpmainMapper.insertAlertTBInsert", teammember);
+	}
+
+	public int insertAlertTMInsert(TeamMember teammember) {
+		return session.insert("tpmainMapper.insertAlertTMInsert", teammember);
+	}
+
+	public int insertAlertTMquit(Alert alert) {
+		return session.delete("tpmainMapper.insertAlertTMquit", alert);
+	}
+
+	public int insertAlertTMdelete(Alert alert) {
+		return session.delete("tpmainMapper.insertAlertTMdelete", alert);
+	}
+
+	public int deleteTeamQuit(int team_member_no) {
+		return session.delete("tpmainMapper.deleteTeamQuit", team_member_no);
+	}
 	
 }

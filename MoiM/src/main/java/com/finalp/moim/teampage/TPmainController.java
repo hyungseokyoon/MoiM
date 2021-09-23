@@ -54,7 +54,10 @@ public class TPmainController {
 		ArrayList<TeamBoard> boardtoplist = tpboardService.selectBoardTopList(team_num);
 		ArrayList<TFile> filerecentlist = fileService.selectFileRecentList(team_num);
 		UserInfo userinfo = (UserInfo) session.getAttribute("loginMember");
-		TeamMember teammember = tpmanageService.selectUserNoTeamMember(userinfo.getUser_no());
+		TeamMember teammember = new TeamMember();
+		teammember.setTeam_num(team_num);
+		teammember.setUser_no(userinfo.getUser_no());
+		teammember = tpmanageService.selectUserNoTeamMember(teammember);
 		ArrayList<Alert> alertlist = tpmainService.selectAlertList(teammember.getTeam_member_no());
 		ArrayList<TeamDaily> tdlist = tpteamdailyService.selectTeamDailyList(team_num);
 		
@@ -139,4 +142,43 @@ public class TPmainController {
 			return "common/error";
 		}
 	}
+	
+	@RequestMapping("teamquit.do")
+	public String teamQuitMethod(@RequestParam("team_member_no") int team_member_no, HttpSession session, Model model) {
+		int team_num = (int) session.getAttribute("team_num");
+		
+		TeamMember teammember = new TeamMember();
+		
+		teammember.setTeam_member_no(team_member_no);
+		teammember.setTeam_num(team_num);
+		
+		if(tpmainService.deleteAlertAll(teammember.getTeam_member_no()) >= 0 && tpmanageService.deleteTeamMember(teammember.getTeam_member_no()) > 0) {
+			ArrayList<TeamMember> tmlist = tpmanageService.selectTeamMemberList(team_num);
+			
+			int alertresult = 0;
+			UserInfo loginmember = (UserInfo) session.getAttribute("loginMember");
+			
+			for(TeamMember tm : tmlist) {
+				Alert alert = new Alert();
+				alert.setTeam_member_no(tm.getTeam_member_no());
+				alert.setTeam_num(team_num);
+				alert.setAlert_content(loginmember.getUser_nn() + " 님이 팀을 탈퇴하였습니다.");
+				tpmainService.insertAlertTMquit(alert);
+				alertresult++;
+			}
+			
+			logger.info("alertinsert result : " + alertresult);
+			
+			session.removeAttribute("team_num");
+			session.removeAttribute("team_leader");
+			session.removeAttribute("teammember");
+			session.removeAttribute("alertlist");
+			
+			return "redirect:main.do";
+		} else {
+			model.addAttribute("message", team_member_no + "님, " + team_num + "에서의 탈퇴 실패.");
+			return "common/error";
+		}
+	}
+	
 }

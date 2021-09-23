@@ -118,14 +118,7 @@
 	                                    <div class="col-sm-12">
 	                                        <div class="form-group">
 	                                            <label>모집 여부</label> <br>
-	                                            	<c:if test="${ team.team_recruit eq 'Y' }">
-	                                            		<input type="radio" name="team_recruit" value="Y" checked> Y &nbsp; &nbsp;
-	                                            		<input type="radio" name="team_recruit" value="N"> N
-													</c:if>
-													<c:if test="${ team.team_recruit eq 'N' }">
-														<input type="radio" name="team_recruit" value="Y"> Y &nbsp; &nbsp;
-	                                            		<input type="radio" name="team_recruit" value="N" checked> N
-													</c:if>
+	                                            <input class="form-control" type="text" name="team_recruit" value="${ team.team_recruit }" readonly>
 	                                        </div>
 	                                    </div>
 	                                </div>               
@@ -285,31 +278,12 @@
 						                            <div class="form-group">
 						                                <label>메인 사진</label>
 						                                <c:if test="${ empty team.team_original_image }">
-						                                	<input class="form-control" type="file" name="upfile">
+						                                	<input class="form-control dropify" type="file" name="upfile">
 						                                </c:if>
 						                                <c:if test="${ !empty team.team_original_image }">
-						                                	<input class="form-control" type="file" name="upfile"> <br>
 						                                	<input class="form-control" type="text" value="${ team.team_original_image }">
+						                                	<input class="form-control dropify" type="file" name="upfile"> <br>
 						                                </c:if>
-						                            </div>
-						                        </div>
-						                        <div class="col-sm-12">
-						                            <div class="form-group">
-						                                <label>팀 인원 제한</label>
-						                                <input class="form-control" type="number" name="team_limit" value="${ team.team_limit }">
-						                            </div>
-						                        </div>
-						                        <div class="col-sm-12">
-						                            <div class="form-group">
-						                                <label>모집 여부</label> <br>
-						                                	<c:if test="${ team.team_recruit eq 'Y' }">
-						                                		<input type="radio" name="team_recruit" value="Y" checked> Y &nbsp; &nbsp;
-						                                		<input type="radio" name="team_recruit" value="N"> N
-															</c:if>
-															<c:if test="${ team.team_recruit eq 'N' }">
-																<input type="radio" name="team_recruit" value="Y"> Y &nbsp; &nbsp;
-						                                		<input type="radio" name="team_recruit" value="N" checked> N
-															</c:if>
 						                            </div>
 						                        </div>
 						                    </div>               
@@ -468,7 +442,26 @@
 						                                <input class="form-control" type="number" name="team_fee" value="${ team.team_fee }">
 						                                </div>
 						                            </div>
-						                        </div>                
+						                        </div>
+						                        <div class="col-sm-12">
+						                            <div class="form-group">
+						                                <label>팀 인원 제한</label>
+						                                <input class="form-control" type="number" name="team_limit" value="${ team.team_limit }">
+						                            </div>
+						                        </div>
+						                        <div class="col-sm-12">
+						                            <div class="form-group">
+						                                <label>모집 여부</label> <br>
+						                                	<c:if test="${ team.team_recruit eq 'Y' }">
+						                                		<input type="radio" name="team_recruit" value="Y" checked> Y &nbsp; &nbsp;
+						                                		<input type="radio" name="team_recruit" value="N"> N
+															</c:if>
+															<c:if test="${ team.team_recruit eq 'N' }">
+																<input type="radio" name="team_recruit" value="Y"> Y &nbsp; &nbsp;
+						                                		<input type="radio" name="team_recruit" value="N" checked> N
+															</c:if>
+						                            </div>
+						                        </div>
 						                    </div>
 						                </div>
 						            </div>
