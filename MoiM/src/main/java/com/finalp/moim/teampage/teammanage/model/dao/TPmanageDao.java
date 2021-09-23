@@ -72,8 +72,8 @@ public class TPmanageDao {
 		return (ArrayList<TeamMember>)list;
 	}
 
-	public TeamMember selectUserNoTeamMember(int user_no) {
-		return session.selectOne("teammanageMapper.selectUserNoTeamMember", user_no);
+	public TeamMember selectUserNoTeamMember(TeamMember teammember) {
+		return session.selectOne("teammanageMapper.selectUserNoTeamMember", teammember);
 	}
 
 }
