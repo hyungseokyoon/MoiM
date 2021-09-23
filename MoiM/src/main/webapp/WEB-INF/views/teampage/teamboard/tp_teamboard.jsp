@@ -116,11 +116,13 @@
                                 <div class="d-md-flex justify-content-between">
                                     <ul class="nav nav-tabs b-none">
                                         <li class="nav-item"><a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" style="color: black;"><i class="fa fa-list-ul"></i>목록</a></li>
+                                        <c:if test="${ sessionScope.team_leader eq 'Y'}">
                                         <li class="nav-item"><a class="nav-link" id="addnew-tab" data-toggle="tab" href="#addnew" style="color: black;"><i class="fa fa-plus"></i>공지쓰기</a></li>
+                                        </c:if>
                                     </ul>
                                 </div>
                                 <div class="input-group mt-2">
-                                    <input type="text" class="form-control search" placeholder="Search...">
+                                    <input type="text" id="value" class="form-control search" placeholder="Search..." onkeyup="filter()">
                                 </div>
                             </div>
                         </div>
@@ -165,10 +167,10 @@
 														<c:out value="${ tblistlength - status.index }"/>
 													</div>
                                                 </td>
-                                                <td class="text-center" style="width: 40%;">
+                                                <td class="text-center titletab" style="width: 40%;">
                                                     <div class="text-center">${ itblist.tn_title }</div>
                                                 </td>
-                                                <td class="text-center" style="width: 10%;">
+                                                <td class="text-center usernntab" style="width: 10%;">
                                                     <div class="text-center">${ itblist.userVO.user_nn }</div>
                                                 </td>
                                                 <td class="text-center" style="width: 10%;">
@@ -193,7 +195,9 @@
 															<c:param name="tn_renamefilename" value="${itblist.tn_renamefilename }" />
 														</c:if>
 												    </c:url>
-												    <button class="btn btn-primary" onclick="javascript:location.href='${ deletetb }';">글삭제</button>                                         
+												    <c:if test="${ sessionScope.team_leader eq 'Y' }">
+												    	<button class="btn btn-primary" onclick="javascript:location.href='${ deletetb }';">글삭제</button>
+												    </c:if>                                         
                                                 </td>
                                             </tr>
                                             </c:forEach>
@@ -373,6 +377,23 @@ $(function() {
     	}); //ajax
    	});
 });
+</script>
+<script type="text/javascript">
+	function filter(){
+		var value = document.getElementById("value").value.toUpperCase();
+		var tablerow = document.getElementsByClassName("tbtable");
+		for(var i=0; i<tablerow.length; i++){
+			var titletab = tablerow[i].getElementsByClassName("titletab");
+			var usernntab = tablerow[i].getElementsByClassName("usernntab");
+			console.log(titletab);
+			console.log(usernntab);
+			if(titletab[0].innerText.toUpperCase().includes(value) || usernntab[0].innerText.toUpperCase().includes(value)){
+				tablerow[i].style.display = ""
+			}else{
+				tablerow[i].style.display = "none"
+			}
+		}
+	}
 </script>
 </body>
 <!-- soccer/project/app-contact.html  07 Jan 2020 03:40:35 GMT -->

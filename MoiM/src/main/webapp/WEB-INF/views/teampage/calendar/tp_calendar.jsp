@@ -188,7 +188,7 @@ $(function() {
     	}
 	}); //ajax
 
-    $(".save-event").on('click', function() {
+/*     $(".save-event").on('click', function() {
         var categoryName = $('#addNewEvent form').find("input[name='category-name']").val();
         var categoryColor = $('#addNewEvent form').find("select[name='category-color']").val();
         if (categoryName !== null && categoryName.length != 0) {
@@ -197,7 +197,7 @@ $(function() {
             $('#addNewEvent form').find("select[name='category-color']").val("");
             enableDrag();
         }
-    });
+    }); */
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth() + 1; //January is 0!
