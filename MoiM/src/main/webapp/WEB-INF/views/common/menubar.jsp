@@ -52,12 +52,7 @@
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rclist.do" class="nav-link">구인게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/blist.do?page=1" class="nav-link">게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rvlist.do" class="nav-link">리뷰게시판</a></li>
-<<<<<<< HEAD
-				<!-- 관리자 페이지 드롭박스 -->
-=======
-				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/text.html" class="nav-link">My Page</a></li>
 				<!-- 관리자 - 회원관리 페이지 -->
->>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git
 				<c:if test="${ loginMember.admin == 'Y' }">
 					<li class="nav-item dropdown"><a href="${ pageContext.servletContext.contextPath }/ulistadmin.do?page=1" class="nav-link">회원관리</a></li>
 				</c:if>
@@ -68,12 +63,8 @@
             </c:if>
           	<!-- 로그인 시 : 로그아웃 하기-->
           	<c:if test="${ !empty loginMember }">
-<<<<<<< HEAD
           		<a href="mypage.do">${ loginMember.user_name }님</a>
           		<a href="#" onClick = "javascript:location.href='logout.do';" data-toggle="modal" data-target="#login" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Logout </a>
-=======
-          		<a href="#" onClick = "javascript:location.href='logout.do';" data-target="#login" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Logout </a>
->>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git
           	</c:if>
           </div>
         </div>
