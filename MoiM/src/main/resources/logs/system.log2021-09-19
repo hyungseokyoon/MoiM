@@ -1,5 +1,0 @@
-[22:02:29][INFO ][ContextLoader.java:271] - Root WebApplicationContext: initialization started
-[22:02:32][INFO ][ContextLoader.java:307] - Root WebApplicationContext initialized in 2545 ms
-[22:02:32][INFO ][FrameworkServlet.java:525] - Initializing Servlet 'appServlet'
-[22:02:35][INFO ][AutowiredAnnotationBeanPostProcessor.java:502] - Autowired annotation should only be used on methods with parameters: public java.lang.String com.finalp.moim.review.controller.ReviewController.reviewListMethod()
-[22:02:35][INFO ][FrameworkServlet.java:547] - Completed initialization in 2950 ms
