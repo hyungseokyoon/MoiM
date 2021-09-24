@@ -40,6 +40,33 @@
                         <a href="javascript:void(0)" class="icon menu_toggle mr-3"><i class="fa  fa-align-left"></i></a>
                         <h1 class="page-title">팀 정보 관리</h1>
                     </div>
+                    <div class="right">
+		                <div class="notification d-flex">
+		                    <div class="dropdown d-flex show">
+		                        <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-bell"></i><span class="badge badge-primary nav-unread"></span></a>
+		                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" x-placement="bottom-end" style="position: absolute; transform: translate3d(-312px, 34px, 0px); top: 0px; left: 0px; will-change: transform;">
+		                            <ul class="list-unstyled feeds_widget">
+		                            	<c:forEach items="${ alertlist }" var="alertlist">
+			                                <li>
+			                                    <div class="feeds-body">
+			                                    	<c:url var="alertdelone" value="alertdelone.do">
+			                                    		<c:param name="alert_num" value="${ alertlist.alert_num }" />
+			                                    	</c:url>
+			                                        <h4 class="title text-muted">${ alertlist.alert_cate }<small class="float-right text-muted">${ alertlist.alert_date }</small></h4><a href="${ alertdelone }" class="float-right"><i class="fa fa-trash-o"></i></a>
+			                                        <small class="title text-muted">${ alertlist.alert_content }</small>
+			                                    </div>
+			                                </li>
+		                                </c:forEach>                  
+		                            </ul>
+		                            <div class="dropdown-divider"></div>
+		                            <c:url var="alertdelall" value="alertdelall.do">
+		                            	<c:param name="team_member_no" value="${ teammember.team_member_no }"></c:param>
+		                            </c:url>
+		                            <a href="${ alertdelall }" class="dropdown-item text-center text-muted-dark readall">모든 알람 삭제</a>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
                 </div>
             </div>
         </div>
@@ -75,10 +102,9 @@
 	                                        <div class="form-group">
 	                                            <label>메인 사진</label>
 	                                            <c:if test="${ empty team.team_original_image }">
-	                                            	<input class="form-control" type="file" name="upfile" readonly>
+	                                            	<input class="form-control" type="text" value="등록된 사진이 없습니다." readonly>
 	                                            </c:if>
 	                                            <c:if test="${ !empty team.team_original_image }">
-	                                            	<input class="form-control" type="file" name="upfile" readonly> <br>
 	                                            	<input class="form-control" type="text" value="${ team.team_original_image }" readonly>
 	                                            </c:if>
 	                                        </div>
@@ -92,14 +118,7 @@
 	                                    <div class="col-sm-12">
 	                                        <div class="form-group">
 	                                            <label>모집 여부</label> <br>
-	                                            	<c:if test="${ team.team_recruit eq 'Y' }">
-	                                            		<input type="radio" name="team_recruit" value="Y" checked> Y &nbsp; &nbsp;
-	                                            		<input type="radio" name="team_recruit" value="N"> N
-													</c:if>
-													<c:if test="${ team.team_recruit eq 'N' }">
-														<input type="radio" name="team_recruit" value="Y"> Y &nbsp; &nbsp;
-	                                            		<input type="radio" name="team_recruit" value="N" checked> N
-													</c:if>
+	                                            <input class="form-control" type="text" name="team_recruit" value="${ team.team_recruit }" readonly>
 	                                        </div>
 	                                    </div>
 	                                </div>               
@@ -259,31 +278,12 @@
 						                            <div class="form-group">
 						                                <label>메인 사진</label>
 						                                <c:if test="${ empty team.team_original_image }">
-						                                	<input class="form-control" type="file" name="upfile">
+						                                	<input class="form-control dropify" type="file" name="upfile">
 						                                </c:if>
 						                                <c:if test="${ !empty team.team_original_image }">
-						                                	<input class="form-control" type="file" name="upfile"> <br>
 						                                	<input class="form-control" type="text" value="${ team.team_original_image }">
+						                                	<input class="form-control dropify" type="file" name="upfile"> <br>
 						                                </c:if>
-						                            </div>
-						                        </div>
-						                        <div class="col-sm-12">
-						                            <div class="form-group">
-						                                <label>팀 인원 제한</label>
-						                                <input class="form-control" type="number" name="team_limit" value="${ team.team_limit }">
-						                            </div>
-						                        </div>
-						                        <div class="col-sm-12">
-						                            <div class="form-group">
-						                                <label>모집 여부</label> <br>
-						                                	<c:if test="${ team.team_recruit eq 'Y' }">
-						                                		<input type="radio" name="team_recruit" value="Y" checked> Y &nbsp; &nbsp;
-						                                		<input type="radio" name="team_recruit" value="N"> N
-															</c:if>
-															<c:if test="${ team.team_recruit eq 'N' }">
-																<input type="radio" name="team_recruit" value="Y"> Y &nbsp; &nbsp;
-						                                		<input type="radio" name="team_recruit" value="N" checked> N
-															</c:if>
 						                            </div>
 						                        </div>
 						                    </div>               
@@ -442,7 +442,26 @@
 						                                <input class="form-control" type="number" name="team_fee" value="${ team.team_fee }">
 						                                </div>
 						                            </div>
-						                        </div>                
+						                        </div>
+						                        <div class="col-sm-12">
+						                            <div class="form-group">
+						                                <label>팀 인원 제한</label>
+						                                <input class="form-control" type="number" name="team_limit" value="${ team.team_limit }">
+						                            </div>
+						                        </div>
+						                        <div class="col-sm-12">
+						                            <div class="form-group">
+						                                <label>모집 여부</label> <br>
+						                                	<c:if test="${ team.team_recruit eq 'Y' }">
+						                                		<input type="radio" name="team_recruit" value="Y" checked> Y &nbsp; &nbsp;
+						                                		<input type="radio" name="team_recruit" value="N"> N
+															</c:if>
+															<c:if test="${ team.team_recruit eq 'N' }">
+																<input type="radio" name="team_recruit" value="Y"> Y &nbsp; &nbsp;
+						                                		<input type="radio" name="team_recruit" value="N" checked> N
+															</c:if>
+						                            </div>
+						                        </div>
 						                    </div>
 						                </div>
 						            </div>

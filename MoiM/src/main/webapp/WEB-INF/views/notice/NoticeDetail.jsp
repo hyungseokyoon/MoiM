@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MoiM - 공지 제목</title>
+<title>MoiM - ${ notice.notice_title }</title>
 </head>
 <body>
 	<!-- Menubar -->
@@ -25,7 +25,11 @@
 						${ notice.notice_content }
 					</p>
 					<c:if test="${ notice.notice_original_filename != null }">
-						<h3 class="mb-5">첨부파일 : <a href="#">${ notice.notice_original_filename }</a></h3>
+						<c:url var="nfdown" value="nfiledown.do">
+							<c:param name="ofile" value="${ notice.notice_original_filename }"/>
+							<c:param name="rfile" value="${ notice.notice_rename_filename }"/>
+						</c:url>
+						<h3 class="mb-5">첨부파일 : <a href="${ nfdown }">${ notice.notice_original_filename }</a></h3>
 					</c:if>
 					<c:if test="${ notice.notice_original_filename == null }">
 						<h3 class="mb-5">첨부파일 : </h3>
@@ -34,10 +38,18 @@
 					<c:url var="nlist" value="nlist.do">
 						<c:param name="page" value="${ currentPage }"/>
 					</c:url>
-					<a href="${ pageContext.servletContext.contextPath }/nlist.do" class="btn btn-primary">목록</a>
+					<a href="${ nlist }" class="btn btn-primary">목록</a>
 					<c:if test="${ loginMember.admin == 'Y' }">
-						&nbsp;&nbsp;<a href="${ pageContext.servletContext.contextPath }/nupdate.do" class="btn btn-primary">수정</a>
-						&nbsp;&nbsp;<a href="${ pageContext.servletContext.contextPath }/nlist.do" class="btn btn-primary">삭제</a>
+						<c:url var="nupdate" value="nupdateform.do">
+							<c:param name="notice_no" value="${ notice.notice_no }"/>
+							<c:param name="page" value="${ currentPage }"/>
+						</c:url>
+						&nbsp;&nbsp;<a href="${ nupdate }" class="btn btn-primary">수정</a>
+						<c:url var="ndelete" value="ndelete.do">
+							<c:param name="notice_no" value="${ notice.notice_no }"/>
+							<c:param name="page" value="${ currentPage }"/>
+						</c:url>
+						&nbsp;&nbsp;<a href="${ ndelete }" class="btn btn-primary">삭제</a>
 					</c:if>
 				</div>
 			</div>

@@ -34,4 +34,36 @@ public class BoardDao {
 	public Board selectBoard(int board_no) {
 		return sqlSession.selectOne("boardMapper.selectBoard", board_no);
 	}
+
+	public int insertBoard(Board board) {
+		return sqlSession.insert("boardMapper.insertBoard", board);
+	}
+
+	public int updateBoard(Board board) {
+		return sqlSession.update("boardMapper.updateBoard", board);
+	}
+
+	public int deleteBoard(int board_no) {
+		return sqlSession.delete("boardMapper.deleteBoard", board_no);
+	}
+
+	public ArrayList<Board> selectSearchBoard(int board_category_no, String keyword) {
+		List<Board> list = null;
+		
+		if(board_category_no == 0) {
+			list = sqlSession.selectList("boardMapper.searchAll", keyword);
+		} else if(board_category_no == 1) {
+			list = sqlSession.selectList("boardMapper.searchContest", keyword);
+		} else if(board_category_no == 2) {
+			list = sqlSession.selectList("boardMapper.searchIntern", keyword);
+		} else if(board_category_no == 3) {
+			list = sqlSession.selectList("boardMapper.searchLicense", keyword);
+		} else if(board_category_no == 4) {
+			list = sqlSession.selectList("boardMapper.searchEvent", keyword);
+		} else if(board_category_no == 5) {
+			list = sqlSession.selectList("boardMapper.searchFree", keyword);
+		}
+		
+		return (ArrayList<Board>) list;
+	}
 }

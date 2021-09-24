@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>firstspring</title>
+<title>MoiM</title>
 </head>
 <body>
 <!-- jstl 의 절대경로 표기 : / == /context-root명 -->

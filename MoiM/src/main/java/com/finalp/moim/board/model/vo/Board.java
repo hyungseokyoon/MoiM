@@ -2,6 +2,8 @@ package com.finalp.moim.board.model.vo;
 
 import java.sql.Date;
 
+import com.finalp.moim.userinfo.model.vo.UserInfo;
+
 public class Board implements java.io.Serializable {
 	private static final long serialVersionUID = 1001L;
 
@@ -14,6 +16,10 @@ public class Board implements java.io.Serializable {
 	private String board_original_filename;
 	private String board_rename_filename;
 	private int board_readcount;
+	
+	// DI
+	private UserInfo userVO;
+	private BoardCategory cateVO;
 	
 	public Board() {}
 
@@ -103,6 +109,22 @@ public class Board implements java.io.Serializable {
 		this.board_readcount = board_readcount;
 	}
 
+	public UserInfo getUserVO() {
+		return userVO;
+	}
+
+	public void setUserVO(UserInfo userVO) {
+		this.userVO = userVO;
+	}
+	
+	public BoardCategory getCateVO() {
+		return cateVO;
+	}
+	
+	public void setCateVO(BoardCategory cateVO) {
+		this.cateVO = cateVO;
+	}
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

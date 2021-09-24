@@ -75,5 +75,15 @@ public class TPmanageServiceImpl implements TPmanageService {
 	public int updateTeamMemberRankUp(TeamMember teammember) {
 		return tpmanageDao.updateTeamMemberRankUp(teammember);
 	}
+
+	@Override
+	public ArrayList<TeamMember> selectTeamMemberNormalList(int team_num) {
+		return tpmanageDao.selectTeamMemberNormalList(team_num);
+	}
+
+	@Override
+	public TeamMember selectUserNoTeamMember(TeamMember teammember) {
+		return tpmanageDao.selectUserNoTeamMember(teammember);
+	}
 	
 }
