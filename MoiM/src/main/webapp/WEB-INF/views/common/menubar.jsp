@@ -52,7 +52,6 @@
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rclist.do" class="nav-link">구인게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/blist.do?page=1" class="nav-link">게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rvlist.do" class="nav-link">리뷰게시판</a></li>
-				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/text.html" class="nav-link">My Page</a></li>
 				<!-- 관리자 페이지 드롭박스 -->
 				<c:if test="${ loginMember.admin == 'Y' }">
 					<li class="nav-item dropdown">
@@ -71,6 +70,7 @@
             </c:if>
           	<!-- 로그인 시 : 로그아웃 하기-->
           	<c:if test="${ !empty loginMember }">
+          		<a href="mypage.do">${ loginMember.user_name }님</a>
           		<a href="#" onClick = "javascript:location.href='logout.do';" data-toggle="modal" data-target="#login" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Logout </a>
           	</c:if>
           </div>
@@ -89,6 +89,7 @@
 				</div>
 				<div class="modal-body p-4 p-lg-5">
 					<form action="login.do" class="login-form text-left" method="post">
+						<input type="hidden" name="currentUrl" id="currentUrl" value="${requestScope['javax.servlet.forward.servlet_path']}">
 						<div class="form-group mb-4">
 							<label>Email address</label>
 							<input type="text" name="user_id" id="user_id" placeholder="name@company.com" class="form-control">
@@ -103,12 +104,12 @@
 								<input type="submit" value="Login" class="btn btn-primary">
 							</th>
 							<th width="48%">
-								<a href="enroll.do" class="btn btn-primary">Join</a>
+								<a href="enrollPage.do" class="btn btn-primary">Join</a>
 							</th>
 							<th width="30%">
-								<a href="#">아이디 조회</a>
+								<a href="sid.do">아이디 조회</a>
 								/
-								<a href="#">비밀번호 조회</a>
+								<a href="spw.do">비밀번호 조회</a>
 							</th>
 						</table>
 					</form>
@@ -145,12 +146,23 @@
 
 <!-- Javascript -->
 <!-- Template의 모든 공통 JS는 이곳에 작성해주시길 바랍니다. -->
-<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.0.min.js"></script>
+<%-- <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.0.min.js"></script> --%>
+<script src="${ pageContext.servletContext.contextPath }/resources/vendor/jquery/jquery.min.js"></script>
 <script src="${ pageContext.servletContext.contextPath }/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="${ pageContext.servletContext.contextPath }/resources/vendor/jquery.cookie/jquery.cookie.js"> </script>
 <script src="${ pageContext.servletContext.contextPath }/resources/vendor/lightbox2/js/lightbox.js"></script>
 <script src="${ pageContext.servletContext.contextPath }/resources/js/front.js"></script>
 
+<script>
+$(document).ready(function() {
+	var errorMessage = '${ param.message }';
+	if(errorMessage == '' || errorMessage == null) {
+		///
+	} else {
+		alert('${ param.message }');
+	}
+});
+</script>
 </html>
 
 

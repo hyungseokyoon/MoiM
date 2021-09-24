@@ -9,7 +9,7 @@
 </head>
 <body>
 <!-- jstl 의 절대경로 표기 : / == /context-root명 -->
-<c:import url="/WEB-INF/views/common/menubar.jsp" />
+<c:import url="/WEB-INF/views/common/excmenubar.jsp" />
 <hr>
 <h1>에러 페이지</h1>
 <c:set var="e" value="<%= exception %>" />
