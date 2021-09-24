@@ -6,7 +6,6 @@ import com.finalp.moim.userinfo.model.vo.UserInfo;
 
 public interface UserInfoService {
 	UserInfo selectLogin(UserInfo userInfo);
-<<<<<<< HEAD
 	int insertUserInfo(UserInfo userInfo);
 	int updateUserInfo(UserInfo userInfo);
 	int deleteUserInfo(String userid);
@@ -27,12 +26,5 @@ public interface UserInfoService {
 	ArrayList<UserInfo> selectUserSearch(int category_no, String keyword);
 	ArrayList<UserInfo> selectUserList();
 
-=======
-	ArrayList<UserInfo> selectUserList();
-	int selectListCount();
-	UserInfo selectUser(int user_no);
-	int updateUserLoginOK(UserInfo userInfo);
-	int updateUserAdmin(UserInfo userInfo);
-	ArrayList<UserInfo> selectUserSearch(int category_no, String keyword);
->>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git
+
 }
