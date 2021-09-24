@@ -54,5 +54,9 @@ public class UserInfoDao {
 		}
 
 		return (ArrayList<UserInfo>) list;
+	}
+
+	public int deleteUserAdmin(int user_no) {
+		return session.delete("userinfoMapper.deleteUserAdmin", user_no);
 	};
 }

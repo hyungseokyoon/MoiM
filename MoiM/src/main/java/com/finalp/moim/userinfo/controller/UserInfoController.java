@@ -200,5 +200,20 @@ public class UserInfoController {
 		
 		return mv;
 	}
+	
+	// 관리자 페이지 - 회원 강제 탈퇴
+	@RequestMapping(value = "userdelete.do", method = RequestMethod.POST)
+	public ModelAndView userDeleteMethod(ModelAndView mv, @RequestParam("user_no") int user_no, 
+			@RequestParam("page") int currentPage) {
+		if(userinfoService.deleteUserAdmin(user_no) > 0) {
+			mv.addObject("page", currentPage);
+			mv.setViewName("redirect:ulistadmin.do");
+		} else {
+			mv.addObject("message", user_no + "번 회원 탈퇴처리 실패");
+			mv.setViewName("common/error");
+		}
+		
+		return mv;
+	}
 	// -----------------------------------------
 }
