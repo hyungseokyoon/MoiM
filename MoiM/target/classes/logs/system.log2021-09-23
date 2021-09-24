@@ -1,3 +1,0 @@
-[09:37:32][WARN ][AbstractHandlerExceptionResolver.java:199] - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'usernn' is not present]
-[09:37:33][WARN ][AbstractHandlerExceptionResolver.java:199] - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'usernn' is not present]
-[09:37:37][WARN ][AbstractHandlerExceptionResolver.java:199] - Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required String parameter 'usernn' is not present]
