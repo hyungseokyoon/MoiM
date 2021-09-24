@@ -71,4 +71,14 @@
 		select * from user_info where email like '%' || #{keyword} || '%'
 	</select>
 	
+	<!-- id 중복체크 -->
+	<select id="selectCheckId" parameterType="String" resultType="int" >
+		select count(*) from user_info where user_id = #{userid}
+	</select>
+	
+	<!-- nn 중복체크 -->
+	<select id="selectCheckNn" parameterType="String" resultType="int" >
+		select count(*) from user_info where user_nn = #{usernn}
+	</select>
+
 </mapper>

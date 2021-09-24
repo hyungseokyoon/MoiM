@@ -55,4 +55,11 @@ public class UserInfoDao {
 
 		return (ArrayList<UserInfo>) list;
 	};
+	
+	public int selectCheckId(String userid) {
+		return session.selectOne("userinfoMapper.selectCheckId", userid);
+	}
+	public int selectCheckNn(String usernn) {
+		return session.selectOne("userinfoMapper.selectCheckNn", usernn);
+	}
 }

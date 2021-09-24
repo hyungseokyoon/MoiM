@@ -52,9 +52,16 @@
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rclist.do" class="nav-link">구인게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/blist.do?page=1" class="nav-link">게시판</a></li>
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rvlist.do" class="nav-link">리뷰게시판</a></li>
-				<!-- 관리자 - 회원관리 페이지 -->
+				<!-- 관리자 페이지 드롭박스 -->
 				<c:if test="${ loginMember.admin == 'Y' }">
-					<li class="nav-item dropdown"><a href="${ pageContext.servletContext.contextPath }/ulistadmin.do?page=1" class="nav-link">회원관리</a></li>
+					<li class="nav-item dropdown">
+						<a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
+		                <div class="dropdown-menu">
+			                <a href="${ pageContext.servletContext.contextPath }/ulistadmin.do" class="dropdown-item">회원관리</a>
+			                <a href="${ pageContext.servletContext.contextPath }/blistadmin.do" class="dropdown-item">게시판관리</a>
+			                <a href="${ pageContext.servletContext.contextPath }/teamlistadmin.do" class="dropdown-item">모임관리</a>
+		                </div>
+					</li>
 				</c:if>
             </ul>
             <!-- 비 로그인 시 : 로그인 창 띄우기 -->
@@ -110,31 +117,6 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- 배너 부분 -->
-	<!-- 모임 찾기 -->
-	<section class="hero">
-      <div class="container mb-5">
-        <div class="row align-items-center">
-          <div class="col-lg-6">
-            <h1 class="hero-heading mb-0">찾고있는 MoiM이 <br> 있나요 ?</h1>
-            <div class="row">
-              <div class="col-lg-10">
-                <p class="lead text-muted mt-4 mb-4">관심있는 팀이 있다면, 관련 검색어로 찾아보세요.</p>
-              </div>
-            </div>
-            <form action="#" class="subscription-form">
-              <div class="form-group">
-                <input type="search" name="SearchMoiM" placeholder="ex)공모전, 자격증" class="form-control">
-                <button type="submit" class="btn btn-primary">Search MoiM</button>
-              </div>
-            </form>
-          </div>
-          <div class="col-lg-6">
-          	<img src="${ pageContext.servletContext.contextPath }/resources/img/illustration-hero.svg" alt="..." class="hero-image img-fluid d-none d-lg-block"></div>
-        </div>
-      </div>
-    </section>
 </body>
 
 <!-- Javascript -->
@@ -156,6 +138,7 @@ $(document).ready(function() {
 	}
 });
 </script>
+
 </html>
 
 
