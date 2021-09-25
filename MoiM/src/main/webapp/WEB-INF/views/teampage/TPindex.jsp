@@ -229,7 +229,7 @@
 		                                            <h6 class="mb-0"><font style="vertical-align: inherit;"><a href="#">${ filerecentlist.file_originalfilename }</a></font></h6>
 		                                        </td>
 		                                        <td>
-		                                            <div class="text-muted"><font style="vertical-align: inherit;">${ filerecentlist.uesrVO.user_nn }</font></div>
+		                                            <div class="text-muted"><font style="vertical-align: inherit;">${ filerecentlist.userVO.user_nn }</font></div>
 		                                        </td>
 		                                    </tr>
 	                                    </c:forEach>

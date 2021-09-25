@@ -15,8 +15,8 @@ public class FileServiceImpl implements FileService{
 	private FileDao fileDao;
 
 	@Override
-	public ArrayList<TFile> selectAll() {
-		return fileDao.selectList();
+	public ArrayList<TFile> selectAll(int team_num) {
+		return fileDao.selectList(team_num);
 	}
 
 	@Override
