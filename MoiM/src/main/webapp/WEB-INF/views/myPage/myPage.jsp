@@ -62,7 +62,7 @@
           <!-- Main -->
           <div class="col-lg-8">   
           <blockquote class="blockquote mb-5 text-left">
-          	<form name="checkform" action="uinfo.do" method="get">
+          	<form name="checkform" action="uinfo.do" method="post">
           		<div class="form-group mb-4">
             		<h3>회원정보 확인</h3>
             		정보를 안전하게 보호하기 위해 비밀번호를 다시 입력해주세요.
