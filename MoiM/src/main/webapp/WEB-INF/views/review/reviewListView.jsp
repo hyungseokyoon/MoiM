@@ -140,7 +140,7 @@
 			    					<li class="page-item pager"><a>‹‹</a></li>
 			    				</c:if>
 			    				<c:if test="${ currentPage > 1 }">
-			    					<c:url var="first" value="/rvlist.do">
+			    					<c:url var="first" value="/rvsearch.do">
 			    						<c:param name="page" value="1"/>
 			    						<c:param name="keyword" value="${ keyword }"/>
 			    					</c:url>
@@ -150,7 +150,7 @@
 			    					<li class="page-item pager"><a>‹</a></li>
 			    				</c:if>
 			    				<c:if test="${ (currentPage - 10) < startPage and (currentPage - 10) > 1 }">
-			    					<c:url var="prev" value="/rvlist.do">
+			    					<c:url var="prev" value="/rvsearch.do">
 			    						<c:param name="page" value="${ startPage - 10 }"/>
 			    						<c:param name="keyword" value="${ keyword }"/>
 			    					</c:url>
@@ -161,7 +161,7 @@
 			    						<li class="page-item pager"><a>${ p }</a></li>
 			    					</c:if>
 			    					<c:if test="${ p != currentPage }">
-			    						<c:url var="num" value="/rvlist.do">
+			    						<c:url var="num" value="/rvsearch.do">
 			    							<c:param name="page" value="${ p }"/>
 			    							<c:param name="keyword" value="${ keyword }"/>
 			    						</c:url>
@@ -172,7 +172,7 @@
 			    					<li class="page-item pager"><a>›</a></li>
 			    				</c:if>
 			    				<c:if test="${ (currentPage + 10) > endPage && (currentPage + 10) < maxPage }">
-			    					<c:url var="next" value="/rvlist.do">
+			    					<c:url var="next" value="/rvsearch.do">
 			    						<c:param name="page" value="${ endPage + 10 }"/>
 			    						<c:param name="keyword" value="${ keyword }"/>
 			    					</c:url>
@@ -182,7 +182,7 @@
 			    					<li class="page-item pager"><a>››</a></li>
 			    				</c:if>
 			    				<c:if test="${ currentPage < maxPage }">
-			    					<c:url var="last" value="/rvlist.do">
+			    					<c:url var="last" value="/rvsearch.do">
 			    						<c:param name="page" value="${ maxPage }"/>
 			    						<c:param name="keyword" value="${ keyword }"/>
 			    					</c:url>
