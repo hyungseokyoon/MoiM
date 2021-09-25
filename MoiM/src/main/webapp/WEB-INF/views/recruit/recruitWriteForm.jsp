@@ -13,23 +13,27 @@
 
 <script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
+var gdata;
 function search(){
+	
 //팀명 유효성 검사(1 = 중복 / 0 != 중복)
 $("#team_name").blur(function() {
+	
 	var team_name = $('#team_name').val();
 	$.ajax({
 		url : 'searchtname.do?team_name='+ team_name,
 		type : 'get',
 		success : function(data) {
 			console.log("1 = 중복o / 0 = 중복x : "+ data);							
-			
+			gdata = data;
 			if (data == 1) {
 					// 1 : 아이디가 중복되는 문구
 					$("#name_check").text("사용중인 팀명입니다. 다시 입력해주세요");
-					$("#submitform").attr("disabled", true);
+					$("#team_name").val("");
+					
 				}else if(data == 0){
 					$("#name_check").text("");
-					$("#submitform").attr("disabled", false);
+					
 				}
 				
 			}, error : function() {
@@ -40,19 +44,20 @@ $("#team_name").blur(function() {
 }
 
 function content(){
+	
     var content = $("#content1").val();
-
     if (content.length > 1000){
         $("#content1").val(content.substring(0, 1000));
         $("#length_check").text("최대 1000자까지 입력 가능합니다.");
-        $("#submitform").attr("disabled", true);
+       
     }else {
     	$("#length_check").text("");
-		$("#submitform").attr("disabled", false);
+	
     }
 }
 
 function content_leader(){
+	
     var leader = $("#leader").val();
 
     if (leader.length > 1000){
@@ -66,17 +71,24 @@ function content_leader(){
 }
 
 function fileCheck(){
+	
     var fm = document.form1;
 	var fname = document.getElementById("fileNm").value; //파일의 풀 경로를 fname에 변수에 저장
 	var fext = fname.substr(fname.length-3).toLowerCase();//파일의 풀 경로에서 끝에서 3번째까지의 글자를 잘라 소문자로 변경
-	console.log(fext)
-	if(fext == 'jpg' || fext == 'png' || fext==''){
 	
+	
+
+	if(fext == 'jpg' || fext == 'png' || fext==''){
+		
 		return true;
 	}else{
 		alert('jpg,png파일만 업로드 가능합니다.')
 		return false;
 	}
+	
+	
+	
+	
 	
 }
 
