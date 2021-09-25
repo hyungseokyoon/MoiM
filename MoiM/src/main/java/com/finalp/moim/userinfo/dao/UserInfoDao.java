@@ -62,4 +62,8 @@ public class UserInfoDao {
 	public int selectCheckNn(String usernn) {
 		return session.selectOne("userinfoMapper.selectCheckNn", usernn);
 	}
+
+	public int updateUserInfo(UserInfo userInfo) {
+		return session.update("userinfoMapper.updateUserInfo", userInfo);
+	}
 }

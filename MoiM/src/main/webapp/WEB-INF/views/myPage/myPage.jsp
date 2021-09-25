@@ -62,21 +62,23 @@
           <!-- Main -->
           <div class="col-lg-8">   
           <blockquote class="blockquote mb-5 text-left">
-            <div class="form-group mb-4">
-            	<h3>회원정보 확인</h3>
-            	정보를 안전하게 보호하기 위해 비밀번호를 다시 입력해주세요.
-            	<br><br><Br>
-				<label>Id : </label>
-				<br>
-				${ loginMember.user_id }
-			</div>
-            <div class="form-group mb-4">
-				<label>Password</label>
-				<input type="password" name="user_pwd" id="user_pwd" placeholder="Min 8 characters" class="form-control">
-			</div>
-            <div class="form-group">
-                <input type="submit" value="확인" class="btn btn-primary">
-            </div>
+          	<form name="checkform" action="uinfo.do" method="get">
+          		<div class="form-group mb-4">
+            		<h3>회원정보 확인</h3>
+            		정보를 안전하게 보호하기 위해 비밀번호를 다시 입력해주세요.
+            		<br><br><Br>
+					<label>Id : </label>
+					<br>
+					${ loginMember.user_id }
+					</div>
+            	<div class="form-group mb-4">
+					<label>Password</label>
+					<input type="password" name="user_pwd" id="user_pwd" placeholder="Min 8 characters" class="form-control">
+				</div>
+	            <div class="form-group">
+	                <input type="submit" value="확인" class="btn btn-primary">
+	            </div>
+          	</form>
           </blockquote> 
           </div>
           

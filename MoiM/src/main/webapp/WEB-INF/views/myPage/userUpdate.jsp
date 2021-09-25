@@ -61,33 +61,30 @@
           
           <!-- Update -->
           <div class="col-lg-8">   
-          <form method="post" action="enroll.do" class="contact-form text-left" onsubmit="return validate();">
-          
+          <form method="post" action="updateUserinfo.do" class="contact-form text-left" onsubmit="return validate();">
+          <input type="hidden" value="${ sessionScope.loginMember.user_no }" name="user_no" id="user_no">
           <blockquote class="blockquote mb-5 text-left">
           <!-- 아이디 -->
               <div class="form-group mb-4 row">
               	<div class="col-md-12">
-                <label>Id<sup class="text-primary">&#10033;</sup></label>
+                <label>아이디<sup class="text-primary">&#10033;</sup></label>
                 </div>
                 <div class="col-md-10">
-                <input type="text" name="userid" id="userid" placeholder="moim@company.com" class="form-control">
-                </div>
-                <div class="col-md-2">
-                <input type="button" class="tag=link" value="중복체크" onclick="return dupIdCheck();">
+                <input type="text" name="user_id" id="user_id" placeholder="moim" class="form-control" value="${sessionScope.loginMember.user_id}" readonly>
                 </div>
               </div>
               <!-- 이름 -->
               <div class="form-group mb-4">
-                <label>Name<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="username" placeholder="홍길동" class="form-control">
+                <label>이름<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="user_name" class="form-control" value="${sessionScope.loginMember.user_name}" required>
               </div>
               <!-- 닉네임  -->
               <div class="form-group mb-4 row">
                 <div class="col-md-12">
-                <label>Nickname<sup class="text-primary">&#10033;</sup></label>
+                <label>닉네임<sup class="text-primary">&#10033;</sup></label>
                 </div>
                 <div class="col-md-10">
-                <input type="text" name="usernn" placeholder="닉네임" class="form-control">
+                <input type="text" id="user_nn" name="user_nn" placeholder="닉네임" class="form-control" value="${sessionScope.loginMember.user_nn}">
                 </div>
                 <div class="col-md-2">
                 <input type="button" class="tag=link" value="중복체크" onclick="return dupNnCheck();">
@@ -95,25 +92,47 @@
               </div>
               <!-- 비밀번호 -->
               <div class="form-group mb-4">
-                <label>Password<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="userpwd" id="userpwd" placeholder="비밀번호" class="form-control">
+                <label>비밀번호<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="newuser_pwd" id="newuser_pwd" placeholder="비밀번호" class="form-control">
               </div>
               <div class="form-group mb-4">
-                <label>Password confirm<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="userpwd" id="userpwd2" placeholder="비밀번호 확인" class="form-control">
+                <label>비밀번호 확인<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="newuser_pwd2" id="newuser_pwd2" placeholder="비밀번호 확인" class="form-control">
               </div>
               <!-- 이메일 -->
               <div class="form-group mb-4">
-                <label>Email<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="email" placeholder="email@company.com" class="form-control">
+                <label>이메일<sup class="text-primary">&#10033;</sup></label>
+                <input type="email" name="email" placeholder="email@company.com" class="form-control" value="${sessionScope.loginMember.email}">
               </div>
               <div class="form-group mb-4">
-                <label>Phone<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="phone" placeholder="01012345678" class="form-control">
+                <label>핸드폰 번호<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="phone" placeholder="01012345678" class="form-control" value="${sessionScope.loginMember.phone}">
               </div>
               <div class="form-group mb-4">
-                <label>Address</label>
-                <input type="text" name="address" placeholder="주소" class="form-control">
+                <label>주소</label>
+                <input type="text" name="address" placeholder="주소" class="form-control" value="${sessionScope.loginMember.address}">
+              </div>
+              <div class="form-group mb-4">
+                <label>나이</label>
+                <input type="number" name="age" placeholder="1" class="form-control" value="${sessionScope.loginMember.age}">
+              </div>
+              <div class="form-group mb-4">
+                <label>성별</label><br>
+                <c:if test="${ loginMember.gender eq 'M' }">
+	                남자&nbsp;<input type="radio" name="gender" value="M" checked>
+	                여자&nbsp;<input type="radio" name="gender" value="F">
+	                미입력&nbsp;<input type="radio" name="gender" value="U">
+                </c:if>
+                <c:if test="${ loginMember.gender eq 'F' }">
+	                남자&nbsp;<input type="radio" name="gender" value="M">
+	                여자&nbsp;<input type="radio" name="gender" value="F" checked>
+	                미입력&nbsp;<input type="radio" name="gender" value="U">
+                </c:if>
+                <c:if test="${ loginMember.gender eq 'U' }">
+	                남자&nbsp;<input type="radio" name="gender" value="M">
+	                여자&nbsp;<input type="radio" name="gender" value="F">
+	                미입력&nbsp;<input type="radio" name="gender" value="U" checked>
+                </c:if>
               </div>
               <div class="form-group mb-4">
                 <label>Interest</label><br>
@@ -151,11 +170,7 @@
 						</tr>
 					</table>
 			  </div>
-          
-          
-          
           </blockquote>
-           
             <div class="form-group">
                 <input type="submit" value="수정완료" class="btn btn-primary">
             </div>  
@@ -174,5 +189,49 @@
     <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="vendor/lightbox2/js/lightbox.js"></script>
     <script src="js/front.js"></script>
+    <script>
+    function dupNnCheck(){
+    	var usernn = $('#user_nn').val();
+    	console.log(usernn);
+		$.ajax({
+			url: "nnchk.do",
+			type: "post",
+			data: {user_nn: user_nn},
+			success: function(data){
+				console.log("success : " + data);
+				if(data == "ok"){
+					alert("사용 가능한 닉네임입니다.");
+					$("#userpwd").focus();
+				}else{
+					alert("이미 사용중인 닉네임입니다.\n다시 입력하세요.");
+					$("#usernn").select();
+				}
+			},
+			error: function(jqXHR, textstatus, errorthrown){
+				console.log("error : " + jqXHR + ", " + textstatus
+						+ ", " + errorthrown);
+			}
+		});
+		
+		return false;  //클릭 이벤트가 전달되어서 submit 이 동작되지 않게 함
+	}
+    function validate(){
+		//유효성 검사 코드 작성함
+		//서버 컨트롤러로 전송할 값들이 요구한 조건을 모두 만족하였는지 검사함
+
+		//암호와 암호 확인이 일치하지 않는지 확인함
+		var pwdValue = $('#newuser_pwd').val();
+		var pwdValue2 = $('#newuser_pwd2').val();
+		console.log(pwdValue);
+		console.log(pwdValue2);
+		if(pwdValue !== pwdValue2){
+			alert("암호와 암호 확인의 값이 일치하지 않습니다.");
+			document.getElementById("newuser_pwd").select();
+			return false;  //전송 취소함
+		}
+
+		return true;  //전송함
+	}
+    </script>
   </body>
 </html>
