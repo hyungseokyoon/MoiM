@@ -70,7 +70,7 @@ function fileCheck(){
 	var fname = document.getElementById("fileNm").value; //파일의 풀 경로를 fname에 변수에 저장
 	var fext = fname.substr(fname.length-3).toLowerCase();//파일의 풀 경로에서 끝에서 3번째까지의 글자를 잘라 소문자로 변경
 	console.log(fext)
-	if(fext == 'jpg' || fext == 'png'){
+	if(fext == 'jpg' || fext == 'png' || fext==''){
 	
 		return true;
 	}else{
