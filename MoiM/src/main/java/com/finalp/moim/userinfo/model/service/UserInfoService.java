@@ -25,6 +25,4 @@ public interface UserInfoService {
 	int updateUserAdmin(UserInfo userInfo);
 	ArrayList<UserInfo> selectUserSearch(int category_no, String keyword);
 	ArrayList<UserInfo> selectUserList();
-
-
 }
