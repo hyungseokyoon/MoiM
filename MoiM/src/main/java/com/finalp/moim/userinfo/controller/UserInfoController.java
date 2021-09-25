@@ -118,7 +118,7 @@ public class UserInfoController {
 			if(session != null) {
 				session.invalidate();
 				
-				return "common/main";
+				return "redirect: main.do";
 			} else {
 				model.addAttribute("message", "로그인 세션이 존재하지 않습니다.");
 				
@@ -304,10 +304,11 @@ public class UserInfoController {
 		public String userinfoupdateMethod(UserInfo userinfo, Model model, HttpSession session,
 				@RequestParam("newuser_pwd") String newuser_pwd) {
 			int user_no = userinfo.getUser_no();
+			System.out.println(userinfo);
 			//새로운 암호가 왔는지 체크하기
 			UserInfo oguserinfo = userinfoService.selectUser(user_no);
 			//같은 암호가 왔거나, 암호에 아무것도 입력하지 않았다면
-			if(newuser_pwd == null || bcryptPasswordEncoder.matches(newuser_pwd, oguserinfo.getUser_pwd())) {
+			if(newuser_pwd=="" || bcryptPasswordEncoder.matches(newuser_pwd, oguserinfo.getUser_pwd())) {
 				userinfo.setUser_pwd(oguserinfo.getUser_pwd()); //암호 원래 암호로 변경
 			}else {
 				userinfo.setUser_pwd(bcryptPasswordEncoder.encode(newuser_pwd)); //새로운암호를 암호화해서 입력

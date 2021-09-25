@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -50,7 +51,7 @@ public class MyPageController {
 	}
 	
 	// 내 정보 보기
-	@RequestMapping("uinfo.do")
+	@RequestMapping(value="uinfo.do", method=RequestMethod.POST)
 	public String userInfoForward(@RequestParam("user_pwd") String user_pwd, HttpSession session, Model model) {
 		String ogpwd = ((UserInfo)session.getAttribute("loginMember")).getUser_pwd();
 		System.out.println(bcryptPasswordEncoder.matches(user_pwd, ogpwd));

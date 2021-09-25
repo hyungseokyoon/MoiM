@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<c:set>
+</c:set>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -57,8 +59,44 @@
             </div>
           </aside>
           
-          
-          
+        <c:forTokens items="${ sessionScope.loginMember.interest }" delims="," var="interest">
+	       	<c:if test="${ interest eq 'english' }">
+	            <c:set var="checked0" value="checked" />
+	        </c:if>
+	        <c:if test="${ interest eq 'chinese' }">
+	            <c:set var="checked1" value="checked" />
+	        </c:if>
+	        <c:if test="${ interest eq 'etclanguage' }">
+	            <c:set var="checked2" value="checked" />
+	        </c:if>
+	        <c:if test="${ interest eq 'programming' }">
+	            <c:set var="checked3" value="checked" />
+	        </c:if>
+	        <c:if test="${ interest eq 'literature' }">
+	            <c:set var="checked4" value="checked" />
+	        </c:if>
+	        <c:if test="${ interest eq 'photography' }">
+	            <c:set var="checked5" value="checked" />
+	        </c:if>
+	        <c:if test="${ interest eq 'music' }">
+	            <c:set var="checked6" value="checked" />
+	        </c:if>
+	        <c:if test="${ interest eq 'qualification' }">
+	            <c:set var="checked7" value="checked" />
+	        </c:if>
+	        <c:if test="${ interest eq 'competition' }">
+	            <c:set var="checked8" value="checked" />
+	        </c:if>
+	        <c:if test="${ interest eq 'publicofficer' }">
+	            <c:set var="checked9" value="checked" />
+	        </c:if>
+	        <c:if test="${ interest eq 'etc' }">
+	            <c:set var="checked10" value="checked" />
+	        </c:if>
+	        <c:if test="${ interest eq 'free' }">
+	            <c:set var="checked11" value="checked" />
+	        </c:if>
+        </c:forTokens>
           <!-- Update -->
           <div class="col-lg-8">   
           <form method="post" action="updateUserinfo.do" class="contact-form text-left" onsubmit="return validate();">
@@ -70,7 +108,7 @@
                 <label>아이디<sup class="text-primary">&#10033;</sup></label>
                 </div>
                 <div class="col-md-10">
-                <input type="text" name="user_id" id="user_id" placeholder="moim" class="form-control" value="${sessionScope.loginMember.user_id}" readonly>
+                <input type="text" name="user_id" id="userid" placeholder="moim" class="form-control" value="${sessionScope.loginMember.user_id}" readonly>
                 </div>
               </div>
               <!-- 이름 -->
@@ -84,7 +122,7 @@
                 <label>닉네임<sup class="text-primary">&#10033;</sup></label>
                 </div>
                 <div class="col-md-10">
-                <input type="text" id="user_nn" name="user_nn" placeholder="닉네임" class="form-control" value="${sessionScope.loginMember.user_nn}">
+                <input type="text" id="newusernn" name="user_nn" placeholder="닉네임" class="form-control" value="${sessionScope.loginMember.user_nn}">
                 </div>
                 <div class="col-md-2">
                 <input type="button" class="tag=link" value="중복체크" onclick="return dupNnCheck();">
@@ -139,34 +177,22 @@
                 <text fontsize="1">*중복체크 가능</text>
 					<table width="600">
 						<tr>
-							<td><input type="checkbox" name="hobby" value="english">
-										영어</td>
-							<td><input type="checkbox" name="hobby" value="Chinese">
-										중국어</td>
-							<td><input type="checkbox" name="hobby" value="language">
-										기타 언어</td>
-							<td><input type="checkbox" name="hobby" value="programming">
-										프로그래밍</td>
+							<td><input type="checkbox" name="interest" value="english" ${ checked0 }>영어</td>
+							<td><input type="checkbox" name="interest" value="chinese" ${ checked1 }>중국어</td>
+							<td><input type="checkbox" name="interest" value="etclanguage" ${ checked2 }>기타 언어</td>
+							<td><input type="checkbox" name="interest" value="programming" ${ checked3 }>프로그래밍</td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" name="hobby" value="humanities">
-										인문학/책</td>
-							<td><input type="checkbox" name="hobby" value="picture">
-										사진/영상</td>
-							<td><input type="checkbox" name="hobby" value="music">
-										음악/악기</td>
-							<td><input type="checkbox" name="hobby" value="license">
-										자격증</td>
+							<td><input type="checkbox" name="interest" value="literature" ${ checked4 }>인문학/책</td>
+							<td><input type="checkbox" name="interest" value="photography" ${ checked5 }>사진/영상</td>
+							<td><input type="checkbox" name="interest" value="music" ${ checked6 }>음악/악기</td>
+							<td><input type="checkbox" name="interest" value="qualification" ${ checked7 }>자격증</td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" name="hobby" value="exhibit">
-										공모전</td>
-							<td><input type="checkbox" name="hobby" value=" examination">
-										고시/공무원</td>
-							<td><input type="checkbox" name="hobby" value="study">
-										기타학문</td>
-							<td><input type="checkbox" name="hobby" value="etc"
-										checked> 자유주제</td>
+							<td><input type="checkbox" name="interest" value="competition" ${ checked8 }>공모전</td>
+							<td><input type="checkbox" name="interest" value="publicofficer" ${ checked9 }>고시/공무원</td>
+							<td><input type="checkbox" name="interest" value="etc" ${ checked10 }>기타학문</td>
+							<td><input type="checkbox" name="interest" value="free" ${ checked11 }>자유주제</td>
 						</tr>
 					</table>
 			  </div>
@@ -191,20 +217,18 @@
     <script src="js/front.js"></script>
     <script>
     function dupNnCheck(){
-    	var usernn = $('#user_nn').val();
+    	var usernn = $('#newusernn').val();
     	console.log(usernn);
 		$.ajax({
 			url: "nnchk.do",
 			type: "post",
-			data: {user_nn: user_nn},
+			data: {user_nn: usernn},
 			success: function(data){
 				console.log("success : " + data);
 				if(data == "ok"){
 					alert("사용 가능한 닉네임입니다.");
-					$("#userpwd").focus();
 				}else{
 					alert("이미 사용중인 닉네임입니다.\n다시 입력하세요.");
-					$("#usernn").select();
 				}
 			},
 			error: function(jqXHR, textstatus, errorthrown){
