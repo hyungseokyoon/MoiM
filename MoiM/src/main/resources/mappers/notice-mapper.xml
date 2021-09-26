@@ -91,4 +91,12 @@
 	<select id="selectSearchNotice" parameterType="String" resultMap="resultNotice">
 		select * from notice where notice_title like '%' || #{keyword} || '%'
 	</select>
+	
+	<!-- 최근 5개의 공지사항 메인페이지에 출력 -->
+	<select id="selectNewTop5" resultMap="resultNoticeNew5">
+		select * from
+		(select rownum rnum, notice_no, notice_title, notice_date
+		from (select * from notice order by notice_date desc))
+		where rnum between 1 and 5
+	</select>
 </mapper>
