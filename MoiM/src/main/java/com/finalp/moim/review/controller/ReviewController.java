@@ -136,7 +136,7 @@ public class ReviewController {
 
 
 
-		mv.setViewName("filedown2");
+		mv.setViewName("filedown");
 		mv.addObject("renameFile", renameFile);
 		mv.addObject("originalFile", originalFile);
 

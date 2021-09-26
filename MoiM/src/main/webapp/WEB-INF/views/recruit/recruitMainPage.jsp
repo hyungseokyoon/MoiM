@@ -165,6 +165,7 @@
 						<c:url var="rde" value="/rcdetail.do">
 						<c:param name="team_num" value="${ rc.team_num}" />
 						<c:param name="page" value="${ currentPage }" />
+						
 						</c:url>
 							<div class="col-md-4 mb-4">
 							

@@ -19,6 +19,51 @@ if( result === "success"){
 
 
 </script>
+<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+function searchJoin(){
+	var checkJoin;
+	var checkTeam;
+	
+	
+
+	$.ajax({
+		url : 'searchjoin.do?team_num='+${recruit.team_num}+'&user_no='+${loginMember.user_no},
+		type : 'get',
+		dataType : 'json',
+		success : function(data) {
+			
+			checkJoin = data["checkJoin"]
+			checkTeam = data["checkTeam"]
+			console.log(checkJoin, checkTeam);
+			
+			if(checkJoin > 0){
+				alert('이미 지원이 완료되었습니다.');
+				return false;
+			}else if( checkTeam> 0){
+				alert('이미 가입된 팀입니다.');
+				return false;
+			}else{
+				$('#modalBox').modal('show');
+			}
+	
+			
+		}, //for in
+		error : function(jqXHR, textstatus, errorthrown) {
+			console.log("error : " + jqXHR + ", " + textstatus + ", "
+					+ errorthrown);
+		}
+	});
+
+	
+	
+
+}
+
+
+
+	</script>
+
 </head>
 <body>
 
@@ -56,10 +101,16 @@ if( result === "success"){
 						<c:param name="team_num" value="${ recruit.team_num }" />
 						<c:param name="page" value="${ currentPage }" />
 					</c:url>
+					
+					<c:url var="join" value="/searchjoin.do">
+						<c:param name="team_num" value="${ recruit.team_num }" />
+						<c:param name="user_no" value="${ loginMember.user_no }" />
+						
+					</c:url>
 					<center>
 
 						<c:if test="${ !empty loginMember and loginMember.user_no ne recruit.user_no}">
-						<button class="btn btn-primary" id="openModalBtn">지원하기</button>
+						<button class="btn btn-primary" onclick="searchJoin()">지원하기</button>
 						</c:if>
 						<c:if test="${ !empty loginMember and loginMember.user_no eq recruit.user_no}">
 						<a href="${ rcup }"><button type="button"
@@ -145,9 +196,7 @@ if( result === "success"){
 	
 	
 // 모달 버튼에 이벤트를 건다.
-$('#openModalBtn').on('click', function(){
-$('#modalBox').modal('show');
-});
+
 // 모달 안의 취소 버튼에 이벤트를 건다.
 $('#closeModalBtn').on('click', function(){
 $('#modalBox').modal('hide');

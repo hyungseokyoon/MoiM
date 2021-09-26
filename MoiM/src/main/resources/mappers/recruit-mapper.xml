@@ -130,4 +130,7 @@
 	<select id="selectSearchTeamName" parameterType="string" resultType="_int">
 		select count(*) from tb_team where team_name = #{ team_name } 
 	</select>
+	
+	
+	
 </mapper>

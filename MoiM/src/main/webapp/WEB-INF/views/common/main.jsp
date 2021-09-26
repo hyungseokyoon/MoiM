@@ -29,7 +29,9 @@
 				</c:if>
 				<!-- 로그인 시 : 모임 만드는 페이지로 이동-->
 				<c:if test="${ !empty loginMember }">
-					<a href="#" class="btn btn-primary">Create MoiM</a>
+					<c:url var="rinsert" value="/rcwrite.do" />
+										
+					<a href="${ rinsert }" class="btn btn-primary">Create MoiM</a>
 				</c:if>
 			</div>
 			<div class="row">
