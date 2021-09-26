@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.finalp.moim.teampage.file.model.service.FileService;
 import com.finalp.moim.teampage.file.model.vo.TFile;
@@ -156,5 +157,20 @@ public class FileController {
 		}
 	}
 	
+	@RequestMapping("tfdown.do")
+    public ModelAndView fileDownMethod(HttpServletRequest request, @RequestParam("ofile") String originFileName, @RequestParam("rfile") String renameFileName, ModelAndView mv) {
+
+        String savePath = request.getSession().getServletContext().getRealPath("resources/team_page/Tfile_files");
+        // 저장 폴더에서 파일 읽기 위해 경로 포함
+        File renameFile = new File(savePath + "\\" + renameFileName);
+        // response 에 다운 파일명 등록용 (경로 제외)
+        File originalFile = new File(originFileName);
+
+        mv.setViewName("filedown");
+        mv.addObject("renameFile", renameFile);
+        mv.addObject("originalFile", originalFile);
+
+        return mv;
+    }
 	
 }

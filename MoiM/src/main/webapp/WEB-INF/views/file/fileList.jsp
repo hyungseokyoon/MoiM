@@ -108,7 +108,11 @@
 						            </c:if>
 						        </div>
 	                            <div>
-	                                <div style="width: 180px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><font class="text-muted" style="vertical-align: inherit;">${ f.file_originalfilename }</font></div>
+	                            	<c:url value="tfdown.do" var="tfdown">
+	                            		<c:param name="ofile" value="${ f.file_originalfilename }" />
+	                            		<c:param name="rfile" value="${ f.file_renamefilename }" />
+	                            	</c:url>
+	                                <div style="width: 180px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><font class="text-muted" style="vertical-align: inherit;"><a href="${ tfdown }">${ f.file_originalfilename }</a></font></div>
 	                                <small class="d-block text-muted"><font style="vertical-align: inherit;">${ f.userVO.user_nn }</font></small>
 	                            </div>
 	                            <div class="ml-auto text-muted">
