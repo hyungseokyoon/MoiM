@@ -17,9 +17,9 @@ public class FileDao {
 	
 	public FileDao() {}
 	
-	public ArrayList<TFile> selectList(){
+	public ArrayList<TFile> selectList(int team_num){
 		List<TFile> list = sqlSession.selectList(
-				"fileMapper.selectAll");
+				"fileMapper.selectAll", team_num);
 		return (ArrayList<TFile>)list;
 	}
 

@@ -59,4 +59,15 @@ public class UserInfoDao {
 	public int deleteUserAdmin(int user_no) {
 		return session.delete("userinfoMapper.deleteUserAdmin", user_no);
 	};
+	
+	public int selectCheckId(String userid) {
+		return session.selectOne("userinfoMapper.selectCheckId", userid);
+	}
+	public int selectCheckNn(String usernn) {
+		return session.selectOne("userinfoMapper.selectCheckNn", usernn);
+	}
+
+	public int updateUserInfo(UserInfo userInfo) {
+		return session.update("userinfoMapper.updateUserInfo", userInfo);
+	}
 }

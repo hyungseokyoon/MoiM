@@ -45,9 +45,32 @@
 							<h1 class="page-title">팀 캘린더</h1>
 						</div>
 						<div class="right">
-							<div class="notification d-flex">
-							</div>
-						</div>
+			                <div class="notification d-flex">
+			                    <div class="dropdown d-flex show">
+			                        <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-bell"></i><span class="badge badge-primary nav-unread"></span></a>
+			                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" x-placement="bottom-end" style="position: absolute; transform: translate3d(-312px, 34px, 0px); top: 0px; left: 0px; will-change: transform;">
+			                            <ul class="list-unstyled feeds_widget">
+			                            	<c:forEach items="${ alertlist }" var="alertlist">
+				                                <li>
+				                                    <div class="feeds-body">
+				                                    	<c:url var="alertdelone" value="alertdelone.do">
+				                                    		<c:param name="alert_num" value="${ alertlist.alert_num }" />
+				                                    	</c:url>
+				                                        <h4 class="title text-muted">${ alertlist.alert_cate }<small class="float-right text-muted">${ alertlist.alert_date }</small></h4><a href="${ alertdelone }" class="float-right"><i class="fa fa-trash-o"></i></a>
+				                                        <small class="title text-muted">${ alertlist.alert_content }</small>
+				                                    </div>
+				                                </li>
+			                                </c:forEach>                  
+			                            </ul>
+			                            <div class="dropdown-divider"></div>
+			                            <c:url var="alertdelall" value="alertdelall.do">
+			                            	<c:param name="team_member_no" value="${ teammember.team_member_no }"></c:param>
+			                            </c:url>
+			                            <a href="${ alertdelall }" class="dropdown-item text-center text-muted-dark readall">모든 알람 삭제</a>
+			                        </div>
+			                    </div>
+			                </div>
+	            		</div>
 					</div>
 				</div>
 			</div>
@@ -188,7 +211,7 @@ $(function() {
     	}
 	}); //ajax
 
-    $(".save-event").on('click', function() {
+/*     $(".save-event").on('click', function() {
         var categoryName = $('#addNewEvent form').find("input[name='category-name']").val();
         var categoryColor = $('#addNewEvent form').find("select[name='category-color']").val();
         if (categoryName !== null && categoryName.length != 0) {
@@ -197,7 +220,7 @@ $(function() {
             $('#addNewEvent form').find("select[name='category-color']").val("");
             enableDrag();
         }
-    });
+    }); */
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth() + 1; //January is 0!
@@ -347,7 +370,6 @@ $(function() {
 $(document).on('click', '#eventEditModal .deleteCalendar', function(){
 	var id = $('#eventEditModal input[name="cal_no"]').val();
 	var team_num = ${ sessionScope.team_num };
-	console.log(team_num);
 	$.ajax({
 		url: "deleteCalendar.do",
 		type: "post",
@@ -370,7 +392,6 @@ $(document).on('click', '#eventEditModal .updateCalendar', function(){
 	var calno = $('#eventEditModal input[name="cal_no"]').val();
 	var calwriter = $('#eventEditModal input[name="cal_writer"]').val();
 	var caltitle = $('#eventEditModal input[name="event-title"]').val();
-	console.log(caltitle);
 	var teamnum = ${ sessionScope.team_num };
 	var calstartdate = $('#eventEditModal input[name="event-start"]').val();
 	var calenddate = $('#eventEditModal input[name="event-end"]').val();
@@ -389,7 +410,6 @@ $(document).on('click', '#eventEditModal .updateCalendar', function(){
 	//date 변환
 	Calendar.cal_startdate = moment(Calendar.cal_startdate).format('YYYY-MM-DD');
 	Calendar.cal_enddate = moment(Calendar.cal_enddate).add(1, 'days').format('YYYY-MM-DD');
-	console.log(Calendar);
 	$.ajax({
 		url: "updateCalendar.do",
 		type: "post",

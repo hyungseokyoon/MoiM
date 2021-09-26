@@ -1,5 +1,7 @@
 package com.finalp.moim.recruit.model.vo;
 
+import java.sql.Date;
+
 public class Recruit implements java.io.Serializable {
 	private static final long serialVersionUID = 212L;
 	
@@ -19,6 +21,11 @@ public class Recruit implements java.io.Serializable {
 	private int team_fee;
 	private int team_limit;
 	private String team_recruit;
+	private int team_member_no;
+	private int team_no;
+	private int user_no;
+	private String team_member_leader;
+	private java.sql.Date team_member_date;
 	
 	
 	public Recruit() {}
@@ -27,7 +34,8 @@ public class Recruit implements java.io.Serializable {
 	public Recruit(int team_num, int field_num, String field_name, String team_name, String team_intro,
 			String team_leader_intro, String team_original_image, String team_rename_image, String team_level,
 			String team_local, String team_act_day, int team_act_week, String team_act_time, int team_fee,
-			int team_limit, String team_recruit) {
+			int team_limit, String team_recruit, int team_member_no, int team_no, int user_no,
+			String team_member_leader, Date team_member_date) {
 		super();
 		this.team_num = team_num;
 		this.field_num = field_num;
@@ -45,6 +53,11 @@ public class Recruit implements java.io.Serializable {
 		this.team_fee = team_fee;
 		this.team_limit = team_limit;
 		this.team_recruit = team_recruit;
+		this.team_member_no = team_member_no;
+		this.team_no = team_no;
+		this.user_no = user_no;
+		this.team_member_leader = team_member_leader;
+		this.team_member_date = team_member_date;
 	}
 
 
@@ -208,6 +221,56 @@ public class Recruit implements java.io.Serializable {
 	}
 
 
+	public int getTeam_member_no() {
+		return team_member_no;
+	}
+
+
+	public void setTeam_member_no(int team_member_no) {
+		this.team_member_no = team_member_no;
+	}
+
+
+	public int getTeam_no() {
+		return team_no;
+	}
+
+
+	public void setTeam_no(int team_no) {
+		this.team_no = team_no;
+	}
+
+
+	public int getUser_no() {
+		return user_no;
+	}
+
+
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
+	}
+
+
+	public String getTeam_member_leader() {
+		return team_member_leader;
+	}
+
+
+	public void setTeam_member_leader(String team_member_leader) {
+		this.team_member_leader = team_member_leader;
+	}
+
+
+	public java.sql.Date getTeam_member_date() {
+		return team_member_date;
+	}
+
+
+	public void setTeam_member_date(java.sql.Date team_member_date) {
+		this.team_member_date = team_member_date;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Recruit [team_num=" + team_num + ", field_num=" + field_num + ", field_name=" + field_name
@@ -215,11 +278,17 @@ public class Recruit implements java.io.Serializable {
 				+ ", team_original_image=" + team_original_image + ", team_rename_image=" + team_rename_image
 				+ ", team_level=" + team_level + ", team_local=" + team_local + ", team_act_day=" + team_act_day
 				+ ", team_act_week=" + team_act_week + ", team_act_time=" + team_act_time + ", team_fee=" + team_fee
-				+ ", team_limit=" + team_limit + ", team_recruit=" + team_recruit + "]";
+				+ ", team_limit=" + team_limit + ", team_recruit=" + team_recruit + ", team_member_no=" + team_member_no
+				+ ", team_no=" + team_no + ", user_no=" + user_no + ", team_member_leader=" + team_member_leader
+				+ ", team_member_date=" + team_member_date + "]";
 	}
+
+	
+
 	
 	
 
+	
 	
 	
 	

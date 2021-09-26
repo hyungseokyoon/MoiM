@@ -169,11 +169,11 @@
 		where team_num = #{ team_num } and team_member_leader = 'N'
 	</select>
 	
-	<select id="selectUserNoTeamMember" parameterType="_int" resultMap="resultTeamMember">
+	<select id="selectUserNoTeamMember" parameterType="TeamMember" resultMap="resultTeamMember">
 		select *
 		from tb_team_member tm
 		left join user_info u on (tm.user_no = u.user_no)
-		where u.user_no = #{ user_no }
+		where u.user_no = #{ user_no } and tm.team_num = #{ team_num }
 	</select>
 
 </mapper>

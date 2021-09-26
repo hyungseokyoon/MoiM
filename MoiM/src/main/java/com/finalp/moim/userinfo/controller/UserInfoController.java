@@ -1,8 +1,12 @@
 package com.finalp.moim.userinfo.controller;
 
+
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -29,13 +33,14 @@ public class UserInfoController {
 	// DI
 	@Autowired
 	private UserInfoService userinfoService;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
+	
 	// 로그인
 	@RequestMapping(value="login.do", method = RequestMethod.POST)
-	public String loginMethod(UserInfo userInfo, HttpSession session, 
+	public String loginMethod(UserInfo userInfo, String currentUrl, HttpSession session, 
 			SessionStatus status, Model model) {
 		UserInfo loginMember = userinfoService.selectLogin(userInfo);
 		
@@ -44,158 +49,281 @@ public class UserInfoController {
 			session.setAttribute("loginMember", loginMember);
 			status.setComplete();
 			
-			return "common/main";
+			return "redirect:" + currentUrl;
 		} else {
 			model.addAttribute("message", "로그인 실패!");
 			
-			return "common/error";
+			return "redirect:" + currentUrl;
 		}
 	}
+	
+	//아이디 중복체크 확인을 위한 ajax 요청 처리용 메소드
+		@RequestMapping(value="idchk.do", method=RequestMethod.POST)
+		public void idCheckMethod(
+				@RequestParam("userid") String userid, 
+				HttpServletResponse response) throws IOException {
+			//String userid = request.getParameter("userid");
+				
+			System.out.println(userid);
+			int idcount = userinfoService.selectCheckId(userid);
+				
+			String returnValue = null;
+			if(idcount == 0) {
+				returnValue = "ok";
+			}else {
+				returnValue = "dup";
+			}
+				
+			//response 를 이용해서 클라이언트로 출력스트림 만들고
+			//값 보내기
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.append(returnValue);
+			out.flush();
+			out.close();
+		}
+		
+		//닉네임 중복체크 확인을 위한 ajax 요청 처리용 메소드
+		@RequestMapping(value="nnchk.do", method=RequestMethod.POST)
+		public void nnCheckMethod(
+				@RequestParam("user_nn") String user_nn, 
+				HttpServletResponse response) throws IOException {
+			//String usernn = request.getParameter("usernn");
+				
+			int nncount = userinfoService.selectCheckNn(user_nn);
+				
+			String returnValue = null;
+			if(nncount == 0) {
+				returnValue = "ok";
+			}else {
+				returnValue = "dup";
+			}
+				
+			//response 를 이용해서 클라이언트로 출력스트림 만들고
+			//값 보내기
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.append(returnValue);
+			out.flush();
+			out.close();
+		}
+	
+	
 	
 	// 로그아웃
-	@RequestMapping("logout.do")
-	public String logoutMethod(HttpServletRequest request, Model model) {
-		HttpSession session = request.getSession(false);
-		
-		if(session != null) {
-			session.invalidate();
+		@RequestMapping("logout.do")
+		public String logoutMethod(HttpServletRequest request, Model model) {
+			HttpSession session = request.getSession(false);
 			
-			return "common/main";
-		} else {
-			model.addAttribute("message", "로그인 세션이 존재하지 않습니다.");
-			
-			return "common/error";
+			if(session != null) {
+				session.invalidate();
+				
+				return "redirect: main.do";
+			} else {
+				model.addAttribute("message", "로그인 세션이 존재하지 않습니다.");
+				
+				return "common/error";
+			}
 		}
-	}
 	
+	//회원가입
+	@RequestMapping("enrollPage.do")
+	public String moveEnrollPage() {
+		return "loginPage/enrollPage";
+	}	
+		
+	@RequestMapping(value="enroll.do", method=RequestMethod.POST)
+	public String moveUserInsert(UserInfo userInfo, Model model) {
+		logger.info("enroll.do : " + userInfo);
+		
+		
+		//패스워드 암호화 처리
+		userInfo.setUser_pwd(bcryptPasswordEncoder.encode(userInfo.getUser_pwd()));
+				
+			if(userinfoService.insertUserInfo(userInfo) > 0) {
+					return "common/main";  
+			}else {
+				model.addAttribute("message", "회원 가입 실패!");
+				return "common/error";
+			}		
+	}
+	//아이디 찾기
+	@RequestMapping("sid.do")
+	public String moveSearchId() {
+		return "loginPage/searchId"; 
+	}
+	//비밀번호 찾기
+	@RequestMapping("spw.do")
+	public String moveSearchPassword() {
+		return "loginPage/searchPassword";
+	}
+	//아이디 찾기 결과
+	@RequestMapping("rid.do")
+	public String moveResultId() {
+		return "loginPage/resultId";
+	}
+	//비밀번호 재설정
+	@RequestMapping("rpw.do")
+	public String moveResultPassword() {
+		return "loginPage/resultPassword";
+	}
 	// 관리자 페이지 - 회원관리 페이지로 이동
-	@RequestMapping("ulistadmin.do")
-	public ModelAndView adminUerListMethod(ModelAndView mv, @RequestParam(name="page", required=false) String page) {
-		int currentPage = 1;
-		if(page != null) {
-			currentPage = Integer.parseInt(page);
+		@RequestMapping("ulistadmin.do")
+		public ModelAndView adminUerListMethod(ModelAndView mv, @RequestParam(name="page", required=false) String page) {
+			int currentPage = 1;
+			if(page != null) {
+				currentPage = Integer.parseInt(page);
+			}
+			
+			int limit = 10;
+			int listCount = userinfoService.selectListCount();
+			
+			int maxPage = (int)((double)listCount / limit + 0.9);
+			int startPage = (int)((double)currentPage / limit + 0.9);
+			int endPage = startPage + 10 - 1;
+			if(maxPage < endPage) {
+				endPage = maxPage;
+			}
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			Page paging = new Page(startRow, endRow);
+			
+			ArrayList<UserInfo> list = userinfoService.selectUserList();
+			
+			if(list != null && list.size() > 0) {
+				mv.addObject("list", list);
+				mv.addObject("listCount", listCount);
+				mv.addObject("maxPage", maxPage);
+				mv.addObject("currentPage", currentPage);
+				mv.addObject("startPage", startPage);
+				mv.addObject("endPage", endPage);
+				mv.addObject("limit", limit);
+				mv.addObject("startRow", startRow);
+				mv.addObject("endRow", endRow);
+				
+				mv.setViewName("admin/AdminUserList");
+			} else {
+				mv.addObject("message", currentPage + "회원 정보 목록 조회 실패!");
+				
+				mv.setViewName("common/error");
+			}
+			
+			return mv;
 		}
 		
-		int limit = 10;
-		int listCount = userinfoService.selectListCount();
-		
-		int maxPage = (int)((double)listCount / limit + 0.9);
-		int startPage = (int)((double)currentPage / limit + 0.9);
-		int endPage = startPage + 10 - 1;
-		if(maxPage < endPage) {
-			endPage = maxPage;
+		// 관리자 페이지 - 회원 로그인 가능 여부 변경
+		@RequestMapping("loginOKadmin.do")
+		public ModelAndView userLoginOKMethod(ModelAndView mv, @RequestParam("user_no") int user_no, 
+				@RequestParam("page") int currentPage, @RequestParam("login_ok") String login_ok) {
+			UserInfo userInfo = userinfoService.selectUser(user_no);
+			
+			userInfo.setLogin_ok(login_ok);
+			
+			if(userinfoService.updateUserLoginOK(userInfo) > 0) {
+				mv.addObject("page", currentPage);
+				
+				mv.setViewName("redirect:ulistadmin.do");
+			} else {
+				mv.addObject("message", user_no + "번 회원 로그인 가능 여부 변경 실패");
+				
+				mv.setViewName("common/error");
+			}
+			
+			return mv;
 		}
 		
-		int startRow = (currentPage - 1) * limit + 1;
-		int endRow = startRow + limit - 1;
-		Page paging = new Page(startRow, endRow);
-		
-		ArrayList<UserInfo> list = userinfoService.selectUserList();
-		
-		if(list != null && list.size() > 0) {
-			mv.addObject("list", list);
-			mv.addObject("listCount", listCount);
-			mv.addObject("maxPage", maxPage);
-			mv.addObject("currentPage", currentPage);
-			mv.addObject("startPage", startPage);
-			mv.addObject("endPage", endPage);
-			mv.addObject("limit", limit);
-			mv.addObject("startRow", startRow);
-			mv.addObject("endRow", endRow);
+		// 관리자 페이지 - 회원 관리자 여부 변경
+		@RequestMapping("userchangeadmin.do")
+		public ModelAndView userAdminChangeMethod(ModelAndView mv, @RequestParam("user_no") int user_no, 
+				@RequestParam("page") int currentPage, @RequestParam("admin") String admin) {
+			UserInfo userInfo = userinfoService.selectUser(user_no);
 			
-			mv.setViewName("admin/AdminUserList");
-		} else {
-			mv.addObject("message", currentPage + "회원 정보 목록 조회 실패!");
+			userInfo.setAdmin(admin);
 			
-			mv.setViewName("common/error");
+			if(userinfoService.updateUserAdmin(userInfo) > 0) {
+				mv.addObject("page", currentPage);
+				
+				mv.setViewName("redirect:ulistadmin.do");
+			} else {
+				mv.addObject("message", user_no + "번 회원 관리자 권한 부여 실패");
+				
+				mv.setViewName("common/error");
+			}
+			
+			return mv;
 		}
 		
-		return mv;
-	}
-	
-	// 관리자 페이지 - 회원 로그인 가능 여부 변경
-	@RequestMapping("loginOKadmin.do")
-	public ModelAndView userLoginOKMethod(ModelAndView mv, @RequestParam("user_no") int user_no, 
-			@RequestParam("page") int currentPage, @RequestParam("login_ok") String login_ok) {
-		UserInfo userInfo = userinfoService.selectUser(user_no);
-		
-		userInfo.setLogin_ok(login_ok);
-		
-		if(userinfoService.updateUserLoginOK(userInfo) > 0) {
-			mv.addObject("page", currentPage);
+		// 관리자 페이지 - 회원 정보 검색
+		@RequestMapping(value = "usearch.do", method = RequestMethod.POST)
+		public ModelAndView userSearchMethod(ModelAndView mv, @RequestParam("category_no") int category_no,
+				@RequestParam("keyword") String keyword, @RequestParam(name="page", required=false) String page) {
+			int currentPage = 1;
+			if(page != null) {
+				currentPage = Integer.parseInt(page);
+			}
 			
-			mv.setViewName("redirect:ulistadmin.do");
-		} else {
-			mv.addObject("message", user_no + "번 회원 로그인 가능 여부 변경 실패");
+			int limit = 10;
+			int listCount = userinfoService.selectListCount();
 			
-			mv.setViewName("common/error");
+			int maxPage = (int)((double)listCount / limit + 0.9);
+			int startPage = (int)((double)currentPage / limit + 0.9);
+			int endPage = startPage + 10 - 1;
+			if(maxPage < endPage) {
+				endPage = maxPage;
+			}
+			
+			int startRow = (currentPage - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			Page paging = new Page(startRow, endRow);
+			
+			ArrayList<UserInfo> list = userinfoService.selectUserSearch(category_no, keyword);
+			
+			if(list != null && list.size() > 0) {
+				mv.addObject("list", list);
+				mv.addObject("listCount", listCount);
+				mv.addObject("maxPage", maxPage);
+				mv.addObject("currentPage", currentPage);
+				mv.addObject("startPage", startPage);
+				mv.addObject("endPage", endPage);
+				mv.addObject("limit", limit);
+				mv.addObject("startRow", startRow);
+				mv.addObject("endRow", endRow);
+				
+				mv.setViewName("admin/AdminUserList");
+			} else {
+				mv.addObject("message", currentPage + "회원 정보 목록 조회 실패!");
+				
+				mv.setViewName("common/error");
+			}
+			
+			return mv;
 		}
-		
-		return mv;
-	}
-	
-	// 관리자 페이지 - 회원 관리자 여부 변경
-	@RequestMapping("userchangeadmin.do")
-	public ModelAndView userAdminChangeMethod(ModelAndView mv, @RequestParam("user_no") int user_no, 
-			@RequestParam("page") int currentPage, @RequestParam("admin") String admin) {
-		UserInfo userInfo = userinfoService.selectUser(user_no);
-		
-		userInfo.setAdmin(admin);
-		
-		if(userinfoService.updateUserAdmin(userInfo) > 0) {
-			mv.addObject("page", currentPage);
+		// -----------------------------------------
+		@RequestMapping(value="updateUserinfo.do", method=RequestMethod.POST)
+		public String userinfoupdateMethod(UserInfo userinfo, Model model, HttpSession session,
+				@RequestParam("newuser_pwd") String newuser_pwd) {
+			int user_no = userinfo.getUser_no();
+			System.out.println(userinfo);
+			//새로운 암호가 왔는지 체크하기
+			UserInfo oguserinfo = userinfoService.selectUser(user_no);
+			//같은 암호가 왔거나, 암호에 아무것도 입력하지 않았다면
+			if(newuser_pwd=="" || bcryptPasswordEncoder.matches(newuser_pwd, oguserinfo.getUser_pwd())) {
+				userinfo.setUser_pwd(oguserinfo.getUser_pwd()); //암호 원래 암호로 변경
+			}else {
+				userinfo.setUser_pwd(bcryptPasswordEncoder.encode(newuser_pwd)); //새로운암호를 암호화해서 입력
+			}
 			
-			mv.setViewName("redirect:ulistadmin.do");
-		} else {
-			mv.addObject("message", user_no + "번 회원 관리자 권한 부여 실패");
-			
-			mv.setViewName("common/error");
-		}
-		
-		return mv;
-	}
-	
-	// 관리자 페이지 - 회원 정보 검색
-	@RequestMapping(value = "usearch.do", method = RequestMethod.POST)
-	public ModelAndView userSearchMethod(ModelAndView mv, @RequestParam("category_no") int category_no,
-			@RequestParam("keyword") String keyword, @RequestParam(name="page", required=false) String page) {
-		int currentPage = 1;
-		if(page != null) {
-			currentPage = Integer.parseInt(page);
-		}
-		
-		int limit = 10;
-		int listCount = userinfoService.selectListCount();
-		
-		int maxPage = (int)((double)listCount / limit + 0.9);
-		int startPage = (int)((double)currentPage / limit + 0.9);
-		int endPage = startPage + 10 - 1;
-		if(maxPage < endPage) {
-			endPage = maxPage;
-		}
-		
-		int startRow = (currentPage - 1) * limit + 1;
-		int endRow = startRow + limit - 1;
-		Page paging = new Page(startRow, endRow);
-		
-		ArrayList<UserInfo> list = userinfoService.selectUserSearch(category_no, keyword);
-		
-		if(list != null && list.size() > 0) {
-			mv.addObject("list", list);
-			mv.addObject("listCount", listCount);
-			mv.addObject("maxPage", maxPage);
-			mv.addObject("currentPage", currentPage);
-			mv.addObject("startPage", startPage);
-			mv.addObject("endPage", endPage);
-			mv.addObject("limit", limit);
-			mv.addObject("startRow", startRow);
-			mv.addObject("endRow", endRow);
-			
-			mv.setViewName("admin/AdminUserList");
-		} else {
-			mv.addObject("message", currentPage + "회원 정보 목록 조회 실패!");
-			
-			mv.setViewName("common/error");
+			//변경 후에 update작업 진행
+			if(userinfoService.updateUserInfo(userinfo)>0) {
+				//update한 후에는 session의 userinfo도 변경
+				UserInfo newuserinfo = userinfoService.selectUser(user_no); //새로운 user 객체 가지고옴
+				session.setAttribute("loginMember", newuserinfo); //새롭게 overwrite
+				return "common/main"; //홈페이지 이동
+			}else {
+				model.addAttribute("message", "회원정보 수정 실패");
+				return "common/error";
+			}
 		}
 		
 		return mv;
