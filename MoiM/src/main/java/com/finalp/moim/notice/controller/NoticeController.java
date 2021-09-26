@@ -3,12 +3,16 @@ package com.finalp.moim.notice.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -346,6 +351,30 @@ public class NoticeController {
 		}
 		
 		return mv;
+	}
+	
+	// 메인 페이지에서 최근 공지 5개 출력
+	@RequestMapping(value = "ntop5.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String noticeTop5Method() throws UnsupportedEncodingException {
+		ArrayList<Notice> list = noticeService.selectNewTop5();
+		
+		JSONObject sendJson = new JSONObject();
+		JSONArray jarr = new JSONArray();
+		
+		for(Notice notice : list) {
+			JSONObject job = new JSONObject();
+			
+			job.put("notice_no", notice.getNotice_no());
+			job.put("notice_title", URLEncoder.encode(notice.getNotice_title(), "utf-8"));
+			job.put("notice_date", notice.getNotice_date().toString());
+			
+			jarr.add(job);
+		}
+		
+		sendJson.put("list", jarr);
+		
+		return sendJson.toJSONString();
 	}
 	// ------------------------------------
 }

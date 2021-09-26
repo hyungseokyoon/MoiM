@@ -71,6 +71,11 @@
 		select * from user_info where email like '%' || #{keyword} || '%'
 	</select>
 	
+	<!-- 관리자 페이지 - 회원 강제 탈퇴 -->
+	<delete id="deleteUserAdmin" parameterType="int">
+		delete from user_info where user_no = #{user_no}
+	</delete>
+
 	<!-- id 중복체크 -->
 	<select id="selectCheckId" parameterType="String" resultType="int" >
 		select count(*) from user_info where user_id = #{userid}

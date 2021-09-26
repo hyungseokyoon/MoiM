@@ -118,30 +118,17 @@
 			<div class="text-center">
 				<h2>공지사항</h2>
 				<div class="row">
-					<div class="col-lg-8 mx-auto", style="float: right; border: 1px solid navy; padding: 5px; margin: 5px">
+					<div class="col-lg-8 mx-auto" style="float: right; border: 1px solid navy; padding: 5px; margin: 5px">
 						<div class="dataTable-container">
 			    			<table class="table table-striped dataTable-table" id="table1">
 						        <thead>
 						            <tr>
-						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter">공지번호</a></th>
-						            	<th data-sortable=""><a href="#" class="dataTable-sorter">공지제목</a></th>
-						            	<th data-sortable="" style="width: 150px;"><a href="#" class="dataTable-sorter">작성날짜</a></th>
+						            	<th style="width: 100px; text-align: center;">공지번호</th>
+						            	<th style="text-align: center;">공지제목</th>
+						            	<th style="width: 150px; text-align: center;">작성날짜</th>
 						            </tr>
 						        </thead>
 			        			<tbody>
-			        				<c:forEach items="${ list }" var="n">
-			        					<tr>
-				        					<td>${ n.notice_no }</td>
-				        					<td>
-				        						<c:url var="ndetail" value="ndetail.do">
-				        							<c:param name="notice_no" value="${ n.notice_no }"/>
-				        							<c:param name="page" value="${ currentPage }"/>
-				        						</c:url>
-				        						<a href="${ ndetail }">${ n.notice_title }</a>
-				        					</td>
-				        					<td><fmt:formatDate value="${ n.notice_date }" type="date" pattern="yyyy-MM-dd" /></td>
-			        					</tr>
-			        				</c:forEach>
 								</tbody>
 			    			</table>
 			    		</div>
@@ -157,5 +144,33 @@
 </body>
 <!-- Table에 관련된 js -->
 <script src="${ pageContext.servletContext.contextPath }/resources/asset/simple-datatables.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			url : "ntop5.do", 
+			type : "post", 
+			dataType : "json", 
+			success : function(data){
+				var str = JSON.stringify(data);
+				var json = JSON.parse(str);
+				
+				values = "";
+				
+				for(var i in json.list){
+					values += "<tr><td align='center'>"
+						+ json.list[i].notice_no
+						+ "</td><td><a href='ndetail.do?notice_no="
+						+ json.list[i].notice_no
+						+ ",page=1' align='center'>"
+						+ decodeURIComponent(json.list[i].notice_title).replace(
+								/\+/gi, " ") + "</a></td><td align='center'>"
+						+ json.list[i].notice_date + "</td></tr>";
+				}
+				
+				$('#table1').html($('#table1').html() + values);
+			}
+		});
+	});
+</script>
 </html>
 

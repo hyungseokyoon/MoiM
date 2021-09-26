@@ -115,16 +115,17 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public ArrayList<UserInfo> selectUserSearch(int category_no, String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+		return userinfoDao.selectUserSearch(category_no, keyword);
 	}
+
+	@Override
+	public int deleteUserAdmin(int user_no) {
+		return userinfoDao.deleteUserAdmin(user_no);
+	};
 
 	@Override
 	public ArrayList<UserInfo> selectUserList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
-	
 }
