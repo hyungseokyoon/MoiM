@@ -103,14 +103,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public int updateUserLoginOK(UserInfo userInfo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return userinfoDao.updateUserLoginOK(userInfo);
 	}
 
 	@Override
 	public int updateUserAdmin(UserInfo userInfo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return userinfoDao.updateUserAdmin(userInfo);
 	}
 
 	@Override
@@ -125,7 +123,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public ArrayList<UserInfo> selectUserList() {
-		// TODO Auto-generated method stub
-		return null;
+		return userinfoDao.selectUserList();
 	}
 }
