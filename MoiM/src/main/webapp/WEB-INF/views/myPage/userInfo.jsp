@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -64,33 +65,54 @@
             <blockquote class="blockquote mb-5 text-left">
             	<h3>내 정보 보기</h3><br><br>
             	<div class="form-group mb-4">
-				<label>Id : </label>
+				<label>아이디 : </label>
 				<br>
 				${ loginMember.user_id }
 				<br><br>
-				<label>Name : </label>
+				<label>이름 : </label>
 				<br>
 				${ loginMember.user_name }
 				<br><br>
-				<label>Nickname : </label>
+				<label>닉네임 : </label>
 				<br>
 				${ loginMember.user_nn }
 				<br><br>
-				<label>Email : </label>
+				<label>이메일 : </label>
 				<br>
 				${ loginMember.email }
 				<br><br>
-				<label>Phone : </label>
+				<label>핸드폰번호 : </label>
 				<br>
 				${ loginMember.phone }
 				<br><br>
-				<label>Address : </label>
+				<label>나이 : </label>
+				<br>
+				${ loginMember.age }
+				<br><br>
+				<label>성별 : </label>
+				<br>
+				${ loginMember.gender }
+				<br><br>
+				<label>주소 : </label>
 				<br>
 				${ loginMember.address }
 				<br><br>
-				<label>Interest : </label>
+				<label>관심분야 : </label>
 				<br>
-				${ loginMember.interest }
+				<c:set var="string0" value="${ sessionScope.loginMember.interest }"/>
+				<c:set var="string1" value="${ fn:replace(string0, 'english', '영어') }"/>
+				<c:set var="string2" value="${ fn:replace(string1, 'chinese', '중국어') }"/>
+				<c:set var="string3" value="${ fn:replace(string2, 'etclanguage', '기타 언어') }"/>
+				<c:set var="string4" value="${ fn:replace(string3, 'programming', '프로그래밍') }"/>
+				<c:set var="string5" value="${ fn:replace(string4, 'literature', '인문학/책') }"/>
+				<c:set var="string6" value="${ fn:replace(string5, 'photography', '사진/영상') }"/>
+				<c:set var="string7" value="${ fn:replace(string6, 'music', '음악/악기') }"/>
+				<c:set var="string8" value="${ fn:replace(string7, 'qualification', '자격증') }"/>
+				<c:set var="string9" value="${ fn:replace(string8, 'competition', '공모전') }"/>
+				<c:set var="string10" value="${ fn:replace(string9, 'publicofficer', '고시/공무원') }"/>
+				<c:set var="string11" value="${ fn:replace(string10, 'etc', '기타학문') }"/>
+				<c:set var="string12" value="${ fn:replace(string11, 'free', '자유주제') }"/>
+				<c:out value="${ string12 }"/>
 			</div>
             	
             </blockquote>

@@ -29,8 +29,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public int updateUserInfo(UserInfo userInfo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return userinfoDao.updateUserInfo(userInfo);
 	}
 
 	@Override
@@ -99,8 +98,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public UserInfo selectUser(int user_no) {
-		// TODO Auto-generated method stub
-		return null;
+		return userinfoDao.selectUser(user_no);
 	}
 
 	@Override
