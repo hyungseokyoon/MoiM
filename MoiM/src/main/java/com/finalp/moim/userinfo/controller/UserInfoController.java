@@ -325,9 +325,6 @@ public class UserInfoController {
 				return "common/error";
 			}
 		}
-		
-		return mv;
-	}
 	
 	// 관리자 페이지 - 회원 강제 탈퇴
 	@RequestMapping(value = "userdelete.do", method = RequestMethod.POST)
