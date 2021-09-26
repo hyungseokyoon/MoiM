@@ -89,46 +89,76 @@
                     </div>
                 </div>
                 <div class="row row-cards">
-                <c:forEach items="${ requestScope.list }" var="f">
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="card p-3">
-                            <a href="javascript:void(0)" class="mb-3">
-                                <img src="${ pageContext.servletContext.contextPath }/resources/team_page/images/gallery/1.jpg" alt="Photo by Nathan Guerrero" class="rounded">
-                            </a>
-                            <div class="d-flex align-items-center px-2">
-                                <img class="avatar avatar-md mr-3" src="${ pageContext.servletContext.contextPath }/resources/team_page/images/xs/avatar1.jpg" alt="">
-                                <div>
-                                    <div>${f.file_originalfilename }</div>
-                                    <small class="d-block text-muted">
-                                    	<fmt:formatDate value="${f.file_reg_date }" pattern="yyyy-MM-dd"/>
-                                    </small>
-                                </div>
-                                <div class="ml-auto text-muted">
-                              	 	 <c:url var="fup" value="/fupview.do">
-											<c:param name="file_num" value="${ f.file_num }" />
-									 </c:url>
-										<a href="${ fup }">수정</a>
-									<c:url var="fdel" value="/fdelete.do">
-											<c:param name="file_num" value="${ f.file_num }" />
-									 </c:url>
-										 <a href="${ fdel }">삭제</a>
-                                    <a href="javascript:void(0)" class="icon"><i class="fe fe-eye mr-1"></i>${f.file_uploader }</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                 </c:forEach>
-                </div>
+					<c:forEach items="${ requestScope.list }" var="f">
+	             		<div class="card file_folder col-sm-6 col-lg-4">
+							<div class="d-flex align-items-center px-2">
+	                            <div class="icon">
+						        	<c:set var="filename" value="${ f.file_originalfilename }" />
+						        	<c:if test="${ filename.substring(filename.lastIndexOf('.') + 1) eq 'txt' }">
+						            	<i class="fa fa-folder text-success"></i>
+						            </c:if>
+						            <c:if test="${ filename.substring(filename.lastIndexOf('.') + 1) eq 'word' }">
+						            	<i class="fa fa-file-word-o text-primary"></i>
+						            </c:if>
+						            <c:if test="${ filename.substring(filename.lastIndexOf('.') + 1) eq 'pdf' }">
+						            	<i class="fa fa-file-pdf-o text-danger"></i>
+						            </c:if>
+						            <c:if test="${ filename.substring(filename.lastIndexOf('.') + 1) eq 'png' }">
+						            	<i class="fa fa-file-pdf-o text-danger"></i>
+						            </c:if>
+						        </div>
+	                            <div>
+	                            	<c:url value="tfdown.do" var="tfdown">
+	                            		<c:param name="ofile" value="${ f.file_originalfilename }" />
+	                            		<c:param name="rfile" value="${ f.file_renamefilename }" />
+	                            	</c:url>
+	                                <div style="width: 180px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><font class="text-muted" style="vertical-align: inherit;"><a href="${ tfdown }">${ f.file_originalfilename }</a></font></div>
+	                                <small class="d-block text-muted"><font style="vertical-align: inherit;">${ f.userVO.user_nn }</font></small>
+	                            </div>
+	                            <div class="ml-auto text-muted">
+	                            	<c:if test="${ f.file_uploader == loginMember.user_no }">
+		                            	<c:url var="fupview" value="fupview.do">
+		                            		<c:param name="file_num" value="${ f.file_num }" />
+		                            	</c:url>
+		                                <a href="#filedelmodal" data-toggle="modal" class="nav-link d-none d-md-inline-block ml-3" style="width: 15px;"><i class="fa fa-trash-o"></i></a>
+	                            	</c:if>
+	                            </div>
+	                            
+	                            <!-- Modal -->
+								<div class="modal fade" id="filedelmodal" role="dialog">
+									<div class="modal-dialog">
+							    	<!-- Modal content-->
+							    	<div class="modal-content">
+							        	<div class="modal-header">
+							        		<h5 class="modal-title" id="teamquitModalLabel">파일 삭제</h5>
+							        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							        			<span aria-hidden="true">&times;</span>
+							        		</button>
+							        	</div>
+							        	<div class="modal-body">
+							          		<h3><font style="vertical-align: inherit;">정말로 파일을 삭제하시겠습니까?</font></h3><br>
+							        	</div>
+								        <div class="modal-footer">
+								        	<form action="fdelete.do" method="post">
+								        		<input type="hidden" name="file_num" value="${ f.file_num }">
+								        		<input type="hidden" name="file_renamefilename" value="${ f.file_renamefilename }">
+									          	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									          	<button type="submit" class="btn btn-primary">탈퇴</button>
+		                            		</form>
+								        </div>
+							    	</div>
+								    </div>
+								</div>
+	                        </div>
+	                    </div>
+            		</c:forEach>
+				</div>
             </div>
         </div>
-       
     </div>
 </div>
 
-
-
 <script src="${ pageContext.servletContext.contextPath }/resources/team_page//bundles/lib.vendor.bundle.js"></script>
-
 <script src="${ pageContext.servletContext.contextPath }/resources/team_page//js/core.js"></script>
 
 </body>

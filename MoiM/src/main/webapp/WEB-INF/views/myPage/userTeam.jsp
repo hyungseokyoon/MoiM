@@ -78,37 +78,32 @@
 						            <tr>
 						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter">번호</a></th>
 						            	<th data-sortable=""><a href="#" class="dataTable-sorter">팀 이름</a></th>
-						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter">팀 인원</a></th>
+						            	<!-- <th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter">팀 인원</a></th>
 						            	<th data-sortable="" style="width: 150px;"><a href="#" class="dataTable-sorter">가입일</a></th>
 						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter">지역</a></th>
-						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter">팀장</a></th>
+						            	<th data-sortable="" style="width: 100px;"><a href="#" class="dataTable-sorter">팀장</a></th> -->
 						            </tr>
 						        </thead>
-			        			<%-- <tbody>
-			        				<c:forEach items="${ list }" var="n">
-			        					<tr>
-				        					<td>${ n.notice_no }</td>
-				        					<td>
-				        						<c:url var="ndetail" value="ndetail.do">
-				        							<c:param name="notice_no" value="${ n.notice_no }"/>
-				        							<c:param name="page" value="${ currentPage }"/>
-				        						</c:url>
-				        						<a href="${ ndetail }">${ n.notice_title }</a>
-				        					</td>
-				        					<td>${ n.user_no }</td>
-				        					<td><fmt:formatDate value="${ n.notice_date }" type="date" pattern="yyyy-MM-dd" /></td>
-				        					<c:if test="${ n.notice_original_filename != null }">
-				        						<td>◎</td>
-				        					</c:if>
-				        					<c:if test="${ n.notice_original_filename == null }">
-				        						<td>&nbsp;</td>
-				        					</c:if>
-			        					</tr>
-			        				</c:forEach>
-								</tbody> --%>
+						        <tbody>
+						        	<c:forEach items="${myteamlist}" var="imyteam" varStatus="status">
+						        		<tr>
+						        			<td>
+						        				<div class="text-center">
+													<c:out value="${ mtlistlength - status.index }"/>
+												</div>
+						        			</td>
+						        			<td>
+						        				<c:url var="moveTPindex" value="moveTPindex.do">
+        											<c:param name="team_num" value="${ imyteam.team_num }"></c:param>
+        										</c:url>
+       											<a href="${ moveTPindex }">${ teamsettinglist[status.index].team_name } 팀으로 이동</a>
+						        			</td>
+						        		</tr>
+						        	</c:forEach>
+						        </tbody>
 			    			</table>
 			    		</div>
-			    		<div class="dataTable-bottom">
+			    		<%-- <div class="dataTable-bottom">
 			    			<ul class="pagination pagination-primary float-end dataTable-pagination">
 			    				<c:if test="${ currentPage <= 1 }">
 			    					<li class="page-item pager"><a>‹‹</a></li>
@@ -158,7 +153,7 @@
 			    					<li class="page-item pager"><a href="${ last }" class="page-link">››</a></li>
 			    				</c:if>
 			    			</ul>
-			    		</div>
+			    		</div> --%>
               
               
             </div>

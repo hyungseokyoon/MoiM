@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <table class="table table-hover table-vcenter text-nowrap table_custom border-style list">
+                                <table class="table table-hover table-vcenter text-nowrap table_custom border-style list" id="boardtoptable">
 	                                <thead>
 	                                    <tr>
 	                                        <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">제 목</font></font></th>
@@ -106,7 +106,7 @@
 	                                	<c:forEach items="${ boardtoplist }" var="boardtoplist">
 		                                    <tr>
 		                                        <td>
-		                                            <h6 class="mb-0"><font style="vertical-align: inherit;"><a href="#">${ boardtoplist.tn_title }</a></font></h6>
+		                                            <h6 class="mb-0"><font style="vertical-align: inherit;"><a data-toggle="modal" href="#selecttn" data-tn_no="${ boardtoplist.tn_no }">${ boardtoplist.tn_title }</a></font></h6>
 		                                        </td>
 		                                        <td>
 		                                            <div class="text-muted"><font style="vertical-align: inherit;">${ boardtoplist.tn_date }</font></div>
@@ -119,6 +119,58 @@
 	                                </tbody>
 	                            </table>
                             </div>
+                            <div class="modal fade" id="selecttn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-ml" role="document">
+									<div class="modal-content">
+										<form action="teamboarddelete.do" method="post">
+							    		<div class="modal-header">
+							        		<h5 class="modal-title" id="exampleModalLabel">공지자세히보기</h5>
+							        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							        			<span aria-hidden="true">&times;</span>
+							        		</button>
+							      		</div>
+							      		<div class="modal-body">
+							      		<input type="hidden" name="team_num" value="${ team_num }">
+					                	<div class="row">
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>제목</label>
+					                                <input class="form-control" type="text" name="tntitle" id="tntitle" value="" >
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>작성자</label>
+					                                <input class="form-control" type="text" name="tnwriternn" id="tnwriternn" value="" >
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>작성일</label>
+					                                <input class="form-control" type="date" name="tndate" id="tndate" value="" >
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group">
+					                                <label>내용</label>
+					                                <textarea class="form-control" name="tncontent" id="tncontent"><c:out value="" /></textarea>
+					                            </div>
+					                        </div>
+					                        <div class="col-sm-12">
+					                            <div class="form-group filetab">
+					                                
+					                            </div>
+					                        </div>
+					                	</div>
+							      		
+							      		</div>
+									  	<div class="modal-footer">
+					                       	<button class="btn btn-primary" data-dismiss="modal">닫기</button>
+									    </div>
+										</form>
+									</div>
+								</div>
+							</div>
                         </div>                
                     </div>
                     <div class="col-xl-4 col-lg-12">
@@ -179,9 +231,7 @@
                         			<div class="card plannedcard" id="on">
 				                          <div class="card-body text-center">
 				                              <h6>Planned</h6>
-				                              <a href="#">
 				                              <input type="text" class="knob" value="${ planned }" data-width="90" data-height="90" data-thickness="0.1" data-fgColor="#6e7687" readonly>
-				                              </a>
 				                          </div>
                         			</div>
                     			</div>
@@ -226,10 +276,14 @@
 	                                	<c:forEach items="${ filerecentlist }" var="filerecentlist">
 		                                    <tr>
 		                                        <td>
-		                                            <h6 class="mb-0"><font style="vertical-align: inherit;"><a href="#">${ filerecentlist.file_originalfilename }</a></font></h6>
+		                                        	<c:url value="tfdown.do" var="tfdown">
+					                            		<c:param name="ofile" value="${ filerecentlist.file_originalfilename }" />
+					                            		<c:param name="rfile" value="${ filerecentlist.file_renamefilename }" />
+					                            	</c:url>
+		                                            <h6 class="mb-0"><font style="vertical-align: inherit;"><a href="${ tfdown }">${ filerecentlist.file_originalfilename }</a></font></h6>
 		                                        </td>
 		                                        <td>
-		                                            <div class="text-muted"><font style="vertical-align: inherit;">${ filerecentlist.uesrVO.user_nn }</font></div>
+		                                            <div class="text-muted"><font style="vertical-align: inherit;">${ filerecentlist.userVO.user_nn }</font></div>
 		                                        </td>
 		                                    </tr>
 	                                    </c:forEach>
@@ -256,6 +310,53 @@
 <script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/core.js"></script>
 <script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/page/project-index.js"></script>
 <script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/chart/knobjs.js"></script>
+<script>
+$(function() {
+    $('#boardtoptable a').on('click', function(){
+   		var tn_no = $(this).data("tn_no");
+   		tn_no = parseInt(tn_no);
+
+        $.ajax({
+            url : 'selectTN.do',
+            type : 'POST',
+            data : {"tn_no" : tn_no},
+            dataType : "json",
+    		success : function(data) {
+    			console.log("success : " + data);
+    			//object ==> string 으로 변환
+    			var jsonStr = JSON.stringify(data);
+    			//string ==> json 객체로 바꿈
+    			var json = JSON.parse(jsonStr);
+    			
+    			var ogfilename = json.list[0].tn_originalfilename;
+    			var rnfilename = json.list[0].tn_renamefilename;
+    			
+    			$('#selecttn').modal('show');
+    			$(".modal-body #tntitle").val( json.list[0].tn_title );
+    			$(".modal-body #tnwriternn").val( json.list[0].tn_writer );
+    			$(".modal-body #tndate").val( json.list[0].tn_date );
+    			$(".modal-body #tncontent").val( json.list[0].tn_content );
+    			
+    			if(ogfilename != null){
+    				var line = '<label>첨부 파일</label><br>'+'<a href="tndown.do?ofile='+ogfilename+'&'+'rfile='+rnfilename+'"></a>';
+    				$('.modal-body .filetab').html(line);
+        			$('.modal-body a').text( json.list[0].tn_originalfilename )
+        			$('.modal-body #ofile').val(ogfilename);
+        			$('.modal-body #rfile').val(rnfilename);
+    			}else{
+    				var line = '<label>첨부 파일</label><br>등록된 파일이 없습니다';
+    				$(".modal-body #filetab").html(line);
+    			}
+	
+    		},
+    		error : function(jqXHR, textstatus, errorthrown) {
+    			console.log("error : " + jqXHR + ", " + textstatus + ", "
+    					+ errorthrown);
+    		}
+    	}); //ajax
+   	});
+});
+</script>
 </body>
 <!-- soccer/project/index.html  07 Jan 2020 03:37:47 GMT -->
 </html>

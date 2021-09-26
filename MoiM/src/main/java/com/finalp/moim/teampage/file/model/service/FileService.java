@@ -6,7 +6,7 @@ import com.finalp.moim.teampage.file.model.vo.TFile;
 
 
 public interface FileService {
-	ArrayList<TFile> selectAll();
+	ArrayList<TFile> selectAll(int team_num);
 	TFile selectFile(int file_num);
 	int insertFile(TFile tfile);
 	int updateFile(TFile tfile);
