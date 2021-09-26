@@ -179,9 +179,7 @@
                         			<div class="card plannedcard" id="on">
 				                          <div class="card-body text-center">
 				                              <h6>Planned</h6>
-				                              <a href="#">
 				                              <input type="text" class="knob" value="${ planned }" data-width="90" data-height="90" data-thickness="0.1" data-fgColor="#6e7687" readonly>
-				                              </a>
 				                          </div>
                         			</div>
                     			</div>
