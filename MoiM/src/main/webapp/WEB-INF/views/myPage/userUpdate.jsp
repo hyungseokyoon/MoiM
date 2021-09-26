@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
     <title>MoiM</title>
-    <link rel="icon" href="${ pageContext.servletContext.contextPath }/resources/team_page/images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.servletContext.contextPath}/resources/team_page/images/favicon.ico" type="image/x-icon" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -42,7 +41,7 @@
         <!-- wordPress installation-->
         <header class="section header mb-5">
           <h2>MY Page</h2>
-          <p class="lead">${ loginMember.user_name }님 환영합니다</p>
+          <p class="lead">${loginMember.user_name}님 환영합니다</p>
         </header>
         <div class="row"> 
           <!-- index-->
@@ -57,37 +56,70 @@
             </div>
           </aside>
           
-          
-          
+        <c:forTokens items="${sessionScope.loginMember.interest}" delims="," var="it">
+	       	<c:if test="${it eq 'english'}">
+	            <c:set var="checked0" value="checked" />
+	        </c:if>
+	        <c:if test="${it eq 'chinese'}">
+	            <c:set var="checked1" value="checked" />
+	        </c:if>
+	        <c:if test="${it eq 'etclanguage'}">
+	            <c:set var="checked2" value="checked" />
+	        </c:if>
+	        <c:if test="${it eq 'programming'}">
+	            <c:set var="checked3" value="checked" />
+	        </c:if>
+	        <c:if test="${it eq 'literature'}">
+	            <c:set var="checked4" value="checked" />
+	        </c:if>
+	        <c:if test="${it eq 'photography'}">
+	            <c:set var="checked5" value="checked" />
+	        </c:if>
+	        <c:if test="${it eq 'music'}">
+	            <c:set var="checked6" value="checked" />
+	        </c:if>
+	        <c:if test="${it eq 'qualification'}">
+	            <c:set var="checked7" value="checked" />
+	        </c:if>
+	        <c:if test="${it eq 'competition'}">
+	            <c:set var="checked8" value="checked" />
+	        </c:if>
+	        <c:if test="${it eq 'publicofficer'}">
+	            <c:set var="checked9" value="checked" />
+	        </c:if>
+	        <c:if test="${it eq 'etc'}">
+	            <c:set var="checked10" value="checked" />
+	        </c:if>
+	        <c:if test="${it eq 'free'}">
+	            <c:set var="checked11" value="checked" />
+	        </c:if>
+        </c:forTokens>
           <!-- Update -->
           <div class="col-lg-8">   
-          <form method="post" action="enroll.do" class="contact-form text-left" onsubmit="return validate();">
-          
+          <form method="post" action="updateUserinfo.do" class="contact-form text-left" onsubmit="return validate();">
+          <input type="hidden" value="${sessionScope.loginMember.user_no}" name="user_no" id="user_no">
           <blockquote class="blockquote mb-5 text-left">
           <!-- 아이디 -->
               <div class="form-group mb-4 row">
               	<div class="col-md-12">
-                <label>Id<sup class="text-primary">&#10033;</sup></label>
+                <label>아이디<sup class="text-primary">&#10033;</sup></label>
                 </div>
                 <div class="col-md-10">
-                <input type="text" name="userid" id="userid" placeholder="moim@company.com" class="form-control">
-                </div>
-                <div class="col-md-2">
-                <input type="button" class="tag=link" value="중복체크" onclick="return dupIdCheck();">
+                <input type="text" name="user_id" id="userid" placeholder="moim" class="form-control" value="${sessionScope.loginMember.user_id}" readonly>
                 </div>
               </div>
               <!-- 이름 -->
               <div class="form-group mb-4">
-                <label>Name<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="username" placeholder="홍길동" class="form-control">
+                <label>이름<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="user_name" class="form-control" value="${sessionScope.loginMember.user_name}" required>
               </div>
               <!-- 닉네임  -->
               <div class="form-group mb-4 row">
                 <div class="col-md-12">
-                <label>Nickname<sup class="text-primary">&#10033;</sup></label>
+                <label>닉네임<sup class="text-primary">&#10033;</sup></label>
                 </div>
                 <div class="col-md-10">
-                <input type="text" name="usernn" placeholder="닉네임" class="form-control">
+                <input type="text" id="newusernn" name="user_nn" placeholder="닉네임" class="form-control" value="${sessionScope.loginMember.user_nn}">
                 </div>
                 <div class="col-md-2">
                 <input type="button" class="tag=link" value="중복체크" onclick="return dupNnCheck();">
@@ -95,67 +127,73 @@
               </div>
               <!-- 비밀번호 -->
               <div class="form-group mb-4">
-                <label>Password<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="userpwd" id="userpwd" placeholder="비밀번호" class="form-control">
+                <label>비밀번호<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="newuser_pwd" id="newuser_pwd" placeholder="비밀번호" class="form-control">
               </div>
               <div class="form-group mb-4">
-                <label>Password confirm<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="userpwd" id="userpwd2" placeholder="비밀번호 확인" class="form-control">
+                <label>비밀번호 확인<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="newuser_pwd2" id="newuser_pwd2" placeholder="비밀번호 확인" class="form-control">
               </div>
               <!-- 이메일 -->
               <div class="form-group mb-4">
-                <label>Email<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="email" placeholder="email@company.com" class="form-control">
+                <label>이메일<sup class="text-primary">&#10033;</sup></label>
+                <input type="email" name="email" placeholder="email@company.com" class="form-control" value="${sessionScope.loginMember.email}">
               </div>
               <div class="form-group mb-4">
-                <label>Phone<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="phone" placeholder="01012345678" class="form-control">
+                <label>핸드폰 번호<sup class="text-primary">&#10033;</sup></label>
+                <input type="text" name="phone" placeholder="01012345678" class="form-control" value="${sessionScope.loginMember.phone}">
               </div>
               <div class="form-group mb-4">
-                <label>Address</label>
-                <input type="text" name="address" placeholder="주소" class="form-control">
+                <label>주소</label>
+                <input type="text" name="address" placeholder="주소" class="form-control" value="${sessionScope.loginMember.address}">
+              </div>
+              <div class="form-group mb-4">
+                <label>나이</label>
+                <input type="number" name="age" placeholder="1" class="form-control" value="${sessionScope.loginMember.age}">
+              </div>
+              <div class="form-group mb-4">
+                <label>성별</label><br>
+                <c:if test="${loginMember.gender eq 'M'}">
+	                남자&nbsp;<input type="radio" name="gender" value="M" checked>
+	                여자&nbsp;<input type="radio" name="gender" value="F">
+	                미입력&nbsp;<input type="radio" name="gender" value="U">
+                </c:if>
+                <c:if test="${loginMember.gender eq 'F'}">
+	                남자&nbsp;<input type="radio" name="gender" value="M">
+	                여자&nbsp;<input type="radio" name="gender" value="F" checked>
+	                미입력&nbsp;<input type="radio" name="gender" value="U">
+                </c:if>
+                <c:if test="${loginMember.gender eq 'U'}">
+	                남자&nbsp;<input type="radio" name="gender" value="M">
+	                여자&nbsp;<input type="radio" name="gender" value="F">
+	                미입력&nbsp;<input type="radio" name="gender" value="U" checked>
+                </c:if>
               </div>
               <div class="form-group mb-4">
                 <label>Interest</label><br>
                 <text fontsize="1">*중복체크 가능</text>
 					<table width="600">
 						<tr>
-							<td><input type="checkbox" name="hobby" value="english">
-										영어</td>
-							<td><input type="checkbox" name="hobby" value="Chinese">
-										중국어</td>
-							<td><input type="checkbox" name="hobby" value="language">
-										기타 언어</td>
-							<td><input type="checkbox" name="hobby" value="programming">
-										프로그래밍</td>
+							<td><input type="checkbox" name="interest" value="english" ${checked0}>영어</td>
+							<td><input type="checkbox" name="interest" value="chinese" ${checked1}>중국어</td>
+							<td><input type="checkbox" name="interest" value="etclanguage" ${checked2}>기타 언어</td>
+							<td><input type="checkbox" name="interest" value="programming" ${checked3}>프로그래밍</td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" name="hobby" value="humanities">
-										인문학/책</td>
-							<td><input type="checkbox" name="hobby" value="picture">
-										사진/영상</td>
-							<td><input type="checkbox" name="hobby" value="music">
-										음악/악기</td>
-							<td><input type="checkbox" name="hobby" value="license">
-										자격증</td>
+							<td><input type="checkbox" name="interest" value="literature" ${checked4}>인문학/책</td>
+							<td><input type="checkbox" name="interest" value="photography" ${checked5}>사진/영상</td>
+							<td><input type="checkbox" name="interest" value="music" ${checked6}>음악/악기</td>
+							<td><input type="checkbox" name="interest" value="qualification" ${checked7}>자격증</td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" name="hobby" value="exhibit">
-										공모전</td>
-							<td><input type="checkbox" name="hobby" value=" examination">
-										고시/공무원</td>
-							<td><input type="checkbox" name="hobby" value="study">
-										기타학문</td>
-							<td><input type="checkbox" name="hobby" value="etc"
-										checked> 자유주제</td>
+							<td><input type="checkbox" name="interest" value="competition" ${checked8}>공모전</td>
+							<td><input type="checkbox" name="interest" value="publicofficer" ${checked9}>고시/공무원</td>
+							<td><input type="checkbox" name="interest" value="etc" ${checked10}>기타학문</td>
+							<td><input type="checkbox" name="interest" value="free" ${checked11}>자유주제</td>
 						</tr>
 					</table>
 			  </div>
-          
-          
-          
           </blockquote>
-           
             <div class="form-group">
                 <input type="submit" value="수정완료" class="btn btn-primary">
             </div>  
@@ -174,5 +212,47 @@
     <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="vendor/lightbox2/js/lightbox.js"></script>
     <script src="js/front.js"></script>
+    <!-- <script>
+    function dupNnCheck(){
+    	var usernn = $('#newusernn').val();
+    	console.log(usernn);
+		$.ajax({
+			url: "nnchk.do",
+			type: "post",
+			data: {user_nn: usernn},
+			success: function(data){
+				console.log("success : " + data);
+				if(data == "ok"){
+					alert("사용 가능한 닉네임입니다.");
+				}else{
+					alert("이미 사용중인 닉네임입니다.\n다시 입력하세요.");
+				}
+			},
+			error: function(jqXHR, textstatus, errorthrown){
+				console.log("error : " + jqXHR + ", " + textstatus
+						+ ", " + errorthrown);
+			}
+		});
+		
+		return false;  //클릭 이벤트가 전달되어서 submit 이 동작되지 않게 함
+	}
+    function validate(){
+		//유효성 검사 코드 작성함
+		//서버 컨트롤러로 전송할 값들이 요구한 조건을 모두 만족하였는지 검사함
+
+		//암호와 암호 확인이 일치하지 않는지 확인함
+		var pwdValue = $('#newuser_pwd').val();
+		var pwdValue2 = $('#newuser_pwd2').val();
+		console.log(pwdValue);
+		console.log(pwdValue2);
+		if(pwdValue !== pwdValue2){
+			alert("암호와 암호 확인의 값이 일치하지 않습니다.");
+			document.getElementById("newuser_pwd").select();
+			return false;  //전송 취소함
+		}
+
+		return true;  //전송함
+	}
+    </script> -->
   </body>
 </html>

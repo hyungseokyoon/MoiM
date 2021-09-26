@@ -68,7 +68,7 @@ public class TPdailyController {
 			@RequestParam("daily_date") String daily_date,
 			Model model) throws ParseException {
 		
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		java.util.Date parsed = transFormat.parse(daily_date);
 		Date sdaily_date = new Date(parsed.getTime());
 		

@@ -46,11 +46,11 @@ public class RecruitController {
 		}
 
 		// 페이징 처리
-		int limit = 10; // 한 페이지에 출력할 목록 갯수
+		int limit = 9; // 한 페이지에 출력할 목록 갯수
 		// 페이지 계산을 위해 총 목록갯수 조회
 		int listCount = recruitService.selectListCount();
 		// 페이지 수 계산
-		// 목록이 11개이면 총2페이지가 나오게 계산식 작성
+		// 목록이 10개이면 총2페이지가 나오게 계산식 작성
 		int maxPage = (int) ((double) listCount / limit + 0.9);
 		// 현재 페이지가 포함된 페이지 그룹의 시작값
 		// 뷰페이지에 페이지 숫자를 10개씩 보여지게 한다면
@@ -296,7 +296,7 @@ public class RecruitController {
 
 	}
 	
-	@RequestMapping(value="rcsearch.do", method=RequestMethod.POST)
+	@RequestMapping(value="rcsearch.do")
 	public String recruitSearchMethod(HttpServletRequest request,Model model, 
 			@RequestParam(name = "team_level", required = false) String team_level,
 			@RequestParam(name = "field_name", required = false) String field_name,
@@ -309,11 +309,14 @@ public class RecruitController {
 		if (page != null) {
 			currentPage = Integer.parseInt(page);
 		}
-
+		
+		int startRow = 0;
+		int endRow = 0;
+		SearchRecruit sr = new SearchRecruit(team_level, field_name, team_local, team_name, team_act_day, startRow, endRow);		
 		// 페이징 처리
-		int limit = 10; // 한 페이지에 출력할 목록 갯수
+		int limit = 9; // 한 페이지에 출력할 목록 갯수
 		// 페이지 계산을 위해 총 목록갯수 조회
-		int listCount = recruitService.selectListCount();
+		int listCount = recruitService.selectSearchRecruitCount(sr);
 		// 페이지 수 계산
 		// 목록이 11개이면 총2페이지가 나오게 계산식 작성
 		int maxPage = (int) ((double) listCount / limit + 0.9);
@@ -329,13 +332,13 @@ public class RecruitController {
 		}
 
 		// 쿼리문에 전달할 현재 페이지에 출력할 목록의 첫행과 끝행
-		int startRow = (currentPage - 1) * limit + 1;
-		int endRow = startRow + limit - 1;
+		startRow = (currentPage - 1) * limit + 1;
+		endRow = startRow + limit - 1;
 		
-
+		sr = new SearchRecruit(team_level, field_name, team_local, team_name, team_act_day, startRow, endRow);
 		
 		ArrayList<Recruit> list = null;
-		list = recruitService.selectSearchRecruit(new SearchRecruit(team_level, field_name, team_local, team_name, team_act_day, startRow, endRow));
+		list = recruitService.selectSearchRecruit(sr);
 		
 		if(list.size() > 0) {
 			model.addAttribute("list",list);
@@ -344,7 +347,12 @@ public class RecruitController {
 			model.addAttribute("currentPage",currentPage);
 			model.addAttribute("startPage",startPage);
 			model.addAttribute("endPage", endPage);
+			model.addAttribute("team_level", team_level);
 			model.addAttribute("limit", limit);
+			model.addAttribute("field_name", field_name);
+			model.addAttribute("team_local", team_local);
+			model.addAttribute("team_name", team_name);
+			model.addAttribute("team_act_day", team_act_day);
 			
 			return "recruit/recruitMainPage";
 			}else {

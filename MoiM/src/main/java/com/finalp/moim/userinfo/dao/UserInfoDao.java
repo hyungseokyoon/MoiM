@@ -54,6 +54,10 @@ public class UserInfoDao {
 		}
 
 		return (ArrayList<UserInfo>) list;
+	}
+
+	public int deleteUserAdmin(int user_no) {
+		return session.delete("userinfoMapper.deleteUserAdmin", user_no);
 	};
 	
 	public int selectCheckId(String userid) {
@@ -61,5 +65,9 @@ public class UserInfoDao {
 	}
 	public int selectCheckNn(String usernn) {
 		return session.selectOne("userinfoMapper.selectCheckNn", usernn);
+	}
+
+	public int updateUserInfo(UserInfo userInfo) {
+		return session.update("userinfoMapper.updateUserInfo", userInfo);
 	}
 }

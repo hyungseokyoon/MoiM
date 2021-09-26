@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.finalp.moim.common.Page;
 import com.finalp.moim.review.model.dao.ReviewDao;
 import com.finalp.moim.review.model.vo.Review;
+import com.finalp.moim.review.model.vo.SearchReview;
 import com.finalp.moim.review.model.vo.UserTeam;
 
 @Service("reviewService")
@@ -63,7 +64,12 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	
 	@Override
-	public ArrayList<Review> selectSearchReview(String keyword){
-		return reviewDao.selectSearchReview(keyword);
+	public ArrayList<Review> selectSearchReview(SearchReview sr){
+		return reviewDao.selectSearchReview(sr);
+	}
+	
+	@Override
+	public int selectSearchReviewCount(String keyword) {
+		return reviewDao.selectSearchReviewCount(keyword);
 	}
 }

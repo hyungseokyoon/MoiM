@@ -71,7 +71,11 @@
 		select * from user_info where email like '%' || #{keyword} || '%'
 	</select>
 	
-<<<<<<< HEAD
+	<!-- 관리자 페이지 - 회원 강제 탈퇴 -->
+	<delete id="deleteUserAdmin" parameterType="int">
+		delete from user_info where user_no = #{user_no}
+	</delete>
+
 	<!-- id 중복체크 -->
 	<select id="selectCheckId" parameterType="String" resultType="int" >
 		select count(*) from user_info where user_id = #{userid}
@@ -82,6 +86,17 @@
 		select count(*) from user_info where user_nn = #{usernn}
 	</select>
 	
-=======
->>>>>>> branch 'master' of https://github.com/hyungseokyoon/MoiM.git
+	<update id="updateUserInfo" parameterType="UserInfo">
+		update user_info
+		set user_nn = #{ user_nn },
+		user_name = #{ user_name },
+		user_pwd = #{ user_pwd },
+		age = #{ age },
+		gender = #{ gender },
+		email = #{ email },
+		phone = #{ phone },
+		address = #{ address }
+		where user_no = #{ user_no }
+	</update>
+
 </mapper>

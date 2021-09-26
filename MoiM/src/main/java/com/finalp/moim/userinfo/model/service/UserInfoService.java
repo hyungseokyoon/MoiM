@@ -24,7 +24,6 @@ public interface UserInfoService {
 	int updateUserLoginOK(UserInfo userInfo);
 	int updateUserAdmin(UserInfo userInfo);
 	ArrayList<UserInfo> selectUserSearch(int category_no, String keyword);
+	int deleteUserAdmin(int user_no);
 	ArrayList<UserInfo> selectUserList();
-
-
 }

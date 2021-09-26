@@ -50,8 +50,11 @@
             <div class="sidebar-widget mb-4">
               <h4 class="sidebar-widget-heading">My Page</h4>
               <ul class="list-unstyled pl-0 mt-4">
+               <c:url var="upost" value="/upost.do">
+			    	<c:param name="user_no" value="${ loginMember.user_no}"/>
+            	</c:url>
                 <li> <a href="mypage.do" class="categories-link">My Info</a></li>
-                <li><a href="upost.do" class="categories-link">My Post</a></li>
+                <li><a href="${ upost }" class="categories-link">My Post</a></li>
                 <li><a href="uteam.do" class="categories-link">My Team</a></li>
               </ul>
             </div>
@@ -62,21 +65,23 @@
           <!-- Main -->
           <div class="col-lg-8">   
           <blockquote class="blockquote mb-5 text-left">
-            <div class="form-group mb-4">
-            	<h3>회원정보 확인</h3>
-            	정보를 안전하게 보호하기 위해 비밀번호를 다시 입력해주세요.
-            	<br><br><Br>
-				<label>Id : </label>
-				<br>
-				${ loginMember.user_id }
-			</div>
-            <div class="form-group mb-4">
-				<label>Password</label>
-				<input type="password" name="user_pwd" id="user_pwd" placeholder="Min 8 characters" class="form-control">
-			</div>
-            <div class="form-group">
-                <input type="submit" value="확인" class="btn btn-primary">
-            </div>
+          	<form name="checkform" action="uinfo.do" method="post">
+          		<div class="form-group mb-4">
+            		<h3>회원정보 확인</h3>
+            		정보를 안전하게 보호하기 위해 비밀번호를 다시 입력해주세요.
+            		<br><br><Br>
+					<label>Id : </label>
+					<br>
+					${ loginMember.user_id }
+					</div>
+            	<div class="form-group mb-4">
+					<label>Password</label>
+					<input type="password" name="user_pwd" id="user_pwd" placeholder="Min 8 characters" class="form-control">
+				</div>
+	            <div class="form-group">
+	                <input type="submit" value="확인" class="btn btn-primary">
+	            </div>
+          	</form>
           </blockquote> 
           </div>
           

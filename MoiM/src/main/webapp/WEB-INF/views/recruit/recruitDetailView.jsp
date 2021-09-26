@@ -16,6 +16,8 @@ const result = "${msg}"
 if( result === "success"){
 	alert('지원 완료.');
 }
+
+
 </script>
 </head>
 <body>
@@ -31,6 +33,7 @@ if( result === "success"){
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8">
+			
 					<c:if test="${ empty recruit.team_rename_image }">
 						<img class="card-img-top w-100"
 							src="${ pageContext.servletContext.contextPath }/resources/img/pic.jpg"

@@ -13,6 +13,8 @@
 <title>File</title>
 <!-- Bootstrap Core and vandor -->
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page//plugins/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/dropify/css/dropify.min.css">
+<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css"/>
 
 <!-- Core css -->
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page//css/main.css"/>
@@ -30,48 +32,127 @@
 <div class="page">
         <div id="page_top" class="section-body top_dark">
             <div class="container-fluid">
-                
+                <div class="page-header">
+                    <div class="left">
+                        <a href="javascript:void(0)" class="icon menu_toggle mr-3"><i class="fa  fa-align-left"></i></a>
+                        <h1 class="page-title">파일 업로드</h1>
+                    </div>
+                    <div class="right">
+		                <div class="notification d-flex">
+		                    <div class="dropdown d-flex show">
+		                        <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-bell"></i><span class="badge badge-primary nav-unread"></span></a>
+		                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" x-placement="bottom-end" style="position: absolute; transform: translate3d(-312px, 34px, 0px); top: 0px; left: 0px; will-change: transform;">
+		                            <ul class="list-unstyled feeds_widget">
+		                            	<c:forEach items="${ alertlist }" var="alertlist">
+			                                <li>
+			                                    <div class="feeds-body">
+			                                    	<c:url var="alertdelone" value="alertdelone.do">
+			                                    		<c:param name="alert_num" value="${ alertlist.alert_num }" />
+			                                    	</c:url>
+			                                        <h4 class="title text-muted">${ alertlist.alert_cate }<small class="float-right text-muted">${ alertlist.alert_date }</small></h4><a href="${ alertdelone }" class="float-right"><i class="fa fa-trash-o"></i></a>
+			                                        <small class="title text-muted">${ alertlist.alert_content }</small>
+			                                    </div>
+			                                </li>
+		                                </c:forEach>                  
+		                            </ul>
+		                            <div class="dropdown-divider"></div>
+		                            <c:url var="alertdelall" value="alertdelall.do">
+		                            	<c:param name="team_member_no" value="${ teammember.team_member_no }"></c:param>
+		                            </c:url>
+		                            <a href="${ alertdelall }" class="dropdown-item text-center text-muted-dark readall">모든 알람 삭제</a>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+                </div>
             </div>
         </div>
         <div class="section-body mt-3">
             <div class="container-fluid">
-                <div class="row row-cards">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="page-options d-flex">
-                                    <div class="input-icon ml-2">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-					<form action="finsert.do" method="post" enctype="multipart/form-data">
-					<table align="center" width="500" border="1" cellspacing="0" cellpadding="5">
-					<tr><th>제 목</th><td><input type="text" name="team_num"></td></tr>
-					<tr><th>작성자</th>
-					<td><input type="text" name="file_uploader" ></td></tr>
-					<tr><th>파일선택</th>
-					<td><input type="file" name="upfile"></td></tr>
-					<tr><th colspan="2">
-					<input type="submit" value="등록하기"> &nbsp; 
-					<input type="reset" value="작성취소"> &nbsp; 
-					<button onclick="javascript:history.go(-1); return false;">목록</button></th></tr>
-					</table>
-					</form>
-
-
-
-            </div>
-        </div>
-       
-    </div>
+	            <div class="row row-cards">
+	                <div class="col-12">
+		               	<div class="card">
+							<div class="card-body">
+		                    	<form action="finsert.do" method="post" enctype="multipart/form-data">
+		                        	<div class="row">
+		                                <div class="col-sm-12" style="float: none; margin:0 auto;">
+		                                	<div class="form-group">
+			                                    <label>파일선택</label>
+			                                    <input class="form-control dropify" type="file" name="upfile">
+		                                    </div>
+		                                </div>  
+		                            </div>
+		                            <div class="row">
+		                                <div class="col-sm-6 m-t-20 text-center" style="float: none; margin:0 auto;">
+			                                <input type="submit" value="등록하기" class="btn btn-primary"> &nbsp; 
+											<input type="reset" value="작성취소" class="btn btn-default"> &nbsp; 
+											<button onclick="javascript:history.go(-1); return false;" class="btn btn-default">목록</button>
+		                                </div> 
+		                        	</div>        
+		                    	</form>
+		                	</div>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="row row-cards">
+					<c:forEach items="${ requestScope.list }" var="f">
+	             		<div class="card file_folder col-sm-6 col-lg-4">
+							<div class="d-flex align-items-center px-2">
+	                            <div class="icon">
+						        	<c:set var="filename" value="${ f.file_originalfilename }" />
+						        	<c:if test="${ filename.substring(filename.lastIndexOf('.') + 1) eq 'txt' }">
+						            	<i class="fa fa-folder text-success"></i>
+						            </c:if>
+						            <c:if test="${ filename.substring(filename.lastIndexOf('.') + 1) eq 'word' }">
+						            	<i class="fa fa-file-word-o text-primary"></i>
+						            </c:if>
+						            <c:if test="${ filename.substring(filename.lastIndexOf('.') + 1) eq 'pdf' }">
+						            	<i class="fa fa-file-pdf-o text-danger"></i>
+						            </c:if>
+						            <c:if test="${ filename.substring(filename.lastIndexOf('.') + 1) eq 'png' }">
+						            	<i class="fa fa-file-pdf-o text-danger"></i>
+						            </c:if>
+						        </div>
+	                            <div>
+	                                <div style="width: 180px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><font class="text-muted" style="vertical-align: inherit;">${ f.file_originalfilename }</font></div>
+	                                <small class="d-block text-muted"><font style="vertical-align: inherit;">${ f.userVO.user_nn }</font></small>
+	                            </div>
+	                        </div>
+	                    </div>
+            		</c:forEach>
+				</div>
+        	</div>
+		</div>
+	</div>
 </div>
 
 <script src="${ pageContext.servletContext.contextPath }/resources/team_page//bundles/lib.vendor.bundle.js"></script>
-
 <script src="${ pageContext.servletContext.contextPath }/resources/team_page//js/core.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/dropify/js/dropify.min.js"></script>
+<script>
+    $(function() {
+        "use strict";
+        
+        $('.dropify').dropify();
+    
+        var drEvent = $('#dropify-event').dropify();
+        drEvent.on('dropify.beforeClear', function(event, element) {
+            return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+        });
+    
+        drEvent.on('dropify.afterClear', function(event, element) {
+            alert('File deleted');
+        });
+    
+        $('.dropify-fr').dropify({
+            messages: {
+                default: 'Glissez-déposez un fichier ici ou cliquez',
+                replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                remove: 'Supprimer',
+                error: 'Désolé, le fichier trop volumineux'
+            }
+        });
+    });
+</script>
 </body>
 </html>
