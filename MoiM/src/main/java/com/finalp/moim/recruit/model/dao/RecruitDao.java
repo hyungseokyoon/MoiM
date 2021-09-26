@@ -48,4 +48,9 @@ public class RecruitDao {
 	public int selectSearchTeamName(String team_name) {
 		return sqlSession.selectOne("recruitMapper.selectSearchTeamName", team_name);
 	}
+	
+	public int selectSearchRecruitCount(SearchRecruit sr) {
+		return sqlSession.selectOne("recruitMapper.selectSearchRecruitCount", sr);
+	}
+
 }
