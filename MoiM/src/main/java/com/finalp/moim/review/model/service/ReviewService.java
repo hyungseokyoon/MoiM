@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.finalp.moim.common.Page;
 import com.finalp.moim.review.model.vo.Review;
+import com.finalp.moim.review.model.vo.SearchReview;
 import com.finalp.moim.review.model.vo.UserTeam;
 
 public interface ReviewService {
@@ -16,5 +17,6 @@ public interface ReviewService {
 	int insertReview(Review review);
 	int updateReview(Review review);
 	int deleteReview(int review_no);
-	ArrayList<Review> selectSearchReview(String keyword);
+	ArrayList<Review> selectSearchReview(SearchReview sr);
+	int selectSearchReviewCount(String keyword);
 }

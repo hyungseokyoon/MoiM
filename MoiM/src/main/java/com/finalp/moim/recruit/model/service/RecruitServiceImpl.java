@@ -50,4 +50,10 @@ public class RecruitServiceImpl implements RecruitService{
 	public int selectSearchTeamName(String team_name) {
 		return recruitDao.selectSearchTeamName(team_name);
 	}
+	
+	@Override
+	public int selectSearchRecruitCount(SearchRecruit sr) {
+		return recruitDao.selectSearchRecruitCount(sr);
+	}
+	
 }

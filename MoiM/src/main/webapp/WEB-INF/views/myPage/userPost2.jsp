@@ -71,7 +71,7 @@
           <!-- main -->
           <div class="col-lg-10">   
             <div id="accordion" class="faq accordion accordion-custom pb-5">
-            <c:url var="upost" value="/upost.do">
+            	  <c:url var="upost" value="/upost.do">
 			    	<c:param name="user_no" value="${ loginMember.user_no}"/>
             	</c:url>
             	<c:url var="upost2" value="/upost2.do">
@@ -79,38 +79,37 @@
             	</c:url>
             	<li class="list-inline-item mr-0"><a href="${ upost }" class="tag-link">일반 게시글</a></li>
             	<li class="list-inline-item mr-0"><a href="${ upost2 }" class="tag-link">후기 게시글</a></li>
-            	
+            </div>
             
-           </div> 
             <!-- My Post List -->
-          
             <div id="accordion" class="faq accordion accordion-custom pb-5">
-             
+              
               <div class="dataTable-container">
 			    			<table class="table table-striped dataTable-table" id="table1">
 						        <thead>
 						            <tr>
 						            	<th data-sortable="" style="width: 100px; text-align:center;"><a href="#" class="dataTable-sorter">번호</a></th>
-						            	<th style="width: 100px; text-align: center;"><a href="#" class="dataTable-sorter">카테고리</a></th>
-						            	<th data-sortable=""  style="text-align:center;"><a href="#" class="dataTable-sorter">제목</a></th>
-						            		<th data-sortable="" style="width: 200px;  text-align:center;"><a href="#" class="dataTable-sorter">작성날짜</a></th>
+						            	<th data-sortable="" style="width: 100px; text-align:center;"><a href="#" class="dataTable-sorter">분류</a></th>
+						            	<th data-sortable="" style="text-align:center;"><a href="#" class="dataTable-sorter" >제목</a></th>
+						            	<th data-sortable="" style="width: 200px; text-align:center;"><a href="#" class="dataTable-sorter">작성날짜</a></th>
 						            	<th data-sortable="" style="width: 150px; text-align:center;"><a href="#" class="dataTable-sorter">조회수</a></th>
 						        </thead>
 			        			 <tbody>
-			        				<c:forEach items="${ blist }" var="b">
-			        					<tr>
-				        					<td align="center">${ b.board_no }</td>
-				        					<td align="center">${ b.cateVO.board_category_name }</td>
-				        					<td style="text-align:center;">
-				        						<c:url var="bdetail" value="bdetail.do">
-				        							<c:param name="board_no" value="${ b.board_no }"/>
+			        				<c:forEach items="${ rlist }" var="r">
+			        					<tr style="text-align:center;">
+				        					<td>${ r.review_no }</td>
+				        					<td>${ r.field_name }</td>
+				        					<td style="text-align">
+				        						<c:url var="rdetail" value="rvdetail.do">
+				        							<c:param name="review_no" value="${ r.review_no }"/>
 				        							<c:param name="page" value="${ currentPage }"/>
 				        						</c:url>
-				        						<a href="${ bdetail }">${ b.board_title }</a>
+				        						<a href="${ rdetail }">${ r.review_title }</a>
 				        					</td>
 				        					
-				        					<td align="center"><fmt:formatDate value="${ b.board_date }" type="date" pattern="yyyy-MM-dd" /></td>
-				        					<td align="center">${ b.board_readcount }</td>
+				        					<td><fmt:formatDate value="${ r.review_date }" type="date" pattern="yyyy-MM-dd" /></td>
+				        					<td>${ r.review_readcount }</td>
+				        					
 			        					</tr>
 			        				</c:forEach>
 								</tbody> 
@@ -124,7 +123,7 @@
 <c:if test="${ currentPage > 1 }">
 	<c:url var="ubl" value="/upost2.do">
 		<c:param name="page" value="1" />
-		<c:param name="user_no" value="${ loginMember.user_no }"/>
+		<c:param name="user_nn" value="${ loginMember.user_nn }"/>
 	</c:url>
 	<a href="${ ubl }"><<</a>
 </c:if>
@@ -132,7 +131,7 @@
 <c:if test="${ (currentPage - 10) < startPage and (currentPage - 10) > 1 }">
 	<c:url var="ubl2" value="/upost2.do">
 		<c:param name="page" value="${ startPage - 10 }"/>
-		<c:param name="user_no" value="${ loginMember.user_no }"/>
+		<c:param name="user_nn" value="${ loginMember.user_nn }"/>
 	</c:url>
 	<a href="${ ubl2 }" class="page-item pager"><</a>
 </c:if>
@@ -147,7 +146,7 @@
 	<c:if test="${ p ne currentPage }">
 		<c:url var="ubl3" value="/upost2.do">
 			<c:param name="page" value="${ p }"/>
-			<c:param name="user_no" value="${ loginMember.user_no }"/>
+			<c:param name="user_nn" value="${ loginMember.user_nn }"/>
 		</c:url>
 		<a href="${ ubl3 }">${ p }</a>
 	</c:if>
@@ -156,7 +155,7 @@
 <c:if test="${ (currentPage + 10) > endPage && (currentPage + 10) < maxPage }">
 	<c:url var="ubl4" value="/upost2.do">
 		<c:param name="page" value="${ endPage + 10 }"/>
-		<c:param name="user_no" value="${ loginMember.user_no }"/>
+		<c:param name="user_nn" value="${ loginMember.user_nn }"/>
 	</c:url>
 	<a href="${ ubl4 }">></a>
 </c:if>
@@ -170,28 +169,20 @@
 <c:if test="${ currentPage < maxPage }">
 	<c:url var="ubl5" value="/upost2.do">
 		<c:param name="page" value="${ maxPage }"/>
-		<c:param name="user_no" value="${ loginMember.user_no }"/>
+		<c:param name="user_nn" value="${ loginMember.user_nn }"/>
 	</c:url>
 	<a href="${ ubl5 }">>></a>
 </c:if>
 </div>
 
-</div>
+			</div>
+			</div>
+			    	</div>
+				</div>
+			
+	
+	</section>
 
-
-          
-         
-          
-              
-              
-            </div>
-          </div>
-          
-          
-          
-       </div>
- 
-   </section> 
       
     
     <!-- Footer -->

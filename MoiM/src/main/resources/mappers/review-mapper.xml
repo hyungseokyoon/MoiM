@@ -98,11 +98,38 @@
 	</delete>
 	
 	<!-- 키워드 하나로 분류,제목,작성자, 날짜 모두 검색 -->
-	<select id="selectSearchReview" parameterType="String" resultMap="resultReview">
-		select * from review where review_title like '%' || #{keyword} || '%' 
+	<select id="selectSearchReviewCount"  parameterType="String" resultType="_int">
+		select count(*) from
+		(select * from review where review_title like '%' || #{keyword} || '%' 
+								or field_name like '%' || #{keyword} || '%' 
+								or review_writer like '%' || #{keyword} || '%' )
+			
+							
+	</select>
+	
+	<select id="selectSearchReview" parameterType="com.finalp.moim.review.model.vo.SearchReview" resultMap="resultReview">
+		select * from
+		(select rownum rnum, review_no, team_name, field_name, review_title, review_writer, review_content, review_grade, 
+			   review_original_filepath, review_rename_filepath, review_readcount, review_date
+				  from review where review_title like '%' || #{keyword} || '%' 
 								or field_name like '%' || #{keyword} || '%' 
 								or review_writer like '%' || #{keyword} || '%' 
-							
+								order by review_no desc )
+			where rnum between #{ startRow } and #{ endRow } 
+	
+	</select>
+	
+	<select id="selectMyReview" parameterType="com.finalp.moim.mypage.model.vo.MyPost" resultMap="resultReview">
+		select * from
+		(select rownum rnum, review_no, team_name, field_name, review_title, review_writer,	 review_readcount, review_date
+			   
+		from (select * from review where review_writer = #{ user_nn } order by review_no desc)
+			  )
+		where rnum between #{ startRow } and #{ endRow } 
+	</select>
+	
+	<select id="selectMyReviewCount" parameterType="string" resultType="int">
+		select count(*) from review where review_writer = #{ user_nn }
 	</select>
 	
 	</mapper>
