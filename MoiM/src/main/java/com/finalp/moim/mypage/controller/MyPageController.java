@@ -59,8 +59,6 @@ public class MyPageController {
 	@RequestMapping(value="uinfo.do", method=RequestMethod.POST)
 	public String userInfoForward(@RequestParam("user_pwd") String user_pwd, HttpSession session, Model model) {
 		String ogpwd = ((UserInfo)session.getAttribute("loginMember")).getUser_pwd();
-		System.out.println(bcryptPasswordEncoder.matches(user_pwd, ogpwd));
-		System.out.println(ogpwd);
 		if(bcryptPasswordEncoder.matches(user_pwd, ogpwd)) {
 			return "myPage/userInfo";  //내보낼 뷰파일명 리턴
 		}else {
@@ -72,6 +70,7 @@ public class MyPageController {
 	// 회원 수정하기
 	@RequestMapping("uupdate.do")
 	public String userUpdateForward() {
+		System.out.println("업데이트로 이동");
 		return "myPage/userUpdate";  //내보낼 뷰파일명 리턴
 	}
 	// 회원 탈퇴하기
@@ -164,8 +163,6 @@ public class MyPageController {
 				mv.addObject("endRow", endRow);
 				
 				mv.setViewName("myPage/userPost2");
-			
-			
 			return mv;
 		}
 		
