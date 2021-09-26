@@ -85,7 +85,7 @@ public class UserInfoController {
 		//닉네임 중복체크 확인을 위한 ajax 요청 처리용 메소드
 		@RequestMapping(value="nnchk.do", method=RequestMethod.POST)
 		public void nnCheckMethod(
-				@RequestParam("user_nn") String user_nn, 
+				@RequestParam("usernn") String user_nn, 
 				HttpServletResponse response) throws IOException {
 			//String usernn = request.getParameter("usernn");
 				
