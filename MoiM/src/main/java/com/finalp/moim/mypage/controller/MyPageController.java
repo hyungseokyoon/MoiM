@@ -14,18 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.finalp.moim.board.model.vo.Board;
 import com.finalp.moim.mypage.model.service.MyPageService;
 import com.finalp.moim.mypage.model.vo.MyBoard;
 import com.finalp.moim.mypage.model.vo.MyPost;
 import com.finalp.moim.review.model.vo.Review;
-
 import com.finalp.moim.teampage.common.model.service.TPmainService;
 import com.finalp.moim.teampage.common.model.vo.Team;
 import com.finalp.moim.teampage.common.model.vo.TeamMember;
 import com.finalp.moim.teampage.teammanage.model.service.TPmanageService;
-import com.finalp.moim.userinfo.model.service.UserInfoService;
 import com.finalp.moim.userinfo.model.vo.UserInfo;
 
 @Controller
