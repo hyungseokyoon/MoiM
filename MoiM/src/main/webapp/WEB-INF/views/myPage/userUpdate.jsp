@@ -1,14 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<c:set>
-</c:set>
 <html>
   <head>
     <meta charset="UTF-8">
     <title>MoiM</title>
-    <link rel="icon" href="${ pageContext.servletContext.contextPath }/resources/team_page/images/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="${pageContext.servletContext.contextPath}/resources/team_page/images/favicon.ico" type="image/x-icon" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -44,7 +41,7 @@
         <!-- wordPress installation-->
         <header class="section header mb-5">
           <h2>MY Page</h2>
-          <p class="lead">${ loginMember.user_name }님 환영합니다</p>
+          <p class="lead">${loginMember.user_name}님 환영합니다</p>
         </header>
         <div class="row"> 
           <!-- index-->
@@ -59,48 +56,48 @@
             </div>
           </aside>
           
-        <c:forTokens items="${ sessionScope.loginMember.interest }" delims="," var="interest">
-	       	<c:if test="${ interest eq 'english' }">
+        <c:forTokens items="${sessionScope.loginMember.interest}" delims="," var="it">
+	       	<c:if test="${it eq 'english'}">
 	            <c:set var="checked0" value="checked" />
 	        </c:if>
-	        <c:if test="${ interest eq 'chinese' }">
+	        <c:if test="${it eq 'chinese'}">
 	            <c:set var="checked1" value="checked" />
 	        </c:if>
-	        <c:if test="${ interest eq 'etclanguage' }">
+	        <c:if test="${it eq 'etclanguage'}">
 	            <c:set var="checked2" value="checked" />
 	        </c:if>
-	        <c:if test="${ interest eq 'programming' }">
+	        <c:if test="${it eq 'programming'}">
 	            <c:set var="checked3" value="checked" />
 	        </c:if>
-	        <c:if test="${ interest eq 'literature' }">
+	        <c:if test="${it eq 'literature'}">
 	            <c:set var="checked4" value="checked" />
 	        </c:if>
-	        <c:if test="${ interest eq 'photography' }">
+	        <c:if test="${it eq 'photography'}">
 	            <c:set var="checked5" value="checked" />
 	        </c:if>
-	        <c:if test="${ interest eq 'music' }">
+	        <c:if test="${it eq 'music'}">
 	            <c:set var="checked6" value="checked" />
 	        </c:if>
-	        <c:if test="${ interest eq 'qualification' }">
+	        <c:if test="${it eq 'qualification'}">
 	            <c:set var="checked7" value="checked" />
 	        </c:if>
-	        <c:if test="${ interest eq 'competition' }">
+	        <c:if test="${it eq 'competition'}">
 	            <c:set var="checked8" value="checked" />
 	        </c:if>
-	        <c:if test="${ interest eq 'publicofficer' }">
+	        <c:if test="${it eq 'publicofficer'}">
 	            <c:set var="checked9" value="checked" />
 	        </c:if>
-	        <c:if test="${ interest eq 'etc' }">
+	        <c:if test="${it eq 'etc'}">
 	            <c:set var="checked10" value="checked" />
 	        </c:if>
-	        <c:if test="${ interest eq 'free' }">
+	        <c:if test="${it eq 'free'}">
 	            <c:set var="checked11" value="checked" />
 	        </c:if>
         </c:forTokens>
           <!-- Update -->
           <div class="col-lg-8">   
           <form method="post" action="updateUserinfo.do" class="contact-form text-left" onsubmit="return validate();">
-          <input type="hidden" value="${ sessionScope.loginMember.user_no }" name="user_no" id="user_no">
+          <input type="hidden" value="${sessionScope.loginMember.user_no}" name="user_no" id="user_no">
           <blockquote class="blockquote mb-5 text-left">
           <!-- 아이디 -->
               <div class="form-group mb-4 row">
@@ -156,17 +153,17 @@
               </div>
               <div class="form-group mb-4">
                 <label>성별</label><br>
-                <c:if test="${ loginMember.gender eq 'M' }">
+                <c:if test="${loginMember.gender eq 'M'}">
 	                남자&nbsp;<input type="radio" name="gender" value="M" checked>
 	                여자&nbsp;<input type="radio" name="gender" value="F">
 	                미입력&nbsp;<input type="radio" name="gender" value="U">
                 </c:if>
-                <c:if test="${ loginMember.gender eq 'F' }">
+                <c:if test="${loginMember.gender eq 'F'}">
 	                남자&nbsp;<input type="radio" name="gender" value="M">
 	                여자&nbsp;<input type="radio" name="gender" value="F" checked>
 	                미입력&nbsp;<input type="radio" name="gender" value="U">
                 </c:if>
-                <c:if test="${ loginMember.gender eq 'U' }">
+                <c:if test="${loginMember.gender eq 'U'}">
 	                남자&nbsp;<input type="radio" name="gender" value="M">
 	                여자&nbsp;<input type="radio" name="gender" value="F">
 	                미입력&nbsp;<input type="radio" name="gender" value="U" checked>
@@ -177,22 +174,22 @@
                 <text fontsize="1">*중복체크 가능</text>
 					<table width="600">
 						<tr>
-							<td><input type="checkbox" name="interest" value="english" ${ checked0 }>영어</td>
-							<td><input type="checkbox" name="interest" value="chinese" ${ checked1 }>중국어</td>
-							<td><input type="checkbox" name="interest" value="etclanguage" ${ checked2 }>기타 언어</td>
-							<td><input type="checkbox" name="interest" value="programming" ${ checked3 }>프로그래밍</td>
+							<td><input type="checkbox" name="interest" value="english" ${checked0}>영어</td>
+							<td><input type="checkbox" name="interest" value="chinese" ${checked1}>중국어</td>
+							<td><input type="checkbox" name="interest" value="etclanguage" ${checked2}>기타 언어</td>
+							<td><input type="checkbox" name="interest" value="programming" ${checked3}>프로그래밍</td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" name="interest" value="literature" ${ checked4 }>인문학/책</td>
-							<td><input type="checkbox" name="interest" value="photography" ${ checked5 }>사진/영상</td>
-							<td><input type="checkbox" name="interest" value="music" ${ checked6 }>음악/악기</td>
-							<td><input type="checkbox" name="interest" value="qualification" ${ checked7 }>자격증</td>
+							<td><input type="checkbox" name="interest" value="literature" ${checked4}>인문학/책</td>
+							<td><input type="checkbox" name="interest" value="photography" ${checked5}>사진/영상</td>
+							<td><input type="checkbox" name="interest" value="music" ${checked6}>음악/악기</td>
+							<td><input type="checkbox" name="interest" value="qualification" ${checked7}>자격증</td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" name="interest" value="competition" ${ checked8 }>공모전</td>
-							<td><input type="checkbox" name="interest" value="publicofficer" ${ checked9 }>고시/공무원</td>
-							<td><input type="checkbox" name="interest" value="etc" ${ checked10 }>기타학문</td>
-							<td><input type="checkbox" name="interest" value="free" ${ checked11 }>자유주제</td>
+							<td><input type="checkbox" name="interest" value="competition" ${checked8}>공모전</td>
+							<td><input type="checkbox" name="interest" value="publicofficer" ${checked9}>고시/공무원</td>
+							<td><input type="checkbox" name="interest" value="etc" ${checked10}>기타학문</td>
+							<td><input type="checkbox" name="interest" value="free" ${checked11}>자유주제</td>
 						</tr>
 					</table>
 			  </div>
@@ -215,7 +212,7 @@
     <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="vendor/lightbox2/js/lightbox.js"></script>
     <script src="js/front.js"></script>
-    <script>
+    <!-- <script>
     function dupNnCheck(){
     	var usernn = $('#newusernn').val();
     	console.log(usernn);
@@ -256,6 +253,6 @@
 
 		return true;  //전송함
 	}
-    </script>
+    </script> -->
   </body>
 </html>

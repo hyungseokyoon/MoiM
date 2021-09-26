@@ -64,7 +64,6 @@ public class UserInfoController {
 				HttpServletResponse response) throws IOException {
 			//String userid = request.getParameter("userid");
 				
-			System.out.println(userid);
 			int idcount = userinfoService.selectCheckId(userid);
 				
 			String returnValue = null;
@@ -190,7 +189,7 @@ public class UserInfoController {
 			Page paging = new Page(startRow, endRow);
 			
 			ArrayList<UserInfo> list = userinfoService.selectUserList();
-			
+			System.out.println(list);
 			if(list != null && list.size() > 0) {
 				mv.addObject("list", list);
 				mv.addObject("listCount", listCount);
@@ -299,12 +298,10 @@ public class UserInfoController {
 			
 			return mv;
 		}
-		// -----------------------------------------
 		@RequestMapping(value="updateUserinfo.do", method=RequestMethod.POST)
 		public String userinfoupdateMethod(UserInfo userinfo, Model model, HttpSession session,
 				@RequestParam("newuser_pwd") String newuser_pwd) {
 			int user_no = userinfo.getUser_no();
-			System.out.println(userinfo);
 			//새로운 암호가 왔는지 체크하기
 			UserInfo oguserinfo = userinfoService.selectUser(user_no);
 			//같은 암호가 왔거나, 암호에 아무것도 입력하지 않았다면
@@ -324,8 +321,9 @@ public class UserInfoController {
 				model.addAttribute("message", "회원정보 수정 실패");
 				return "common/error";
 			}
+			
 		}
-	
+		
 	// 관리자 페이지 - 회원 강제 탈퇴
 	@RequestMapping(value = "userdelete.do", method = RequestMethod.POST)
 	public ModelAndView userDeleteMethod(ModelAndView mv, @RequestParam("user_no") int user_no, 

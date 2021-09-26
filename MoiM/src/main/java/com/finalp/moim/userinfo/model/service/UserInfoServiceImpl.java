@@ -46,14 +46,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public UserInfo selectUserInfo(String userid) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int updateLoginOk(UserInfo userInfo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return userinfoDao.updateUserLoginOK(userInfo);
 	}
 
 	@Override
@@ -92,8 +90,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public int selectListCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return userinfoDao.selectListCount();
 	}
 
 	@Override
