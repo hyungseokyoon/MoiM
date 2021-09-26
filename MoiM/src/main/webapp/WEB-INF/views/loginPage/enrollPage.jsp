@@ -35,12 +35,12 @@
 		//서버 컨트롤러로 전송할 값들이 요구한 조건을 모두 만족하였는지 검사함
 
 		//암호와 암호 확인이 일치하지 않는지 확인함
-		var pwdValu1 = document.getElementById("user_pwd").value;
-		var pwdValue2 = document.getElementById("user_pwd2").value;
+		var pwdValue = document.getElementById("userpwd").value;
+		var pwdValue2 = document.getElementById("userpwd2").value;
 
 		if(pwdValue !== pwdValue2){
 			alert("비밀번호가 일치하지 않습니다.");
-			document.getElementById("user_pwd").select();
+			document.getElementById("userpwd").select();
 			return false;  //전송 취소함
 		}
 
@@ -57,7 +57,7 @@
 				console.log("success : " + data);
 				if(data == "ok"){
 					alert("사용 가능한 아이디입니다.");
-					$("#userid").focus();
+					$("#userpwd").focus();
 				}else{
 					alert("이미 사용중인 아이디입니다.\n다시 입력하세요.");
 					$("#userid").select();
@@ -75,13 +75,13 @@
 	function dupNnCheck(){
 		$.ajax({
 			url: "nnchk.do",
-			type: "POST",
-			data: {usernn: $("#usernn").val()},
+			type: "post",
+			data: {userid: $("#usernn").val()},
 			success: function(data){
 				console.log("success : " + data);
 				if(data == "ok"){
 					alert("사용 가능한 닉네임입니다.");
-					$("#usernn").focus();
+					$("#userpwd").focus();
 				}else{
 					alert("이미 사용중인 닉네임입니다.\n다시 입력하세요.");
 					$("#usernn").select();
@@ -101,7 +101,7 @@
   <body>
   
     <!-- Menubar -->
-	<c:import url="/WEB-INF/views/common/enrollmenubar.jsp" />
+	<c:import url="/WEB-INF/views/common/excmenubar.jsp" />
 	<hr>
     
     <!-- Hero Section-->
@@ -156,7 +156,7 @@
                 <label>Nickname<sup class="text-primary">&#10033;</sup></label>
                 </div>
                 <div class="col-md-10">
-                <input type="text" name="usernn" id="usernn" placeholder="닉네임" class="form-control">
+                <input type="text" name="usernn" placeholder="닉네임" class="form-control">
                 </div>
                 <div class="col-md-2">
                 <input type="button" class="tag=link" value="중복체크" onclick="return dupNnCheck();">
@@ -165,11 +165,11 @@
               <!-- 비밀번호 -->
               <div class="form-group mb-4">
                 <label>Password<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="user_pwd" id="user_pwd" placeholder="비밀번호" class="form-control">
+                <input type="text" name="userpwd" id="userpwd" placeholder="비밀번호" class="form-control">
               </div>
               <div class="form-group mb-4">
                 <label>Password confirm<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="user_pwd" id="user_pwd2" placeholder="비밀번호 확인" class="form-control">
+                <input type="text" name="userpwd" id="userpwd2" placeholder="비밀번호 확인" class="form-control">
               </div>
               <!-- 이메일 -->
               <div class="form-group mb-4">
