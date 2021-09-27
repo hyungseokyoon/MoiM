@@ -60,7 +60,15 @@ function searchJoin(){
 
 }
 
-
+function content(){
+	
+    var content = $("#content1").val();
+    if (content.length > 1000){
+        $("#content1").val(content.substring(0, 1000));
+        
+       
+    }
+}
 
 	</script>
 
@@ -116,7 +124,9 @@ function searchJoin(){
 						<a href="${ rcup }"><button type="button"
 								class="btn btn-primary">수정하기</button></a>
 						</c:if>
-						<button type="button" class="btn btn-default" onclick="javascript:history.go(-1); return false;">목록</button>
+						<c:url var="out" value="/rclist.do"/>
+						<a href="${ out }" ><button class="btn btn-default">목록</button></a>
+						
 					</center>
 					<br> <br> <br>
 
@@ -163,7 +173,8 @@ function searchJoin(){
 								value="${ recruit.team_num }"> <input type="hidden"
 								name="page" value="${ currentPage }"> 
 								<input type="hidden" name="user_no" value=${ loginMember.user_no }>
-							<textarea name="join_intro" class="form-control"></textarea>
+								<h6>지원자 소개(1000자 이내)</h6>
+							<textarea name="join_intro" class="form-control" id="content1" onkeyup="content()" required></textarea>
 						</div>
 						<div class="form-group mb-4">
 							<label>첨부파일</label><br> <input type="file" name="upfile">
@@ -201,6 +212,8 @@ function searchJoin(){
 $('#closeModalBtn').on('click', function(){
 $('#modalBox').modal('hide');
 });
+
+
 </script>
 
 </body>

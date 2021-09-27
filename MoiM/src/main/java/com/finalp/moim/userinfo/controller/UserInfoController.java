@@ -49,11 +49,11 @@ public class UserInfoController {
 			session.setAttribute("loginMember", loginMember);
 			status.setComplete();
 			
-			return "redirect:" + currentUrl;
+			return "redirect:main.do";
 		} else {
 			model.addAttribute("message", "로그인 실패!");
 			
-			return "redirect:" + currentUrl;
+			return "redirect:main.do";
 		}
 	}
 	

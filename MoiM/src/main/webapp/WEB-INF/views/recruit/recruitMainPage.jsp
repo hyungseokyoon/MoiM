@@ -346,7 +346,8 @@
 </c:if>
 </div>
 
-
+<c:url var="out" value="/rclist.do"/><br>
+<center><a href="${ out }" ><button class="btn btn-primary">목록</button></a></center>
 </c:otherwise>
 
 
