@@ -175,5 +175,10 @@
 		left join user_info u on (tm.user_no = u.user_no)
 		where u.user_no = #{ user_no } and tm.team_num = #{ team_num }
 	</select>
+	
+	<!-- 지역별 모임 갯수 출력 -->
+	<select id="getLocalListCount" parameterType="String" resultType="int">
+		select count(*) from tb_team where team_local like #{keyword} || '%'
+	</select>
 
 </mapper>
