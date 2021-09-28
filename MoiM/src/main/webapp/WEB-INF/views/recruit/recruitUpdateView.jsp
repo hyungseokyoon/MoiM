@@ -187,7 +187,7 @@ function fileCheck(){
 						</div>
 						<div class="form-group mb-4">
 							<label>참여비<sup class="text-primary">✱숫자만입력</sup></label> <input
-								type="text" name="team_fee" placeholder="ex) 10,000" value="${ recruit.team_fee }"
+								type="text" name="team_fee" placeholder="ex) 10,000" value="${ recruit.team_fee }" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
 								class="form-control" required>
 						</div>
 

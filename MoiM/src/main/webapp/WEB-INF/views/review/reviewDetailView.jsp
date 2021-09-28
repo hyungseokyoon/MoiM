@@ -149,8 +149,7 @@ if( result === "delsuccess"){
 	    &nbsp; &nbsp; 
     </c:if>
 </c:if>
-					<a href="${ pageContext.servletContext.contextPath }/rvlist.do"><button 
-						class="btn btn-primary">목록</button></a>
+					<button type="button" class="btn btn-primary" onclick="javascript:history.go(-1); return false;">목록</button>
 					
 			</center>
 			<br> <br>

@@ -83,10 +83,12 @@ function content(){
 	<br>
 	<br>
 	<section style="margin-top: -21.5rem">
+	
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8">
 			
+				<div class="col-md-8">
+					<strong><h1>${ recruit.team_name }</h1></strong>
 					<c:if test="${ empty recruit.team_rename_image }">
 						<img class="card-img-top w-100"
 							src="${ pageContext.servletContext.contextPath }/resources/img/pic.jpg"
@@ -133,9 +135,13 @@ function content(){
 
 
 				</div>
+				
 				<div class="col-md-4">
+				<br><br><br>
 					<div class="card">
+					
 						<ul class="list-group list-group-flush">
+							<li class="list-group-item"><strong>분야 </strong>: ${ recruit.field_name }</li>
 							<li class="list-group-item"><strong>지역 </strong>: ${ recruit.team_local }</li>
 							<li class="list-group-item"><strong>인원 </strong>: ${ recruit.team_limit }명</li>
 							<li class="list-group-item"><strong>참가비 </strong>: ${ recruit.team_fee }원</li>
