@@ -92,7 +92,7 @@
         </div>
     </div>
 	<div id="left-sidebar" class="sidebar ">
-        <h5 class="brand-name">${ team.team_name }<a href="javascript:void(0)" class="menu_option float-right"><i class="fa fa-th-large fa-2" data-toggle="tooltip" data-placement="left" title="Grid & List Toggle"></i></a></h5>
+        <h5 class="brand-name">${ sessionScope.team_name }<a href="javascript:void(0)" class="menu_option float-right"><i class="fa fa-th-large fa-2" data-toggle="tooltip" data-placement="left" title="Grid & List Toggle"></i></a></h5>
         <nav id="left-sidebar-nav" class="sidebar-nav">
             <ul class="metismenu">
                 <li class="g_heading">팀 기능</li>

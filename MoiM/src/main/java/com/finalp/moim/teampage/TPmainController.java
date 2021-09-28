@@ -61,6 +61,7 @@ public class TPmainController {
 		ArrayList<Alert> alertlist = tpmainService.selectAlertList(teammember.getTeam_member_no());
 		ArrayList<TeamDaily> tdlist = tpteamdailyService.selectTeamDailyList(team_num);
 		
+		
 		int inprogress = 0;
 		int planned = 0;
 		int complete = 0;
@@ -80,6 +81,7 @@ public class TPmainController {
 		
 		if (team != null) {
 			session.setAttribute("team_num", team_num);
+			session.setAttribute("team_name", team.getTeam_name());
 			session.setAttribute("team_leader", teammember.getTeam_member_leader());
 			session.setAttribute("teammember", teammember);
 			session.setAttribute("alertlist", alertlist);
@@ -170,6 +172,7 @@ public class TPmainController {
 			logger.info("alertinsert result : " + alertresult);
 			
 			session.removeAttribute("team_num");
+			session.removeAttribute("team_name");
 			session.removeAttribute("team_leader");
 			session.removeAttribute("teammember");
 			session.removeAttribute("alertlist");
