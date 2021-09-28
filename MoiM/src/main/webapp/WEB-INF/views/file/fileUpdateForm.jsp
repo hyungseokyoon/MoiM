@@ -46,35 +46,42 @@
                         </div>
                     </div>
                 </div>
-
-				<form action="fupdate.do" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="file_num" value="${ tfile.file_num }">
-				<c:if test="${ !empty tfile.file_originalfilename }">
-					<input type="hidden" name="original_filepath" value="${ tfile.file_originalfilename }">
-					<input type="hidden" name="rename_filepath" value="${ tfile.file_renamefilename }">
-				</c:if>
-				<table align="center" width="500" border="1" cellspacing="0" cellpadding="5">
-				<tr><th>제 목</th>
-				<td><input type="text" name="team_num" value="${ tfile.team_num }"></td></tr>
-				<tr><th>작성자</th>
-				<td><input type="text" name="file_uploader" value="${ tfile.file_uploader }"></td></tr>
-				<tr><th>파일선택</th>
-				<td>
-					<%-- 원래 첨부파일이 있는 경우 --%>
-					<c:if test="${ !empty tfile.file_originalfilename }">
-						${ tfile.file_originalfilename } &nbsp; 
-						<input type="checkbox" name="delFlag" value="yes"> 파일삭제 <br>
-					</c:if>
-					<br>
-					새로 첨부 : <input type="file" name="upfile">	
-				</td></tr>
-				<tr><th colspan="2">
-				<input type="submit" value="수정하기"> &nbsp; 
-				<input type="reset" value="작성취소"> &nbsp; 
-				<button onclick="javascript:history.go(-1); return false;">이전 페이지로 이동</button></th></tr>
-				</table>
-				</form>
-
+							<div class="card">
+								    <div class="card-body">
+                                        <form action="fupdate.do" method="post" enctype="multipart/form-data">
+                                        	<input type="hidden" name="file_num" value="${ tfile.file_num }">
+                                        	<input type="hidden" name="team_num" value="${ tfile.team_num }">
+                                        	<c:if test="${ !empty tfile.file_originalfilename }">
+											<input type="hidden" name="original_filepath" value="${ tfile.file_originalfilename }">
+											<input type="hidden" name="rename_filepath" value="${ tfile.file_renamefilename }">
+											</c:if>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>작성자</label>
+                                                        <input class="form-control"  type="text" name="file_uploader" value="${ tfile.file_uploader }">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        
+														새로 첨부 <input class="form-control" type="file" name="upfile" >
+														<label>파일선택</label>
+                                                        <c:if test="${ !empty tfile.file_originalfilename }">
+														${ tfile.file_originalfilename } &nbsp; 
+														<input type="checkbox" name="delFlag" value="yes"> 파일삭제 <br>
+														</c:if>
+                                                    </div>
+                                                </div>                                                
+                                                <div class="col-sm-12 m-t-20 text-center">
+                                                <input type="submit" value="수정하기" class="btn btn-primary"> &nbsp; 
+												<input type="reset" value="작성취소" class="btn btn-default"> &nbsp; 
+												<button onclick="javascript:history.go(-1); return false;" class="btn btn-default">목록</button>
+                                            	</div> 
+                                            </div>        
+                                        </form>
+                                   </div>
+								</div>
 
 
             </div>

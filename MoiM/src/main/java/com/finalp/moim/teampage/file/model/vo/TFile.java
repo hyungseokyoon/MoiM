@@ -5,7 +5,7 @@ import java.sql.Date;
 import com.finalp.moim.userinfo.model.vo.UserInfo;
 
 public class TFile implements java.io.Serializable{
-	private static final long serialVersionUID = 2222L;
+	private static final long serialVersionUID = 2211L;
 	
 	private int file_num;
 	private int team_num;

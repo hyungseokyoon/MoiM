@@ -47,23 +47,31 @@
                         </div>
                     </div>
                 </div>
-
-					<form action="finsert.do" method="post" enctype="multipart/form-data">
-					<table align="center" width="500" border="1" cellspacing="0" cellpadding="5">
-					<tr><th>제 목</th><td><input type="text" name="team_num"></td></tr>
-					<tr><th>작성자</th>
-					<td><input type="text" name="file_uploader" ></td></tr>
-					<tr><th>파일선택</th>
-					<td><input type="file" name="upfile"></td></tr>
-					<tr><th colspan="2">
-					<input type="submit" value="등록하기"> &nbsp; 
-					<input type="reset" value="작성취소"> &nbsp; 
-					<button onclick="javascript:history.go(-1); return false;">목록</button></th></tr>
-					</table>
-					</form>
-
-
-
+                	<div class="card">
+									<div class="card-body">
+                                        <form action="finsert.do" method="post" enctype="multipart/form-data">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>작성자</label>
+                                                        <input class="form-control"  type="text" name="file_uploader">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>파일선택</label>
+                                                        <input class="form-control" type="file" name="upfile">
+                                                    </div>
+                                                </div>                                                
+                                                <div class="col-sm-12 m-t-20 text-center">
+                                                <input type="submit" value="등록하기" class="btn btn-primary"> &nbsp; 
+												<input type="reset" value="작성취소" class="btn btn-default"> &nbsp; 
+												<button onclick="javascript:history.go(-1); return false;" class="btn btn-default">목록</button>
+                                            	</div> 
+                                            </div>        
+                                        </form>
+                                   </div>
+                          </div>
             </div>
         </div>
        
