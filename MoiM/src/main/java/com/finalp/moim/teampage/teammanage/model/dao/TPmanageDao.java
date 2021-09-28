@@ -76,4 +76,29 @@ public class TPmanageDao {
 		return session.selectOne("teammanageMapper.selectUserNoTeamMember", teammember);
 	}
 
+	public int getLocListCount(int i) {
+		String local = "";
+		
+		switch (i) {
+			case 0: local = "서울"; break;
+			case 1: local = "인천"; break;
+			case 2: local = "대전"; break;
+			case 3: local = "대구"; break;
+			case 4: local = "광주"; break;
+			case 5: local = "울산"; break;
+			case 6: local = "부산"; break;
+			case 7: local = "경기"; break;
+			case 8: local = "충북"; break;
+			case 9: local = "충남"; break;
+			case 10: local = "경북"; break;
+			case 11: local = "경남"; break;
+			case 12: local = "강원"; break;
+			case 13: local = "전북"; break;
+			case 14: local = "전남"; break;
+			case 15: local = "제주"; break;
+		}
+		
+		return session.selectOne("teammanageMapper.getLocalListCount", local);
+	}
+
 }
