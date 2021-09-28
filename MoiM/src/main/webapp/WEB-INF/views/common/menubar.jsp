@@ -40,7 +40,7 @@
       <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
 			<a href="./" class="navbar-brand">
-				<img src="${ pageContext.servletContext.contextPath }/resources/img/logo.svg" alt="" class="img-fluid">
+				<img src="${ pageContext.servletContext.contextPath }/resources/img/MoimIcon.png" alt="" class="img-fluid">
 	        </a>
           	<button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
           	aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" 

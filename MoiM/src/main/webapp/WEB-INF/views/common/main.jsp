@@ -205,7 +205,7 @@
 						+ json.list[i].notice_no
 						+ "</td><td><a href='ndetail.do?notice_no="
 						+ json.list[i].notice_no
-						+ ",page=1' align='center'>"
+						+ "&page=1' align='center'>"
 						+ decodeURIComponent(json.list[i].notice_title).replace(
 								/\+/gi, " ") + "</a></td><td align='center'>"
 						+ json.list[i].notice_date + "</td></tr>";
