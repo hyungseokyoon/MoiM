@@ -13,4 +13,5 @@ public interface NoticeService {
 	int updateNotice(Notice notice);
 	int deleteNotice(int notice_no);
 	ArrayList<Notice> selectSearchNotice(String keyword);
+	ArrayList<Notice> selectNewTop5();
 }

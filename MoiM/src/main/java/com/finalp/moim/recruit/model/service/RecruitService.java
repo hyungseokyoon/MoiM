@@ -14,4 +14,5 @@ public interface RecruitService {
 	int updateRecruit(Recruit recruit);
 	ArrayList<Recruit> selectSearchRecruit(SearchRecruit sr);
 	int selectSearchTeamName(String team_name);
+	int selectSearchRecruitCount(SearchRecruit sr);
 }

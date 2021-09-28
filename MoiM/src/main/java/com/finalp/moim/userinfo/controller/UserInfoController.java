@@ -1,8 +1,12 @@
 package com.finalp.moim.userinfo.controller;
 
+
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -29,13 +33,14 @@ public class UserInfoController {
 	// DI
 	@Autowired
 	private UserInfoService userinfoService;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
+	
 	// 로그인
 	@RequestMapping(value="login.do", method = RequestMethod.POST)
-	public String loginMethod(UserInfo userInfo, HttpSession session, 
+	public String loginMethod(UserInfo userInfo, String currentUrl, HttpSession session, 
 			SessionStatus status, Model model) {
 		UserInfo loginMember = userinfoService.selectLogin(userInfo);
 		
@@ -44,12 +49,62 @@ public class UserInfoController {
 			session.setAttribute("loginMember", loginMember);
 			status.setComplete();
 			
-			return "common/main";
+			return "redirect:main.do";
 		} else {
 			model.addAttribute("message", "로그인 실패!");
 			
-			return "common/error";
+			return "redirect:main.do";
 		}
+	}
+	
+	//아이디 중복체크 확인을 위한 ajax 요청 처리용 메소드
+	@RequestMapping(value="idchk.do", method=RequestMethod.POST)
+	public void idCheckMethod(
+			@RequestParam("userid") String userid, 
+			HttpServletResponse response) throws IOException {
+		//String userid = request.getParameter("userid");
+			
+		int idcount = userinfoService.selectCheckId(userid);
+			
+		String returnValue = null;
+		if(idcount == 0) {
+			returnValue = "ok";
+		}else {
+			returnValue = "dup";
+		}
+			
+		//response 를 이용해서 클라이언트로 출력스트림 만들고
+		//값 보내기
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.append(returnValue);
+		out.flush();
+		out.close();
+	}
+		
+	//닉네임 중복체크 확인을 위한 ajax 요청 처리용 메소드
+	@RequestMapping(value="nnchk.do", method=RequestMethod.POST)
+	public void nnCheckMethod(
+			@RequestParam("user_nn") String user_nn, 
+			HttpServletResponse response) throws IOException {
+		//String usernn = request.getParameter("usernn");
+			
+		int nncount = userinfoService.selectCheckNn(user_nn);
+			
+		String returnValue = null;
+		if(nncount == 0) {
+			returnValue = "ok";
+		}else {
+			returnValue = "dup";
+		}
+			
+		//response 를 이용해서 클라이언트로 출력스트림 만들고
+		//값 보내기
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.append(returnValue);
+		out.flush();
+		out.close();
 	}
 	
 	// 로그아웃
@@ -60,12 +115,58 @@ public class UserInfoController {
 		if(session != null) {
 			session.invalidate();
 			
-			return "common/main";
+			return "redirect: main.do";
 		} else {
 			model.addAttribute("message", "로그인 세션이 존재하지 않습니다.");
 			
 			return "common/error";
 		}
+	}
+	
+	//회원가입
+	@RequestMapping("enrollPage.do")
+	public String moveEnrollPage() {
+		return "loginPage/enrollPage";
+	}	
+		
+	@RequestMapping(value="enroll.do", method=RequestMethod.POST)
+	public String moveUserInsert(UserInfo userInfo, Model model) {
+		logger.info("enroll.do : " + userInfo);
+		
+		
+		//패스워드 암호화 처리
+		userInfo.setUser_pwd(bcryptPasswordEncoder.encode(userInfo.getUser_pwd()));
+				
+			if(userinfoService.insertUserInfo(userInfo) > 0) {
+					return "common/main";  
+			}else {
+				model.addAttribute("message", "회원 가입 실패!");
+				return "common/error";
+			}		
+	}
+	
+	//아이디 찾기
+	@RequestMapping("sid.do")
+	public String moveSearchId() {
+		return "loginPage/searchId"; 
+	}
+	
+	//비밀번호 찾기
+	@RequestMapping("spw.do")
+	public String moveSearchPassword() {
+		return "loginPage/searchPassword";
+	}
+	
+	//아이디 찾기 결과
+	@RequestMapping("rid.do")
+	public String moveResultId() {
+		return "loginPage/resultId";
+	}
+	
+	//비밀번호 재설정
+	@RequestMapping("rpw.do")
+	public String moveResultPassword() {
+		return "loginPage/resultPassword";
 	}
 	
 	// 관리자 페이지 - 회원관리 페이지로 이동
@@ -91,7 +192,7 @@ public class UserInfoController {
 		Page paging = new Page(startRow, endRow);
 		
 		ArrayList<UserInfo> list = userinfoService.selectUserList();
-		
+		System.out.println(list);
 		if(list != null && list.size() > 0) {
 			mv.addObject("list", list);
 			mv.addObject("listCount", listCount);
@@ -112,7 +213,7 @@ public class UserInfoController {
 		
 		return mv;
 	}
-	
+		
 	// 관리자 페이지 - 회원 로그인 가능 여부 변경
 	@RequestMapping("loginOKadmin.do")
 	public ModelAndView userLoginOKMethod(ModelAndView mv, @RequestParam("user_no") int user_no, 
@@ -133,7 +234,7 @@ public class UserInfoController {
 		
 		return mv;
 	}
-	
+		
 	// 관리자 페이지 - 회원 관리자 여부 변경
 	@RequestMapping("userchangeadmin.do")
 	public ModelAndView userAdminChangeMethod(ModelAndView mv, @RequestParam("user_no") int user_no, 
@@ -154,7 +255,7 @@ public class UserInfoController {
 		
 		return mv;
 	}
-	
+		
 	// 관리자 페이지 - 회원 정보 검색
 	@RequestMapping(value = "usearch.do", method = RequestMethod.POST)
 	public ModelAndView userSearchMethod(ModelAndView mv, @RequestParam("category_no") int category_no,
@@ -195,6 +296,47 @@ public class UserInfoController {
 		} else {
 			mv.addObject("message", currentPage + "회원 정보 목록 조회 실패!");
 			
+			mv.setViewName("common/error");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="updateUserinfo.do", method=RequestMethod.POST)
+	public String userinfoupdateMethod(UserInfo userinfo, Model model, HttpSession session,
+			@RequestParam("newuser_pwd") String newuser_pwd) {
+		int user_no = userinfo.getUser_no();
+		//새로운 암호가 왔는지 체크하기
+		UserInfo oguserinfo = userinfoService.selectUser(user_no);
+		//같은 암호가 왔거나, 암호에 아무것도 입력하지 않았다면
+		if(newuser_pwd=="" || bcryptPasswordEncoder.matches(newuser_pwd, oguserinfo.getUser_pwd())) {
+			userinfo.setUser_pwd(oguserinfo.getUser_pwd()); //암호 원래 암호로 변경
+		}else {
+			userinfo.setUser_pwd(bcryptPasswordEncoder.encode(newuser_pwd)); //새로운암호를 암호화해서 입력
+		}
+		
+		//변경 후에 update작업 진행
+		if(userinfoService.updateUserInfo(userinfo)>0) {
+			//update한 후에는 session의 userinfo도 변경
+			UserInfo newuserinfo = userinfoService.selectUser(user_no); //새로운 user 객체 가지고옴
+			session.setAttribute("loginMember", newuserinfo); //새롭게 overwrite
+			return "common/main"; //홈페이지 이동
+		}else {
+			model.addAttribute("message", "회원정보 수정 실패");
+			return "common/error";
+		}
+		
+	}
+		
+	// 관리자 페이지 - 회원 강제 탈퇴
+	@RequestMapping(value = "userdelete.do", method = RequestMethod.POST)
+	public ModelAndView userDeleteMethod(ModelAndView mv, @RequestParam("user_no") int user_no, 
+			@RequestParam("page") int currentPage) {
+		if(userinfoService.deleteUserAdmin(user_no) > 0) {
+			mv.addObject("page", currentPage);
+			mv.setViewName("redirect:ulistadmin.do");
+		} else {
+			mv.addObject("message", user_no + "번 회원 탈퇴처리 실패");
 			mv.setViewName("common/error");
 		}
 		

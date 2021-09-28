@@ -22,8 +22,70 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public ArrayList<UserInfo> selectUserList() {
-		return userinfoDao.selectUserList();
+	public int insertUserInfo(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateUserInfo(UserInfo userInfo) {
+		return userinfoDao.updateUserInfo(userInfo);
+	}
+
+	@Override
+	public int deleteUserInfo(String userid) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<UserInfo> selectList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UserInfo selectUserInfo(String userid) {
+		return null;
+	}
+
+	@Override
+	public int updateLoginOk(UserInfo userInfo) {
+		return userinfoDao.updateUserLoginOK(userInfo);
+	}
+
+	@Override
+	public ArrayList<UserInfo> selectSearchUserid(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<UserInfo> selectSearchGender(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<UserInfo> selectSearchAge(int age) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<UserInfo> selectSearchLoginOK(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int selectCheckId(String userid) {
+		return userinfoDao.selectCheckId(userid);
+	}
+	
+	@Override
+	public int selectCheckNn(String usernn) {
+		return userinfoDao.selectCheckNn(usernn);
 	}
 
 	@Override
@@ -49,5 +111,15 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public ArrayList<UserInfo> selectUserSearch(int category_no, String keyword) {
 		return userinfoDao.selectUserSearch(category_no, keyword);
+	}
+
+	@Override
+	public int deleteUserAdmin(int user_no) {
+		return userinfoDao.deleteUserAdmin(user_no);
 	};
+
+	@Override
+	public ArrayList<UserInfo> selectUserList() {
+		return userinfoDao.selectUserList();
+	}
 }

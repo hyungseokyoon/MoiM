@@ -97,32 +97,65 @@
 	
 	<!-- 전체 게시글 조회 -->
 	<select id="searchAll" parameterType="String" resultMap="resultBoard">
-		select * from board where board_title like '%' || #{keyword} || '%'
+		select * from board b
+		left join user_info u on (b.user_no = u.user_no)
+		left join board_category c on (b.board_category_no = c.board_category_no)
+		where board_title like '%' || #{keyword} || '%'
 	</select>
 	
 	<!-- 공모전 게시글 조회 -->
 	<select id="searchContest" parameterType="String" resultMap="resultBoard">
-		select * from board where board_category_no = 1 and board_title like '%' || #{keyword} || '%'
+		select * from board b
+		left join user_info u on (b.user_no = u.user_no)
+		left join board_category c on (b.board_category_no = c.board_category_no)
+		where board_category_no = 1 and board_title like '%' || #{keyword} || '%'
 	</select>
 	
 	<!-- 인턴십 게시글 조회 -->
 	<select id="searchIntern" parameterType="String" resultMap="resultBoard">
-		select * from board where board_category_no = 2 and board_title like '%' || #{keyword} || '%'
+		select * from board b
+		left join user_info u on (b.user_no = u.user_no)
+		left join board_category c on (b.board_category_no = c.board_category_no)
+		where board_category_no = 2 and board_title like '%' || #{keyword} || '%'
 	</select>
 	
 	<!-- 자격증 게시글 조회 -->
 	<select id="searchLicense" parameterType="String" resultMap="resultBoard">
-		select * from board where board_category_no = 3 and board_title like '%' || #{keyword} || '%'
+		select * from board b
+		left join user_info u on (b.user_no = u.user_no)
+		left join board_category c on (b.board_category_no = c.board_category_no)
+		where board_category_no = 3 and board_title like '%' || #{keyword} || '%'
 	</select>
 	
 	<!-- 이벤트 게시글 조회 -->
 	<select id="searchEvent" parameterType="String" resultMap="resultBoard">
-		select * from board where board_category_no = 4 and board_title like '%' || #{keyword} || '%'
+		select * from board b
+		left join user_info u on (b.user_no = u.user_no)
+		left join board_category c on (b.board_category_no = c.board_category_no)
+		where board_category_no = 4 and board_title like '%' || #{keyword} || '%'
 	</select>
 	
 	<!-- 자유글 게시글 조회 -->
 	<select id="searchFree" parameterType="String" resultMap="resultBoard">
-		select * from board where board_category_no = 5 and board_title like '%' || #{keyword} || '%'
+		select * from board b
+		left join user_info u on (b.user_no = u.user_no)
+		left join board_category c on (b.board_category_no = c.board_category_no)
+		where board_category_no = 5 and board_title like '%' || #{keyword} || '%'
 	</select>
 	
+	<!-- 마이페이지 게시글 조회 -->
+	<select id="selectMyBoard" parameterType="com.finalp.moim.mypage.model.vo.MyBoard" resultMap="resultBoard">
+		select * from
+		(select rownum rnum, board_no, board_category_no, user_no, board_title, board_content, board_date, 
+			   board_original_filename, board_rename_filename, board_readcount
+		from (select * from board where user_no = #{ user_no }
+			  order by board_no desc)) b
+		left join user_info u on (b.user_no = u.user_no)
+		left join board_category c on (b.board_category_no = c.board_category_no)
+		where rnum between #{ startRow } and #{ endRow }
+	</select>
+	
+	<select id="selectMyBoardCount" parameterType="int" resultType="int">
+		select count(*) from board where user_no = #{ user_no }
+	</select>
 </mapper>

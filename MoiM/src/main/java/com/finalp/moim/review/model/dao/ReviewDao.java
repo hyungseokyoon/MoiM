@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.finalp.moim.common.Page;
-import com.finalp.moim.recruit.model.vo.Recruit;
 import com.finalp.moim.review.model.vo.Review;
+import com.finalp.moim.review.model.vo.SearchReview;
 import com.finalp.moim.review.model.vo.UserTeam;
 
 @Repository("reviewDao")
@@ -58,8 +58,14 @@ public class ReviewDao {
 		return sqlSession.delete("reviewMapper.deleteReview", review_no);
 	}
 	
-	public ArrayList<Review> selectSearchReview(String keyword) {
-		List<Review> list = sqlSession.selectList("reviewMapper.selectSearchReview", keyword);
+	public ArrayList<Review> selectSearchReview(SearchReview sr) {
+		List<Review> list = sqlSession.selectList("reviewMapper.selectSearchReview", sr);
 		return (ArrayList<Review>) list;
 	}
+	
+	public int selectSearchReviewCount(String keyword) {
+		return sqlSession.selectOne("reviewMapper.selectSearchReviewCount", keyword);
+	}
+	
+	
 }

@@ -168,8 +168,6 @@ public class TPteamboardController {
 			@RequestParam("team_num") String teamnum, 
 			@RequestParam(name="tn_renamefilename", required=false) String tn_renamefilename,
 			HttpServletRequest request, Model model) {
-	  System.out.println(tnno);
-	  System.out.println(teamnum);
 	  int tn_no = Integer.parseInt(tnno);
 	  int team_num = Integer.parseInt(teamnum);
 		

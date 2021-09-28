@@ -38,7 +38,7 @@
 			    			<div class="dataTable-search">
 			    				<form action="rvsearch.do" method="post">
 			    					<input type="hidden" name="page" value="1">
-			    					<label><input type="search" name="keyword" placeholder="분류, 제목, 작성자 검색" class="form-control"></label>
+			    					<label><input type="search" name="keyword" placeholder="분류, 제목, 작성자 검색" class="form-control" value="${ keyword }"></label>
 			    					<input type="submit" value="검색">
 			    				</form>
 			    			</div>
@@ -48,7 +48,7 @@
 						        <thead>
 						            <tr style="text-align:center;">
 						            	<th data-sortable="" style="width: 100px; text-align:center;">번호</th>
-						            	<th data-sortable="" style="width: 100px; text-align:center;">분류</th>
+						            	<th data-sortable="" style="width: 170px; text-align:center;">분류</th>
 						            	<th data-sortable="" style="text-align:center;">글제목</th>
 						            	<th data-sortable="" style="width: 100px; text-align:center;">작성자</th>
 						            	<th data-sortable="" style="width: 150px; text-align:center;">작성날짜</th>
@@ -79,7 +79,7 @@
 			    						<c:param name="user_no" value="${ loginMember.user_no }"/>
 			    					</c:url>
 						    		<div class="dataTable-bottom">
-			    			
+			    			<c:if test="${ empty keyword }">
 			    			<ul class="pagination pagination-primary float-end dataTable-pagination">
 			    				<c:if test="${ currentPage <= 1 }">
 			    					<li class="page-item pager"><a>‹‹</a></li>
@@ -133,8 +133,68 @@
 			    					<li><a href="${ rvwirte }" class="btn btn-primary">글작성</a></li>
 			    				</c:if>
 			    			</ul>
+			    			</c:if>
+			    			<c:if test="${!empty keyword }">
+			    			<ul class="pagination pagination-primary float-end dataTable-pagination">
+			    				<c:if test="${ currentPage <= 1 }">
+			    					<li class="page-item pager"><a>‹‹</a></li>
+			    				</c:if>
+			    				<c:if test="${ currentPage > 1 }">
+			    					<c:url var="first" value="/rvsearch.do">
+			    						<c:param name="page" value="1"/>
+			    						<c:param name="keyword" value="${ keyword }"/>
+			    					</c:url>
+			    					<li class="page-item pager"><a href="${ first }" class="page-link">‹‹</a></li>
+			    				</c:if>
+			    				<c:if test="${ !((currentPage - 10) < startPage and (currentPage - 10) > 1) }">
+			    					<li class="page-item pager"><a>‹</a></li>
+			    				</c:if>
+			    				<c:if test="${ (currentPage - 10) < startPage and (currentPage - 10) > 1 }">
+			    					<c:url var="prev" value="/rvsearch.do">
+			    						<c:param name="page" value="${ startPage - 10 }"/>
+			    						<c:param name="keyword" value="${ keyword }"/>
+			    					</c:url>
+			    					<li class="page-item pager"><a href="${ prev }" class="page-link">‹</a></li>
+			    				</c:if>
+			    				<c:forEach var="p" begin="${ startPage }" end="${ endPage }" step="1">
+			    					<c:if test="${ p == currentPage }">
+			    						<li class="page-item pager"><a>${ p }</a></li>
+			    					</c:if>
+			    					<c:if test="${ p != currentPage }">
+			    						<c:url var="num" value="/rvsearch.do">
+			    							<c:param name="page" value="${ p }"/>
+			    							<c:param name="keyword" value="${ keyword }"/>
+			    						</c:url>
+			    						<li class="page-item pager"><a href="${ num }" class="page-link">${ p }</a></li>
+			    					</c:if>
+			    				</c:forEach>
+			    				<c:if test="${ !((currentPage + 10) > endPage && (currentPage + 10) < maxPage) }">
+			    					<li class="page-item pager"><a>›</a></li>
+			    				</c:if>
+			    				<c:if test="${ (currentPage + 10) > endPage && (currentPage + 10) < maxPage }">
+			    					<c:url var="next" value="/rvsearch.do">
+			    						<c:param name="page" value="${ endPage + 10 }"/>
+			    						<c:param name="keyword" value="${ keyword }"/>
+			    					</c:url>
+			    					<li class="page-item pager"><a href="${ next }" class="page-link">›</a></li>
+			    				</c:if>
+			    				<c:if test="${ currentPage >= maxPage }">
+			    					<li class="page-item pager"><a>››</a></li>
+			    				</c:if>
+			    				<c:if test="${ currentPage < maxPage }">
+			    					<c:url var="last" value="/rvsearch.do">
+			    						<c:param name="page" value="${ maxPage }"/>
+			    						<c:param name="keyword" value="${ keyword }"/>
+			    					</c:url>
+			    					<li class="page-item pager"><a href="${ last }" class="page-link">››</a></li>
+			    				</c:if>
+			    				
+			    					<c:url var="out" value="/rvlist.do"/>
+			    					<li><a href="${ out }" class="btn btn-primary">목록</a></li>
+			    				
+			    			</ul>
 			    			
-			    			
+			    			</c:if>
 			    		</div>
 			    	</div>
 				</div>

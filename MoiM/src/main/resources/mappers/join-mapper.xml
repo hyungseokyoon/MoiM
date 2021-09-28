@@ -22,4 +22,12 @@
 		#{join_intro}, #{join_original_filename}, #{join_rename_filename})
 	
 	</insert>
+	
+	<select id="selectTeamJoin" parameterType="com.finalp.moim.join.model.vo.SearchJoin" resultType="_int">
+		select count(*) from tb_join_waiting where user_no = #{ user_no } and team_num = #{ team_num }
+	</select>
+	
+	<select id="selectTeamMember" parameterType="com.finalp.moim.join.model.vo.SearchJoin" resultType="_int">
+		select count(*) from tb_team_member where user_no = #{ user_no } and team_num = #{ team_num }
+	</select>
 </mapper>

@@ -110,11 +110,27 @@
         where team_level like '%' || #{ team_level } || '%' and field_name like  '%' || #{ field_name } || '%'
         and team_local like  '%' || #{ team_local } || '%' and team_name like '%' || #{ team_name } || '%' 
         and team_act_day like  '%' || #{ team_act_day } || '%')
-        
+        where rnum between #{ startRow } and #{ endRow } 
         ]]>
 	</select>
 	
-	<select id="selectSearchTeamName" parameterType="string" resultType="_int">
-		select count(*) from tb_team where team_name = #{ team_name }
+	<select id="selectSearchRecruitCount"  parameterType="com.finalp.moim.recruit.model.vo.SearchRecruit" resultType="_int">
+		select count(*) from
+		(select * from (select  t.team_num, t.team_rename_image, t.team_name, t.field_num, f.field_name, t.team_limit,
+		t.team_local, t.team_act_day, t.team_fee, t.team_act_week, t.team_act_time, t.team_level
+		from tb_team t join tb_field f on t.field_num = f.field_num
+        where team_recruit = 'Y' order by team_num desc)
+        where team_level like '%' || #{ team_level } || '%' and field_name like  '%' || #{ field_name } || '%'
+        and team_local like  '%' || #{ team_local } || '%' and team_name like '%' || #{ team_name } || '%' 
+        and team_act_day like  '%' || #{ team_act_day } || '%')
+			
+							
 	</select>
+	
+	<select id="selectSearchTeamName" parameterType="string" resultType="_int">
+		select count(*) from tb_team where team_name = #{ team_name } 
+	</select>
+	
+	
+	
 </mapper>

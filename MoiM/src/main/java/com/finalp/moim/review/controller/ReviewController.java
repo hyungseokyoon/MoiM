@@ -28,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.finalp.moim.common.Page;
 import com.finalp.moim.review.model.service.ReviewService;
 import com.finalp.moim.review.model.vo.Review;
+import com.finalp.moim.review.model.vo.SearchReview;
 import com.finalp.moim.review.model.vo.UserTeam;
 
 @Controller
@@ -74,6 +75,7 @@ public class ReviewController {
 			mv.addObject("limit", limit);
 			mv.addObject("startRow", startRow);
 			mv.addObject("endRow", endRow);
+			
 			
 			mv.setViewName("review/reviewListView");
 		} else {
@@ -134,7 +136,7 @@ public class ReviewController {
 
 
 
-		mv.setViewName("filedown2");
+		mv.setViewName("filedown");
 		mv.addObject("renameFile", renameFile);
 		mv.addObject("originalFile", originalFile);
 
@@ -362,7 +364,7 @@ public class ReviewController {
 			}
 		}
 		
-		@RequestMapping(value = "rvsearch.do", method = RequestMethod.POST)
+		@RequestMapping(value = "rvsearch.do")
 		public ModelAndView ReviewSearchMethod(ModelAndView mv,
 				@RequestParam("keyword") String keyword, @RequestParam(name="page", required=false) String page) {
 			int currentPage = 1;
@@ -371,7 +373,7 @@ public class ReviewController {
 			}
 			
 			int limit = 10;
-			int listCount = reviewService.selectListCount();
+			int listCount = reviewService.selectSearchReviewCount(keyword);
 			
 			int maxPage = (int)((double)listCount / limit + 0.9);
 			int startPage = (int)((double)currentPage / limit + 0.9);
@@ -382,9 +384,11 @@ public class ReviewController {
 			
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + limit - 1;
-			Page paging = new Page(startRow, endRow);
 			
-			ArrayList<Review> list = reviewService.selectSearchReview(keyword);
+			
+			SearchReview sr = new SearchReview(startRow, endRow, keyword);
+			ArrayList<Review> list = reviewService.selectSearchReview(sr);
+			
 			
 			if(list != null && list.size() > 0) {
 				mv.addObject("list", list);
@@ -396,6 +400,7 @@ public class ReviewController {
 				mv.addObject("limit", limit);
 				mv.addObject("startRow", startRow);
 				mv.addObject("endRow", endRow);
+				mv.addObject("keyword", keyword);
 				
 				mv.setViewName("review/reviewListView");
 			} else {

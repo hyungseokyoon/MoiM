@@ -85,5 +85,10 @@ public class TPmanageServiceImpl implements TPmanageService {
 	public TeamMember selectUserNoTeamMember(TeamMember teammember) {
 		return tpmanageDao.selectUserNoTeamMember(teammember);
 	}
+
+	@Override
+	public int getLocListCount(int i) {
+		return tpmanageDao.getLocListCount(i);
+	}
 	
 }
