@@ -10,7 +10,7 @@
 
 <link rel="icon" href="${ pageContext.servletContext.contextPath }/resources/team_page/images/favicon.ico" type="image/x-icon" />
 
-<title>토론 게시판</title>
+<title>${ sessionScope.team_name }</title>
 <!-- Bootstrap Core and vandor -->
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/dropify/css/dropify.min.css">
@@ -38,7 +38,7 @@
                 <div class="page-header">
                     <div class="left">
                         <a href="javascript:void(0)" class="icon menu_toggle mr-3"><i class="fa  fa-align-left"></i></a>
-                        <h1 class="page-title">토론</h1>
+                        <h1 class="page-title">토론 게시판</h1>
                     </div>
                     <div class="right">
 		                <div class="notification d-flex">
