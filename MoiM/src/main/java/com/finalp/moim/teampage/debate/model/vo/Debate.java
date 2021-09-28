@@ -13,12 +13,16 @@ public class Debate implements java.io.Serializable{
 	private String debate_title;
 	private String debate_content;
 	private java.sql.Date debate_date;
+	private int debate_comment_count;
 	private UserInfo userVO;
 	
 	public Debate() {}
 	
+	
+
+
 	public Debate(int debate_num, int user_no, int team_num, String debate_title, String debate_content,
-			Date debate_date, UserInfo userVO) {
+			Date debate_date, int debate_comment_count, UserInfo userVO) {
 		super();
 		this.debate_num = debate_num;
 		this.user_no = user_no;
@@ -26,8 +30,11 @@ public class Debate implements java.io.Serializable{
 		this.debate_title = debate_title;
 		this.debate_content = debate_content;
 		this.debate_date = debate_date;
+		this.debate_comment_count = debate_comment_count;
 		this.userVO = userVO;
 	}
+
+
 
 
 	public int getDebate_num() {
@@ -104,13 +111,33 @@ public class Debate implements java.io.Serializable{
 		return serialVersionUID;
 	}
 
+	
+
+	public int getDebate_comment_count() {
+		return debate_comment_count;
+	}
+
+
+
+
+	public void setDebate_comment_count(int debate_comment_count) {
+		this.debate_comment_count = debate_comment_count;
+	}
+
+
+
 
 	@Override
 	public String toString() {
 		return "Debate [debate_num=" + debate_num + ", user_no=" + user_no + ", team_num=" + team_num
 				+ ", debate_title=" + debate_title + ", debate_content=" + debate_content + ", debate_date="
-				+ debate_date + ", userVO=" + userVO + "]";
+				+ debate_date + ", debate_comment_count=" + debate_comment_count + ", userVO=" + userVO + "]";
 	}
+
+
+
+
+	
 	
 	
 

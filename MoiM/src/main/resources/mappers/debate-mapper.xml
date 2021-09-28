@@ -29,6 +29,7 @@
 		<result column="debate_content" property="debate_content"/>
 		<result column="user_no" property="user_no"/>
 		<result column="debate_date" property="debate_date"/>
+		<result column="debate_comment_count" property="debate_comment_count"/>
 		<association property="userVO" resultMap="resultUserInfo" />
 	</resultMap>
 	
@@ -41,6 +42,14 @@
 		<result column="debate_comment_date" property="debate_comment_date"/>
 		<association property="userVO" resultMap="resultUserInfo" />
 	</resultMap>
+	
+	<select id="selectAll" resultMap="resultDebate" parameterType="_int">
+		select debate_num, d.user_no, ui.user_no, ui.user_nn, team_num, debate_title, debate_content, debate_date, debate_comment_count
+		from debate d
+		left join user_info ui on (d.user_no = ui.user_no)
+		where team_num = #{ team_num }
+		order by debate_num desc
+	</select>
 
 	
 	

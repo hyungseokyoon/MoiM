@@ -71,47 +71,58 @@
                 </div>
             </div>
         </div>
-        <div class="section-light py-3 chat_app">
+        <div class="section-light py-3 chat_app" style="height: 100%;">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="card bg-none b-none">
                             <div class="card-header bline bg-none">
                                 <div class="card-options">
-                                    <a href="javascript:void(0)" class="p-1"><i class="fa fa-plus"></i></a>
+                                    <a data-target ="#insertdebatemodal" id="insertdebate" class="p-1" data-toggle="modal"><i class="fa fa-plus"></i></a>
                                     <a href="javascript:void(0)" class="p-1 chat_list_btn"><i class="fa fa-align-right"></i></a>
                                 </div>
+                                   
+                                
+								  
                             </div>                        
                             <div class="chat_windows">
                                 <ul class="mb-0">
+                                  	<c:forEach items="${ list }" var="list">
+                                  	<c:set var="sessionUserNO" value="${ loginMember.user_no }"></c:set>
+                                  	<c:set var="debateUserNO" value="${ list.userVO.user_no }"></c:set>
+                                  	<c:if test="${ debateUserNO != sessionUserNO }">
                                     <li class="other-message">
                                         <div class="message" style="width: 40%;">
-                                            <p class="bg-light-blue" style="margin-bottom: -18px; position: relative; z-index: 1; width: 100%;"><font style="vertical-align: inherit;">토론제목</font></p>
+                                            <p class="bg-light-blue" style="margin-bottom: -18px; position: relative; z-index: 1; width: 100%;"><font style="vertical-align: inherit;">${ list.debate_title }</font></p>
                                             <table class="table table-vcenter mb-0 table_custom spacing8 text-nowrap" >
                                             	<tbody>
                                             		<tr>
-                                            			<td  style="background-color: rgb(248, 249, 250); width:50%;">user_nn</td>
-                                            			<td  style="background-color: rgb(248, 249, 250); width:20%; text-align: right;">댓글 5</td>
-                                            			<td  style="background-color: rgb(248, 249, 250); width:30%; text-align: right;">2021-09-23</td>
-                                            		</tr>
-                                            	</tbody>
-                                            </table>
-                                        </div>
-                                    </li>                                      
-                                    <li class="my-message">
-                                        <div class="message" style="width: 40%;">
-                                            <p class="bg-light-gray" style="margin-bottom: -18px; position: relative; z-index: 1; width: 100%; text-align:left;"><font style="vertical-align: inherit; ">토론제목</font></p>
-                                            <table class="table table-vcenter mb-0 table_custom spacing8 text-nowrap" >
-                                            	<tbody>
-                                            		<tr>
-                                            			<td  style="background-color: rgb(248, 249, 250); width:50%; text-align: left;">user_nn</td>
-                                            			<td  style="background-color: rgb(248, 249, 250); width:20%; text-align: right;">댓글 5</td>
-                                            			<td  style="background-color: rgb(248, 249, 250); width:30%; text-align: right;">2021-09-23</td>
+                                            			<td  style="background-color: rgb(248, 249, 250); width:50%;"> ${ list.userVO.user_nn } </td>
+                                            			<td  style="background-color: rgb(248, 249, 250); width:20%; text-align: right;">댓글 ${ list.debate_comment_count }</td>
+                                            			<td  style="background-color: rgb(248, 249, 250); width:30%; text-align: right;">${ list.debate_date }</td>
                                             		</tr>
                                             	</tbody>
                                             </table>
                                         </div>
                                     </li>
+                                    </c:if>
+                                    <c:if test="${ debateUserNO == sessionUserNO }">                                    
+                                    <li class="my-message">
+                                        <div class="message" style="width: 40%;">
+                                            <p class="bg-light-gray" style="margin-bottom: -18px; position: relative; z-index: 1; width: 100%; text-align:left;"><font style="vertical-align: inherit; ">${ list.debate_title }</font></p>
+                                            <table class="table table-vcenter mb-0 table_custom spacing8 text-nowrap" >
+                                            	<tbody>
+                                            		<tr>
+                                            			<td  style="background-color: rgb(248, 249, 250); width:50%; text-align: left;">${ list.userVO.user_nn }</td>
+                                            			<td  style="background-color: rgb(248, 249, 250); width:20%; text-align: right;">댓글 ${ list.debate_comment_count }</td>
+                                            			<td  style="background-color: rgb(248, 249, 250); width:30%; text-align: right;">${ list.debate_date }</td>
+                                            		</tr>
+                                            	</tbody>
+                                            </table>
+                                        </div>
+                                    </li>
+                                    </c:if> 
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </div>
@@ -122,15 +133,78 @@
         </div>        
     </div>
 </div>
-	
-
+									<!-- Modal -->
+			                     <div class="modal fade" id="insertdebatemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 100; position: relative;">
+			                        <div class="modal-dialog modal-ml" role="document">
+			                           <div class="modal-content">
+			                               <div class="modal-header">
+			                                   <h5 class="modal-title" id="exampleModalLabel">팀장 위임</h5>
+			                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                                      <span aria-hidden="true">&times;</span>
+			                                   </button>
+			                                 </div>
+			                                 <form action="tdeinsert.do" method="post">
+			                                	 <div class="modal-body" id="changerankdiv">
+								        			<div class="row">
+				                                       <div class="col-sm-12">
+				                                           <div class="form-group">
+				                                               <label>제목</label>
+				                                               <input class="form-control" type="text" name="debate_title">
+				                                           </div>
+				                                       </div>
+				                                       <div class="col-sm-12">
+				                                           <div class="form-group">
+				                                               <label>내용</label>
+				                                               <textarea class="form-control" name="debate_content" style="height: 78px;"></textarea>
+				                                           </div>
+				                                       </div>
+									        		</div>
+									       		 </div>
+									        <div class="modal-footer">
+									          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+									          <button type="submit" class="btn btn-primary">등록</button>
+									        </div>
+								        </form>
+								      </div>					      
+								    </div>
+								  </div>
+							
 
 <script src="${ pageContext.servletContext.contextPath }/resources/team_page/bundles/lib.vendor.bundle.js"></script>
 
-<script src="${ pageContext.servletContext.contextPath }/resources/team_page/bundles/sweetalert.bundle.js"></script>
 <script src="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/dropify/js/dropify.min.js"></script>
 
 <script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/core.js"></script>
-<script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/page/sweetalert.js"></script>
+<script>
+    $(function() {
+        "use strict";
+        
+        $('.dropify').dropify();
+    
+        var drEvent = $('#dropify-event').dropify();
+        drEvent.on('dropify.beforeClear', function(event, element) {
+            return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+        });
+    
+        drEvent.on('dropify.afterClear', function(event, element) {
+            alert('File deleted');
+        });
+    
+        $('.dropify-fr').dropify({
+            messages: {
+                default: 'Glissez-déposez un fichier ici ou cliquez',
+                replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                remove: 'Supprimer',
+                error: 'Désolé, le fichier trop volumineux'
+            }
+        });
+        
+        $('#insertdebate').on('click', function (){
+            $('#insertdebatemodal').modal('show');
+            
+   		 });
+    });
+</script>
 </body>
+
 </html>
