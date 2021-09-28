@@ -17,7 +17,9 @@
 		<typeAlias type="com.finalp.moim.common.SearchDate" alias="SearchDate"/>
 
 
-		<typeAlias type="com.finalp.moim.teampage.file.model.vo.TFile" alias="TFile" />	
+		<typeAlias type="com.finalp.moim.teampage.file.model.vo.TFile" alias="TFile" />
+		<typeAlias type="com.finalp.moim.teampage.debate.model.vo.Debate" alias="Debate" />
+		<typeAlias type="com.finalp.moim.teampage.debate.model.vo.DebateComment" alias="DebateComment" />
 
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.Field" alias="Field"/>
 		<typeAlias type="com.finalp.moim.teampage.common.model.vo.JoinWaiting" alias="JoinWaiting"/>
@@ -50,6 +52,8 @@
 		<mapper resource="mappers/teamdaily-mapper.xml"/>
 		<mapper resource="mappers/teamcalendar-mapper.xml"/>
 		<mapper resource="mappers/teammain-mapper.xml"/>
+		<mapper resource="mappers/debate-mapper.xml"/>
+		
 	</mappers>
 
 </configuration>

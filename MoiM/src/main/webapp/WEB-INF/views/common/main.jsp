@@ -56,58 +56,100 @@
 			<div class="integrations mt-5">
 				<div class="row">
 					<div class="col-lg-4">
-						<div class="box text-center">
-							<div class="icon d-flex align-items-end">
-								<img src="${ pageContext.servletContext.contextPath }/resources/img/monitor.svg" alt="..." class="img-fluid">
-							</div>
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=서울';">
 							<h3 class="h4">서울</h3>
-							<p class="text-small font-weight-light">()개의 MoiM이 있습니다</p>
+							<p class="text-small font-weight-light">${ local[0] }개의 MoiM이 있습니다</p>
 						</div>
 					</div>
 					<div class="col-lg-4">
-						<div class="box text-center">
-							<div class="icon d-flex align-items-end">
-								<img src="${ pageContext.servletContext.contextPath }/resources/img/target.svg" alt="..." class="img-fluid">
-							</div>
-							<h3 class="h4">인천 &amp; 경기</h3>
-							<p class="text-small font-weight-light">()개의 MoiM이 있습니다</p>
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=인천';">
+							<h3 class="h4">인천</h3>
+							<p class="text-small font-weight-light">${ local[1] }개의 MoiM이 있습니다</p>
 						</div>
 					</div>
 					<div class="col-lg-4">
-						<div class="box text-center">
-							<div class="icon d-flex align-items-end">
-								<img src="${ pageContext.servletContext.contextPath }/resources/img/chat.svg" alt="..." class="img-fluid">
-							</div>
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=대전';">
+							<h3 class="h4">대전</h3>
+							<p class="text-small font-weight-light">${ local[2] }개의 MoiM이 있습니다</p>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=대구';">
+							<h3 class="h4">대구</h3>
+							<p class="text-small font-weight-light">${ local[3] }개의 MoiM이 있습니다</p>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=광주';">
+							<h3 class="h4">광주</h3>
+							<p class="text-small font-weight-light">${ local[4] }개의 MoiM이 있습니다</p>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=울산';">
+							<h3 class="h4">울산</h3>
+							<p class="text-small font-weight-light">${ local[5] }개의 MoiM이 있습니다</p>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=부산';">
+							<h3 class="h4">부산</h3>
+							<p class="text-small font-weight-light">${ local[6] }개의 MoiM이 있습니다</p>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=경기';">
+							<h3 class="h4">경기</h3>
+							<p class="text-small font-weight-light">${ local[7] }개의 MoiM이 있습니다</p>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=충북';">
 							<h3 class="h4">충북</h3>
-							<p class="text-small font-weight-light">()개의 MoiM이 있습니다</p>
+							<p class="text-small font-weight-light">${ local[8] }개의 MoiM이 있습니다</p>
 						</div>
 					</div>
 					<div class="col-lg-4">
-						<div class="box text-center">
-							<div class="icon d-flex align-items-end">
-								<img src="${ pageContext.servletContext.contextPath }/resources/img/idea.svg" alt="..." class="img-fluid">
-							</div>
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=충남';">
+							<h3 class="h4">충남</h3>
+							<p class="text-small font-weight-light">${ local[9] }개의 MoiM이 있습니다</p>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=경북';">
+							<h3 class="h4">경북</h3>
+							<p class="text-small font-weight-light">${ local[10] }개의 MoiM이 있습니다</p>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=경남';">
 							<h3 class="h4">경남</h3>
-							<p class="text-small font-weight-light">()개의 MoiM이 있습니다</p>
+							<p class="text-small font-weight-light">${ local[11] }개의 MoiM이 있습니다</p>
 						</div>
 					</div>
 					<div class="col-lg-4">
-						<div class="box text-center">
-							<div class="icon d-flex align-items-end">
-								<img src="${ pageContext.servletContext.contextPath }/resources/img/coffee-cup.svg" alt="..." class="img-fluid">
-							</div>
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=강원';">
 							<h3 class="h4">강원</h3>
-							<p class="text-small font-weight-light">()개의 MoiM이 있습니다</p>
+							<p class="text-small font-weight-light">${ local[12] }개의 MoiM이 있습니다</p>
 						</div>
 					</div>
 					<div class="col-lg-4">
-						<div class="box text-center">
-							<div class="icon d-flex align-items-end">
-								<img src="${ pageContext.servletContext.contextPath }/resources/img/pen.svg" alt="..." class="img-fluid">
-							</div>
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=전북';">
+							<h3 class="h4">전북</h3>
+							<p class="text-small font-weight-light">${ local[13] }개의 MoiM이 있습니다</p>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=전남';">
 							<h3 class="h4">전남</h3>
-							<p class="text-small font-weight-light">()개의 MoiM이 있습니다</p>
-							</div>
+							<p class="text-small font-weight-light">${ local[14] }개의 MoiM이 있습니다</p>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="box text-center" onclick="javascript:location.href='rcsearch.do?team_local=제주';">
+							<h3 class="h4">제주</h3>
+							<p class="text-small font-weight-light">${ local[15] }개의 MoiM이 있습니다</p>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -21,27 +21,9 @@
 					<ul class="list-unstyled">
 						<li> <a href="${ pageContext.servletContext.contextPath }/main.do" class="footer-link">Home</a></li>
 						<li> <a href="${ pageContext.servletContext.contextPath }/nlist.do?page=1" class="footer-link">공지사항</a></li>
-						<li> <a href="contact.html" class="footer-link">구인게시판</a></li>
+						<li> <a href="${ pageContext.servletContext.contextPath }/rclist.do" class="footer-link">구인게시판</a></li>
 						<li> <a href="${ pageContext.servletContext.contextPath }/blist.do?page=1" class="footer-link">게시판</a></li>
-						<li> <a href="text.html" class="footer-link">리뷰게시판</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-3 mb-5 mb-lg-0">
-					<h5 class="footer-heading">Product</h5>
-					<ul class="list-unstyled">
-						<li> <a href="${ pageContext.servletContext.contextPath }/moveTPindex.do" class="footer-link">Why Appton?</a></li>
-						<li> <a href="${ pageContext.servletContext.contextPath }/moveMyTeamList.do" class="footer-link">Enterprise</a></li>
-						<li> <a href="#" class="footer-link">Blog</a></li>
-						<li> <a href="#" class="footer-link">Pricing</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-3">
-					<h5 class="footer-heading">Resources</h5>
-					<ul class="list-unstyled">
-						<li> <a href="#" class="footer-link">Download</a></li>
-						<li> <a href="#" class="footer-link">Help Center</a></li>
-						<li> <a href="#" class="footer-link">Guides</a></li>
-						<li> <a href="#" class="footer-link">Partners</a></li>
+						<li> <a href="${ pageContext.servletContext.contextPath }/rvlist.do" class="footer-link">리뷰게시판</a></li>
 					</ul>
 				</div>
 			</div>

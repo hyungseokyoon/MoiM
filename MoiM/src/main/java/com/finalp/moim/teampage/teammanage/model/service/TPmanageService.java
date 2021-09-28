@@ -22,5 +22,5 @@ public interface TPmanageService {
 	int updateTeamMemberRankUp(TeamMember teammember);
 	ArrayList<TeamMember> selectTeamMemberNormalList(int team_num);
 	TeamMember selectUserNoTeamMember(TeamMember teammember);
-
+	int getLocListCount(int i);
 }
