@@ -51,6 +51,62 @@
 		order by debate_num desc
 	</select>
 
+	<insert id="insertdebate" parameterType="Debate">
+		insert into debate
+		values ((select max(debate_num) + 1 from debate), #{ user_no }, #{ team_num }, #{ debate_title }, #{ debate_content }, default, default)
+	</insert>
 	
+	<select id="selectDebate" parameterType="_int" resultMap="resultDebate">
+		select debate_num, d.user_no, ui.user_no, ui.user_nn, team_num, debate_title, debate_content, debate_date, debate_comment_count
+		from debate d
+		left join user_info ui on (d.user_no = ui.user_no)
+		where debate_num = #{ debate_num }
+	</select>
+	
+	<select id="selectDebateCommentList" parameterType="_int" resultMap="resultDebateComment">
+		select debate_comment_num, debate_num, dc.user_no, ui.user_no, ui.user_nn, debate_comment_content, debate_comment_date
+		from debate_comment dc
+		left join user_info ui on (dc.user_no = ui.user_no)
+		where debate_num = #{ debate_num }
+		order by debate_comment_num desc
+	</select>
+	
+	<update id="updateDebate" parameterType="Debate">
+		update debate
+		set debate_title = #{ debate_title }, debate_content = #{ debate_content }
+		where debate_num = #{ debate_num }
+	</update>
+	
+	<delete id="deleteDebateCommentAll" parameterType="_int">
+		delete from debate_comment
+		where debate_num = #{ debate_num }
+	</delete>
+	
+	<delete id="deleteDebate" parameterType="_int">
+		delete from debate
+		where debate_num = #{ debate_num }
+	</delete>
+	
+	<insert id="insertDebateComment" parameterType="DebateComment">
+		insert into debate_comment
+		values ((select max(debate_comment_num) + 1 from debate_comment), #{ debate_num }, #{ user_no }, #{ debate_comment_content }, default)
+	</insert>
+	
+	<update id="updateDebateCommentCountUp" parameterType="_int">
+		update debate
+		set debate_comment_count = (select debate_comment_count from debate where debate_num = #{ debate_num }) + 1
+		where debate_num = #{ debate_num }
+	</update>
+	
+	<delete id="deleteDebateComment" parameterType="_int">
+		delete from debate_comment
+		where debate_comment_num = ${ debate_comment_num }
+	</delete>
+	
+	<update id="updateDebateCommentCountDown" parameterType="_int">
+		update debate
+		set debate_comment_count = (select debate_comment_count from debate where debate_num = #{ debate_num }) - 1
+		where debate_num = #{ debate_num }
+	</update>
 	
 </mapper>
