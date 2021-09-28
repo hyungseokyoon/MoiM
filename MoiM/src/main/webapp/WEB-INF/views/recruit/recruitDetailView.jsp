@@ -19,6 +19,59 @@ if( result === "success"){
 
 
 </script>
+<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+function searchJoin(){
+	var checkJoin;
+	var checkTeam;
+	
+	
+
+	$.ajax({
+		url : 'searchjoin.do?team_num='+${recruit.team_num}+'&user_no='+${loginMember.user_no},
+		type : 'get',
+		dataType : 'json',
+		success : function(data) {
+			
+			checkJoin = data["checkJoin"]
+			checkTeam = data["checkTeam"]
+			console.log(checkJoin, checkTeam);
+			
+			if(checkJoin > 0){
+				alert('이미 지원이 완료되었습니다.');
+				return false;
+			}else if( checkTeam> 0){
+				alert('이미 가입된 팀입니다.');
+				return false;
+			}else{
+				$('#modalBox').modal('show');
+			}
+	
+			
+		}, //for in
+		error : function(jqXHR, textstatus, errorthrown) {
+			console.log("error : " + jqXHR + ", " + textstatus + ", "
+					+ errorthrown);
+		}
+	});
+
+	
+	
+
+}
+
+function content(){
+	
+    var content = $("#content1").val();
+    if (content.length > 1000){
+        $("#content1").val(content.substring(0, 1000));
+        
+       
+    }
+}
+
+	</script>
+
 </head>
 <body>
 
@@ -56,16 +109,24 @@ if( result === "success"){
 						<c:param name="team_num" value="${ recruit.team_num }" />
 						<c:param name="page" value="${ currentPage }" />
 					</c:url>
+					
+					<c:url var="join" value="/searchjoin.do">
+						<c:param name="team_num" value="${ recruit.team_num }" />
+						<c:param name="user_no" value="${ loginMember.user_no }" />
+						
+					</c:url>
 					<center>
 
 						<c:if test="${ !empty loginMember and loginMember.user_no ne recruit.user_no}">
-						<button class="btn btn-primary" id="openModalBtn">지원하기</button>
+						<button class="btn btn-primary" onclick="searchJoin()">지원하기</button>
 						</c:if>
 						<c:if test="${ !empty loginMember and loginMember.user_no eq recruit.user_no}">
 						<a href="${ rcup }"><button type="button"
 								class="btn btn-primary">수정하기</button></a>
 						</c:if>
-						<button type="button" class="btn btn-default" onclick="javascript:history.go(-1); return false;">목록</button>
+						<c:url var="out" value="/rclist.do"/>
+						<a href="${ out }" ><button class="btn btn-default">목록</button></a>
+						
 					</center>
 					<br> <br> <br>
 
@@ -112,7 +173,8 @@ if( result === "success"){
 								value="${ recruit.team_num }"> <input type="hidden"
 								name="page" value="${ currentPage }"> 
 								<input type="hidden" name="user_no" value=${ loginMember.user_no }>
-							<textarea name="join_intro" class="form-control"></textarea>
+								<h6>지원자 소개(1000자 이내)</h6>
+							<textarea name="join_intro" class="form-control" id="content1" onkeyup="content()" required></textarea>
 						</div>
 						<div class="form-group mb-4">
 							<label>첨부파일</label><br> <input type="file" name="upfile">
@@ -145,13 +207,13 @@ if( result === "success"){
 	
 	
 // 모달 버튼에 이벤트를 건다.
-$('#openModalBtn').on('click', function(){
-$('#modalBox').modal('show');
-});
+
 // 모달 안의 취소 버튼에 이벤트를 건다.
 $('#closeModalBtn').on('click', function(){
 $('#modalBox').modal('hide');
 });
+
+
 </script>
 
 </body>

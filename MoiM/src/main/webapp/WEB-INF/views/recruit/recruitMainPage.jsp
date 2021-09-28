@@ -165,6 +165,7 @@
 						<c:url var="rde" value="/rcdetail.do">
 						<c:param name="team_num" value="${ rc.team_num}" />
 						<c:param name="page" value="${ currentPage }" />
+						
 						</c:url>
 							<div class="col-md-4 mb-4">
 							
@@ -345,7 +346,8 @@
 </c:if>
 </div>
 
-
+<c:url var="out" value="/rclist.do"/><br>
+<center><a href="${ out }" ><button class="btn btn-primary">목록</button></a></center>
 </c:otherwise>
 
 

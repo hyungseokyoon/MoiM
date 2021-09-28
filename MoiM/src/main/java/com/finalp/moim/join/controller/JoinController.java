@@ -4,9 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +19,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.finalp.moim.join.model.service.JoinService;
 import com.finalp.moim.join.model.vo.Join;
+import com.finalp.moim.join.model.vo.SearchJoin;
+
+
 
 @Controller
 public class JoinController {
@@ -108,4 +116,26 @@ public class JoinController {
 			}
 		}
 	
+		@RequestMapping(value = "searchjoin.do")
+		@ResponseBody
+		public String searchJoinMethod(HttpServletRequest request, HttpServletResponse response, @RequestParam("team_num") int team_num, @RequestParam("user_no") int user_no) {
+		
+			
+			Map<String, Object> data = new HashMap<String, Object>();
+			JSONObject sendJson = new JSONObject();
+		
+			
+			SearchJoin sj = new SearchJoin(team_num, user_no);
+			
+			int checkJoin = joinService.selectTeamJoin(sj);
+			int checkTeam = joinService.selectTeamMember(sj);
+			
+			data.put("checkJoin", checkJoin);
+			data.put("checkTeam", checkTeam);
+			
+			sendJson = new JSONObject(data);
+			
+			return sendJson.toJSONString();
+		
+		}
 }
