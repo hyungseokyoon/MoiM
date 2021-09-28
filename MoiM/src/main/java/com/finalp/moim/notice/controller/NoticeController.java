@@ -86,7 +86,7 @@ public class NoticeController {
 	// 공지사항 상세보기 페이지 이동
 	@RequestMapping("ndetail.do")
 	public ModelAndView noticeDetailMethod(ModelAndView mv, @RequestParam("notice_no") int notice_no, 
-			@RequestParam("page") int page) {
+			@RequestParam(name="page", required = false) int page) {
 		Notice notice = noticeService.selectNotice(notice_no);
 		
 		if(notice != null) {
