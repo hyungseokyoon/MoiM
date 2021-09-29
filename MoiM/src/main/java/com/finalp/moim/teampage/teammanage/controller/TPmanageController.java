@@ -263,12 +263,24 @@ public class TPmanageController {
 	}
 	
 	@RequestMapping(value="tmrankupdate.do", method=RequestMethod.POST)
-	public String updateTeamMemberRank(HttpSession session, SessionStatus status, TeamMember teammember, Model model) {
+	public String updateTeamMemberRank(HttpSession session, SessionStatus status, TeamMember teammember, @RequestParam("user_nn") String user_nn, Model model) {
 		int team_num = (int) session.getAttribute("team_num");
 		TeamMember teamleader = tpmanageService.selectTeamLeader(team_num);
+		ArrayList<TeamMember> tmlist = tpmanageService.selectTeamMemberNormalList(team_num);
 		tpmanageService.updateTeamMemberRankDown(teamleader);
 		
 		if(tpmanageService.updateTeamMemberRankUp(teammember) > 0) {
+			int alertresult = 0;
+			
+			for(TeamMember tm : tmlist) {
+				Alert alert = new Alert();
+				alert.setTeam_member_no(tm.getTeam_member_no());
+				alert.setTeam_num(team_num);
+				alert.setAlert_content("팀장님이 " + user_nn + " 님에게 팀장을 넘겼습니다.");
+				tpmainService.insertAlertTLupdate(alert);
+				alertresult++;
+			}
+			
 			model.addAttribute("team_num", team_num);
 			return "redirect:moveTPindex.do";
 		} else {

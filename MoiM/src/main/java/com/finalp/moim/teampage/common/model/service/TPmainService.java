@@ -16,4 +16,5 @@ public interface TPmainService {
 	int insertAlertTMquit(Alert alert);
 	int insertAlertTMdelete(Alert alert);
 	int deleteTeamQuit(int team_member_no);
+	int insertAlertTLupdate(Alert alert);
 }

@@ -60,6 +60,7 @@ public class TPmainController {
 		teammember = tpmanageService.selectUserNoTeamMember(teammember);
 		ArrayList<Alert> alertlist = tpmainService.selectAlertList(teammember.getTeam_member_no());
 		ArrayList<TeamDaily> tdlist = tpteamdailyService.selectTeamDailyList(team_num);
+		TeamMember teamleader = tpmanageService.selectTeamLeader(team_num);
 		
 		
 		int inprogress = 0;
@@ -92,6 +93,7 @@ public class TPmainController {
 			model.addAttribute("planned", planned);
 			model.addAttribute("inprogress", inprogress);
 			model.addAttribute("complete", complete);
+			model.addAttribute("teamleader", teamleader);
 			return "teampage/TPindex";
 		} else {
 			model.addAttribute("message", team + "팀 정보 조회 실패.");

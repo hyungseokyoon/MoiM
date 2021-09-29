@@ -193,8 +193,14 @@
 		                                            <img class="form-control card-img-top w-100" src="${ pageContext.servletContext.contextPath }/resources/img/pic.jpg" alt="courses">
 		                                            </c:if>
 		                                            <c:if test="${ !empty team.team_rename_image }">
-		                                            <img class="form-control card-img-top w-100" src="${ pageContext.servletContext.contextPath }/resources/recruit_files/${ rc.team_rename_image }" alt="courses">
+		                                            <img class="form-control card-img-top w-100" src="${ pageContext.servletContext.contextPath }/resources/team_page/team_images/${ team.team_rename_image }" alt="courses">
 		                                            </c:if>
+		                                        </div>
+		                                    </div>
+		                                	<div class="col-sm-12">
+		                                        <div class="form-group">
+		                                            <label>팀 리더</label>
+		                                            <input class="form-control" type="text" name="team_leader_user_nn" value="${ teamleader.userVO.user_nn }" readonly>
 		                                        </div>
 		                                    </div>
 		                                	<div class="col-sm-12">
@@ -295,18 +301,18 @@
                                     <a href="#" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fa fa-window-maximize"></i></a>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <table class="table table-hover table-vcenter text-nowrap table_custom border-style list">
+                            <div class="table-responsive" style="height: 210px;">
+                                <table class="table table-hover table-vcenter text-nowrap table_custom border-style list" style="table-layout: fixed">
 	                                <thead>
 	                                    <tr>
-	                                        <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">파일 이름</font></font></th>
-	                                        <th style="width: 16.66%;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">업로더</font></font></th>
+	                                        <th style="width: 75%;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">파일 이름</font></font></th>
+	                                        <th style="width: 25%;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">업로더</font></font></th>
 	                                    </tr>
 	                                </thead>
 	                                <tbody>
 	                                	<c:forEach items="${ filerecentlist }" var="filerecentlist">
 		                                    <tr>
-		                                        <td>
+		                                        <td style="text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">
 		                                        	<c:url value="tfdown.do" var="tfdown">
 					                            		<c:param name="ofile" value="${ filerecentlist.file_originalfilename }" />
 					                            		<c:param name="rfile" value="${ filerecentlist.file_renamefilename }" />
