@@ -94,17 +94,33 @@
 							<div class="d-flex align-items-center px-2">
 	                            <div class="icon">
 						        	<c:set var="filename" value="${ f.file_originalfilename }" />
-						        	<c:if test="${ filename.substring(filename.lastIndexOf('.') + 1) eq 'txt' }">
-						            	<i class="fa fa-folder text-success"></i>
+						        	<c:set var="filetype" value="${ filename.substring(filename.lastIndexOf('.') + 1) }" />
+						        	<c:if test="${ filetype eq 'pptx' }">
+						            	<i class="fa fa-file-powerpoint-o"></i>
 						            </c:if>
-						            <c:if test="${ filename.substring(filename.lastIndexOf('.') + 1) eq 'word' }">
-						            	<i class="fa fa-file-word-o text-primary"></i>
+						            <c:if test="${ filetype eq 'pdf' }">
+						            	<i class="fa fa-file-pdf-o"></i>
 						            </c:if>
-						            <c:if test="${ filename.substring(filename.lastIndexOf('.') + 1) eq 'pdf' }">
-						            	<i class="fa fa-file-pdf-o text-danger"></i>
+						            <c:if test="${ filetype eq 'xlsx' }">
+						            	<i class="fa fa-file-excel-o"></i>
 						            </c:if>
-						            <c:if test="${ filename.substring(filename.lastIndexOf('.') + 1) eq 'png' }">
-						            	<i class="fa fa-file-pdf-o text-danger"></i>
+						            <c:if test="${ filetype eq 'jpeg' or filetype eq 'png' or filetype eq 'gif' or filetype eq 'jpg' }">
+						            	<i class="fa fa-file-image-o"></i>
+						            </c:if>
+						            <c:if test="${ filetype eq 'doc' or filetype eq 'docx' }">
+						            	<i class="fa fa-file-word-o"></i>
+						            </c:if>
+						            <c:if test="${ filetype eq 'mp4' or filetype eq 'avi' }">
+						            	<i class="fa fa-file-video-o"></i>
+						            </c:if>
+						            <c:if test="${ filetype eq 'zip' or filetype eq 'egg' }">
+						            	<i class="fa fa-file-archive-o"></i>
+						            </c:if>
+						            <c:if test="${ filetype eq 'txt' }">
+						            	<i class="fa fa-file-text-o"></i>
+						            </c:if>
+						            <c:if test="${ filetype ne 'pptx' and filetype ne 'pdf' and filetype ne 'xlsx' and filetype ne 'jpeg' and filetype ne 'png' and filetype ne 'gif' and filetype ne 'doc' and filetype ne 'docx' and filetype ne 'mp4' and filetype ne 'avi' and filetype ne 'zip' and filetype ne 'egg' and filetype ne 'txt' and filetype ne 'jpg' }">
+						            	<i class="fa fa-file"></i>
 						            </c:if>
 						        </div>
 	                            <div>
