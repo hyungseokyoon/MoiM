@@ -159,7 +159,7 @@
 								        		<input type="hidden" name="file_num" value="${ f.file_num }">
 								        		<input type="hidden" name="file_renamefilename" value="${ f.file_renamefilename }">
 									          	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									          	<button type="submit" class="btn btn-primary">탈퇴</button>
+									          	<button type="submit" class="btn btn-primary">삭제</button>
 		                            		</form>
 								        </div>
 							    	</div>
