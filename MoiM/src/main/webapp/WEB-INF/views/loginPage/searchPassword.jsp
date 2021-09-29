@@ -11,19 +11,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
     <!-- Google fonts - Poppins-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
     <!-- Lightbox-->
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/vendor/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="vendor/lightbox2/css/lightbox.css">
     <!-- Custom font icons-->
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/fontastic.css">
+    <link rel="stylesheet" href="css/fontastic.css">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/custom.css">
+    <link rel="stylesheet" href="css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/favicon.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
@@ -88,12 +88,12 @@
               
               <div class="form-group mb-4">
                 <label>Phone</label>
-                <input type="text" name="phone" id="phone" placeholder="01012345678" class="form-control">
+                <input type="text" name="phone" placeholder="01012345678" class="form-control">
               </div>
               
                   <div class="form-group mb-4">
                 <label>Email</label>
-                <input type="text" name="email" id="email" placeholder="email@company.com" class="form-control">
+                <input type="text" name="email" placeholder="email@company.com" class="form-control">
               </div>
               
               <input type="submit" value="확인" class="btn btn-primary">
