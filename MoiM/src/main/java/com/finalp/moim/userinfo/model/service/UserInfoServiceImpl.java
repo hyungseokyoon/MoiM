@@ -2,6 +2,8 @@ package com.finalp.moim.userinfo.model.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +25,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public int insertUserInfo(UserInfo userInfo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return userinfoDao.insertUserInfo(userInfo);
 	}
 
 	@Override
@@ -122,4 +123,25 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public ArrayList<UserInfo> selectUserList() {
 		return userinfoDao.selectUserList();
 	}
+
+	@Override
+	public UserInfo searchId1(UserInfo userinfo) {
+		return userinfoDao.searchId1(userinfo);
+	}
+
+	@Override
+	public UserInfo searchId2(UserInfo userinfo) {
+		return userinfoDao.searchId2(userinfo);
+	}
+
+	@Override
+	public UserInfo searchPwd(UserInfo userinfo) {
+		return userinfoDao.searchPwd(userinfo.getUser_id());
+	}
+
+	@Override
+	public int updatePwd(UserInfo userinfo) {
+		return userinfoDao.updateUserInfo(userinfo);
+	}
+
 }

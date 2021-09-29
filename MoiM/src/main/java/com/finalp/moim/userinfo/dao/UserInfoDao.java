@@ -6,6 +6,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.finalp.moim.userinfo.model.vo.UserInfo;
 
@@ -24,6 +25,9 @@ public class UserInfoDao {
 	public ArrayList<UserInfo> selectUserList() {
 		List<UserInfo> list = session.selectList("userinfoMapper.selectUserList");
 		return (ArrayList<UserInfo>) list;
+	}
+	public int insertUserInfo(UserInfo userInfo) {
+		return session.insert("userinfoMapper.insertUserInfo", userInfo);
 	}
 
 	public int selectListCount() {
@@ -46,11 +50,11 @@ public class UserInfoDao {
 		List<UserInfo> list = null;
 		
 		if(category_no == 1) {
-			session.selectList("userinfoMapper.searchUserName", keyword);
+			list = session.selectList("userinfoMapper.searchUserName", keyword);
 		} else if(category_no == 2) {
-			session.selectList("userinfoMapper.searchUserNickname", keyword);
+			list = session.selectList("userinfoMapper.searchUserNickname", keyword);
 		} else if(category_no == 3) {
-			session.selectList("userinfoMapper.searchUserEmail", keyword);
+			list = session.selectList("userinfoMapper.searchUserEmail", keyword);
 		}
 
 		return (ArrayList<UserInfo>) list;
@@ -60,14 +64,30 @@ public class UserInfoDao {
 		return session.delete("userinfoMapper.deleteUserAdmin", user_no);
 	};
 	
-	public int selectCheckId(String userid) {
-		return session.selectOne("userinfoMapper.selectCheckId", userid);
+	public int selectCheckId(String user_id) {
+		return session.selectOne("userinfoMapper.selectCheckId", user_id);
 	}
-	public int selectCheckNn(String usernn) {
-		return session.selectOne("userinfoMapper.selectCheckNn", usernn);
+	public int selectCheckNn(String user_nn) {
+		return session.selectOne("userinfoMapper.selectCheckNn", user_nn);
+	}
+	public UserInfo searchId1(UserInfo userinfo) {
+		return session.selectOne("userinfoMapper.searchId1", userinfo);
+	}
+	public UserInfo searchId2(UserInfo userinfo) {
+		return session.selectOne("userinfoMapper.searchId2", userinfo);
+	}
+	public UserInfo searchPwd(String userinfo) {
+		return session.selectOne("userinfoMapper.searchPwd",userinfo);
+	}
+	@Transactional
+	public int updatePwd(UserInfo UserInfo) {
+		return session.update("userinfoMapper.updatePwd", updateUserInfo(UserInfo));
 	}
 
 	public int updateUserInfo(UserInfo userInfo) {
 		return session.update("userinfoMapper.updateUserInfo", userInfo);
 	}
+	
+	
+	
 }

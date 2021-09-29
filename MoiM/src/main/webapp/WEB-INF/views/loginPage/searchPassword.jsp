@@ -78,11 +78,12 @@
                   </h4>
                 </div>
                 <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion" class="collapse show">
+                <form action="rpwPage.do" method="post">
                   <div class="card-body">가입시 등록한 휴대폰 번호와 이메일을 모두 입력해주세요.</div>
                   
                   <div class="form-group mb-4">
                 <label>Id</label>
-                <input type="text" name="userid" id="userid" placeholder="moim@company.com" class="form-control">
+                <input type="text" name="user_id" id="user_id" placeholder="moim@company.com" class="form-control">
               </div>
               
               <div class="form-group mb-4">
@@ -94,7 +95,9 @@
                 <label>Email</label>
                 <input type="text" name="email" id="email" placeholder="email@company.com" class="form-control">
               </div>
-                  
+              
+              <input type="submit" value="확인" class="btn btn-primary">
+                </form>
                 </div>
               </div>
               </div>
@@ -106,10 +109,10 @@
     <!-- Footer -->
 	<c:import url="/WEB-INF/views/common/footer.jsp" />
     <!-- JavaScript files-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="vendor/lightbox2/js/lightbox.js"></script>
-    <script src="js/front.js"></script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/vendor/jquery/jquery.min.js"></script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/vendor/lightbox2/js/lightbox.js"></script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/js/front.js"></script>
   </body>
 </html>

@@ -20,6 +20,8 @@
 		<result column="login_ok" property="login_ok"/>
 		<result column="admin" property="admin"/>
 	</resultMap>
+	
+	
 
 	<!-- 비밀번호 암호화를 사용하는 로그인 -->
 	<select id="selectLogin" parameterType="UserInfo" resultMap="resultUser">
@@ -78,13 +80,42 @@
 
 	<!-- id 중복체크 -->
 	<select id="selectCheckId" parameterType="String" resultType="int" >
-		select count(*) from user_info where user_id = #{userid}
+		select count(*) from user_info where user_id = #{user_id}
 	</select>
 	
 	<!-- nn 중복체크 -->
 	<select id="selectCheckNn" parameterType="String" resultType="int" >
-		select count(*) from user_info where user_nn = #{usernn}
+		select count(*) from user_info where user_nn = #{user_nn}
 	</select>
+	
+	<!-- Search Id -->
+	<select id="searchId1" parameterType="UserInfo" resultMap="resultUser">
+		select * from user_info where user_name=#{user_name} and phone=#{phone}
+	</select>
+	<select id="searchId2" parameterType="UserInfo" resultMap="resultUser">
+		select * from user_info where user_name=#{user_name} and email=#{email}
+	</select>
+	
+	<!-- Search Pwd -->
+	<select id="searchPwd" parameterType="String" resultMap="resultUser">
+		select * from user_info where user_id=#{user_id} and phone=#{phone} and email=#{email}
+	</select>
+	
+	<!-- update Pwd -->
+	<update id="updatePwd" parameterType="String">
+		update user_info set user_pwd = #{ user_pwd } where user_id = #{user_id}
+	</update>
+	
+	<!-- 회원가입 -->
+	<insert id="insertUserInfo" parameterType="UserInfo">
+		insert into user_info
+		(user_no, user_id, user_nn, user_name, 
+		user_pwd, age, gender, email, phone, address, interest,
+		login_ok, admin)
+		values ((select max(user_no) + 1 from user_info), #{ user_id }, #{ user_nn }, #{ user_name }, 
+		#{ user_pwd }, #{ age }, #{ gender }, #{ email }, #{ phone }, #{ address }, 
+		#{ interest }, default, default)
+	</insert>
 	
 	<update id="updateUserInfo" parameterType="UserInfo">
 		update user_info

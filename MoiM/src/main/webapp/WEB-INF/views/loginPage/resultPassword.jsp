@@ -11,29 +11,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/vendor/font-awesome/css/font-awesome.min.css">
     <!-- Google fonts - Poppins-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
     <!-- Lightbox-->
-    <link rel="stylesheet" href="vendor/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/vendor/lightbox2/css/lightbox.css">
     <!-- Custom font icons-->
-    <link rel="stylesheet" href="css/fontastic.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/fontastic.css">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/favicon.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script>
+    function validate(){
+		//유효성 검사 코드 작성함
+		//서버 컨트롤러로 전송할 값들이 요구한 조건을 모두 만족하였는지 검사함
+
+		//암호와 암호 확인이 일치하지 않는지 확인함
+		var pwdValue1 = document.getElementById("user_pwd").value;
+		var pwdValue2 = document.getElementById("user_pwd2").value;
+
+		if(pwdValue1 !== pwdValue2){
+			alert("비밀번호가 일치하지 않습니다.");
+			document.getElementById("user_pwd").select();
+			return false;  //전송 취소함
+		}
+		alert("비밀번호가 변경되었습니다. 다시 로그인 해주세요.");
+		return true;
+	}
+    </script>
   </head>
   <body>
   
     <!-- Menubar -->
-	<c:import url="/WEB-INF/views/common/excmenubar.jsp" />
+	<c:import url="/WEB-INF/views/common/enrollmenubar.jsp" />
 	<hr>
     
     <!-- Hero Section-->
@@ -60,39 +78,52 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
           
-            <!-- 비 로그인시  -->
-            <c:if test="${ empty loginMember }">
+            <!-- 정보가 일치하지 않을 때  -->
+            <c:if test="${ check == 1 }">
             	<h2 class="mb-3">비밀번호 새로 설정하기</h2>
             	<ol class="mb-5 text-left">
             	</ol>
             	<blockquote class="blockquote mb-5 text-left">
             	입력하신 정보를 다시 한 번 확인해주세요
             	</blockquote>
-            	<a href="${ currentPage }" type="button" class="btn btn-primary">Return</a>
+            	<a href="spw.do" type="button" class="btn btn-primary">Return</a>
             	<br><br>
             </c:if>
             
-            <!-- 로그인시 -->
-            <c:if test="${ !empty loginMember }">
+            <!-- 일치할 때 -->
+            <c:if test="${check == 0 }">
             	<h2 class="mb-3">비밀번호 새로 설정하기</h2>
             	<ol class="mb-5 text-left">
               		<li>전에 쓰던 비밀번호와 겹치지 않게 주의해주세요.</li>
               		<li>최소 8글자 이상부터 비밀번호 설정이 가능합니다.</li>
             	</ol>
             	<blockquote class="blockquote mb-5 text-left">
-            	새로 쓸 비밀번호
-            	새로 쓸 비밀번호 재 확인
+            	<form action="rpw.do" method="POST" onsubmit="return validate();">
+            	<input type="hidden" name="user_no" value="${ result.user_no }">
+            	<div class="form-group mb-4">
+                	<label>새로 쓸 비밀번호</label>
+                	<input type="text" name="user_pwd" id="user_pwd" placeholder="비밀번호" class="form-control">
+              	</div>
+              	<div class="form-group mb-4">
+                	<label>새로 쓸 비밀번호 재 확인</label>
+                	<input type="text" name="user_pwd2" id="user_pwd2" placeholder="비밀번호 확인" class="form-control">
+              	</div>
+              	<input type="submit" value="확인" class="btn btn-primary">
+              	</form>
             	</blockquote>
             	
-            	비밀번호 일치하거나 사용 가능 할 시
+              	
+              	<br><br>
+              	
+            	<%-- <!-- 비밀번호 일치하거나 사용 가능 할 시 -->
             	<c:if test="${ empty password }">
           			<a onClick = "alert('로그인 후 이용해주세요')" data-toggle="modal" data-target="#login"  class="btn btn-primary">확인</a>
           		</c:if>
-          		비밀번호 일치하지 않거나 사용 불가능 할 시
+          		<!-- 비밀번호 일치하지 않거나 사용 불가능 할 시  -->
           		<c:if test="${ password }">
           			<a onClick = "alert('새 비밀번호를 다시 확인해주세요')" data-toggle="modal" class="btn btn-primary">확인</a>
           		</c:if>
-            	<br><br>
+            	<br><br> --%>
             </c:if>
             
           </div>
@@ -104,10 +135,10 @@
     <!-- Footer -->
 	<c:import url="/WEB-INF/views/common/footer.jsp" />
     <!-- JavaScript files-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="vendor/lightbox2/js/lightbox.js"></script>
-    <script src="js/front.js"></script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/vendor/jquery/jquery.min.js"></script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/vendor/lightbox2/js/lightbox.js"></script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/js/front.js"></script>
   </body>
 </html>

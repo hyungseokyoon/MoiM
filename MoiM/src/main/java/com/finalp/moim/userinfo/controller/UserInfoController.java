@@ -60,11 +60,11 @@ public class UserInfoController {
 	//아이디 중복체크 확인을 위한 ajax 요청 처리용 메소드
 		@RequestMapping(value="idchk.do", method=RequestMethod.POST)
 		public void idCheckMethod(
-				@RequestParam("userid") String userid, 
+				@RequestParam("user_id") String user_id, 
 				HttpServletResponse response) throws IOException {
 			//String userid = request.getParameter("userid");
 				
-			int idcount = userinfoService.selectCheckId(userid);
+			int idcount = userinfoService.selectCheckId(user_id);
 				
 			String returnValue = null;
 			if(idcount == 0) {
@@ -85,7 +85,7 @@ public class UserInfoController {
 		//닉네임 중복체크 확인을 위한 ajax 요청 처리용 메소드
 		@RequestMapping(value="nnchk.do", method=RequestMethod.POST)
 		public void nnCheckMethod(
-				@RequestParam("usernn") String user_nn, 
+				@RequestParam("user_nn") String user_nn, 
 				HttpServletResponse response) throws IOException {
 			//String usernn = request.getParameter("usernn");
 				
@@ -129,18 +129,18 @@ public class UserInfoController {
 	@RequestMapping("enrollPage.do")
 	public String moveEnrollPage() {
 		return "loginPage/enrollPage";
-	}	
-		
+	}
+	
 	@RequestMapping(value="enroll.do", method=RequestMethod.POST)
 	public String moveUserInsert(UserInfo userInfo, Model model) {
 		logger.info("enroll.do : " + userInfo);
 		
-		
+		System.out.println(userInfo.getUser_pwd());
 		//패스워드 암호화 처리
 		userInfo.setUser_pwd(bcryptPasswordEncoder.encode(userInfo.getUser_pwd()));
 				
 			if(userinfoService.insertUserInfo(userInfo) > 0) {
-					return "common/main";  
+					return "redirect: main.do";  
 			}else {
 				model.addAttribute("message", "회원 가입 실패!");
 				return "common/error";
@@ -151,21 +151,102 @@ public class UserInfoController {
 	public String moveSearchId() {
 		return "loginPage/searchId"; 
 	}
+	
+	//아이디 찾기 결과 1
+	@RequestMapping(value = "rid1.do", method = RequestMethod.POST)
+	public ModelAndView moveResultId(ModelAndView mv, UserInfo userinfo) {
+		UserInfo result = userinfoService.searchId1(userinfo);
+		
+		if(result != null) { 
+			mv.addObject("check", 0);
+			mv.addObject("result", result);
+			mv.setViewName("loginPage/resultId");
+		} else { 
+			mv.addObject("check", 1);
+			mv.setViewName("loginPage/resultId");
+		}
+		
+		return mv;
+	}
+	
+	//아이디 찾기 결과 2
+	@RequestMapping(value = "rid2.do", method = RequestMethod.POST)
+	public ModelAndView moveResultId2(ModelAndView mv, UserInfo userinfo) {
+		UserInfo result = userinfoService.searchId2(userinfo);
+		
+		if(result != null) { 
+			mv.addObject("check", 0);
+			mv.addObject("result", result);
+			mv.setViewName("loginPage/resultId");
+		} else { 
+			mv.addObject("check", 1);
+			mv.setViewName("loginPage/resultId");
+		}
+		
+		return mv;
+	}
+	
+	
 	//비밀번호 찾기
 	@RequestMapping("spw.do")
 	public String moveSearchPassword() {
 		return "loginPage/searchPassword";
 	}
-	//아이디 찾기 결과
-	@RequestMapping("rid.do")
-	public String moveResultId() {
-		return "loginPage/resultId";
+	
+	//비밀번호 찾기결과
+	@RequestMapping(value = "rpwPage.do", method = RequestMethod.POST)
+	public ModelAndView moveResultPassword(ModelAndView mv, UserInfo userinfo) {
+		ArrayList<UserInfo> originUser = userinfoService.selectUserSearch(3, userinfo.getEmail());
+		System.out.println(originUser);
+		System.out.println(originUser.get(0));
+		UserInfo result = originUser.get(0);
+		
+		if(result != null) { 
+			mv.addObject("check", 0);
+			mv.addObject("result", result);
+			mv.setViewName("loginPage/resultPassword");
+		} else { 
+			mv.addObject("check", 1);
+			mv.setViewName("loginPage/resultPassword");
+		}
+		
+		return mv;
 	}
 	//비밀번호 재설정
-	@RequestMapping("rpw.do")
-	public String moveResultPassword() {
-		return "loginPage/resultPassword";
+	@RequestMapping(value="rpw.do", method=RequestMethod.POST)
+	public ModelAndView updatePassword(ModelAndView mv, @RequestParam("user_pwd") String user_pwd, 
+			@RequestParam("user_no") int user_no) {
+		logger.info("rpw.do : " + user_pwd);
+		
+		System.out.println(user_pwd);
+		UserInfo before = userinfoService.selectUser(user_no);
+		UserInfo after = before;
+		if(user_pwd != null && user_pwd.length() > 0) {
+			String originUserPwd = before.getUser_pwd();
+			//기존 암호와 다른 값이면
+			if(!bcryptPasswordEncoder.matches(user_pwd, originUserPwd)) {
+				after.setUser_pwd(bcryptPasswordEncoder.encode(user_pwd));
+			}
+		}
+//		else {
+//			//새로운 암호가 없다면, 원래 암호를 기록함
+//			userInfo.setUser_pwd(user_pwd);
+//		}
+			
+		logger.info("after : " + after);
+		
+		if(userinfoService.updatePwd(after) > 0) {
+//			mv.addObject("message", "비밀번호가 변경되었습니다. 다시 로그인 해주세요.");
+			mv.setViewName("redirect: main.do");
+		}else {
+			mv.addObject("message", before.getUser_id() + "회원 비밀번호 변경 실패!");
+			mv.setViewName("common/error");
+		}	
+		
+		return mv;
 	}
+
+	
 	// 관리자 페이지 - 회원관리 페이지로 이동
 		@RequestMapping("ulistadmin.do")
 		public ModelAndView adminUerListMethod(ModelAndView mv, @RequestParam(name="page", required=false) String page) {

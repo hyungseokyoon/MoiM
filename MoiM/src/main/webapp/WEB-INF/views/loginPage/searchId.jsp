@@ -78,10 +78,11 @@
                   </h4>
                 </div>
                 <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion" class="collapse show">
+                	<form action="rid1.do" method="post">
                   <div class="card-body">가입시 등록한 휴대폰 번호를 입력해주세요.</div>
                   <div class="form-group mb-4">
                 	<label>Name</label>
-                	<input type="text" name="username" placeholder="홍길동" class="form-control">
+                	<input type="text" name="user_name" placeholder="홍길동" class="form-control">
               	  </div>
               	  
               
@@ -92,6 +93,7 @@
               	  </div>
               
               		<input type="submit" value="확인" class="btn btn-primary">
+              		</form>
                 </div>
               </div>
               <!-- question        -->
@@ -102,12 +104,13 @@
                   </h4>
                 </div>
                 <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordion" class="collapse">
+                	<form action="rid2.do" method="post">
                   <div class="card-body">가입시 등록한 이메일을 입력해주세요.</div>
                   
                   
                   <div class="form-group mb-4">
                 	<label>Name</label>
-                	<input type="text" name="username" placeholder="홍길동" class="form-control">
+                	<input type="text" name="user_name" placeholder="홍길동" class="form-control">
               	  </div>
               
               
@@ -116,6 +119,7 @@
                 	<input type="text" name="email" placeholder="email@company.com" class="form-control">
               	  </div>
               	  	<input type="submit" value="확인" class="btn btn-primary">
+              	  	</form>
                 </div>
               </div>
               

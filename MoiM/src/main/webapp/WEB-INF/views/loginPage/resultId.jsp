@@ -11,19 +11,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/vendor/font-awesome/css/font-awesome.min.css">
     <!-- Google fonts - Poppins-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
     <!-- Lightbox-->
-    <link rel="stylesheet" href="vendor/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/vendor/lightbox2/css/lightbox.css">
     <!-- Custom font icons-->
-    <link rel="stylesheet" href="css/fontastic.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/fontastic.css">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/favicon.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
@@ -60,30 +60,31 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
           
-          	<!-- 비 로그인시  -->
-            <c:if test="${ empty loginMember }">
+          	<!-- 일치하지 않을 때  -->
+            <c:if test="${check == 1 }">
             	<h2 class="mb-3">아이디 검색 결과</h2>
             	<ol class="mb-5 text-left">
             	</ol>
             	<blockquote class="blockquote mb-5 text-left">
             	입력하신 정보로 가입 된 아이디가 없습니다
             	</blockquote>
-            	<a href="${ currentPage }" type="button" class="btn btn-primary">Return</a>
-            	<a href="${ enrollPage }" type="button" class="btn btn-primary">Join</a>
+            	<a href="sid.do" type="button" class="btn btn-primary">Return</a>
+            	<a href="enrollPage.do" type="button" class="btn btn-primary">Join</a>
             	<br><br>
             </c:if>
             
-            <!-- 로그인시 -->
-            <c:if test="${ !empty loginMember }">
+            <!-- 결과가 있을 시 -->
+            <c:if test="${check == 0 }">
             	<h2 class="mb-3">아이디 검색 결과</h2>
             	<ol class="mb-5 text-left">
             	</ol>
             	<blockquote class="blockquote mb-5 text-left">
             	아이디 찾기에 성공하였습니다
-            	${ m.userid }
+            	<br><br>
+            	회원님의 아이디는 &nbsp; ${ result.user_id } &nbsp; 입니다.
             	</blockquote>
-            	<a href="${ spw }" type="button" class="btn btn-primary">Search Password</a>
-            	<a href="${ login }" type="button" class="btn btn-primary">Login</a>
+            	<a href="spw.do" type="button" class="btn btn-primary">Search Password</a>
+            	<a data-toggle="modal" data-target="#login" type="button" class="btn btn-primary">Login</a>
             	<br><br>
             </c:if>
           </div>
