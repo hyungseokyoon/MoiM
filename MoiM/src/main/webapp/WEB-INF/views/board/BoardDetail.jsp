@@ -69,10 +69,7 @@
 			    		</c:if>
 					</blockquote>
 					<br>
-					<c:url var="blist" value="blist.do">
-						<c:param name="page" value="${ currentPage }"/>
-					</c:url>
-					<a href="${ blist }" class="btn btn-primary">목록</a>
+					<a href="javascript:history.go(-1);" class="btn btn-primary">목록</a>
 					<c:if test="${ loginMember.admin != 'Y' and loginMember.user_no == board.user_no }">
 						<c:url var="bupdateform" value="bupdateform.do">
 							<c:param name="board_no" value="${ board.board_no }"/>

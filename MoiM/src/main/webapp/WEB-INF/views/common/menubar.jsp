@@ -64,7 +64,7 @@
           	<!-- 로그인 시 : 로그아웃 하기-->
           	<c:if test="${ !empty loginMember }">
           		<a href="mypage.do">${ loginMember.user_name }님</a>
-          		<a href="#" onClick = "javascript:location.href='logout.do';" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Logout </a>
+          		<a href="javascript:location.href='logout.do';" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Logout </a>
           	</c:if>
           </div>
         </div>
