@@ -40,7 +40,7 @@
       <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
 			<a href="./" class="navbar-brand">
-				<img src="${ pageContext.servletContext.contextPath }/resources/img/logo.svg" alt="" class="img-fluid">
+				<img src="${ pageContext.servletContext.contextPath }/resources/img/MoimIcon.png" alt="" class="img-fluid">
 	        </a>
           	<button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
           	aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" 
@@ -64,7 +64,7 @@
           	<!-- 로그인 시 : 로그아웃 하기-->
           	<c:if test="${ !empty loginMember }">
           		<a href="mypage.do">${ loginMember.user_name }님</a>
-          		<a href="#" onClick = "javascript:location.href='logout.do';" data-toggle="modal" data-target="#login" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Logout </a>
+          		<a href="javascript:location.href='logout.do';" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Logout </a>
           	</c:if>
           </div>
         </div>
@@ -120,15 +120,13 @@
             <h1 class="hero-heading mb-0">찾고있는 MoiM이 <br> 있나요 ?</h1>
             <div class="row">
               <div class="col-lg-10">
-                <p class="lead text-muted mt-4 mb-4">관심있는 팀이 있다면, 관련 검색어로 찾아보세요.</p>
+                <p class="lead text-muted mt-4 mb-4">관심있는 팀이 있다면, 구인글에서 찾아보세요.</p>
               </div>
             </div>
-            <form action="#" class="subscription-form">
               <div class="form-group">
-                <input type="search" name="SearchMoiM" placeholder="ex)공모전, 자격증" class="form-control">
-                <button type="submit" class="btn btn-primary">Search MoiM</button>
+ <a href="${ pageContext.servletContext.contextPath }/rclist.do"><button class="btn btn-primary" style="width:450px;">Search MoiM</button></a>
               </div>
-            </form>
+            
           </div>
           <div class="col-lg-6">
           	<img src="${ pageContext.servletContext.contextPath }/resources/img/illustration-hero.svg" alt="..." class="hero-image img-fluid d-none d-lg-block"></div>

@@ -12,7 +12,7 @@
 
 <link rel="icon" href="${ pageContext.servletContext.contextPath }/resources/team_page/images/favicon.ico" type="image/x-icon" />
 
-<title>MoiM : <c:out value="${ team.team_name }" /></title>
+<title>${ sessionScope.team_name }</title>
 
 <!-- Bootstrap Core and vandor -->
 <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/bootstrap/css/bootstrap.min.css" />
@@ -84,7 +84,7 @@
                     </div>
                 </div>
                 <div class="row clearfix row-deck">
-                	<div class="col-xl-8 col-lg-12">
+                	<div class="col-xl-4 col-lg-12">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">공지</h3>
@@ -173,7 +173,7 @@
 							</div>
                         </div>                
                     </div>
-                    <div class="col-xl-4 col-lg-12">
+                    <div class="col-xl-8 col-lg-12">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">팀 정보</h3>
@@ -183,38 +183,69 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label>팀 소개</label>
-                                            <textarea class="form-control" name="team_intro" style="height: 75px;" readonly><c:out value="${ team.team_intro }" /></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label>레 벨</label>
-                                            <input class="form-control" type="text" name="team_level" value="${ team.team_level }" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label>지 역</label>
-                                            <input class="form-control" type="text" name="team_local" value="${ team.team_local }" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label>활동요일</label>
-                                            <input class="form-control" type="text" name="team_act_day" value="${ team.team_act_day }" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label>활동시간</label>
-                                            <input class="form-control" type="text" name="team_act_time" value=""${ team.team_act_time } readonly>
-                                        </div>
-                                    </div>
-                                </div>
+                            	<div class="row clearfix">
+	                    			<div class="col-md-6">
+		                                <div class="row">
+		                                	<div class="col-sm-12">
+		                                        <div class="form-group">
+		                                            <label>메인 사진</label>
+		                                            <c:if test="${ empty team.team_rename_image }">
+		                                            <img class="form-control card-img-top w-100" src="${ pageContext.servletContext.contextPath }/resources/img/pic.jpg" alt="courses">
+		                                            </c:if>
+		                                            <c:if test="${ !empty team.team_rename_image }">
+		                                            <img class="form-control card-img-top w-100" src="${ pageContext.servletContext.contextPath }/resources/recruit_files/${ rc.team_rename_image }" alt="courses">
+		                                            </c:if>
+		                                        </div>
+		                                    </div>
+		                                	<div class="col-sm-12">
+		                                        <div class="form-group">
+		                                            <label>리더 소개</label>
+		                                            <textarea class="form-control" name="team_leader_intro" style="height: 75px;" readonly><c:out value="${ team.team_leader_intro }" /></textarea>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                            <div class="col-md-6">
+		                                <div class="row">
+		                                    <div class="col-sm-12">
+		                                        <div class="form-group">
+		                                            <label>팀 소개</label>
+		                                            <textarea class="form-control" name="team_intro" style="height: 110px;" readonly><c:out value="${ team.team_intro }" /></textarea>
+		                                        </div>
+		                                    </div>
+		                                    <div class="col-sm-6">
+		                                        <div class="form-group">
+		                                            <label>레 벨</label>
+		                                            <input class="form-control" type="text" name="team_level" value="${ team.team_level }" readonly>
+		                                        </div>
+		                                    </div>
+		                                    <div class="col-sm-6">
+		                                        <div class="form-group">
+		                                            <label>지 역</label>
+		                                            <input class="form-control" type="text" name="team_local" value="${ team.team_local }" readonly>
+		                                        </div>
+		                                    </div>
+		                                    <div class="col-sm-6">
+		                                        <div class="form-group">
+		                                            <label>활동요일</label>
+		                                            <input class="form-control" type="text" name="team_act_day" value="${ team.team_act_day }" readonly>
+		                                        </div>
+		                                    </div>
+		                                    <div class="col-sm-6">
+		                                        <div class="form-group">
+		                                            <label>활동비</label>
+		                                            <input class="form-control" type="text" name="team_fee" value="${ team.team_fee }" readonly>
+		                                        </div>
+		                                    </div>
+		                                    <div class="col-sm-12">
+		                                        <div class="form-group">
+		                                            <label>활동시간</label>
+		                                            <input class="form-control" type="text" name="team_act_time" value="${ team.team_act_time }" readonly>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
                             </div>
                         </div>
                     </div>

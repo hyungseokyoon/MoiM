@@ -48,7 +48,7 @@
 						        <thead>
 						            <tr style="text-align:center;">
 						            	<th data-sortable="" style="width: 100px; text-align:center;">번호</th>
-						            	<th data-sortable="" style="width: 100px; text-align:center;">분류</th>
+						            	<th data-sortable="" style="width: 170px; text-align:center;">분류</th>
 						            	<th data-sortable="" style="text-align:center;">글제목</th>
 						            	<th data-sortable="" style="width: 100px; text-align:center;">작성자</th>
 						            	<th data-sortable="" style="width: 150px; text-align:center;">작성날짜</th>
@@ -188,10 +188,10 @@
 			    					</c:url>
 			    					<li class="page-item pager"><a href="${ last }" class="page-link">››</a></li>
 			    				</c:if>
-			    				<c:if test="${ !empty loginMember }">
-			    					
-			    					<li><a href="${ rvwirte }" class="btn btn-primary">글작성</a></li>
-			    				</c:if>
+			    				
+			    					<c:url var="out" value="/rvlist.do"/>
+			    					<li><a href="${ out }" class="btn btn-primary">목록</a></li>
+			    				
 			    			</ul>
 			    			
 			    			</c:if>

@@ -89,7 +89,7 @@
 						        <thead>
 						            <tr>
 						            	<th data-sortable="" style="width: 100px; text-align:center;"><a href="#" class="dataTable-sorter">번호</a></th>
-						            	<th data-sortable="" style="width: 100px; text-align:center;"><a href="#" class="dataTable-sorter">분류</a></th>
+						            	<th data-sortable="" style="width: 170px; text-align:center;"><a href="#" class="dataTable-sorter">분류</a></th>
 						            	<th data-sortable="" style="text-align:center;"><a href="#" class="dataTable-sorter" >제목</a></th>
 						            	<th data-sortable="" style="width: 200px; text-align:center;"><a href="#" class="dataTable-sorter">작성날짜</a></th>
 						            	<th data-sortable="" style="width: 150px; text-align:center;"><a href="#" class="dataTable-sorter">조회수</a></th>

@@ -35,13 +35,12 @@
 		//서버 컨트롤러로 전송할 값들이 요구한 조건을 모두 만족하였는지 검사함
 
 		//암호와 암호 확인이 일치하지 않는지 확인함
-
 		var pwdValue1 = document.getElementById("user_pwd").value;
 		var pwdValue2 = document.getElementById("user_pwd2").value;
 
 		if(pwdValue1 !== pwdValue2){
 			alert("비밀번호가 일치하지 않습니다.");
-			document.getElementById("userpwd").select();
+			document.getElementById("user_pwd").select();
 			return false;  //전송 취소함
 		}
 
@@ -102,7 +101,7 @@
   <body>
   
     <!-- Menubar -->
-	<c:import url="/WEB-INF/views/common/excmenubar.jsp" />
+	<c:import url="/WEB-INF/views/common/enrollmenubar.jsp" />
 	<hr>
     
     <!-- Hero Section-->
@@ -166,7 +165,7 @@
               <!-- 비밀번호 -->
               <div class="form-group mb-4">
                 <label>Password<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="userpwd" id="userpwd" placeholder="비밀번호" class="form-control">
+                <input type="text" name="user_pwd" id="user_pwd" placeholder="비밀번호" class="form-control">
               </div>
               <div class="form-group mb-4">
                 <label>Password confirm<sup class="text-primary">&#10033;</sup></label>
@@ -234,10 +233,7 @@
 					</table>
 			  </div>
               <div class="form-group">
-                <input type="submit" value="Sign Up" class="btn btn-primary">
-                <c:if test="${ !empty loginMember }">
-					<a onClick = "alert('회원가입에 성공하였습니다. 로그인 해주세요')" data-toggle="modal" data-target="#login"  class="btn btn-primary">Create MoiM</a>
-				</c:if>
+                <input onClick = "alert('회원가입에 성공하였습니다. 로그인 해주세요')" type="submit" value="Sign Up" class="btn btn-primary">
                 <input type="reset" value="return" class="btn btn-primary">
               </div>
             </form>

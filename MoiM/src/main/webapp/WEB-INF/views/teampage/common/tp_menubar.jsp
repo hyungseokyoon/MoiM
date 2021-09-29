@@ -92,7 +92,7 @@
         </div>
     </div>
 	<div id="left-sidebar" class="sidebar ">
-        <h5 class="brand-name">${ team.team_name }<a href="javascript:void(0)" class="menu_option float-right"><i class="fa fa-th-large fa-2" data-toggle="tooltip" data-placement="left" title="Grid & List Toggle"></i></a></h5>
+        <h5 class="brand-name">${ sessionScope.team_name }<a href="javascript:void(0)" class="menu_option float-right"><i class="fa fa-th-large fa-2" data-toggle="tooltip" data-placement="left" title="Grid & List Toggle"></i></a></h5>
         <nav id="left-sidebar-nav" class="sidebar-nav">
             <ul class="metismenu">
                 <li class="g_heading">팀 기능</li>
@@ -115,7 +115,11 @@
                     </c:url>
                 	<a href="${ moveTPcalendar }"><i class="fa fa-calendar-check-o"></i><span>일정</span></a>
                 </li>
-                <li><a href="project-ticket.html"><i class="fa fa-list-ul"></i><span>채팅</span></a></li>
+                <li>
+              	    <c:url var="moveChat" value="chat.do">
+                        	<c:param name="team_num" value="${ sessionScope.team_num }"></c:param>
+                    </c:url>
+                <a href="moveDebate.do"><i class="fa fa-list-ul"></i><span>토론</span></a></li>
                 <li><a href="${ pageContext.servletContext.contextPath }/flist.do"><i class="fa fa-file fa-2"></i><span>파일</span></a></li>
 				<li>
                 	<c:url var="moveTPdaily" value="moveTPdaily.do">

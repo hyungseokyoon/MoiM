@@ -35,10 +35,7 @@
 						<h3 class="mb-5">첨부파일 : </h3>
 					</c:if>
 					<br>
-					<c:url var="nlist" value="nlist.do">
-						<c:param name="page" value="${ currentPage }"/>
-					</c:url>
-					<a href="${ nlist }" class="btn btn-primary">목록</a>
+					<a href="javascript:history.go(-1);" class="btn btn-primary">목록</a>
 					<c:if test="${ loginMember.admin == 'Y' }">
 						<c:url var="nupdate" value="nupdateform.do">
 							<c:param name="notice_no" value="${ notice.notice_no }"/>

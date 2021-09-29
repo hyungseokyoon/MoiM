@@ -10,6 +10,61 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
+<script type="text/javascript" src="${ pageContext.servletContext.contextPath }/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+function content(){
+	
+    var content = $("#content1").val();
+    if (content.length > 1000){
+        $("#content1").val(content.substring(0, 1000));
+        $("#length_check").text("최대 1000자까지 입력 가능합니다.");
+       
+    }else {
+    	$("#length_check").text("");
+	
+    }
+}
+
+function content_leader(){
+	
+    var leader = $("#leader").val();
+
+    if (leader.length > 1000){
+        $("#leader").val(leader.substring(0, 1000));
+        $("#length_check_leader").text("최대 1000자까지 입력 가능합니다.");
+        $("#submitform").attr("disabled", true);
+    }else {
+    	$("#length_check_leader").text("");
+		$("#submitform").attr("disabled", false);
+    }
+}
+
+function fileCheck(){
+	
+    var fm = document.form1;
+	var fname = document.getElementById("fileNm").value; //파일의 풀 경로를 fname에 변수에 저장
+	var fext = fname.substr(fname.length-3).toLowerCase();//파일의 풀 경로에서 끝에서 3번째까지의 글자를 잘라 소문자로 변경
+	
+	
+
+	if(fext == 'jpg' || fext == 'png' || fext==''){
+		
+		return true;
+	}else{
+		alert('jpg,png파일만 업로드 가능합니다.')
+		return false;
+	}
+	
+	
+	
+	
+	
+}
+
+
+</script>
+</head>
 <body>
 	<!-- navbar-->
 	<c:import url="/WEB-INF/views/common/menubar.jsp" />
@@ -49,8 +104,9 @@
 			<br>
 		</c:if>
 						<div class="form-group mb-4">
-							<label>메인사진(jpg,png)<sup class="text-primary">✱</sup></label><br>
-							<input type="file" name="upfile">
+							<label>메인사진(jpg,png)<sup class="text-primary">500*250/700*450권장(업로드 하지 않을 시 기본사진으로 올라갑니다.)</sup></label><br>
+							<input type="file" name="upfile" id="fileNm">
+							<div class="check_font" id="file_check"></div>
 						</div>
 						<div class="form-group mb-4">
 							<label>레벨<sup class="text-primary">✱</sup></label> <select
@@ -117,22 +173,22 @@
 						<div class="form-group mb-4">
 							<label>인원<sup class="text-primary">✱</sup></label> <input
 								type="number" name="team_limit" value="${ recruit.team_limit }" min="0"
-								class="numberinput form-control">
+								class="numberinput form-control" required>
 						</div>
 						<div class="form-group mb-4">
 							<label>시간<sup class="text-primary">✱</sup></label> <input
 								type="text" name="team_act_time" placeholder="ex) 14:00~16:00"
-								class="form-control" value="${ recruit.team_act_time }">
+								class="form-control" value="${ recruit.team_act_time }" required>
 						</div>
 						<div class="form-group mb-4">
 							<label>기간(주)<sup class="text-primary">✱</sup></label> <input
 								type="number" name="team_act_week" value="4" min="0"
-								class="numberinput form-control" value="${ recruit.team_act_week }">
+								class="numberinput form-control" value="${ recruit.team_act_week }" required>
 						</div>
 						<div class="form-group mb-4">
 							<label>참여비<sup class="text-primary">✱숫자만입력</sup></label> <input
-								type="text" name="team_fee" placeholder="ex) 10,000" value="${ recruit.team_fee }"
-								class="form-control">
+								type="text" name="team_fee" placeholder="ex) 10,000" value="${ recruit.team_fee }" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+								class="form-control" required>
 						</div>
 
 
@@ -145,15 +201,18 @@
 
 						<div class="form-group mb-4">
 							<label>스터디 소개(1000자이내)<sup class="text-primary">✱</sup></label>
-							<textarea name="team_intro" class="form-control">${ recruit.team_intro }</textarea>
+							<textarea name="team_intro" class="form-control" id="content1" onkeyup="content()" required>${ recruit.team_intro }</textarea>
+						<div class="check_font" id="length_check"></div>
 						</div>
+						<br>
 						<div class="form-group mb-4">
 							<label>리더 소개(1000자이내)<sup class="text-primary">✱</sup></label>
-							<textarea name="team_leader_intro" class="form-control">${ recruit.team_leader_intro }</textarea>
+							<textarea name="team_leader_intro" class="form-control" id="leader" onkeyup="content_leader()" required>${ recruit.team_leader_intro }</textarea>
+						<div class="check_font" id="length_check_leader"></div>
 						</div>
-
+<br>
 						<div class="form-group" align="center">
-							<input type="submit" value="수정하기"
+							<input type="submit" value="수정하기" onclick="return fileCheck()"
 								class="btn btn-primary">
 						</div>
 					</form>
