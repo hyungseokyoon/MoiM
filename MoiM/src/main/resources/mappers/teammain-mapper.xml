@@ -119,4 +119,10 @@
 		       #{ alert_content }, default)
 	</insert>
 	
+	<insert id="insertAlertTLupdate" parameterType="Alert">
+		insert into tb_alert (alert_num, team_member_no, team_num, alert_cate, alert_content, alert_date)
+		values ((select max(alert_num) + 1 from tb_alert), #{ team_member_no }, #{ team_num }, '팀장', 
+		       #{ alert_content }, default)
+	</insert>
+	
 </mapper>

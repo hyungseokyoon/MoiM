@@ -64,5 +64,10 @@ public class TPmainServiceImpl implements TPmainService{
 	public int deleteTeamQuit(int team_member_no) {
 		return tpmainDao.deleteTeamQuit(team_member_no);
 	}
+
+	@Override
+	public int insertAlertTLupdate(Alert alert) {
+		return tpmainDao.insertAlertTLupdate(alert);
+	}
 	
 }

@@ -57,5 +57,9 @@ public class TPmainDao {
 	public int deleteTeamQuit(int team_member_no) {
 		return session.delete("tpmainMapper.deleteTeamQuit", team_member_no);
 	}
+
+	public int insertAlertTLupdate(Alert alert) {
+		return session.insert("tpmainMapper.insertAlertTLupdate", alert);
+	}
 	
 }
