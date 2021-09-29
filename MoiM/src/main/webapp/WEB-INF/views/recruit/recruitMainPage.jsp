@@ -185,7 +185,8 @@
 										<a class="text-muted fs--1 stretched-link text-decoration-none"
 											href="${ rde }"></a>
 										<h6>지역&nbsp;&nbsp;&nbsp;  :&nbsp;&nbsp; ${ rc.team_local }</h6>
-										<h6>기간&nbsp;&nbsp;&nbsp;  :&nbsp;&nbsp; ${ rc.team_act_day }</h6>
+										<h6>기간&nbsp;&nbsp;&nbsp;  :&nbsp;&nbsp; ${ rc.team_act_week }주</h6>
+										<h6>요일&nbsp;&nbsp;&nbsp;  :&nbsp;&nbsp; ${ rc.team_act_day }</h6>
 										<h6>레벨&nbsp;&nbsp;&nbsp;  :&nbsp;&nbsp; ${ rc.team_level }</h6>
 										<h6>참가비 : &nbsp;&nbsp;${ rc.team_fee }원</h6>
 										<h6>인원&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;${ rc.team_limit }명</h6>
