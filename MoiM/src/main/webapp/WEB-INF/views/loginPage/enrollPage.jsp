@@ -35,12 +35,12 @@
 		//서버 컨트롤러로 전송할 값들이 요구한 조건을 모두 만족하였는지 검사함
 
 		//암호와 암호 확인이 일치하지 않는지 확인함
-		var pwdValue = document.getElementById("userpwd").value;
-		var pwdValue2 = document.getElementById("userpwd2").value;
+		var pwdValue1 = document.getElementById("user_pwd").value;
+		var pwdValue2 = document.getElementById("user_pwd2").value;
 
-		if(pwdValue !== pwdValue2){
+		if(pwdValue1 !== pwdValue2){
 			alert("비밀번호가 일치하지 않습니다.");
-			document.getElementById("userpwd").select();
+			document.getElementById("user_pwd").select();
 			return false;  //전송 취소함
 		}
 
@@ -52,15 +52,15 @@
 		$.ajax({
 			url: "idchk.do",
 			type: "POST",
-			data: {userid: $("#userid").val()},
+			data: {user_id: $("#user_id").val()},
 			success: function(data){
 				console.log("success : " + data);
 				if(data == "ok"){
 					alert("사용 가능한 아이디입니다.");
-					$("#userpwd").focus();
+					$("#user_id").focus();
 				}else{
 					alert("이미 사용중인 아이디입니다.\n다시 입력하세요.");
-					$("#userid").select();
+					$("#user_id").select();
 				}
 			},
 			error: function(jqXHR, textstatus, errorthrown){
@@ -75,16 +75,16 @@
 	function dupNnCheck(){
 		$.ajax({
 			url: "nnchk.do",
-			type: "post",
-			data: {userid: $("#usernn").val()},
+			type: "POST",
+			data: {user_nn: $("#user_nn").val()},
 			success: function(data){
 				console.log("success : " + data);
 				if(data == "ok"){
 					alert("사용 가능한 닉네임입니다.");
-					$("#userpwd").focus();
+					$("#user_nn").focus();
 				}else{
 					alert("이미 사용중인 닉네임입니다.\n다시 입력하세요.");
-					$("#usernn").select();
+					$("#user_nn").select();
 				}
 			},
 			error: function(jqXHR, textstatus, errorthrown){
@@ -101,7 +101,7 @@
   <body>
   
     <!-- Menubar -->
-	<c:import url="/WEB-INF/views/common/excmenubar.jsp" />
+	<c:import url="/WEB-INF/views/common/enrollmenubar.jsp" />
 	<hr>
     
     <!-- Hero Section-->
@@ -132,14 +132,14 @@
         </header>
         <div class="row align-items-center mt-5">
           <div class="col-lg-7">
-            <form method="post" action="enroll.do" class="contact-form text-left" onsubmit="return validate();">
+            <form method="post" action="enroll.do" class="contact-form text-left" id="contactForm" onsubmit="return validate();">
               <!-- 아이디 -->
               <div class="form-group mb-4 row">
               	<div class="col-md-12">
                 <label>Id<sup class="text-primary">&#10033;</sup></label>
                 </div>
                 <div class="col-md-10">
-                <input type="text" name="userid" id="userid" placeholder="moim@company.com" class="form-control">
+                <input type="text" name="user_id" id="user_id" placeholder="moim@company.com" class="form-control">
                 </div>
                 <div class="col-md-2">
                 <input type="button" class="tag=link" value="중복체크" onclick="return dupIdCheck();">
@@ -148,7 +148,7 @@
               <!-- 이름 -->
               <div class="form-group mb-4">
                 <label>Name<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="username" placeholder="홍길동" class="form-control">
+                <input type="text" name="user_name" id="user_name" placeholder="홍길동" class="form-control">
               </div>
               <!-- 닉네임  -->
               <div class="form-group mb-4 row">
@@ -156,7 +156,7 @@
                 <label>Nickname<sup class="text-primary">&#10033;</sup></label>
                 </div>
                 <div class="col-md-10">
-                <input type="text" name="usernn" placeholder="닉네임" class="form-control">
+                <input type="text" name="user_nn" id="user_nn" placeholder="닉네임" class="form-control">
                 </div>
                 <div class="col-md-2">
                 <input type="button" class="tag=link" value="중복체크" onclick="return dupNnCheck();">
@@ -165,63 +165,75 @@
               <!-- 비밀번호 -->
               <div class="form-group mb-4">
                 <label>Password<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="userpwd" id="userpwd" placeholder="비밀번호" class="form-control">
+                <input type="text" name="user_pwd" id="user_pwd" placeholder="비밀번호" class="form-control">
               </div>
               <div class="form-group mb-4">
                 <label>Password confirm<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="userpwd" id="userpwd2" placeholder="비밀번호 확인" class="form-control">
+                <input type="text" name="user_pwd2" id="user_pwd2" placeholder="비밀번호 확인" class="form-control">
+              </div>
+              <!-- 나이 -->
+              <div class="form-group mb-4">
+                <label>Age</label>
+                <input type="text" name="age" id="age" placeholder="나이" class="form-control">
+              </div>
+              <!-- 성별 -->
+              <div class="form-group mb-4">
+                <label>Gender</label>
+                <Br>
+                <input type="radio" name="gender" id="gender" value="M" checked> 남자 &nbsp; 
+	    		<input type="radio" name="gender" id="gender" value="F"> 여자</td>
               </div>
               <!-- 이메일 -->
               <div class="form-group mb-4">
                 <label>Email<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="email" placeholder="email@company.com" class="form-control">
+                <input type="text" name="email" id="email" placeholder="email@company.com" class="form-control">
               </div>
               <div class="form-group mb-4">
                 <label>Phone<sup class="text-primary">&#10033;</sup></label>
-                <input type="text" name="phone" placeholder="01012345678" class="form-control">
+                <input type="text" name="phone" id="phone" placeholder="01012345678" class="form-control">
               </div>
               <div class="form-group mb-4">
                 <label>Address</label>
-                <input type="text" name="address" placeholder="주소" class="form-control">
+                <input type="text" name="address" id="address" placeholder="주소" class="form-control">
               </div>
               <div class="form-group mb-4">
                 <label>Interest</label><br>
                 <text fontsize="1">*중복체크 가능</text>
 					<table width="600">
 						<tr>
-							<td><input type="checkbox" name="hobby" value="english">
+							<td><input type="checkbox" name="interest" id="interest" value="english">
 										영어</td>
-							<td><input type="checkbox" name="hobby" value="Chinese">
+							<td><input type="checkbox" name="interest" id="interest" value="Chinese">
 										중국어</td>
-							<td><input type="checkbox" name="hobby" value="language">
+							<td><input type="checkbox" name="interest" id="interest" value="language">
 										기타 언어</td>
-							<td><input type="checkbox" name="hobby" value="programming">
+							<td><input type="checkbox" name="interest" id="interest" value="programming">
 										프로그래밍</td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" name="hobby" value="humanities">
+							<td><input type="checkbox" name="interest" id="interest" value="humanities">
 										인문학/책</td>
-							<td><input type="checkbox" name="hobby" value="picture">
+							<td><input type="checkbox" name="interest" id="interest" value="picture">
 										사진/영상</td>
-							<td><input type="checkbox" name="hobby" value="music">
+							<td><input type="checkbox" name="interest" id="interest" value="music">
 										음악/악기</td>
-							<td><input type="checkbox" name="hobby" value="license">
+							<td><input type="checkbox" name="interest" id="interest" value="license">
 										자격증</td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" name="hobby" value="exhibit">
+							<td><input type="checkbox" name="interest" id="interest" value="exhibit">
 										공모전</td>
-							<td><input type="checkbox" name="hobby" value=" examination">
+							<td><input type="checkbox" name="interest" id="interest" value=" examination">
 										고시/공무원</td>
-							<td><input type="checkbox" name="hobby" value="study">
+							<td><input type="checkbox" name="interest" id="interest" value="study">
 										기타학문</td>
-							<td><input type="checkbox" name="hobby" value="etc"
+							<td><input type="checkbox" name="interest" id="interest" value="etc"
 										checked> 자유주제</td>
 						</tr>
 					</table>
 			  </div>
               <div class="form-group">
-                <input type="submit" value="Sign Up" class="btn btn-primary">
+                <input onClick = "alert('회원가입에 성공하였습니다. 로그인 해주세요')" type="submit" value="Sign Up" class="btn btn-primary">
                 <input type="reset" value="return" class="btn btn-primary">
               </div>
             </form>
@@ -238,5 +250,6 @@
     <script src="${ pageContext.servletContext.contextPath }/resources/vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="${ pageContext.servletContext.contextPath }/resources/vendor/lightbox2/js/lightbox.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/js/front.js"></script>
+    
   </body>
 </html>

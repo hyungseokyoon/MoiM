@@ -68,7 +68,7 @@
           <p class="lead">가입시 등록한 정보를 선택하여 입력해주세요.</p>
         </header>
         <div class="row"> 
-          <div class="col-lg-8">   
+          <div class="col-lg-8">  
             <div id="accordion" class="faq accordion accordion-custom pb-5">
               <!-- question-->
               <div class="card">
@@ -78,22 +78,22 @@
                   </h4>
                 </div>
                 <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion" class="collapse show">
+                	<form action="rid1.do" method="post">
                   <div class="card-body">가입시 등록한 휴대폰 번호를 입력해주세요.</div>
-                  
                   <div class="form-group mb-4">
-                <label>Name</label>
-                <input type="text" name="username" placeholder="홍길동" class="form-control">
-              </div>
+                	<label>Name</label>
+                	<input type="text" name="user_name" placeholder="홍길동" class="form-control">
+              	  </div>
+              	  
               
               
-              <div class="form-group mb-4">
-                <label>Phone</label>
-                <input type="text" name="phone" placeholder="01012345678" class="form-control">
-              </div>
+              	  <div class="form-group mb-4">
+                	<label>Phone</label>
+                	<input type="text" name="phone" placeholder="01012345678" class="form-control">
+              	  </div>
               
-              <input type="submit" value="확인" class="btn btn-primary">
-                  
-                  
+              		<input type="submit" value="확인" class="btn btn-primary">
+              		</form>
                 </div>
               </div>
               <!-- question        -->
@@ -104,31 +104,22 @@
                   </h4>
                 </div>
                 <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordion" class="collapse">
+                	<form action="rid2.do" method="post">
                   <div class="card-body">가입시 등록한 이메일을 입력해주세요.</div>
                   
                   
                   <div class="form-group mb-4">
-                <label>Name</label>
-                <input type="text" name="username" placeholder="홍길동" class="form-control">
-              </div>
+                	<label>Name</label>
+                	<input type="text" name="user_name" placeholder="홍길동" class="form-control">
+              	  </div>
               
               
                   <div class="form-group mb-4">
-                <label>Email</label>
-                <input type="text" name="email" placeholder="email@company.com" class="form-control">
-              </div>
-              	  
-              	  
-              	  
-              <form action="#" class="search-form">
-                	<div class="form-group">
-                  		<input type="search" name="searchid" placeholder="01012345678" class="form-control">
-                  		<button type="submit"> <i class="fa fa-search"></i></button>
-                	</div>
-              	  </form>
-              	  
-              	  
-              	  
+                	<label>Email</label>
+                	<input type="text" name="email" placeholder="email@company.com" class="form-control">
+              	  </div>
+              	  	<input type="submit" value="확인" class="btn btn-primary">
+              	  	</form>
                 </div>
               </div>
               

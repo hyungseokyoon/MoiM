@@ -11,19 +11,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/vendor/font-awesome/css/font-awesome.min.css">
     <!-- Google fonts - Poppins-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
     <!-- Lightbox-->
-    <link rel="stylesheet" href="vendor/lightbox2/css/lightbox.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/vendor/lightbox2/css/lightbox.css">
     <!-- Custom font icons-->
-    <link rel="stylesheet" href="css/fontastic.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/fontastic.css">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/favicon.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
@@ -78,23 +78,26 @@
                   </h4>
                 </div>
                 <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion" class="collapse show">
+                <form action="rpwPage.do" method="post">
                   <div class="card-body">가입시 등록한 휴대폰 번호와 이메일을 모두 입력해주세요.</div>
                   
                   <div class="form-group mb-4">
                 <label>Id</label>
-                <input type="text" name="userid" placeholder="moim@company.com" class="form-control">
+                <input type="text" name="user_id" id="user_id" placeholder="moim@company.com" class="form-control">
               </div>
               
               <div class="form-group mb-4">
                 <label>Phone</label>
-                <input type="text" name="phone" placeholder="01012345678" class="form-control">
+                <input type="text" name="phone" id="phone" placeholder="01012345678" class="form-control">
               </div>
               
                   <div class="form-group mb-4">
                 <label>Email</label>
-                <input type="text" name="email" placeholder="email@company.com" class="form-control">
+                <input type="text" name="email" id="email" placeholder="email@company.com" class="form-control">
               </div>
-                  
+              
+              <input type="submit" value="확인" class="btn btn-primary">
+                </form>
                 </div>
               </div>
               </div>
@@ -106,10 +109,10 @@
     <!-- Footer -->
 	<c:import url="/WEB-INF/views/common/footer.jsp" />
     <!-- JavaScript files-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="vendor/lightbox2/js/lightbox.js"></script>
-    <script src="js/front.js"></script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/vendor/jquery/jquery.min.js"></script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/vendor/lightbox2/js/lightbox.js"></script>
+    <script src="${ pageContext.servletContext.contextPath }/resources/js/front.js"></script>
   </body>
 </html>

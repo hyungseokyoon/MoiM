@@ -2,6 +2,8 @@ package com.finalp.moim.userinfo.model.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.finalp.moim.userinfo.model.vo.UserInfo;
 
 public interface UserInfoService {
@@ -26,4 +28,10 @@ public interface UserInfoService {
 	ArrayList<UserInfo> selectUserSearch(int category_no, String keyword);
 	int deleteUserAdmin(int user_no);
 	ArrayList<UserInfo> selectUserList();
+	UserInfo searchPwd(UserInfo userinfo);
+	UserInfo searchId1(UserInfo userinfo);
+	UserInfo searchId2(UserInfo userinfo);
+	int updatePwd(UserInfo userinfo);
+	
+	
 }
