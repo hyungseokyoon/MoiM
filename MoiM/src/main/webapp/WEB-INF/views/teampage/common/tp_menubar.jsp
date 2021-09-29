@@ -119,7 +119,7 @@
               	    <c:url var="moveChat" value="chat.do">
                         	<c:param name="team_num" value="${ sessionScope.team_num }"></c:param>
                     </c:url>
-                <a href="moveDebate.do"><i class="fa fa-list-ul"></i><span>토론</span></a></li>
+                <a href="moveDebate.do"><i class="fa fa-comments"></i><span>토론</span></a></li>
                 <li><a href="${ pageContext.servletContext.contextPath }/flist.do"><i class="fa fa-file fa-2"></i><span>파일</span></a></li>
 				<li>
                 	<c:url var="moveTPdaily" value="moveTPdaily.do">
@@ -135,12 +135,12 @@
 	                        <c:url var="moveTeamSetting" value="moveTeamSetting.do">
 	                        	<c:param name="team_num" value="${ team_num }"></c:param>
 	                        </c:url>
-	                        <a href="${ moveTeamSetting }">팀정보 관리</a></li>
+	                        <a href="${ moveTeamSetting }"><i class="fa fa-cogs"></i>팀정보 관리</a></li>
 	                        <li>
 	                        <c:url var="moveTeamMember" value="moveTeamMember.do">
 	                        	<c:param name="team_num" value="${ team_num }"></c:param>
 	                        </c:url>
-	                        <a href="${ moveTeamMember }">팀원 관리</a></li>
+	                        <a href="${ moveTeamMember }"><i class="fa fa-users"></i><span>팀원 관리</span></a></li>
 	                    </ul>
 	                </li>
                 </c:if>
