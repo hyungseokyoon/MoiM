@@ -194,27 +194,38 @@ public class TPmanageController {
 	}
 	
 	@RequestMapping(value="tminsert.do", method = RequestMethod.POST)
-	public String insertTeamMember(JoinWaiting joinmember, Model model) {
-		int result = tpmanageService.deleteJoinMember(joinmember.getJoin_num());
+	public String insertTeamMember(HttpSession session, JoinWaiting joinmember, Model model) {
+		int team_num = (int) session.getAttribute("team_num");
+		Team team = tpmanageService.selectTeamSetting(team_num);
+		int team_limit = team.getTeam_limit();
+		int team_member_count = tpmanageService.selectTeamMemberCount(team_num);
+		System.out.println(team_member_count);
 		
-		if (tpmanageService.insertTeamMember(joinmember) > 0 && result > 0) {
-			ArrayList<TeamMember> tmlist = tpmanageService.selectTeamMemberNormalList(joinmember.getTeam_num());
+		if(team_limit > team_member_count) {
+			int result = tpmanageService.deleteJoinMember(joinmember.getJoin_num());
 			
-			int alertresult = 0;
-			
-			for(TeamMember tm : tmlist) {
-				if(joinmember.getUser_no() == tm.getUser_no()) {
-					continue;
+			if (tpmanageService.insertTeamMember(joinmember) > 0 && result > 0) {
+				ArrayList<TeamMember> tmlist = tpmanageService.selectTeamMemberNormalList(joinmember.getTeam_num());
+				
+				int alertresult = 0;
+				
+				for(TeamMember tm : tmlist) {
+					if(joinmember.getUser_no() == tm.getUser_no()) {
+						continue;
+					}
+					tpmainService.insertAlertTMInsert(tm);
+					alertresult++;
 				}
-				tpmainService.insertAlertTMInsert(tm);
-				alertresult++;
+				
+				logger.info("alertinsert result : " + alertresult);
+				
+				return "redirect:moveTeamMember.do";
+			} else {
+				model.addAttribute("message", joinmember.getUserVO().getUser_id() + "님의 팀원 등록 실패.");
+				return "common/error";
 			}
-			
-			logger.info("alertinsert result : " + alertresult);
-			
-			return "redirect:moveTeamMember.do";
 		} else {
-			model.addAttribute("message", joinmember.getUserVO().getUser_id() + "님의 팀원 등록 실패.");
+			model.addAttribute("message", "팀원 등록 실패.");
 			return "common/error";
 		}
 	}

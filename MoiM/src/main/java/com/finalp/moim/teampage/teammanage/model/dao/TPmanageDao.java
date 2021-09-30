@@ -101,4 +101,8 @@ public class TPmanageDao {
 		return session.selectOne("teammanageMapper.getLocalListCount", local);
 	}
 
+	public int selectTeamMemberCount(int team_num) {
+		return session.selectOne("teammanageMapper.selectTeamMemberCount", team_num);
+	}
+
 }
