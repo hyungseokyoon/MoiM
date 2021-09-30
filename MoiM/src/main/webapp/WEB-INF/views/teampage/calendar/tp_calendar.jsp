@@ -267,6 +267,21 @@ $(function() {
 				return false;
 			}
 			
+			if (eventData.start === ''){
+				alert("시작일은 필수입니다.");
+				return false;
+			}
+			
+			if (eventData.end === ''){
+				alert("마지막일은 필수입니다.");
+				return false;
+			}
+			
+			if (eventData.cal_detail === ''){
+				alert("내용은 필수입니다.");
+				return false;
+			}
+			
 			eventData.start = moment(eventData.start).format('YYYY-MM-DD');
 			eventData.end = moment(eventData.end).add(1, 'days').format('YYYY-MM-DD');
 			
@@ -298,7 +313,7 @@ $(function() {
         header: {
 	                left   : 'today, prevYear, nextYear',
 	                center : 'prev, title, next',
-	                right  : 'month, agendaWeek, agendaDay, listWeek'
+	                right  : 'month'
 	            },
         editable: false,
 		locale: 'ko',

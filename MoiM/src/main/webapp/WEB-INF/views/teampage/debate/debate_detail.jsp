@@ -127,7 +127,7 @@
 									<form action="tdcinsert.do" method="post">
 	                                <div class="input-group mb-0">
 	                                	<input type="hidden" name="debate_num" value="${ debate.debate_num }">
-	                                    <textarea class="form-control" name="debate_comment_content"></textarea>
+	                                    <textarea class="form-control" name="debate_comment_content" onkeydown="resize(this)" onkeyup="resize(this)" style="border: solid 1px grey;margin-bottom: 15px;margin-top: 0px;border-radius: 0.25rem;" required></textarea>
 	                                </div>
 	                                <button type="submit" class="btn btn-primary float-right">등록</button>
 	                                </form>
@@ -268,6 +268,11 @@
             }
         });
     });
+    
+    function resize(obj) {
+        obj.style.height = "1px";
+      obj.style.height = (12 + obj.scrollHeight) + "px";
+    };
 </script>
 </body>
 </html>

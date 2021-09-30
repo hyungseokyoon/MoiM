@@ -9,6 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 <title>teamname</title>
+<style>
+.metismenu ul a::before{
+	content:none;
+}
+</style>
 </head>
 <body class="font-montserrat">
 	<div id="header_top" class="header_top">
