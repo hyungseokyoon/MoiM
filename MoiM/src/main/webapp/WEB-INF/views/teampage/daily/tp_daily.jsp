@@ -53,7 +53,15 @@
                     <div class="right">
 		                <div class="notification d-flex">
 		                    <div class="dropdown d-flex show">
-		                        <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-bell"></i><span class="badge badge-primary nav-unread"></span></a>
+		                        <a class="nav-link icon d-none d-md-flex btn btn-default btn-icon ml-2" data-toggle="dropdown" aria-expanded="true">
+		                        	<c:set var="alertlistsize" value="${ alertlist.size() }"></c:set>
+		                        	<c:if test="${ alertlistsize eq 0 }">
+		                        	<i class="fa fa-bell"></i>
+		                        	</c:if>
+		                        	<c:if test="${ alertlistsize > 0 }">
+		                        	<i class="fa fa-bell"></i><span class="badge badge-primary nav-unread"></span>
+		                        	</c:if>
+		                        </a>
 		                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow" x-placement="bottom-end" style="position: absolute; transform: translate3d(-312px, 34px, 0px); top: 0px; left: 0px; will-change: transform;">
 		                            <ul class="list-unstyled feeds_widget">
 		                            	<c:forEach items="${ alertlist }" var="alertlist">
