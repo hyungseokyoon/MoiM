@@ -225,7 +225,7 @@ public class TPmanageController {
 				return "common/error";
 			}
 		} else {
-			model.addAttribute("message", "팀원 등록 실패.");
+			model.addAttribute("message", "팀 인원이 꽉 찼습니다.");
 			return "common/error";
 		}
 	}
