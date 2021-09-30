@@ -87,6 +87,10 @@ public class UserInfoDao {
 	public int updateUserInfo(UserInfo userInfo) {
 		return session.update("userinfoMapper.updateUserInfo", userInfo);
 	}
+
+	public UserInfo selectUserInfo(UserInfo userInfo) {
+		return session.selectOne("userinfoMapper.selectUserInfo", userInfo);
+	}
 	
 	
 	

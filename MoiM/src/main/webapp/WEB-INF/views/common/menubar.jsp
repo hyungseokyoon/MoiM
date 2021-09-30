@@ -84,12 +84,12 @@
 					<form action="login.do" class="login-form text-left" method="post">
 						<input type="hidden" name="currentUrl" id="currentUrl" value="${requestScope['javax.servlet.forward.servlet_path']}">
 						<div class="form-group mb-4">
-							<label>Email address</label>
-							<input type="text" name="user_id" id="user_id" placeholder="name@company.com" class="form-control">
+							<label>Id</label>
+							<input type="text" name="user_id" id="user_id" placeholder="id" class="form-control">
 						</div>
 						<div class="form-group mb-4">
 							<label>Password</label>
-							<input type="password" name="user_pwd" id="user_pwd" placeholder="Min 8 characters" class="form-control">
+							<input type="password" name="user_pwd" id="user_pwd" placeholder="Password" class="form-control">
 						</div>
 						
 						<table class="form-group">

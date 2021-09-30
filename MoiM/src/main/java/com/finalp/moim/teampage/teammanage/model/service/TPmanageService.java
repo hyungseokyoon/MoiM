@@ -23,4 +23,5 @@ public interface TPmanageService {
 	ArrayList<TeamMember> selectTeamMemberNormalList(int team_num);
 	TeamMember selectUserNoTeamMember(TeamMember teammember);
 	int getLocListCount(int i);
+	int selectTeamMemberCount(int team_num);
 }

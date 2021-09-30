@@ -220,7 +220,7 @@
 	            <div class="container-fluid">
 	                <div class="row clearfix">
 				        <div class="col-md-12">
-				        	<div class="card">
+				        	<div class="card" style="border: none; background: #f5f5f5;">
 					            <div class="col-sm-12 text-right m-t-20">
 					                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateModal">수정</button>
 					            </div>

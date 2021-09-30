@@ -139,7 +139,7 @@
                 <label>Id<sup class="text-primary">&#10033;</sup></label>
                 </div>
                 <div class="col-md-10">
-                <input type="text" name="user_id" id="user_id" placeholder="moim@company.com" class="form-control">
+                <input type="text" name="user_id" id="user_id" placeholder="아이디" class="form-control">
                 </div>
                 <div class="col-md-2">
                 <input type="button" class="tag=link" value="중복체크" onclick="return dupIdCheck();">

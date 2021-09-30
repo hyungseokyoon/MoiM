@@ -12,7 +12,7 @@ public interface UserInfoService {
 	int updateUserInfo(UserInfo userInfo);
 	int deleteUserInfo(String userid);
 	ArrayList<UserInfo> selectList();
-	UserInfo selectUserInfo(String userid);
+	UserInfo selectUserInfo(UserInfo userInfo);
 	int updateLoginOk(UserInfo userInfo);
 	ArrayList<UserInfo> selectSearchUserid(String keyword);
 	ArrayList<UserInfo> selectSearchGender(String keyword);

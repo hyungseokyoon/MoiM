@@ -80,8 +80,10 @@ public class MyPageController {
 	}
 	// 내가 쓴 글 보기
 	@RequestMapping("upost.do")
-	public ModelAndView userPostForward(ModelAndView mv, @RequestParam(name="page", required=false) String page,
-			@RequestParam(name="user_no") int user_no) {
+	public ModelAndView userPostForward(ModelAndView mv, HttpSession session, @RequestParam(name="page", required=false) String page) {
+		
+			UserInfo loginMember = (UserInfo) session.getAttribute("loginMember");
+			int user_no = loginMember.getUser_no();
 		
 			int currentPage = 1;
 			if(page != null) {

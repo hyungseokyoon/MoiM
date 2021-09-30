@@ -230,13 +230,13 @@
 	                    <div class="col-12">
 	                        <div class="form-group">
 	                        	<label>할일</label>   
-	                            <textarea class="form-control" placeholder="Description" name="daily_content"></textarea>
+	                            <textarea class="form-control" placeholder="Description" name="daily_content" required></textarea>
 	                        </div>
 	                    </div>
 	                    <div class="col-12">
 	                        <label>시작일</label>
 	                        <div class="input-daterange input-group">
-	                            <input type="text" id="datepicker" class="form-control" name="daily_date">
+	                            <input type="text" id="datepicker" class="form-control" name="daily_date" required>
 	                        </div>
 	                        <!-- <div class="input-daterange input-group" data-provide="datepicker">
 	                            <input type="text" class="form-control" name="start">

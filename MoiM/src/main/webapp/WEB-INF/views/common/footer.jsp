@@ -13,8 +13,6 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 mb-5 mb-lg-0">
-					<div class="footer-logo"><img src="${ pageContext.servletContext.contextPath }/resources/img/logo-footer.svg" 
-					alt="..." class="img-fluid"></div>
 				</div>
 				<div class="col-lg-3 mb-5 mb-lg-0">
 					<h5 class="footer-heading">Site pages</h5>

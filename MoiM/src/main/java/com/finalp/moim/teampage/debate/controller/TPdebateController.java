@@ -30,7 +30,7 @@ public class TPdebateController {
 		int team_num = (int)session.getAttribute("team_num");
 		ArrayList<Debate> list = tpdebateService.selectAll(team_num);
 		
-		if (list.size() > 0) {
+		if (list.size() >= 0) {
 			model.addAttribute("list", list);
 			return "teampage/debate/debate";
 		} else {
@@ -83,15 +83,21 @@ public class TPdebateController {
 	
 	@RequestMapping(value="tdedelete.do", method=RequestMethod.POST)
 	public String deleteDebateMethod(@RequestParam("debate_num") int debate_num, HttpSession session, Model model) {
-		if(tpdebateService.deleteDebateCommentAll(debate_num) > 0 && tpdebateService.deleteDebate(debate_num) > 0) {
-			int team_num = (int)session.getAttribute("team_num");
-			ArrayList<Debate> list = tpdebateService.selectAll(team_num);
-			
-			model.addAttribute("list", list);
-			return "redirect: moveDebate.do";
-		} else {
-			model.addAttribute("message", debate_num + " 번 토론 글 삭제 실패.");
-			return "common/error";
+		Debate debate = tpdebateService.selectDebate(debate_num);
+		if(debate.getDebate_comment_count() > 0) {
+			if(tpdebateService.deleteDebateCommentAll(debate_num) > 0 && tpdebateService.deleteDebate(debate_num) > 0) {
+				return "redirect: moveDebate.do";
+			}else {
+				model.addAttribute("message", debate_num + " 번 토론 글 삭제 실패.");
+				return "common/error";
+			}
+		}else {
+			if(tpdebateService.deleteDebate(debate_num) > 0) {
+				return "redirect: moveDabate.do";
+			}else {
+				model.addAttribute("message", debate_num + " 번 토론 글 삭제 실패.");
+				return "common/error";
+			}
 		}
 	}
 	

@@ -83,7 +83,7 @@
                   
                   <div class="form-group mb-4">
                 <label>Id</label>
-                <input type="text" name="user_id" id="user_id" placeholder="moim@company.com" class="form-control">
+                <input type="text" name="user_id" id="user_id" placeholder="Id" class="form-control">
               </div>
               
               <div class="form-group mb-4">

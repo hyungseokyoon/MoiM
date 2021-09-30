@@ -40,7 +40,7 @@
       <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
 			<a href="./" class="navbar-brand">
-				<img src="${ pageContext.servletContext.contextPath }/resources/img/logo.svg" alt="" class="img-fluid">
+				<img src="${ pageContext.servletContext.contextPath }/resources/img/MoimIcon.png" alt="" class="img-fluid">
 	        </a>
           	<button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
           	aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" 
@@ -91,12 +91,12 @@
 					<form action="login.do" class="login-form text-left" method="post">
 						<input type="hidden" name="currentUrl" id="currentUrl" value="${requestScope['javax.servlet.forward.servlet_path']}">
 						<div class="form-group mb-4">
-							<label>Email address</label>
-							<input type="text" name="user_id" id="user_id" placeholder="name@company.com" class="form-control">
+							<label>Id</label>
+							<input type="text" name="user_id" id="user_id" placeholder="id" class="form-control">
 						</div>
 						<div class="form-group mb-4">
 							<label>Password</label>
-							<input type="password" name="user_pwd" id="user_pwd" placeholder="Min 8 characters" class="form-control">
+							<input type="password" name="user_pwd" id="user_pwd" placeholder="Password" class="form-control">
 						</div>
 						
 						<table class="form-group">

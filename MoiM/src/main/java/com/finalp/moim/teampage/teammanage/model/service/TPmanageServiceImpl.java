@@ -90,5 +90,10 @@ public class TPmanageServiceImpl implements TPmanageService {
 	public int getLocListCount(int i) {
 		return tpmanageDao.getLocListCount(i);
 	}
+
+	@Override
+	public int selectTeamMemberCount(int team_num) {
+		return tpmanageDao.selectTeamMemberCount(team_num);
+	}
 	
 }
