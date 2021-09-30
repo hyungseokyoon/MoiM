@@ -108,7 +108,7 @@
 		select * from board b
 		left join user_info u on (b.user_no = u.user_no)
 		left join board_category c on (b.board_category_no = c.board_category_no)
-		where board_category_no = 1 and board_title like '%' || #{keyword} || '%'
+		where b.board_category_no = 1 and board_title like '%' || #{keyword} || '%'
 	</select>
 	
 	<!-- 인턴십 게시글 조회 -->
@@ -116,7 +116,7 @@
 		select * from board b
 		left join user_info u on (b.user_no = u.user_no)
 		left join board_category c on (b.board_category_no = c.board_category_no)
-		where board_category_no = 2 and board_title like '%' || #{keyword} || '%'
+		where b.board_category_no = 2 and board_title like '%' || #{keyword} || '%'
 	</select>
 	
 	<!-- 자격증 게시글 조회 -->
@@ -124,7 +124,7 @@
 		select * from board b
 		left join user_info u on (b.user_no = u.user_no)
 		left join board_category c on (b.board_category_no = c.board_category_no)
-		where board_category_no = 3 and board_title like '%' || #{keyword} || '%'
+		where b.board_category_no = 3 and board_title like '%' || #{keyword} || '%'
 	</select>
 	
 	<!-- 이벤트 게시글 조회 -->
@@ -132,7 +132,7 @@
 		select * from board b
 		left join user_info u on (b.user_no = u.user_no)
 		left join board_category c on (b.board_category_no = c.board_category_no)
-		where board_category_no = 4 and board_title like '%' || #{keyword} || '%'
+		where b.board_category_no = 4 and board_title like '%' || #{keyword} || '%'
 	</select>
 	
 	<!-- 자유글 게시글 조회 -->
@@ -140,7 +140,7 @@
 		select * from board b
 		left join user_info u on (b.user_no = u.user_no)
 		left join board_category c on (b.board_category_no = c.board_category_no)
-		where board_category_no = 5 and board_title like '%' || #{keyword} || '%'
+		where b.board_category_no = 5 and board_title like '%' || #{keyword} || '%'
 	</select>
 	
 	<!-- 마이페이지 게시글 조회 -->
