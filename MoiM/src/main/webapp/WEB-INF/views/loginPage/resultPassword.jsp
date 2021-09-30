@@ -95,7 +95,6 @@
             	<h2 class="mb-3">비밀번호 새로 설정하기</h2>
             	<ol class="mb-5 text-left">
               		<li>전에 쓰던 비밀번호와 겹치지 않게 주의해주세요.</li>
-              		<li>최소 8글자 이상부터 비밀번호 설정이 가능합니다.</li>
             	</ol>
             	<blockquote class="blockquote mb-5 text-left">
             	<form action="rpw.do" method="POST" onsubmit="return validate();">

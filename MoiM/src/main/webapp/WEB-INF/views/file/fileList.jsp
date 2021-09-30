@@ -136,46 +136,68 @@
 		                            	<c:url var="fupview" value="fupview.do">
 		                            		<c:param name="file_num" value="${ f.file_num }" />
 		                            	</c:url>
-		                                <a href="#filedelmodal" data-toggle="modal" class="nav-link d-none d-md-inline-block ml-3" style="width: 15px;"><i class="fa fa-trash-o"></i></a>
+		                                <a href="#filedelmodal" data-toggle="modal" data-file_num="${ f.file_num }" data-file_renamefilename="${ f.file_renamefilename }" class="open-filedelmodal nav-link d-none d-md-inline-block ml-3" style="width: 15px;"><i class="fa fa-trash-o"></i></a>
 	                            	</c:if>
 	                            </div>
-	                            
-	                            <!-- Modal -->
-								<div class="modal fade" id="filedelmodal" role="dialog">
-									<div class="modal-dialog">
-							    	<!-- Modal content-->
-							    	<div class="modal-content">
-							        	<div class="modal-header">
-							        		<h5 class="modal-title" id="teamquitModalLabel">파일 삭제</h5>
-							        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							        			<span aria-hidden="true">&times;</span>
-							        		</button>
-							        	</div>
-							        	<div class="modal-body">
-							          		<h3><font style="vertical-align: inherit;">정말로 파일을 삭제하시겠습니까?</font></h3><br>
-							        	</div>
-								        <div class="modal-footer">
-								        	<form action="fdelete.do" method="post">
-								        		<input type="hidden" name="file_num" value="${ f.file_num }">
-								        		<input type="hidden" name="file_renamefilename" value="${ f.file_renamefilename }">
-									          	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									          	<button type="submit" class="btn btn-primary">삭제</button>
-		                            		</form>
-								        </div>
-							    	</div>
-								    </div>
-								</div>
 	                        </div>
 	                    </div>
             		</c:forEach>
 				</div>
+				
+				<!-- Modal -->
+				<div class="modal fade" id="filedelmodal" role="dialog">
+					<div class="modal-dialog">
+			    	<!-- Modal content-->
+			    	<div class="modal-content">
+			        	<div class="modal-header">
+			        		<h5 class="modal-title" id="teamquitModalLabel">파일 삭제</h5>
+			        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			        			<span aria-hidden="true">&times;</span>
+			        		</button>
+			        	</div>
+			        	<div class="modal-body">
+			          		<h3><font style="vertical-align: inherit;">정말로 파일을 삭제하시겠습니까?</font></h3><br>
+			        	</div>
+				        <div class="modal-footer">
+				        	<form action="fdelete.do" method="post">
+				        		<input type="hidden" name="file_num" id="file_num" value="">
+				        		<input type="hidden" name="file_renamefilename" id="file_renamefilename" value="">
+					          	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					          	<button type="submit" class="btn btn-primary">삭제</button>
+	                         		</form>
+				        </div>
+			    	</div>
+				    </div>
+				</div>
+				
             </div>
         </div>
     </div>
 </div>
 
-<script src="${ pageContext.servletContext.contextPath }/resources/team_page//bundles/lib.vendor.bundle.js"></script>
-<script src="${ pageContext.servletContext.contextPath }/resources/team_page//js/core.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/team_page/bundles/lib.vendor.bundle.js"></script>
+
+<script src="${ pageContext.servletContext.contextPath }/resources/team_page/bundles/sweetalert.bundle.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/team_page/plugins/dropify/js/dropify.min.js"></script>
+
+<script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/core.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/team_page/js/page/sweetalert.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('.open-filedelmodal').on('click', function(){
+		var file_num_val = $(this).data("file_num");
+		var file_num = parseInt(file_num_val);
+   		var file_renamefilename = $(this).data("file_renamefilename");
+   		console.log(file_num);
+   		console.log(file_renamefilename);
+   		
+   		$('#filedelmodal').modal('show');
+   		
+   		$(".modal-footer #file_num").val( file_num );
+		$(".modal-footer #file_renamefilename").val( file_renamefilename );
+	});
+});
+</script>
 
 </body>
 </html>
