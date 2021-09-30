@@ -119,7 +119,7 @@
             
             <div class="form-group">
                 <a href="uupdate.do" class="btn btn-primary">수정하기</a>
-                <a href="udelete.do" class="btn btn-primary">탈퇴하기</a>
+                <a href="udeletePage.do" class="btn btn-primary">탈퇴하기</a>
             </div>
             
             

@@ -73,11 +73,26 @@ public class MyPageController {
 		System.out.println("업데이트로 이동");
 		return "myPage/userUpdate";  //내보낼 뷰파일명 리턴
 	}
+	
 	// 회원 탈퇴하기
-	@RequestMapping("udelete.do")
-	public String userDeleteForward() {
-		return "myPage/userDelete";  //내보낼 뷰파일명 리턴
+		@RequestMapping("udeletePage.do")
+		public String userDeletePage() {
+			return "myPage/userDelete";  //내보낼 뷰파일명 리턴
+		}
+	
+	// 회원 탈퇴하기
+	@RequestMapping(value = "udelete.do", method = RequestMethod.POST)
+	public ModelAndView userDeleteForward(ModelAndView mv, @RequestParam("user_no") int user_no) {
+		if(mypageService.deleteUser(user_no) > 0) {
+			mv.setViewName("redirect:logout.do");
+		} else {
+			mv.addObject("message", user_no + "번 회원 탈퇴처리 실패");
+			mv.setViewName("common/error");
+		}
+		
+		return mv;
 	}
+	
 	// 내가 쓴 글 보기
 	@RequestMapping("upost.do")
 	public ModelAndView userPostForward(ModelAndView mv, HttpSession session, @RequestParam(name="page", required=false) String page) {

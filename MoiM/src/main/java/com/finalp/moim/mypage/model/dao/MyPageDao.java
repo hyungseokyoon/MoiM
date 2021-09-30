@@ -43,6 +43,9 @@ public class MyPageDao {
 	public int selectMyBoardCount(int user_no) {
 		return session.selectOne("boardMapper.selectMyBoardCount", user_no);
 	}
-	
+
+	public int deleteUser(int user_no) {
+		return session.delete("userinfoMapper.deleteUser", user_no);
+	};
 	
 }
