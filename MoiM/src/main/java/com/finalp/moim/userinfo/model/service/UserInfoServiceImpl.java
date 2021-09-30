@@ -46,8 +46,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public UserInfo selectUserInfo(String userid) {
-		return null;
+	public UserInfo selectUserInfo(UserInfo userInfo) {
+		return userinfoDao.selectUserInfo(userInfo);
 	}
 
 	@Override

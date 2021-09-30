@@ -197,14 +197,11 @@ public class UserInfoController {
 	//비밀번호 찾기결과
 	@RequestMapping(value = "rpwPage.do", method = RequestMethod.POST)
 	public ModelAndView moveResultPassword(ModelAndView mv, UserInfo userinfo) {
-		ArrayList<UserInfo> originUser = userinfoService.selectUserSearch(3, userinfo.getEmail());
-		System.out.println(originUser);
-		System.out.println(originUser.get(0));
-		UserInfo result = originUser.get(0);
+		UserInfo originUser = userinfoService.selectUserInfo(userinfo);
 		
-		if(result != null) { 
+		if(originUser != null) { 
 			mv.addObject("check", 0);
-			mv.addObject("result", result);
+			mv.addObject("result", originUser);
 			mv.setViewName("loginPage/resultPassword");
 		} else { 
 			mv.addObject("check", 1);

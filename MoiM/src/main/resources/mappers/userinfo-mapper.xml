@@ -129,5 +129,12 @@
 		address = #{ address }
 		where user_no = #{ user_no }
 	</update>
-
+	
+	<select id="selectUserInfo" parameterType="UserInfo" resultMap="resultUser">
+		select * from user_info
+		where user_id = #{user_id} and
+		phone = #{phone} and
+		email = #{email}
+	</select>
+	
 </mapper>
