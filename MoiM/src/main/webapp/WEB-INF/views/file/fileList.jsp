@@ -77,10 +77,7 @@
                             <div class="card-body">
                                 <div class="page-options d-flex float-right">
                                     <div class="input-icon ml-2">
-                                        <span class="input-icon-addon">
-                                            <i class="fe fe-search"></i>
-                                        </span>
-                                        <input type="text" class="form-control" placeholder="Search photo">
+                                        <input type="text" id="value" class="form-control search" placeholder="Search..." onkeyup="filter()">
                                     </div>
                                     <button type="submit" class="btn btn-primary ml-2" onclick="javascript:location.href='${ pageContext.servletContext.contextPath }/fwform.do';">Upload New</button>
                                 </div>
@@ -90,7 +87,7 @@
                 </div>
                 <div class="row row-cards">
 					<c:forEach items="${ requestScope.list }" var="f">
-	             		<div class="card file_folder col-sm-6 col-lg-4">
+	             		<div class="filetab card file_folder col-sm-6 col-lg-4">
 							<div class="d-flex align-items-center px-2">
 	                            <div class="icon">
 						        	<c:set var="filename" value="${ f.file_originalfilename }" />
@@ -131,7 +128,7 @@
 	                            		<c:param name="ofile" value="${ f.file_originalfilename }" />
 	                            		<c:param name="rfile" value="${ f.file_renamefilename }" />
 	                            	</c:url>
-	                                <div style="width: 180px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><font class="text-muted" style="vertical-align: inherit;"><a href="${ tfdown }">${ f.file_originalfilename }</a></font></div>
+	                                <div style="width: 180px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;"><font class="fname text-muted" style="vertical-align: inherit;"><a href="${ tfdown }">${ f.file_originalfilename }</a></font></div>
 	                                <small class="d-block text-muted"><font style="vertical-align: inherit;">${ f.userVO.user_nn }</font></small>
 	                            </div>
 	                            <div class="ml-auto text-muted">
@@ -200,6 +197,19 @@ $(function() {
 		$(".modal-footer #file_renamefilename").val( file_renamefilename );
 	});
 });
+
+function filter(){
+	var value = document.getElementById("value").value.toUpperCase();
+	var filetab = document.getElementsByClassName("filetab");
+	for(var i = 0; i < filetab.length; i++){
+		var fname = filetab[i].getElementsByClassName("fname");
+		if(fname[0].childNodes[0].innerText.toUpperCase().includes(value)){
+			filetab[i].style.display = ""
+		}else{
+			filetab[i].style.display = "none"
+		}
+	}
+}
 </script>
 
 </body>
