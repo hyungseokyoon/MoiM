@@ -54,7 +54,7 @@
 				<li class="nav-item"> <a href="${ pageContext.servletContext.contextPath }/rvlist.do" class="nav-link">리뷰게시판</a></li>
 				<!-- 관리자 - 회원관리 페이지 -->
 				<c:if test="${ loginMember.admin == 'Y' }">
-					<li class="nav-item dropdown"><a href="${ pageContext.servletContext.contextPath }/ulistadmin.do?page=1" class="nav-link">회원관리</a></li>
+					<li class="nav-item dropdown"><a href="${ pageContext.servletContext.contextPath }/ulistadmin.do?page=1&admin_no=${ loginMember.user_no }" class="nav-link">회원관리</a></li>
 				</c:if>
             </ul>
             <!-- 비 로그인 시 : 로그인 창 띄우기 -->
