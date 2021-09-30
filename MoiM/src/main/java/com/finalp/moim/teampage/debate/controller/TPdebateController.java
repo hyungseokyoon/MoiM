@@ -93,7 +93,7 @@ public class TPdebateController {
 			}
 		}else {
 			if(tpdebateService.deleteDebate(debate_num) > 0) {
-				return "redirect: moveDabate.do";
+				return "redirect: moveDebate.do";
 			}else {
 				model.addAttribute("message", debate_num + " 번 토론 글 삭제 실패.");
 				return "common/error";

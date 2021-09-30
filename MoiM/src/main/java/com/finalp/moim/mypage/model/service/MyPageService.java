@@ -12,4 +12,5 @@ public interface MyPageService {
 	int selectMyReviewCount(String user_nn);
 	ArrayList<Board> selectMyBoard(MyBoard mb);
 	int selectMyBoardCount(int user_no);
+	int deleteUser(int user_no);
 }
