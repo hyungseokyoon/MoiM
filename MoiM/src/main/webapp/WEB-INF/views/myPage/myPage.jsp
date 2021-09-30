@@ -50,11 +50,8 @@
             <div class="sidebar-widget mb-4">
               <h4 class="sidebar-widget-heading">My Page</h4>
               <ul class="list-unstyled pl-0 mt-4">
-               <c:url var="upost" value="/upost.do">
-			    	<c:param name="user_no" value="${ loginMember.user_no}"/>
-            	</c:url>
                 <li> <a href="mypage.do" class="categories-link">My Info</a></li>
-                <li><a href="${ upost }" class="categories-link">My Post</a></li>
+                <li><a href="upost.do" class="categories-link">My Post</a></li>
                 <li><a href="uteam.do" class="categories-link">My Team</a></li>
               </ul>
             </div>
