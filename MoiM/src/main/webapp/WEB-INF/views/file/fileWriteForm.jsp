@@ -125,7 +125,10 @@
 						            <c:if test="${ filetype eq 'txt' }">
 						            	<i class="fa fa-file-text-o"></i>
 						            </c:if>
-						            <c:if test="${ filetype ne 'pptx' and filetype ne 'pdf' and filetype ne 'xlsx' and filetype ne 'jpeg' and filetype ne 'png' and filetype ne 'gif' and filetype ne 'doc' and filetype ne 'docx' and filetype ne 'mp4' and filetype ne 'avi' and filetype ne 'zip' and filetype ne 'egg' and filetype ne 'txt' and filetype ne 'jpg' }">
+						            <c:if test="${ filetype eq 'hwp' }">
+						            	<i class="fa fa-file-code-o"></i>
+						            </c:if>
+						            <c:if test="${ filetype ne 'pptx' and filetype ne 'pdf' and filetype ne 'xlsx' and filetype ne 'jpeg' and filetype ne 'png' and filetype ne 'gif' and filetype ne 'doc' and filetype ne 'docx' and filetype ne 'mp4' and filetype ne 'avi' and filetype ne 'zip' and filetype ne 'egg' and filetype ne 'txt' and filetype ne 'jpg' and filetype ne 'hwp' }">
 						            	<i class="fa fa-file"></i>
 						            </c:if>
 						        </div>
