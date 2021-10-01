@@ -116,7 +116,7 @@ function fileCheck(){
 			<div class="col-lg-7">
 				<form action="rcinsert.do" class="contact-form text-left" method="post" enctype="multipart/form-data" name="form1">
 					<div class="form-group mb-4">
-						<label>스터디명<sup class="text-primary">✱수정불가</sup></label> <input id="team_name" onkeyup="search()"
+						<label>스터디명<sup class="text-primary">✱수정불가</sup></label> <input id="team_name" onkeyup="search()" maxlength='50'
 							type="text" name="team_name" class="form-control" required>
 					<div class="check_font" id="name_check">
 					</div>
@@ -191,7 +191,7 @@ function fileCheck(){
 					</div>
 					<div class="form-group mb-4">
 						<label>시간<sup class="text-primary">✱</sup></label> <input
-							type="text" name="team_act_time" placeholder="ex) 14:00~16:00"
+							type="text" name="team_act_time" placeholder="ex) 14:00~16:00" maxlength='30'
 							class="form-control" required>
 					</div>
 					<div class="form-group mb-4">
@@ -201,7 +201,7 @@ function fileCheck(){
 					</div>
 					<div class="form-group mb-4">
 						<label>참여비<sup class="text-primary">✱숫자만입력</sup></label> <input
-							type="text" name="team_fee" placeholder="ex) 10,000" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+							type="text" name="team_fee" placeholder="ex) 10,000" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength='50'
 							class="form-control" required>
 					</div>
 

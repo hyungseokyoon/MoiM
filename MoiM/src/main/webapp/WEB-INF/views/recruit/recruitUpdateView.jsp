@@ -94,8 +94,8 @@ function fileCheck(){
 							type="hidden" name="team_rename_image"
 							value="${ recruit.team_rename_image }">
 						<div class="form-group mb-4">
-							<label>스터디명<sup class="text-primary">✱</sup></label> <input
-								type="text" name="team_name" class="form-control"
+							<label>스터디명<sup class="text-primary">✱</sup></label> <input 
+								type="text" name="team_name" class="form-control" maxlength='30'
 								value="${ recruit.team_name }" readonly>
 						</div>
 						<c:if test="${ !empty recruit.team_original_image }">		
@@ -177,7 +177,7 @@ function fileCheck(){
 						</div>
 						<div class="form-group mb-4">
 							<label>시간<sup class="text-primary">✱</sup></label> <input
-								type="text" name="team_act_time" placeholder="ex) 14:00~16:00"
+								type="text" name="team_act_time" placeholder="ex) 14:00~16:00" maxlength='50'
 								class="form-control" value="${ recruit.team_act_time }" required>
 						</div>
 						<div class="form-group mb-4">
@@ -188,7 +188,7 @@ function fileCheck(){
 						<div class="form-group mb-4">
 							<label>참여비<sup class="text-primary">✱숫자만입력</sup></label> <input
 								type="text" name="team_fee" placeholder="ex) 10,000" value="${ recruit.team_fee }" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
-								class="form-control" required>
+								class="form-control" maxlength='50' required>
 						</div>
 
 
