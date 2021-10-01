@@ -84,6 +84,7 @@ public class MyPageController {
 	@RequestMapping(value = "udelete.do", method = RequestMethod.POST)
 	public ModelAndView userDeleteForward(ModelAndView mv, @RequestParam("user_no") int user_no) {
 		if(mypageService.deleteUser(user_no) > 0) {
+			mv.addObject("message", "탈퇴가 완료되었습니다.");
 			mv.setViewName("redirect:logout.do");
 		} else {
 			mv.addObject("message", user_no + "번 회원 탈퇴처리 실패");
