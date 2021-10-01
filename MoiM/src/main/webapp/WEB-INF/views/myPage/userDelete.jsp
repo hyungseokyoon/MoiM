@@ -116,10 +116,8 @@
           <br><Br>
           	정말 탈퇴하시겠습니까?
           <br><br>
-          	
           	<input type="hidden" name="user_no" value="${ loginMember.user_no }">
           	<input type="submit" class="btn btn-lg btn-danger" value="탈퇴하기">
-          	
           </form>
           </blockquote>
            
