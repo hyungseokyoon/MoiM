@@ -63,9 +63,11 @@
         							<c:param name="user_no" value="${ user.user_no }"/>
         							<c:if test="${ user.login_ok == 'Y' }">
         								<c:param name="login_ok" value="N"/>
+        								<c:param name="admin_no" value="${ loginMember.user_no }"/>
         							</c:if>
         							<c:if test="${ user.login_ok == 'N' }">
         								<c:param name="login_ok" value="Y"/>
+        								<c:param name="admin_no" value="${ loginMember.user_no }"/>
         							</c:if>
         							<c:param name="page" value="${ currentPage }"/>
         						</c:url>
@@ -74,9 +76,11 @@
         							<c:param name="user_no" value="${ user.user_no }"/>
         							<c:if test="${ user.admin == 'Y' }">
         								<c:param name="admin" value="N"/>
+        								<c:param name="admin_no" value="${ loginMember.user_no }"/>
         							</c:if>
         							<c:if test="${ user.admin == 'N' }">
         								<c:param name="admin" value="Y"/>
+        								<c:param name="admin_no" value="${ loginMember.user_no }"/>
         							</c:if>
         							<c:param name="page" value="${ currentPage }"/>
         						</c:url>
