@@ -62,7 +62,7 @@ public class UserInfoDao {
 
 	public int deleteUserAdmin(int user_no) {
 		return session.delete("userinfoMapper.deleteUserAdmin", user_no);
-	};
+	}
 	
 	public int selectCheckId(String user_id) {
 		return session.selectOne("userinfoMapper.selectCheckId", user_id);

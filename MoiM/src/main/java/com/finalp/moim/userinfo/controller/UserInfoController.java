@@ -247,14 +247,15 @@ public class UserInfoController {
 	
 	// 관리자 페이지 - 회원관리 페이지로 이동
 	@RequestMapping("ulistadmin.do")
-	public ModelAndView adminUerListMethod(ModelAndView mv, @RequestParam(name="page", required=false) String page) {
+	public ModelAndView adminUerListMethod(ModelAndView mv, @RequestParam(name="page", required=false) String page, 
+			@RequestParam("admin_no") int admin_no) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = Integer.parseInt(page);
 		}
 		
 		int limit = 10;
-		int listCount = userinfoService.selectListCount();
+		int listCount = userinfoService.selectListCount() - 2;
 		
 		int maxPage = (int)((double)listCount / limit + 0.9);
 		int startPage = (int)((double)currentPage / limit + 0.9);
@@ -268,7 +269,17 @@ public class UserInfoController {
 		Page paging = new Page(startRow, endRow);
 		
 		ArrayList<UserInfo> list = userinfoService.selectUserList();
-		System.out.println(list);
+		
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).getUser_no() < 1) {
+				list.remove(i);
+			}
+			
+			if(list.get(i).getUser_no() == admin_no) {
+				list.remove(i);
+			}
+		}
+		
 		if(list != null && list.size() > 0) {
 			mv.addObject("list", list);
 			mv.addObject("listCount", listCount);
@@ -405,11 +416,14 @@ public class UserInfoController {
 	}
 		
 	// 관리자 페이지 - 회원 강제 탈퇴
-	@RequestMapping(value = "userdelete.do", method = RequestMethod.POST)
+	@RequestMapping("userdelete.do")
 	public ModelAndView userDeleteMethod(ModelAndView mv, @RequestParam("user_no") int user_no, 
-			@RequestParam("page") int currentPage) {
+			@RequestParam("page") int currentPage, @RequestParam("admin_no") int admin_no) {
+		System.out.println("user_no : " + user_no);
+		
 		if(userinfoService.deleteUserAdmin(user_no) > 0) {
 			mv.addObject("page", currentPage);
+			mv.addObject("admin_no", admin_no);
 			mv.setViewName("redirect:ulistadmin.do");
 		} else {
 			mv.addObject("message", user_no + "번 회원 탈퇴처리 실패");

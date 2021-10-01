@@ -21,8 +21,6 @@
 		<result column="admin" property="admin"/>
 	</resultMap>
 	
-	
-
 	<!-- 비밀번호 암호화를 사용하는 로그인 -->
 	<select id="selectLogin" parameterType="UserInfo" resultMap="resultUser">
 		select * from user_info

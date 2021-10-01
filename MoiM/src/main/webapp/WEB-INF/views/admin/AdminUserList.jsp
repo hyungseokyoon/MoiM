@@ -81,33 +81,12 @@
         						</c:url>
         						<td align="center"><a href="${ user_admin }" class="btn btn-primary">${ user.admin }</a></td>
         						<td align="center">
-        						<a href="#" data-toggle="modal" data-target="#reject" class="btn btn-primary">강제탈퇴</a>
-        						<!-- 강제탈퇴 레이어 -->
-								<div id="reject" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bd-example-modal-lg">
-									<div role="document" class="modal-dialog modal-dialog-centered modal-lg">
-										<div class="modal-content">
-											<div class="modal-header border-bottom-0">
-												<button type="button" data-dismiss="modal" aria-label="Close" class="close">
-													<span aria-hidden="true">×</span>
-												</button>
-											</div>
-											<div class="modal-body p-4 p-lg-5">
-												<form action="userdelete.do" class="login-form text-left" method="post">
-													<input type="hidden" name="user_no" value="${ user.user_no }">
-													<input type="hidden" name="page" value="${ currentPage }">
-													<div class="form-group mb-4">
-														<h2>* 경고 *</h2>
-														<p>정말 이 회원을 탈퇴시키시겠습니까?</p>
-														<input type="submit" value="Yes" class="btn btn-primary">&nbsp;
-														<button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary">
-															<span aria-hidden="true">No</span>
-														</button>
-													</div>
-												</form>
-											</div>
-										</div>
-									</div>
-								</div>
+        							<c:url var="user_delete" value="userdelete.do">
+        								<c:param name="user_no" value="${ user.user_no }"/>
+        								<c:param name="page" value="${ currentPage }"/>
+        								<c:param name="admin_no" value="${ loginMember.user_no }"/>
+        							</c:url>
+	        						<a href="${ user_delete }" class="btn btn-primary">강제탈퇴</a>
         						</td>
         					</tr>
         				</c:forEach>
