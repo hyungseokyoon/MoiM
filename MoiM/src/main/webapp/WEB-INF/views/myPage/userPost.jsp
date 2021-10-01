@@ -85,7 +85,7 @@
             <!-- My Post List -->
           
             <div id="accordion" class="faq accordion accordion-custom pb-5">
-             
+             <h2>게시판</h2>
               <div class="dataTable-container">
 			    			<table class="table table-striped dataTable-table" id="table1">
 						        <thead>
