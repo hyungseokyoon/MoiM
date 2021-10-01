@@ -29,6 +29,31 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+        
+    <script>
+      function chk(deleteCheck) {
+    	  //체크박스 체크여부 확인
+    	  var chk1=document.deleteCheck.customCheck1.checked;
+    	  var chk2=document.deleteCheck.customCheck2.checked;
+    	  var chk3=document.deleteCheck.customCheck3.checked;
+    	  
+    	  if(!chk1){
+    		  alert("모두 동의해 주세요.");
+    		  return false;
+    	  }
+    	  if(!chk2){
+    		  alert("모두 동의해 주세요.");
+    		  return false;
+    	  }
+    	  if(!chk3){
+    		  alert("모두 동의해 주세요.");
+    		  return false; 
+    	  } else {
+    		  alert("회원 탈퇴가 완료되었습니다.")
+    		  return true;
+    	  }
+      }
+    </script>
   </head>
   <body>
   
@@ -62,38 +87,38 @@
           <!-- Delete -->
           <div class="col-lg-8">   
           
-          
           <blockquote class="blockquote mb-5 text-left">
-          MoiM을 탈퇴하려는 이유를 알려주세요
+          <form name="deleteCheck" action="udelete.do" onSubmit="return chk(this)" class="login-form text-left" method="post">
+         <!--  MoiM을 탈퇴하려는 이유를 알려주세요
           
           <textarea name="message" placeholder="필수 사항이 아닙니다" class="form-control"></textarea>
           <br>
           <br>
+           -->
           <div class="col-sm-11">
             <div class="custom-control custom-checkbox">
-          	  <input id="customCheck1" type="checkbox" class="custom-control-input">
+          	  <input id="customCheck1" name="customCheck1" type="checkbox" class="custom-control-input">
           		<label for="customCheck1" class="custom-control-label">탈퇴 완료 후에는 모든 데이터가 삭제되어 조회 등이 불가능합니다.</label>
             </div>
           </div>
           <div class="col-sm-11">
             <div class="custom-control custom-checkbox">
-          	  <input id="customCheck2" type="checkbox" class="custom-control-input">
+          	  <input id="customCheck2" name="customCheck2" type="checkbox" class="custom-control-input">
           		<label for="customCheck2" class="custom-control-label">삭제된 정보는 복구가 불가능하니 신중히 진행해주시기 바랍니다.</label>
             </div>
           </div>
           <div class="col-sm-11">
             <div class="custom-control custom-checkbox">
-          	  <input id="customCheck3" type="checkbox" class="custom-control-input">
+          	  <input id="customCheck3" name="customCheck3" type="checkbox" class="custom-control-input">
           		<label for="customCheck3" class="custom-control-label">주의 사항을 모두 확인하였습니다.</label>
             </div>
           </div>
           <br><Br>
           	정말 탈퇴하시겠습니까?
           <br><br>
-          	<form action="udelete.do" class="login-form text-left" method="post">
           	<input type="hidden" name="user_no" value="${ loginMember.user_no }">
           	<input type="submit" class="btn btn-lg btn-danger" value="탈퇴하기">
-          	</form>
+          </form>
           </blockquote>
            
            
