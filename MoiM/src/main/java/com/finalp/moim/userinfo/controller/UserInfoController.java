@@ -290,6 +290,7 @@ public class UserInfoController {
 			mv.addObject("limit", limit);
 			mv.addObject("startRow", startRow);
 			mv.addObject("endRow", endRow);
+			mv.addObject("admin_no", admin_no);
 			
 			mv.setViewName("admin/AdminUserList");
 		} else {
@@ -346,14 +347,15 @@ public class UserInfoController {
 	// 관리자 페이지 - 회원 정보 검색
 	@RequestMapping(value = "usearch.do", method = RequestMethod.POST)
 	public ModelAndView userSearchMethod(ModelAndView mv, @RequestParam("category_no") int category_no,
-			@RequestParam("keyword") String keyword, @RequestParam(name="page", required=false) String page) {
+			@RequestParam("keyword") String keyword, @RequestParam(name="page", required=false) String page, 
+			@RequestParam("admin_no") int admin_no) {
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = Integer.parseInt(page);
 		}
 		
 		int limit = 10;
-		int listCount = userinfoService.selectListCount();
+		int listCount = userinfoService.selectListCount() - 2;
 		
 		int maxPage = (int)((double)listCount / limit + 0.9);
 		int startPage = (int)((double)currentPage / limit + 0.9);
@@ -368,6 +370,16 @@ public class UserInfoController {
 		
 		ArrayList<UserInfo> list = userinfoService.selectUserSearch(category_no, keyword);
 		
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).getUser_no() < 1) {
+				list.remove(i);
+			}
+			
+			if(list.get(i).getUser_no() == admin_no) {
+				list.remove(i);
+			}
+		}
+		
 		if(list != null && list.size() > 0) {
 			mv.addObject("list", list);
 			mv.addObject("listCount", listCount);
@@ -378,6 +390,7 @@ public class UserInfoController {
 			mv.addObject("limit", limit);
 			mv.addObject("startRow", startRow);
 			mv.addObject("endRow", endRow);
+			mv.addObject("admin_no", admin_no);
 			
 			mv.setViewName("admin/AdminUserList");
 		} else {

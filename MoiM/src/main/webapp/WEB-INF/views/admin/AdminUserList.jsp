@@ -23,6 +23,7 @@
     			<div class="dataTable-search">
     				<form action="usearch.do" method="post">
 	  					<input type="hidden" name="page" value="1">
+	  					<input type="hidden" name="admin_no" value="${ loginMember.user_no }">
 	  					<label>검색 카테고리 선택</label>
 	   					<label>
 		    				<select name="category_no" class="dataTable-selector form-select">
