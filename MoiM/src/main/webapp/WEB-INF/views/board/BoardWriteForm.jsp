@@ -21,7 +21,7 @@
 				<div class="col-lg-7">
 					<form action="binsert.do" class="contact-form text-left" method="post" enctype="multipart/form-data">
 						<div class="form-group mb-4">
-							<label>공지제목<sup class="text-primary">✱</sup></label>
+							<label>글제목<sup class="text-primary">✱</sup></label>
 							<input type="text" name="board_title" placeholder="제목을 입력해주세요." class="form-control">
 						</div>
 						<div class="form-group mb-4">
@@ -44,7 +44,7 @@
 							<input type="file" name="upfile" class="form-control">
 						</div>
 						<div class="form-group mb-4">
-							<label>공지내용<sup class="text-primary">✱</sup></label>
+							<label>글내용<sup class="text-primary">✱</sup></label>
 							<textarea name="board_content" placeholder="공지 내용을 입력해주세요." class="form-control"></textarea>
 						</div>
 						<div class="form-group">

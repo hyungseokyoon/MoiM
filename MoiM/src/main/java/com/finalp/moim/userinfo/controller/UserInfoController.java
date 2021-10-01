@@ -305,13 +305,15 @@ public class UserInfoController {
 	// 관리자 페이지 - 회원 로그인 가능 여부 변경
 	@RequestMapping("loginOKadmin.do")
 	public ModelAndView userLoginOKMethod(ModelAndView mv, @RequestParam("user_no") int user_no, 
-			@RequestParam("page") int currentPage, @RequestParam("login_ok") String login_ok) {
+			@RequestParam("page") int currentPage, @RequestParam("login_ok") String login_ok, 
+			@RequestParam("admin_no") int admin_no) {
 		UserInfo userInfo = userinfoService.selectUser(user_no);
 		
 		userInfo.setLogin_ok(login_ok);
 		
 		if(userinfoService.updateUserLoginOK(userInfo) > 0) {
 			mv.addObject("page", currentPage);
+			mv.addObject("admin_no", admin_no);
 			
 			mv.setViewName("redirect:ulistadmin.do");
 		} else {
@@ -326,13 +328,15 @@ public class UserInfoController {
 	// 관리자 페이지 - 회원 관리자 여부 변경
 	@RequestMapping("userchangeadmin.do")
 	public ModelAndView userAdminChangeMethod(ModelAndView mv, @RequestParam("user_no") int user_no, 
-			@RequestParam("page") int currentPage, @RequestParam("admin") String admin) {
+			@RequestParam("page") int currentPage, @RequestParam("admin") String admin, 
+			@RequestParam("admin_no") int admin_no) {
 		UserInfo userInfo = userinfoService.selectUser(user_no);
 		
 		userInfo.setAdmin(admin);
 		
 		if(userinfoService.updateUserAdmin(userInfo) > 0) {
 			mv.addObject("page", currentPage);
+			mv.addObject("admin_no", admin_no);
 			
 			mv.setViewName("redirect:ulistadmin.do");
 		} else {
